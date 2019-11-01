@@ -1,4 +1,0 @@
-
-{"http":{"header":["Accept: application\/json","Content-Type: application\/json;charset=UTF-8","Authorization: WSSE realm=\"SDP\",profile=\"UsernameToken\",type=\"Appkey\"","X-WSSE: UsernameToken Username=\"c4a07c0607a5GwjY15eiy11i6aRx\",PasswordDigest=\"7WsvZ2Db4wPOAzXVo79ccaX1kF8LshBXR0zpPKSmII4=\",Nonce=\"5db02eb4af359\",Created=\"2019-10-23T10:43:00Z\""],"ignore_errors":true,"method":"POST","content":"{\"sessionid\":\"1202_9560_4294967295_20191022082307\",\"signal\":\"call_stop\"}"},"ssl":{"verify_peer":false,"verify_peer_name":false}}
-URL:https://rtcapi.cn-north-1.myhuaweicloud.com:12543/rest/httpsessions/callStop/v2.0
-{"resultcode":"1010002","resultdesc":"Invalid request."}
