@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
+<title>结算设置</title>
+{#$cssFile#}
+<script>
+var adminPath = "{#$adminPath#}";
+</script>
+<style>
+  .editform dd .input-prepend input[type=radio] {display: inline-block; vertical-align: middle; margin: -3px 2px 0 0; border-radius: 1em;}
+  .editform dd .input-prepend input[type=checkbox] {display: inline-block; vertical-align: middle; margin: -2px 3px 0 0;}
+</style>
+</head>
+
+<body>
+<form action="" method="post" name="editform" id="editform" class="editform">
+  <input type="hidden" name="token" id="token" value="{#$token#}" />
+  <dl class="clearfix">
+    <dt><label for="pointName">打赏：</label></dt>
+    <dd>
+      <div class="input-prepend input-append">
+        <span class="add-on">结算佣金</span>
+        <input class="input-mini" type="text" name="rewardFee" value="{#$rewardFee#}">
+        <span class="add-on" style="display: inline-block;">%</span>
+      </div>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label>商家：</label></dt>
+    <dd>
+      {#if in_array("tuan", $installModuleArr)#}
+      <div class="input-prepend input-append" style="display:block;">
+        <span class="add-on">团购佣金</span>
+        <input class="input-mini" type="text" name="tuanFee" value="{#$tuanFee#}">
+        <span class="add-on" style="display: inline-block;">%</span>
+      </div>
+      {#/if#}
+      {#if in_array("travel", $installModuleArr)#}
+      <div class="input-prepend input-append" style="display:block;">
+        <span class="add-on">旅游佣金</span>
+        <input class="input-mini" type="text" name="travelFee" value="{#$travelFee#}">
+        <span class="add-on" style="display: inline-block;">%</span>
+      </div>
+      {#/if#}
+      {#if in_array("homemaking", $installModuleArr)#}
+      <div class="input-prepend input-append" style="display:block;">
+        <span class="add-on">家政佣金</span>
+        <input class="input-mini" type="text" name="homemakingFee" value="{#$homemakingFee#}">
+        <span class="add-on" style="display: inline-block;">%</span>
+      </div>
+      {#/if#}
+      {#if in_array("education", $installModuleArr)#}
+      <div class="input-prepend input-append">
+        <span class="add-on">教育佣金</span>
+        <input class="input-mini" type="text" name="educationFee" value="{#$educationFee#}">
+        <span class="add-on" style="display: inline-block;">%</span>
+      </div><br />
+      {#/if#}
+      {#if in_array("shop", $installModuleArr)#}
+      <div class="input-prepend input-append" style="display:block;">
+        <span class="add-on">商城佣金</span>
+        <input class="input-mini" type="text" name="shopFee" value="{#$shopFee#}">
+        <span class="add-on" style="display: inline-block;">%</span>
+      </div>
+      {#/if#}
+      {#if in_array("huodong", $installModuleArr)#}
+      <div class="input-prepend input-append" style="display:block;">
+        <span class="add-on">活动佣金</span>
+        <input class="input-mini" type="text" name="huodongFee" value="{#$huodongFee#}">
+        <span class="add-on" style="display: inline-block;">%</span>
+      </div>
+      {#/if#}
+      {#if in_array("live", $installModuleArr)#}
+      <div class="input-prepend input-append" style="display:block;">
+        <span class="add-on">直播佣金</span>
+        <input class="input-mini" type="text" name="liveFee" value="{#$liveFee#}">
+        <span class="add-on" style="display: inline-block;">%</span>
+      </div>
+      {#/if#}
+
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label>提现：</label></dt>
+    <dd>
+      <div class="input-prepend input-append" style="display:block;">
+        <span class="add-on">起提金额</span>
+        <input class="input-mini" type="text" name="minWithdraw" value="{#$minWithdraw#}">
+        <span class="add-on" style="display: inline-block;">元</span>
+        <span class="help-inline">单次限制，大于等于0.01</span>
+      </div>
+      <div class="input-prepend input-append" style="display:block;">
+        <span class="add-on">最多提现</span>
+        <input class="input-mini" type="text" name="maxWithdraw" value="{#$maxWithdraw#}">
+        <span class="add-on" style="display: inline-block;">元</span>
+        <span class="help-inline">单次限制，0为不限制</span>
+      </div>
+      <div class="input-prepend input-append" style="display:block;">
+        <span class="add-on">手续费：</span>
+        <input class="input-mini" type="text" name="withdrawFee" value="{#$withdrawFee#}">
+        <span class="add-on" style="display: inline-block;">%</span>
+      </div>
+      <div class="input-prepend input-append" style="display:block;">
+        <span class="add-on">每天最多</span>
+        <input class="input-mini" type="text" name="maxCountWithdraw" value="{#$maxCountWithdraw#}">
+        <span class="add-on" style="display: inline-block;">次</span>
+        <input class="input-mini" type="text" name="maxAmountWithdraw" value="{#$maxAmountWithdraw#}">
+        <span class="add-on" style="display: inline-block;">元</span>
+        <span class="help-inline">0为不限制</span>
+      </div>
+
+
+      <div class="input-prepend input-append" style="display:block;">
+        <span class="add-on">提现周期：</span>
+        <span class="add-on" style="display: inline-block;"><label><input type="radio" name="withdrawCycle" value="0" value="0"{#if !$withdrawCycle#} checked{#/if#}>不限制</label>&nbsp;</span>
+        <span class="add-on" style="display: inline-block;"><label><input type="radio" name="withdrawCycle" value="1" value="1"{#if $withdrawCycle == 1#} checked{#/if#}>每周</label>&nbsp;</span>
+        <select name="withdrawCycleWeek" class="input-mini" style="margin-right: 0;">
+          <option value="1"{#if $withdrawCycleWeek == 1#} selected{#/if#}>一</option>
+          <option value="2"{#if $withdrawCycleWeek == 2#} selected{#/if#}>二</option>
+          <option value="3"{#if $withdrawCycleWeek == 3#} selected{#/if#}>三</option>
+          <option value="4"{#if $withdrawCycleWeek == 4#} selected{#/if#}>四</option>
+          <option value="5"{#if $withdrawCycleWeek == 5#} selected{#/if#}>五</option>
+          <option value="6"{#if $withdrawCycleWeek == 6#} selected{#/if#}>六</option>
+          <option value="0"{#if !$withdrawCycleWeek#} selected{#/if#}>日</option>
+        </select>
+        <span class="add-on" style="display: inline-block;"><label><input type="radio" name="withdrawCycle" value="2" value="2"{#if $withdrawCycle == 2#} checked{#/if#}>每月</label>&nbsp;</span>
+        <input class="input-mini" type="text" name="withdrawCycleDay" value="{#$withdrawCycleDay#}">
+        <span class="add-on" style="display: inline-block;">日</span>
+      </div>
+      <div class="input-prepend input-append" style="display:block;">
+        <span class="add-on">提现平台：</span>
+        <span class="add-on" style="display: inline-block;"><label><input type="checkbox" name="withdrawPlatform[]" value="weixin"{#if $withdrawPlatform && in_array("weixin", $withdrawPlatform)#} checked{#/if#}>微信</label>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span class="add-on" style="display: inline-block;"><label><input type="checkbox" name="withdrawPlatform[]" value="alipay"{#if $withdrawPlatform && in_array("alipay", $withdrawPlatform)#} checked{#/if#}>支付宝</label>&nbsp;&nbsp;&nbsp;</span>
+        <span class="add-on" style="display: inline-block;"><label><input type="checkbox" name="withdrawPlatform[]" value="bank"{#if $withdrawPlatform && in_array("bank", $withdrawPlatform)#} checked{#/if#}>银联</label>(只支持线下转账)</span>
+      </div>
+      <div class="input-prepend input-append" style="display:block;">
+        <span class="add-on">付款方式：</span>
+        <span class="add-on" style="display: inline-block;"><label><input type="radio" name="withdrawCheckType" value="0"{#if !$withdrawCheckType#} checked{#/if#}>会员申请后自动付款</label>&nbsp;</span>
+        <span class="add-on" style="display: inline-block;"><label><input type="radio" name="withdrawCheckType" value="1"{#if $withdrawCheckType#} checked{#/if#}>会员申请后手动审核付款</label>&nbsp;</span>
+      </div>
+      <div class="input-prepend input-append" style="display:block;">
+        <span class="add-on">提现说明：</span>
+        <textarea class="input-xxlarge" style="height: 200px;" name="withdrawNote" id="withdrawNote">{#$withdrawNote#}</textarea>
+      </div>
+      <br />
+      <p>备注：<br />请先按此教程配置好微信证书：<a href="https://help.kumanyun.com/help-66-605.html" target="_blank">https://help.kumanyun.com/help-66-605.html</a><br /><br />微信企业付款到零钱开通地址：<a href="https://pay.weixin.qq.com/index.php/public/product/detail?pid=5&productType=0" target="_blank">https://pay.weixin.qq.com/index.php/public/product/detail?pid=5&productType=0</a><br />支付宝需要签约《单笔转账到账户》功能，开通地址：<a href="https://openhome.alipay.com/platform/publicAppManage.htm#/apps" target="_blank">https://openhome.alipay.com/platform/publicAppManage.htm#/apps</a><br /><br />微信限制：单笔最少0.3元，单笔单日限额5000/5000元，默认每天最多可向同一个用户付款10次；<br />支付宝：单笔最少0.1元，转账给个人支付宝账户单笔最多5万元，单日最多可转100万元。<br />请根据每三方平台限制，合理配置提现限制！<br /><br />微信查账地址：<a href="https://pay.weixin.qq.com/index.php/core/sp_transfer/transferquery" target="_blank">https://pay.weixin.qq.com/index.php/core/sp_transfer/transferquery</a><br />支付宝查账地址：<a href="https://mbillexprod.alipay.com/enterprise/fundList.htm#/transfer" target="_blank">https://mbillexprod.alipay.com/enterprise/fundList.htm#/transfer</a><br /><br />请确保微信商户平台和支付宝账户余额充足，否则将无法提现。</p>
+    </dd>
+  </dl>
+  <dl class="clearfix formbtn">
+    <dt>&nbsp;</dt>
+    <dd><input class="btn btn-large btn-success" type="submit" name="submit" id="btnSubmit" value="确认提交" /></dd>
+  </dl>
+</form>
+
+{#$jsFile#}
+</body>
+</html>

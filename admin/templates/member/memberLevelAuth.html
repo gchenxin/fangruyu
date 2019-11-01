@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
+<title>会员等级特权设置</title>
+{#$cssFile#}
+<style media="screen">
+  .table {width: auto;}
+  .table th {min-width: 150px; height: 30px; text-align: center; line-height: 30px;}
+  .table td {text-align: center; height: 34px; line-height: 31px;}
+  .level {font-size: 18px;}
+  .input-append, .input-prepend {margin-bottom: 0;}
+  .del {display: inline-block; vertical-align: middle;}
+</style>
+</head>
+
+<body style="padding: 20px;">
+
+<table class="table table-hover table-bordered table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th class="level">发布费用</th>
+      <th class="level">普通会员</th>
+      {#foreach from=$levelList item=levelTitle#}
+      <th class="level">{#$levelTitle.name#}</th>
+      {#/foreach#}
+    </tr>
+  </thead>
+  <tbody>
+
+    {#foreach from=$moduleArr item=module#}
+
+    {#if $module.name == 'article'#}
+    {#*
+    <tr>
+      <td>新闻投稿</td>
+      <td data-id="0" data-type="amount" data-module="article">
+          <div class="input-append" title="超出免费条数收取"><input class="span1" type="text" value="{#$fabuAmount['article']#}"><span class="add-on">{#echoCurrency type="short"#}/条</span></div>
+      </td>
+      <td data-id="0" data-type="count" data-module="article">
+          <div class="input-append"><input class="span1" type="text" value="{#$fabuFreeCount['article']#}"><span class="add-on">条/周</span></div>
+      </td>
+      {#foreach from=$levelList item=list#}
+      <td data-id="{#$list['id']#}" data-module="article"><div class="input-append"><input class="span1" type="text" value="{#$list['privilege']['article']#}"><span class="add-on">条/周</span></div></td>
+      {#/foreach#}
+    </tr>
+    *#}
+    {#/if#}
+
+    {#if $module.name == 'info'#}
+    <tr>
+      <td>二手信息</td>
+      <td data-id="0" data-type="amount" data-module="info">
+          <div class="input-append" title="超出免费条数收取"><input class="span1" type="text" value="{#$fabuAmount['info']#}"><span class="add-on">{#echoCurrency type="short"#}/条</span></div>
+      </td>
+      <td data-id="0" data-type="count" data-module="info">
+          <div class="input-append"><input class="span1" type="text" value="{#$fabuFreeCount['info']#}"><span class="add-on">条/周</span></div>
+      </td>
+      {#foreach from=$levelList item=list#}
+      <td data-id="{#$list['id']#}" data-module="info"><div class="input-append"><input class="span1" type="text" value="{#$list['privilege']['info']#}"><span class="add-on">条/周</span></div></td>
+      {#/foreach#}
+    </tr>
+    {#/if#}
+
+    {#if $module.name == 'house'#}
+    <tr>
+      <td>房源租售</td>
+      <td data-id="0" data-type="amount" data-module="house">
+          <div class="input-append" title="超出免费条数收取"><input class="span1" type="text" value="{#$fabuAmount['house']#}"><span class="add-on">{#echoCurrency type="short"#}/条</span></div>
+      </td>
+      <td data-id="0" data-type="count" data-module="house">
+          <div class="input-append"><input class="span1" type="text" value="{#$fabuFreeCount['house']#}"><span class="add-on">条/周</span></div>
+      </td>
+      {#foreach from=$levelList item=list#}
+      <td data-id="{#$list['id']#}" data-module="house"><div class="input-append"><input class="span1" type="text" value="{#$list['privilege']['house']#}"><span class="add-on">条/周</span></div></td>
+      {#/foreach#}
+    </tr>
+    {#/if#}
+
+	{#if $module.name == 'push_timer'#}
+    <tr>
+      <td>客源推送</td>
+      <td data-id="0" data-type="amount" data-module="push_timer">
+		 <div class="input-append" title="超出免费条数收取"><input class="span1" type="text" disabled="true"  value="--"><span class="add-on">{#echoCurrency type="short"#}/条</span></div>
+      </td>
+      <td data-id="0" data-type="count" data-module="push_timer">
+          <div class="input-append"><input class="span1" type="text" value="{#$fabuFreeCount['push_timer']#}"><span class="add-on">条/天</span></div>
+      </td>
+      {#foreach from=$levelList item=list#}
+      <td data-id="{#$list['id']#}" data-module="push_timer"><div class="input-append"><input class="span1" type="text" value="{#$list['privilege']['push_timer']#}"><span class="add-on">条/天</span></div></td>
+      {#/foreach#}
+    </tr>
+    {#/if#}
+
+    {#if $module.name == 'tieba'#}
+    <tr>
+      <td>贴吧社区</td>
+      <td data-id="0" data-type="amount" data-module="tieba">
+          <div class="input-append" title="超出免费条数收取"><input class="span1" type="text" value="{#$fabuAmount['tieba']#}"><span class="add-on">{#echoCurrency type="short"#}/条</span></div>
+      </td>
+      <td data-id="0" data-type="count" data-module="tieba">
+          <div class="input-append"><input class="span1" type="text" value="{#$fabuFreeCount['tieba']#}"><span class="add-on">条/周</span></div>
+      </td>
+      {#foreach from=$levelList item=list#}
+      <td data-id="{#$list['id']#}" data-module="tieba"><div class="input-append"><input class="span1" type="text" value="{#$list['privilege']['tieba']#}"><span class="add-on">条/周</span></div></td>
+      {#/foreach#}
+    </tr>
+    {#/if#}
+
+    {#if $module.name == 'huodong'#}
+    <tr>
+      <td>同城活动</td>
+      <td data-id="0" data-type="amount" data-module="huodong">
+          <div class="input-append" title="超出免费条数收取"><input class="span1" type="text" value="{#$fabuAmount['huodong']#}"><span class="add-on">{#echoCurrency type="short"#}/条</span></div>
+      </td>
+      <td data-id="0" data-type="count" data-module="huodong">
+          <div class="input-append"><input class="span1" type="text" value="{#$fabuFreeCount['huodong']#}"><span class="add-on">条/周</span></div>
+      </td>
+      {#foreach from=$levelList item=list#}
+      <td data-id="{#$list['id']#}" data-module="huodong"><div class="input-append"><input class="span1" type="text" value="{#$list['privilege']['huodong']#}"><span class="add-on">条/周</span></div></td>
+      {#/foreach#}
+    </tr>
+    {#/if#}
+
+    {#if $module.name == 'vote'#}
+    <tr>
+      <td>投票活动</td>
+      <td data-id="0" data-type="amount" data-module="vote">
+          <div class="input-append" title="超出免费条数收取"><input class="span1" type="text" value="{#$fabuAmount['vote']#}"><span class="add-on">{#echoCurrency type="short"#}/条</span></div>
+      </td>
+      <td data-id="0" data-type="count" data-module="vote">
+          <div class="input-append"><input class="span1" type="text" value="{#$fabuFreeCount['vote']#}"><span class="add-on">条/周</span></div>
+      </td>
+      {#foreach from=$levelList item=list#}
+      <td data-id="{#$list['id']#}" data-module="vote"><div class="input-append"><input class="span1" type="text" value="{#$list['privilege']['vote']#}"><span class="add-on">条/周</span></div></td>
+      {#/foreach#}
+    </tr>
+    {#/if#}
+
+    {#if $module.name == 'live'#}
+    <tr>
+      <td>视频直播</td>
+      <td data-id="0" data-type="amount" data-module="live">
+          <div class="input-append" title="超出免费条数收取"><input class="span1" type="text" value="{#$fabuAmount['live']#}"><span class="add-on">{#echoCurrency type="short"#}/条</span></div>
+      </td>
+      <td data-id="0" data-type="count" data-module="live">
+          <div class="input-append"><input class="span1" type="text" value="{#$fabuFreeCount['live']#}"><span class="add-on">条/周</span></div>
+      </td>
+      {#foreach from=$levelList item=list#}
+      <td data-id="{#$list['id']#}" data-module="live"><div class="input-append"><input class="span1" type="text" value="{#$list['privilege']['live']#}"><span class="add-on">条/周</span></div></td>
+      {#/foreach#}
+    </tr>
+    <tr>
+      <td>直播时间</td>
+      <td data-id="0" colspan="2" data-module="livetime">
+          <div class="input-append" title="最多直播时长"><input class="span1" type="text" value="{#$fabuAmount['livetime']#}"><span class="add-on">小时/条</span></div>
+      </td>
+      {#foreach from=$levelList item=list#}
+      <td data-id="{#$list['id']#}" data-module="livetime"><div class="input-append" title="最多直播时长"><input class="span1" type="text" value="{#$list['privilege']['livetime']#}"><span class="add-on">小时/条</span></div></td>
+      {#/foreach#}
+    </tr>
+    {#/if#}
+
+    {#if $module.name == 'car'#}
+    <tr>
+      <td>汽车门户</td>
+      <td data-id="0" data-type="amount" data-module="car">
+          <div class="input-append" title="超出免费条数收取"><input class="span1" type="text" value="{#$fabuAmount['car']#}"><span class="add-on">{#echoCurrency type="short"#}/条</span></div>
+      </td>
+      <td data-id="0" data-type="count" data-module="car">
+          <div class="input-append"><input class="span1" type="text" value="{#$fabuFreeCount['car']#}"><span class="add-on">条/周</span></div>
+      </td>
+      {#foreach from=$levelList item=list#}
+      <td data-id="{#$list['id']#}" data-module="car"><div class="input-append"><input class="span1" type="text" value="{#$list['privilege']['car']#}"><span class="add-on">条/周</span></div></td>
+      {#/foreach#}
+    </tr>
+    {#/if#}
+
+    {#if $module.name == 'education'#}
+    <tr>
+        <td>教育培训</td>
+        <td data-id="0" data-type="amount" data-module="education">
+            <div class="input-append" title="超出免费条数收取"><input class="span1" type="text" value="{#$fabuAmount['education']#}"><span class="add-on">{#echoCurrency type="short"#}/条</span></div>
+        </td>
+        <td data-id="0" data-type="count" data-module="education">
+            <div class="input-append"><input class="span1" type="text" value="{#$fabuFreeCount['education']#}"><span class="add-on">条/周</span></div>
+        </td>
+        {#foreach from=$levelList item=list#}
+        <td data-id="{#$list['id']#}" data-module="education"><div class="input-append"><input class="span1" type="text" value="{#$list['privilege']['education']#}"><span class="add-on">条/周</span></div></td>
+        {#/foreach#}
+      </tr>
+      {#/if#}
+
+      {#/foreach#}
+  </tbody>
+  <tbody>
+    <tr>
+      <td colspan="{#$levelList|@count + 3#}">
+        <button type="button" class="btn btn-success btn-small" id="save">保存修改</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+  var adminPath = "{#$adminPath#}";
+</script>
+{#$jsFile#}
+</body>
+</html>

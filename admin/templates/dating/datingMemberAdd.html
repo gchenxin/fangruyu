@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
+<title>{#$pagetitle#}</title>
+{#$cssFile#}
+<script>
+var adminPath = "{#$adminPath#}", mapCity = "{#$mapCity#}", tagsLength = {#$tagsLength#}, graspLength = {#$graspLength#}, learnLength = {#$learnLength#};
+var service = 'siteConfig';
+var languageLengh = 5;
+var interestsLength = {#$interestsLength#};
+var type = {#$type#};
+</script>
+<style>
+.my_rz {line-height: 30px;}
+</style>
+</head>
+
+<body>
+<form action="" method="post" name="editform" id="editform" class="editform">
+  <input type="hidden" name="dopost" id="dopost" value="{#$dopost#}" />
+  <input type="hidden" name="id" id="id" value="{#$id#}" />
+  <input type="hidden" name="token" id="token" value="{#$token#}" />
+  <dl class="clearfix">
+    <dt><label for="user">所属系统会员：</label></dt>
+    <dd style="position:static;">
+      <input class="input-medium" type="text" name="user" id="user" value="{#$sysUser.username#}" autocomplete="off" />
+      <input type="hidden" name="userid" id="userid" value="{#$userid#}" />
+      <span class="input-tips"><s></s>请输入网站对应会员名</span>
+      <div id="userList" class="popup_key"></div>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="type">类型：</label></dt>
+    <dd style="position:static;">
+      <select name="type" id="type" class="input-medium">
+        {#if $type == 0#}<option value="0">用户</option>{#/if#}
+        {#if $type == 1#}<option value="1">红娘</option>{#/if#}
+        {#if $type == 2#}<option value="2">门店</option>{#/if#}
+      </select>
+    </dd>
+  </dl>
+  {#if $type == 0 || $type == 1#}
+  <dl class="clearfix">
+    <dt><label for="company">所属{#if $type == 0#}红娘{#elseif $type == 1#}门店{#/if#}：</label></dt>
+    <dd style="position:static;">
+      <input class="input-medium" type="text" name="user2" id="user2" value="{#$companyName#}" autocomplete="off" />
+      <input type="hidden" name="company" id="company" value="{#$company#}" />
+      <span class="input-tips"><s></s>请输入对应用户名</span>
+      <div id="userList2" class="popup_key"></div>
+    </dd>
+  </dl>
+  {#else#}
+  <input type="hidden" name="company" id="company" value="0" />
+  {#/if#}
+  
+  <dl class="clearfix">
+    <dt>头像：</dt>
+    <dd class="thumb fn-clear listImgBox">
+      <div class="uploadinp filePicker thumbtn{#if $photo != ""#} hide{#/if#}" id="filePicker1" data-type="thumb"  data-count="1" data-size="{#$thumbSize#}" data-imglist=""><div></div><span></span></div>
+      {#if $photo != ""#}
+      <ul id="listSection1" class="listSection thumblist fn-clear" style="display:inline-block;"><li id="WU_FILE_0_1"><a href='{#$cfg_attachment#}{#$photo#}' target="_blank" title=""><img alt="" src="{#$cfg_attachment#}{#$photo#}" data-val="{#$photo#}"/></a><a class="reupload li-rm" href="javascript:;">删除图片</a></li></ul>
+      {#else#}
+      <ul id="listSection1" class="listSection thumblist fn-clear"></ul>
+      {#/if#}
+      <input type="hidden" name="litpic" value="{#$photo#}" class="imglist-hidden" id="litpic">
+    </dd>
+  </dl>
+
+    {#* 用户 *#}
+    {#if $type == 0#}
+
+  <div style="padding: 15px 15px 0;">
+    <blockquote>
+      <p>认证</p>
+    </blockquote>
+  </div>
+  <dl class="clearfix" id="voicePreview">
+    <dt><label for="my_voice">语音认证：</label></dt>
+    <dd>
+      {#if $my_voice#}
+      <a href="javascript:;" data-id="{#$my_voice_turl#}" class="my_rz">已上传，点击试听</a>
+      <label for="my_voice_state" style="margin-left:20px;">审核状态：
+        <select name="my_voice_state" id="my_voice_state" class="input-medium">
+        {#html_options options=$arcrankList selected=$my_voice_state#}
+        </select>
+      </label>
+      {#/if#}
+    </dd>
+  </dl>
+  <dl class="clearfix" id="videoPreview">
+    <dt><label for="">视频认证：</label></dt>
+    <dd>
+      {#if $my_video#}
+      <a href="/include/videoPreview.php?f=" data-id="{#$my_video#}" class="my_rz">已上传，点击播放</a>
+      <label for="my_video_state" style="margin-left:20px;">审核状态：
+        <select name="my_video_state" id="my_video_state" class="input-medium">
+        {#html_options options=$arcrankList selected=$my_video_state#}
+        </select>
+      </label>
+      {#/if#}
+    </dd>
+  </dl>
+
+  <div style="padding: 15px 15px 0;">
+    <blockquote>
+      <p>会员状态</p>
+    </blockquote>
+  </div>
+  <dl class="clearfix">
+    <dt><label for="state">显示状态：</label></dt>
+    <dd>
+      <select name="state" id="state" class="input-medium">
+      {#html_options options=$stateList selected=$state#}
+      </select>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="dateswitch">交友开关：</label></dt>
+    <dd>
+      <select name="dateswitch" id="dateswitch" class="input-medium">
+      {#html_options options=$dateswitchList selected=$dateswitch#}
+      </select>
+    </dd>
+  </dl>
+
+  <div style="padding: 15px 15px 0;">
+    <blockquote>
+      <p>联系方式</p>
+    </blockquote>
+  </div>
+  <dl class="clearfix">
+    <dt><label for="phone">手机号：</label></dt>
+    <dd>
+      <input class="input-xxlarge" type="text" name="phone" id="phone" value="{#$mphone#}" maxlength="11" placeholder="" />
+      <span class="input-tips"><s></s>修改时会同步更新系统会员手机号</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="qq">QQ：</label></dt>
+    <dd>
+      <input class="input-xxlarge" type="text" name="qq" id="qq" value="{#$qq#}" maxlength="100" data-regex=".{0,100}" />
+      <span class="input-tips"><s></s>请输入QQ</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="wechat">微信：</label></dt>
+    <dd>
+      <input class="input-xxlarge" type="text" name="wechat" id="wechat" value="{#$wechat#}" maxlength="100" data-regex=".{0,100}" />
+      <span class="input-tips"><s></s>请输入微信</span>
+    </dd>
+  </dl>
+
+  <div style="padding: 15px 15px 0;">
+    <blockquote>
+      <p>自我介绍</p>
+    </blockquote>
+  </div>
+  <dl class="clearfix">
+    <dt><label for="profile">自我介绍：</label></dt>
+    <dd>
+      <textarea class="input-xxlarge" rows="5" name="profile" id="profile" data-regex=".*">{#$profile#}</textarea>
+      <span class="input-tips"><s></s>请输入自我介绍</span>
+    </dd>
+  </dl>
+
+  <div style="padding: 15px 15px 0;">
+    <blockquote>
+      <p>兴趣爱好</p>
+    </blockquote>
+  </div>
+  <dl class="clearfix">
+    <dt><label for="interests">兴趣爱好：</label></dt>
+    <dd>
+      <div class="selectedTags">{#$interestsSelected#}</div>
+      <input type="hidden" name="interests" id="interests" value="{#$interests#}" />
+      <button class="btn chooseData" type="button">选择</button>
+    </dd>
+  </dl>
+
+  <div style="padding: 15px 15px 0;">
+    <blockquote>
+      <p>基本资料</p>
+    </blockquote>
+  </div>
+  {#if $dopost == "edit"#}
+  <dl class="clearfix">
+    <dt><label for="numid">ID：</label></dt>
+    <dd>
+      <input class="input-large" type="text" value="{#$numid#}" maxlength="100" data-regex=".{0,100}" readonly="" />
+    </dd>
+  </dl>
+  {#/if#}
+  <dl class="clearfix">
+    <dt><label for="nickname">昵称：</label></dt>
+    <dd>
+      <input class="input-large" type="text" name="nickname" id="nickname" value="{#$nickname#}" maxlength="100" data-regex=".{0,100}" />
+      <span class="input-tips"><s></s>请输入昵称</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="sex">性别：</label></dt>
+    <dd>
+      <select name="sex" id="sex" class="input-medium">
+        <option value="1"{#if $sex == 1#} selected="selected"{#/if#}>男</option>
+        <option value="0"{#if $sex == 0#} selected="selected"{#/if#}>女</option>
+      </select>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="birthday">生日：</label></dt>
+    <dd><input class="input-small" type="text" name="birthday" id="birthday" value="{#if $birthday#}{#$birthday|date_format:'%Y-%m-%d'#}{#/if#}" /></dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="">身高：</label></dt>
+    <dd>
+      <span id="heightList">
+        <select name="height" id="height" class="input-medium">
+          <option value="-1"{#if $height == -1#} selected="selected"{#/if#}>145以下</option>
+          {#for $i = 145 to 210#}
+          <option value="{#$i#}"{#if $height == $i#} selected="selected"{#/if#}>{#$i#}厘米</option>
+          {#/for#}
+          <option value="-2"{#if $height == -2#} selected="selected"{#/if#}>210以上</option>
+        </select>
+      </span>
+      <label for="education" style="width: 150px; text-align: right;">学历：</label>
+      <span id="educationList">
+        <select name="education" id="education" class="input-medium">
+          {#getItem id=7 sel=$education#}
+        </select>
+      </span>
+      <label for="income" style="width: 150px; text-align: right;">收入：</label>
+      <span id="incomeList">
+        <select name="income" id="income" class="input-medium">
+          {#getItem id=6 sel=$income#}
+        </select>
+      </span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="">婚姻情况：</label></dt>
+    <dd>
+      <span id="marriageList">
+        <select name="marriage" id="marriage" class="input-medium">
+          {#getItem id=2 sel=$marriage#}
+        </select>
+      </span>
+      <label for="child" style="width: 150px; text-align: right;">有无子女：</label>
+      <span id="childList">
+        <select name="child" id="child" class="input-medium">
+          {#getItem id=165 sel=$child#}
+        </select>
+      </span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="housetag">购房情况：</label></dt>
+    <dd>
+      <span id="housetagList">
+        <select name="housetag" id="housetag" class="input-medium">
+          {#getItem id=4 sel=$housetag#}
+        </select>
+      </span>
+      <label for="cartag" style="width: 150px; text-align: right;">购车情况：</label>
+      <span id="cartagList">
+        <select name="cartag" id="cartag" class="input-medium">
+          {#getItem id=11 sel=$cartag#}
+        </select>
+      </span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="addrid">居住地：</label></dt>
+    <dd style="overflow:visible;" id="addrArr">
+      <div class="btn-group" style="margin-left:10px;">
+        <div class="cityName addrBtn" data-field="addrid" data-ids="{#getPublicParentInfo tab='site_area' id=$addrid split=' '#}" data-id="{#$addrid#}">
+          {#if $addrid != '' && $addrid != "0"#}{#getPublicParentInfo tab='site_area' id=$addrid type='typename' split='/'#}{#else#}请选择{#/if#}
+        </div>
+      </div>
+      <input type="hidden" name="addrid" id="addrid" value="{#$addrid#}" />
+      <input type="hidden" name="cityid" id="cityid" value={#$cityid#}>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="lnglat">坐标：</label></dt>
+    <dd>
+      <input type="text" class="input-xlarge" name="lnglat" id="lnglat" value="{#if $lng#}{#$lng#},{#$lat#}{#/if#}" />
+      <img src="{#$adminPath#}../static/images/admin/markditu.jpg" id="mark" style="cursor:pointer;" title="标注地图位置" />
+    </dd>
+  </dl>
+
+  <div style="padding: 15px 15px 0;">
+    <blockquote>
+      <p>小档案</p>
+    </blockquote>
+  </div>
+   <dl class="clearfix">
+    <dt><label for="hometown">家乡：</label></dt>
+    <dd style="overflow:visible;" id="addrArr">
+      <div class="btn-group" style="margin-left:10px;">
+        <div class="cityName addrBtn" data-field="hometown" data-ids="{#getPublicParentInfo tab='site_area' id=$hometown split=' '#}" data-id="{#$hometown#}" data-type="area">
+          {#if $hometown != '' && $hometown != "0"#}{#getPublicParentInfo tab='site_area' id=$hometown type='typename' split='/'#}{#else#}请选择{#/if#}
+        </div>
+      </div>
+      <input type="hidden" name="hometown" id="hometown" value="{#$hometown#}" />
+    </dd>
+  </dl>
+   <dl class="clearfix">
+    <dt><label for="household">户口：</label></dt>
+    <dd style="overflow:visible;" id="addrArr">
+      <div class="btn-group" style="margin-left:10px;">
+        <div class="cityName addrBtn" data-field="household" data-ids="{#getPublicParentInfo tab='site_area' id=$household split=' '#}" data-id="{#$household#}" data-type="area">
+          {#if $household != '' && $household != "0"#}{#getPublicParentInfo tab='site_area' id=$household type='typename' split='/'#}{#else#}请选择{#/if#}
+        </div>
+      </div>
+      <input type="hidden" name="household" id="household" value="{#$household#}" />
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="nation">民族：</label></dt>
+    <dd>
+      <span id="nationList">
+        <select name="nation" id="nation" class="input-medium">
+          {#getItem id=394 sel=$nation#}
+        </select>
+      </span>
+      <label for="religion" style="width: 150px; text-align: right;">宗教信仰：</label>
+      <span id="religionList">
+        <select name="religion" id="religion" class="input-medium">
+          {#getItem id=170 sel=$religion#}
+        </select>
+      </span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="interests">属相：</label></dt>
+    <dd>
+      <span id="zodiacList">
+        <select name="zodiac" id="zodiac" class="input-medium">
+          <option value="">{#$zodiac#}</option>
+        </select>
+      </span>
+      <label for="constellation" style="width: 150px; text-align: right;">星座：</label>
+      <span id="constellationList">
+        <select name="constellation" id="constellation" class="input-medium">
+          <option value="">{#$constellation#}</option>
+        </select>
+      </span>
+      <label for="bloodtype" style="width: 150px; text-align: right;">血型：</label>
+      <span id="bloodtypeList">
+        <select name="bloodtype" id="bloodtype" class="input-medium">
+          <option value="A型"{#if $bloodtype == "A型"#} selected="selected"{#/if#}>A型</option>
+          <option value="B型"{#if $bloodtype == "B型"#} selected="selected"{#/if#}>B型</option>
+          <option value="AB型"{#if $bloodtype == "AB型"#} selected="selected"{#/if#}>AB型</option>
+          <option value="O型"{#if $bloodtype == "O型"#} selected="selected"{#/if#}>O型</option>
+          <option value="其他"{#if $bloodtype == "其他"#} selected="selected"{#/if#}>其他</option>
+        </select>
+      </span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="bodytype">体型：</label></dt>
+    <dd>
+      <span id="bodytypeList">
+        <select name="bodytype" id="bodytype" class="input-medium">
+          {#getItem id=143 sel=$bodytype#}
+        </select>
+      </span>
+      <label for="bodyweight" style="width: 150px; text-align: right;">体重：</label>
+      <span id="bodyweightList">
+        <select name="bodyweight" id="bodyweight" class="input-medium">
+          <option value="-1"{#if $bodyweight == -1#} selected="selected"{#/if#}>40以下</option>
+          {#for $i = 40 to 120#}
+          <option value="{#$i#}"{#if $bodyweight == $i#} selected="selected"{#/if#}>{#$i#}公斤</option>
+          {#/for#}
+          <option value="-2"{#if $bodyweight == -2#} selected="selected"{#/if#}>120以上</option>
+        </select>
+      </span>
+      <label for="looks" style="width: 150px; text-align: right;">相貌自评：</label>
+      <span id="looksList">
+        <select name="looks" id="looks" class="input-medium">
+          <option value="0">请选择</option>
+          {#for $i = 1 to 10#}
+          <option value="{#$i#}"{#if $looks == $i#} selected="selected"{#/if#}>{#$i#}</option>
+          {#/for#}
+        </select>
+      </span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="drink">饮酒：</label></dt>
+    <dd>
+      <span id="drinkList">
+        <select name="drink" id="drink" class="input-medium">
+          {#getItem id=9 sel=$drink#}
+        </select>
+      </span>
+      <label for="drink" style="width: 150px; text-align: right;">吸烟：</label>
+      <span id="smokeList" style="width: 150px; text-align: right;">
+        <select name="smoke" id="smoke" class="input-medium">
+          {#getItem id=8 sel=$smoke#}
+        </select>
+      </span>
+      <label for="workandrest" style="width: 150px; text-align: right;">生活作息：</label>
+      <span id="workandrestList" style="width: 150px; text-align: right;">
+        <select name="workandrest" id="workandrest" class="input-medium">
+          {#getItem id=10 sel=$workandrest#}
+        </select>
+      </span>
+    </dd>
+  </dl>
+  
+  <div style="padding: 15px 15px 0;">
+    <blockquote>
+      <p>教育及工作</p>
+    </blockquote>
+  </div>
+  <dl class="clearfix">
+    <dt><label for="school">毕业院校：</label></dt>
+    <dd>
+      <input class="input-xxlarge" type="text" name="school" id="school" value="{#$school#}" maxlength="100" data-regex=".{0,100}" />
+      <span class="input-tips"><s></s>请输入毕业院校</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="major">所学专业：</label></dt>
+    <dd>
+      <span id="majorList">
+        <select name="major" id="major" class="input-medium">
+          {#getItem id=416 sel=$major#}
+        </select>
+      </span>
+      <label for="duties" style="width: 150px; text-align: right;">职业职务：</label>
+      <span id="dutiesList" style="width: 150px; text-align: right;">
+        <select name="duties" id="duties" class="input-medium">
+          {#getItem id=193 sel=$duties#}
+        </select>
+      </span>
+      <label for="nature" style="width: 150px; text-align: right;">公司性质：</label>
+      <span id="natureList" style="width: 150px; text-align: right;">
+        <select name="nature" id="nature" class="input-medium">
+          {#getItem id=407 sel=$nature#}
+        </select>
+      </span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="industry">公司行业：</label></dt>
+    <dd>
+      <span id="industryList">
+        <select name="industry" id="industry" class="input-medium">
+          {#getItem id=240 sel=$nature#}
+        </select>
+      </span>
+      <label for="workstatus" style="width: 150px; text-align: right;">工作状态：</label>
+      <span id="workstatusList" style="width: 150px; text-align: right;">
+        <select name="workstatus" id="workstatus" class="input-medium">
+          {#getItem id=5 sel=$workstatus#}
+        </select>
+      </span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="language">掌握语言：</label></dt>
+    <dd class="radio" id="languageCon">
+      {#html_checkboxes name='language' values=$languageval output=$languagelist selected=$language_sel separator="&nbsp;&nbsp;"#}
+      <br /><span class="label label-info" style="margin-top:5px;">最多5项</span>
+    </dd>
+  </dl>
+
+  <div style="padding: 15px 15px 0;">
+    <blockquote>
+      <p>家庭状况</p>
+    </blockquote>
+  </div>
+  <dl class="clearfix">
+    <dt><label for="familyrank">家庭排行：</label></dt>
+    <dd>
+      <span id="familyrankList">
+        <select name="familyrank" id="familyrank" class="input-medium">
+          {#getItem id=446 sel=$familyrank#}
+        </select>
+      </span>
+      <label for="parentstatus" style="width: 150px; text-align: right;">父母情况：</label>
+      <span id="parentstatusList" style="width: 150px; text-align: right;">
+        <select name="parentstatus" id="parentstatus" class="input-medium">
+          {#getItem id=303 sel=$parentstatus#}
+        </select>
+      </span>
+      <label for="fatherwork" style="width: 150px; text-align: right;">父亲工作：</label>
+      <span id="fatherworkList" style="width: 150px; text-align: right;">
+        <select name="fatherwork" id="fatherwork" class="input-medium">
+          {#getItem id=309 sel=$fatherwork#}
+        </select>
+      </span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="motherwork">母亲工作：</label></dt>
+    <dd>
+      <span id="motherworkList">
+        <select name="motherwork" id="motherwork" class="input-medium">
+          {#getItem id=309 sel=$motherwork#}
+        </select>
+      </span>
+      <label for="parenteconomy" style="width: 150px; text-align: right;">父母经济：</label>
+      <span id="parenteconomyList" style="width: 150px; text-align: right;">
+        <select name="parenteconomy" id="parenteconomy" class="input-medium">
+          {#getItem id=329 sel=$parenteconomy#}
+        </select>
+      </span>
+      <label for="parentinsurance" style="width: 150px; text-align: right;">父母医保：</label>
+      <span id="parentinsuranceList" style="width: 150px; text-align: right;">
+        <select name="parentinsurance" id="parentinsurance" class="input-medium">
+          {#getItem id=456 sel=$parentinsurance#}
+        </select>
+      </span>
+    </dd>
+  </dl>
+
+
+  <div style="padding: 15px 15px 0;">
+    <blockquote>
+      <p>爱情规划</p>
+    </blockquote>
+  </div>
+  <dl class="clearfix">
+    <dt><label for="marriagetime">想何时结婚：</label></dt>
+    <dd>
+      <span id="marriagetimeList">
+        <select name="marriagetime" id="marriagetime" class="input-medium">
+          {#getItem id=341 sel=$marriagetime#}
+        </select>
+      </span>
+      <label for="datetype" style="width: 150px; text-align: right;">偏爱约会方式：</label>
+      <span id="datetypeList" style="width: 150px; text-align: right;">
+        <select name="datetype" id="datetype" class="input-medium">
+          {#getItem id=347 sel=$datetype#}
+        </select>
+      </span>
+      <label for="othervalue" style="width: 150px; text-align: right;">希望对方看重：</label>
+      <span id="othervalueList" style="width: 150px; text-align: right;">
+        <select name="othervalue" id="othervalue" class="input-medium">
+          {#getItem id=353 sel=$othervalue#}
+        </select>
+      </span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="weddingtype">期待婚礼形式：</label></dt>
+    <dd>
+      <span id="weddingtypeList">
+        <select name="weddingtype" id="weddingtype" class="input-medium">
+          {#getItem id=358 sel=$weddingtype#}
+        </select>
+      </span>
+      <label for="livetogeparent" style="width: 150px; text-align: right;">愿与对方父母住否：</label>
+      <span id="livetogeparentList" style="width: 150px; text-align: right;">
+        <select name="livetogeparent" id="livetogeparent" class="input-medium">
+          {#getItem id=364 sel=$livetogeparent#}
+        </select>
+      </span>
+      <label for="givebaby" style="width: 150px; text-align: right;">是否想要孩子：</label>
+      <span id="givebabyList" style="width: 150px; text-align: right;">
+        <select name="givebaby" id="givebaby" class="input-medium">
+          {#getItem id=368 sel=$givebaby#}
+        </select>
+      </span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="cooking">厨艺状况：</label></dt>
+    <dd>
+      <span id="cookingList">
+        <select name="cooking" id="cooking" class="input-medium">
+          {#getItem id=373 sel=$cooking#}
+        </select>
+      </span>
+      <label for="housework" style="width: 150px; text-align: right;">家务分工：</label>
+      <span id="houseworkList" style="width: 150px; text-align: right;">
+        <select name="housework" id="housework" class="input-medium">
+          {#getItem id=377 sel=$housework#}
+        </select>
+      </span>
+    </dd>
+  </dl>
+  <!-- ============================================================ -->
+  
+  
+  {#*
+  <dl class="clearfix">
+    <dt>属性：</dt>
+    <dd class="radio">{#html_checkboxes name='property' values=$propertyVal output=$propertyList selected=$property separator="&nbsp;&nbsp;"#}</dd>
+  </dl>
+  *#}
+
+  <div style="padding: 15px 15px 0;">
+    <blockquote>
+      <p>择偶条件</p>
+    </blockquote>
+  </div>
+  <dl class="clearfix">
+    <dt><label>年龄范围：</label></dt>
+    <dd>
+      <div class="input-prepend input-append" style="margin: 0;">
+        <select name="fromage" id="fromage" class="input-mini" style="margin:0;">
+          {#getItem sel=$fromage def="不限" from=18 to=56#}
+        </select>
+        <span class="add-on">至</span>
+        <select name="toage" id="toage" class="input-mini" style="margin:0;">
+          {#getItem sel=$toage def="不限" from=18 to=56#}
+        </select>
+      </div>
+      <label style="width: 150px; margin-left: 8px; text-align: right;">身高范围：</label>
+      <div class="input-prepend input-append" style="margin: 0;">
+        <select name="dfheight" id="dfheight" style="width: 65px; margin:0;">
+          {#getItem sel=$dfheight def="不限" from=142 to=210#}
+        </select>
+        <span class="add-on">至</span>
+        <select name="dtheight" id="dtheight" style="width: 65px; margin:0;">
+          {#getItem sel=$dtheight def="不限" from=142 to=210#}
+        </select>
+      </div>
+      <label style="width: 150px; margin-left: 8px; text-align: right;">学历范围：</label>
+      <div class="input-prepend input-append" style="margin: 0;">
+        <select name="dfeducation" id="dfeducation" style="width: 65px; margin:0;">
+          {#getItem id=7 sel=$dfeducation def="不限"#}
+        </select>
+        <span class="add-on">至</span>
+        <select name="dteducation" id="dteducation" style="width: 65px; margin:0;">
+          {#getItem id=7 sel=$dteducation def="不限"#}
+        </select>
+      </div>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label>收入范围：</label></dt>
+    <dd>
+      <div class="input-prepend input-append" style="margin: 0;">
+        <select name="dfincome" id="dfincome" class="input-mini" style="margin:0;">
+          {#getItem id=6 sel=$dfincome def="不限"#}
+        </select>
+        <span class="add-on">至</span>
+        <select name="dtincome" id="dtincome" class="input-mini" style="margin:0;">
+          {#getItem id=6 sel=$dtincome def="不限"#}
+        </select>
+      </div>
+      <label for="dmarriage" style="width: 150px; margin-left: 8px; text-align: right;">婚姻情况：</label>
+      <span id="dmarriageList" style="width: 150px; text-align: right;">
+        <select name="dmarriage" id="dmarriage" class="input-medium">
+          {#getItem id=2 sel=$dmarriage def=""#}
+        </select>
+      </span>
+       <label for="dhousetag" style="width: 150px; margin-left: 8px; text-align: right;">购房情况：</label>
+      <span id="dhousetagList">
+        <select name="dhousetag" id="dhousetag" class="input-medium">
+          {#getItem id=4 sel=$dhousetag def=""#}
+        </select>
+      </span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="dchild">有无子女：</label></dt>
+    <dd>
+      <span id="dchildList">
+        <select name="dchild" id="dchild" class="input-medium">
+          {#getItem id=165 sel=$dchild def=""#}
+        </select>
+      </span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="dincome">居住地：</label></dt>
+    <dd style="overflow:visible;" id="addrList">
+      <div class="btn-group" style="margin-left:10px;">
+        <div class="cityName addrBtn" data-field="daddr" data-ids="{#getPublicParentInfo tab='site_area' id=$daddr split=' '#}" data-id="{#$daddr#}" data-type="area">
+  				{#if $daddr != '' && $daddr != "''"#}{#getPublicParentInfo tab='site_area' id=$daddr type='typename' split='/'#}{#else#}请选择{#/if#}
+  			</div>
+      </div>
+      <input type="hidden" name="daddr" id="daddr" value="{#$daddr#}" />
+    </dd>
+  </dl>
+
+  {#* 红娘 *#}
+  {#elseif $type == 1#}
+
+  <div style="padding: 15px 15px 0;">
+    <blockquote>
+      <p>红娘状态</p>
+    </blockquote>
+  </div>
+  <dl class="clearfix">
+    <dt><label for="state">审核状态：</label></dt>
+    <dd>
+      <select name="state" id="state" class="input-medium">
+      {#html_options options=$arcrankList selected=$state#}
+      </select>
+    </dd>
+  </dl>
+
+  <div style="padding: 15px 15px 0;">
+    <blockquote>
+      <p>联系方式</p>
+    </blockquote>
+  </div>
+  <dl class="clearfix">
+    <dt><label for="nickname">名称：</label></dt>
+    <dd>
+      <input class="input-large" type="text" name="nickname" id="nickname" value="{#$nickname#}" maxlength="100" data-regex=".{0,100}" />
+      <span class="input-tips"><s></s>请输入名称</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="tel">电话：</label></dt>
+    <dd>
+      <input class="input-xxlarge" type="text" name="tel" id="tel" value="{#$tel#}" maxlength="100" data-regex=".{0,100}" />
+      <span class="input-tips"><s></s>请输入电话</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="qq">QQ：</label></dt>
+    <dd>
+      <input class="input-xxlarge" type="text" name="qq" id="qq" value="{#$qq#}" maxlength="100" data-regex=".{0,100}" />
+      <span class="input-tips"><s></s>请输入QQ</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="wechat">微信：</label></dt>
+    <dd>
+      <input class="input-xxlarge" type="text" name="wechat" id="wechat" value="{#$wechat#}" maxlength="100" data-regex=".{0,100}" />
+      <span class="input-tips"><s></s>请输入微信</span>
+    </dd>
+  </dl>
+
+  <div style="padding: 15px 15px 0;">
+    <blockquote>
+      <p>介绍</p>
+    </blockquote>
+  </div>
+  <dl class="clearfix">
+    <dt><label for="case">成功案例：</label></dt>
+    <dd>
+      <input class="input-large" type="text" name="case" id="case" value="{#$case#}" maxlength="4"  />
+      <span class="input-tips"><s></s>请输入数字</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="year">工作经验：</label></dt>
+    <dd>
+      <input class="input-large" type="text" name="year" id="year" value="{#$year#}" maxlength="2"  />
+      <span class="input-tips"><s></s>请输入数字</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="profile">简介：</label></dt>
+    <dd>
+      <textarea class="input-xxlarge" rows="5" name="profile" id="profile" data-regex=".*">{#$profile#}</textarea>
+      <span class="input-tips"><s></s>请输入简介</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="honor">荣誉：</label></dt>
+    <dd>
+      <textarea class="input-xxlarge" rows="5" name="honor" id="honor" data-regex=".*">{#$honor#}</textarea>
+      <span class="input-tips"><s></s>请输入荣誉</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="advice">婚恋建议：</label></dt>
+    <dd>
+      <textarea class="input-xxlarge" rows="5" name="advice" id="advice" data-regex=".*">{#$advice#}</textarea>
+      <span class="input-tips"><s></s>请输入婚恋建议</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="tags">擅长领域：</label></dt>
+    <dd>
+      <input class="input-xxlarge" type="text" name="tags" id="tags" value="{#$tags#}" maxlength="100" data-regex=".{0,100}" />
+      <span class="input-tips"><s></s>请输入擅长领域，英文逗号分隔</span>
+    </dd>
+  </dl>
+
+
+  
+
+  {#* 门店 *#}
+  {#elseif $type == 2#}
+  
+
+  <div style="padding: 15px 15px 0;">
+    <blockquote>
+      <p>门店状态</p>
+    </blockquote>
+  </div>
+  <dl class="clearfix">
+    <dt><label for="state">审核状态：</label></dt>
+    <dd>
+      <select name="state" id="state" class="input-medium">
+      {#html_options options=$arcrankList selected=$state#}
+      </select>
+    </dd>
+  </dl>
+
+  <div style="padding: 15px 15px 0;">
+    <blockquote>
+      <p>联系方式</p>
+    </blockquote>
+  </div>
+  <dl class="clearfix">
+    <dt><label for="nickname">名称：</label></dt>
+    <dd>
+      <input class="input-large" type="text" name="nickname" id="nickname" value="{#$nickname#}" maxlength="100" data-regex=".{0,100}" />
+      <span class="input-tips"><s></s>请输入名称</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="tel">电话：</label></dt>
+    <dd>
+      <input class="input-xxlarge" type="text" name="tel" id="tel" value="{#$tel#}" maxlength="100" data-regex=".{0,100}" />
+      <span class="input-tips"><s></s>请输入电话</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="address">地址：</label></dt>
+    <dd>
+      <input class="input-xxlarge" type="text" name="address" id="address" value="{#$address#}" maxlength="100" data-regex=".{0,100}" />
+      <span class="input-tips"><s></s>请输入地址</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="lnglat">坐标：</label></dt>
+    <dd>
+      <input type="text" class="input-xlarge" name="lnglat" id="lnglat" value="{#if $lng#}{#$lng#},{#$lat#}{#/if#}" />
+      <img src="{#$adminPath#}../static/images/admin/markditu.jpg" id="mark" style="cursor:pointer;" title="标注地图位置" />
+    </dd>
+  </dl>
+
+  <div style="padding: 15px 15px 0;">
+    <blockquote>
+      <p>介绍</p>
+    </blockquote>
+  </div>
+  <dl class="clearfix">
+    <dt><label for="profile">简介：</label></dt>
+    <dd>
+      <textarea class="input-xxlarge" rows="5" name="profile" id="profile" data-regex=".*">{#$profile#}</textarea>
+      <span class="input-tips"><s></s>请输入简介</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="bus">公交：</label></dt>
+    <dd>
+      <textarea class="input-xxlarge" rows="5" name="bus" id="bus" data-regex=".*">{#$bus#}</textarea>
+      <span class="input-tips"><s></s>请输入公交路线</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="tags">门店标签：</label></dt>
+    <dd>
+      <input class="input-xxlarge" type="text" name="tags" id="tags" value="{#$tags#}" maxlength="100" data-regex=".{0,100}" />
+      <span class="input-tips"><s></s>请输入擅长领域，英文逗号分隔</span>
+    </dd>
+  </dl>
+
+  {#/if#}
+
+  <dl class="clearfix formbtn">
+    <dt>&nbsp;</dt>
+    <dd><button class="btn btn-large btn-success" type="submit" name="button" id="btnSubmit">确认提交</button></dd>
+  </dl>
+</form>
+
+{#$jsFile#}
+</body>
+</html>

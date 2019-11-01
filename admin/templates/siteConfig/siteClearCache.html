@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
+<title>清除页面缓存</title>
+{#$cssFile#}
+</head>
+
+<body>
+<form action="?action=do" method="post" name="editform" id="editform" class="editform">
+  <dl class="clearfix">
+    <dt><label>模板缓存：</label></dt>
+    <dd class="radio" id="modules">
+      <label><input type="checkbox" name="module[]" value="siteConfig" checked /><span>基本配置</span></label>
+      <label><input type="checkbox" name="module[]" value="member" checked /><span>会员</span></label>
+      {#foreach from=$moduleList item=module#}
+      <label><input type="checkbox" name="module[]" value="{#$module.name#}" checked /><span>{#$module.title#}</span></label>
+      {#/foreach#}
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label>其它：</label></dt>
+    <dd class="radio">
+        <label><input type="checkbox" name="type" value="1" checked /><span>后台缓存</span></label>
+        <label><input type="checkbox" name="static" value="1" checked /><span>静态资源文件</span></label>
+        {#if $redis#}
+        <label><input type="checkbox" name="memory" value="redis" checked /><span>redis缓存</span></label>
+        {#/if#}
+    </dd>
+  </dl>
+  <dl class="clearfix formbtn">
+    <dt>&nbsp;</dt>
+    <dd><button class="btn btn-success" type="submit" name="button" id="btnSubmit">确认提交</button>&nbsp;&nbsp;&nbsp;&nbsp;<label><input id="selectAll" type="checkbox" checked /><span>反选</span></label></dd>
+  </dl>
+</form>
+
+<script>
+  var adminPath = "{#$adminPath#}";
+</script>
+{#$jsFile#}
+</body>
+</html>

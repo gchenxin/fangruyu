@@ -1,0 +1,17 @@
+##ignore this file##
+/uploads/
+/templates/
+/templates_c/
+/static/
+/data/
+/logs/
+/wmsj/
+/include/tpl/
+/include/config/
+/include/lang/
+/include/ueditor/
+/include/phpqrcode/
+/include/data/
+/include/dbinfo.inc.php
+/*.json
+/favicon.ico

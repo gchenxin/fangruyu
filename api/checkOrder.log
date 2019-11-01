@@ -1,0 +1,3010 @@
+[2017-10-30 18:01:34][debug] uid : 1212
+
+
+[2017-10-30 18:01:37][debug] uid : 1212
+
+
+[2017-10-30 18:01:40][debug] uid : 1212
+
+
+[2017-10-30 18:01:43][debug] uid : 1212
+
+
+[2017-10-30 18:01:46][debug] uid : 1212
+
+
+[2017-10-30 18:01:49][debug] uid : 1212
+
+
+[2017-10-30 18:01:52][debug] uid : 1212
+
+
+[2017-10-30 18:01:55][debug] uid : 1212
+
+
+[2017-10-30 18:01:59][debug] uid : 1212
+
+
+[2017-10-30 18:02:01][debug] app : 1
+uid : 1212
+
+
+[2017-10-30 18:02:04][debug] app : 1
+uid : 1212
+
+
+[2017-10-30 18:02:07][debug] app : 1
+uid : 1212
+
+
+[2017-10-30 18:02:10][debug] app : 1
+uid : 1212
+
+
+[2017-10-30 18:02:13][debug] app : 1
+uid : 1212
+
+
+[2017-10-30 18:02:16][debug] app : 1
+uid : 1212
+
+
+[2017-10-30 18:02:19][debug] app : 1
+uid : 1212
+
+
+[2017-10-30 18:02:22][debug] app : 1
+uid : 1212
+
+
+[2017-10-30 18:02:25][debug] app : 1
+uid : 1212
+
+
+[2017-10-30 18:02:29][debug] app : 1
+uid : 1212
+
+
+[2017-10-30 18:02:31][debug] app : 1
+uid : 1212
+
+
+[2017-10-30 18:02:34][debug] app : 1
+uid : 1212
+
+
+[2017-10-30 18:02:37][debug] app : 1
+uid : 1212
+
+
+[2017-10-30 18:02:40][debug] app : 1
+uid : 1212
+
+
+[2017-10-30 18:02:43][debug] app : 1
+uid : 1212
+
+
+[2017-10-30 18:02:46][debug] app : 1
+uid : 1212
+
+
+[2017-10-30 18:02:49][debug] app : 1
+uid : 1212
+
+
+[2017-10-30 18:02:52][debug] app : 1
+uid : 1212
+
+
+[2017-10-30 18:02:55][debug] app : 1
+uid : 1212
+page : 
+
+
+[2017-10-30 18:02:59][debug] app : 1
+uid : 1212
+page : 
+
+
+[2017-10-30 18:03:01][debug] app : 1
+uid : 1212
+page : 
+
+
+[2017-10-30 18:03:04][debug] app : 1
+uid : 1212
+page : 
+
+
+[2017-10-30 18:03:07][debug] app : 1
+uid : 1212
+page : 
+
+
+[2017-10-30 18:03:10][debug] app : 1
+uid : 1212
+page : 
+
+
+[2017-10-30 18:03:13][debug] app : 1
+uid : 1212
+page : 
+
+
+[2017-10-30 18:03:16][debug] app : 1
+uid : 1212
+page : 
+
+
+[2017-10-30 18:03:19][debug] app : 1
+uid : 1212
+page : 
+
+
+[2017-10-30 18:03:22][debug] app : 1
+uid : 1212
+page : 
+
+
+[2017-10-30 18:03:25][debug] app : 1
+uid : 1212
+page : 
+
+
+[2017-10-30 18:03:29][debug] app : 1
+uid : 1212
+page : 
+
+
+[2017-10-30 18:03:31][debug] app : 1
+uid : 1212
+page : 
+
+
+[2017-10-30 18:03:34][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54424
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357814.7633
+REQUEST_TIME : 1509357814
+
+
+[2017-10-30 18:03:37][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54426
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357817.7705
+REQUEST_TIME : 1509357817
+
+
+[2017-10-30 18:03:40][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2204
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54428
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357820.7816
+REQUEST_TIME : 1509357820
+
+
+[2017-10-30 18:03:43][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54429
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357823.7998
+REQUEST_TIME : 1509357823
+
+
+[2017-10-30 18:03:46][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54431
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357826.805
+REQUEST_TIME : 1509357826
+
+
+[2017-10-30 18:03:49][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54432
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357829.8821
+REQUEST_TIME : 1509357829
+
+
+[2017-10-30 18:03:52][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54434
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357832.8793
+REQUEST_TIME : 1509357832
+
+
+[2017-10-30 18:03:55][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54436
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357835.8945
+REQUEST_TIME : 1509357835
+
+
+[2017-10-30 18:03:59][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54437
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357839.1567
+REQUEST_TIME : 1509357839
+
+
+[2017-10-30 18:04:01][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54440
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357841.8798
+REQUEST_TIME : 1509357841
+
+
+[2017-10-30 18:04:04][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54441
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357844.898
+REQUEST_TIME : 1509357844
+
+
+[2017-10-30 18:04:07][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2224
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54443
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357847.9292
+REQUEST_TIME : 1509357847
+
+
+[2017-10-30 18:04:10][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2224
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54445
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357850.9203
+REQUEST_TIME : 1509357850
+
+
+[2017-10-30 18:04:13][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2224
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54446
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357853.9195
+REQUEST_TIME : 1509357853
+
+
+[2017-10-30 18:04:17][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2204
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54449
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357856.9567
+REQUEST_TIME : 1509357856
+
+
+[2017-10-30 18:04:20][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2204
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54450
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357859.9849
+REQUEST_TIME : 1509357859
+
+
+[2017-10-30 18:04:23][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2204
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54452
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357862.987
+REQUEST_TIME : 1509357862
+
+
+[2017-10-30 18:04:26][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54454
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357865.9992
+REQUEST_TIME : 1509357865
+
+
+[2017-10-30 18:04:29][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54455
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357869.2244
+REQUEST_TIME : 1509357869
+
+
+[2017-10-30 18:04:32][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2204
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54457
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357872.0286
+REQUEST_TIME : 1509357872
+
+
+[2017-10-30 18:04:35][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2204
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54458
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357875.0487
+REQUEST_TIME : 1509357875
+
+
+[2017-10-30 18:04:38][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2224
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54460
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357878.0279
+REQUEST_TIME : 1509357878
+
+
+[2017-10-30 18:04:42][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2224
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54462
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357882.0961
+REQUEST_TIME : 1509357882
+
+
+[2017-10-30 18:04:44][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2224
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54463
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357884.1072
+REQUEST_TIME : 1509357884
+
+
+[2017-10-30 18:04:47][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2204
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54465
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357887.0964
+REQUEST_TIME : 1509357887
+
+
+[2017-10-30 18:04:50][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2204
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54466
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357890.0906
+REQUEST_TIME : 1509357890
+
+
+[2017-10-30 18:04:53][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54468
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357893.0998
+REQUEST_TIME : 1509357893
+
+
+[2017-10-30 18:04:56][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54470
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357896.1109
+REQUEST_TIME : 1509357896
+
+
+[2017-10-30 18:04:59][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54471
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357899.3181
+REQUEST_TIME : 1509357899
+
+
+[2017-10-30 18:05:02][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54473
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357902.1373
+REQUEST_TIME : 1509357902
+
+
+[2017-10-30 18:05:05][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2204
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54474
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357905.1574
+REQUEST_TIME : 1509357905
+
+
+[2017-10-30 18:05:08][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2224
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54476
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357908.1636
+REQUEST_TIME : 1509357908
+
+
+[2017-10-30 18:05:11][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54478
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357911.1878
+REQUEST_TIME : 1509357911
+
+
+[2017-10-30 18:05:14][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54479
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357914.195
+REQUEST_TIME : 1509357914
+
+
+[2017-10-30 18:05:17][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2224
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54481
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357917.2171
+REQUEST_TIME : 1509357917
+userid : -1
+
+
+[2017-10-30 18:05:20][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2224
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54482
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357920.5033
+REQUEST_TIME : 1509357920
+userid : -1
+
+
+[2017-10-30 18:05:23][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2224
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54484
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357923.2505
+REQUEST_TIME : 1509357923
+userid : -1
+
+
+[2017-10-30 18:05:26][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2204
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54486
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357926.2397
+REQUEST_TIME : 1509357926
+userid : -1
+
+
+[2017-10-30 18:05:29][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2224
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54487
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357929.2958
+REQUEST_TIME : 1509357929
+userid : -1
+
+
+[2017-10-30 18:05:32][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2224
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54489
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357932.256
+REQUEST_TIME : 1509357932
+userid : -1
+
+
+[2017-10-30 18:05:35][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2224
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54490
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357935.2592
+REQUEST_TIME : 1509357935
+userid : -1
+
+
+[2017-10-30 18:05:38][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2224
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54492
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357938.2973
+REQUEST_TIME : 1509357938
+userid : -1
+
+
+[2017-10-30 18:05:41][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54494
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357941.3055
+REQUEST_TIME : 1509357941
+userid : -1
+
+
+[2017-10-30 18:05:44][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54496
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357944.3067
+REQUEST_TIME : 1509357944
+userid : -1
+
+
+[2017-10-30 18:05:47][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54501
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357947.3249
+REQUEST_TIME : 1509357947
+userid : -1
+
+
+[2017-10-30 18:05:50][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54504
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357950.328
+REQUEST_TIME : 1509357950
+userid : -1
+
+
+[2017-10-30 18:05:53][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54506
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357953.3392
+REQUEST_TIME : 1509357953
+userid : -1
+
+
+[2017-10-30 18:05:56][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54508
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357956.3484
+REQUEST_TIME : 1509357956
+userid : -1
+
+
+[2017-10-30 18:05:59][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54510
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357959.3515
+REQUEST_TIME : 1509357959
+userid : -1
+
+
+[2017-10-30 18:06:02][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54522
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357962.3767
+REQUEST_TIME : 1509357962
+userid : -1
+
+
+[2017-10-30 18:06:05][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54523
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357965.4099
+REQUEST_TIME : 1509357965
+userid : -1
+
+
+[2017-10-30 18:06:08][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2204
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54527
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357968.4131
+REQUEST_TIME : 1509357968
+userid : -1
+
+
+[2017-10-30 18:06:11][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54530
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357971.4142
+REQUEST_TIME : 1509357971
+userid : -1
+
+
+[2017-10-30 18:06:14][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2204
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54531
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357974.4294
+REQUEST_TIME : 1509357974
+userid : -1
+
+
+[2017-10-30 18:06:17][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2204
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54533
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357977.4426
+REQUEST_TIME : 1509357977
+userid : -1
+
+
+[2017-10-30 18:06:20][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2204
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54535
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357980.4598
+REQUEST_TIME : 1509357980
+userid : -1
+
+
+[2017-10-30 18:06:23][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2204
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54537
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357983.4689
+REQUEST_TIME : 1509357983
+userid : -1
+
+
+[2017-10-30 18:06:26][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2204
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54539
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357986.4691
+REQUEST_TIME : 1509357986
+userid : -1
+
+
+[2017-10-30 18:06:29][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2204
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54540
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357989.7663
+REQUEST_TIME : 1509357989
+userid : -1
+
+
+[2017-10-30 18:06:32][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54544
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357992.5334
+REQUEST_TIME : 1509357992
+userid : -1
+
+
+[2017-10-30 18:06:35][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54545
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357995.5166
+REQUEST_TIME : 1509357995
+userid : -1
+
+
+[2017-10-30 18:06:38][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54547
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509357998.5308
+REQUEST_TIME : 1509357998
+userid : -1
+
+
+[2017-10-30 18:06:42][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54549
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509358002.171
+REQUEST_TIME : 1509358002
+userid : -1
+
+
+[2017-10-30 18:06:45][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54550
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509358005.4292
+REQUEST_TIME : 1509358005
+userid : -1
+
+
+[2017-10-30 18:06:48][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54552
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509358007.7823
+REQUEST_TIME : 1509358007
+userid : -1
+
+
+[2017-10-30 18:06:50][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54553
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509358010.5995
+REQUEST_TIME : 1509358010
+userid : -1
+
+
+[2017-10-30 18:06:53][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54555
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509358013.6027
+REQUEST_TIME : 1509358013
+userid : -1
+
+
+[2017-10-30 18:06:56][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54557
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509358016.5978
+REQUEST_TIME : 1509358016
+userid : -1
+
+
+[2017-10-30 18:06:59][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2040
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54558
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509358019.611
+REQUEST_TIME : 1509358019
+userid : -1
+
+
+[2017-10-30 18:07:06][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2192
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54562
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509358026.1404
+REQUEST_TIME : 1509358026
+userid : -1
+
+
+[2017-10-30 18:07:14][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2192
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54563
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509358033.9568
+REQUEST_TIME : 1509358033
+userid : -1
+
+
+[2017-10-30 18:07:23][debug] PATH : d:\Program Files\ImageMagick-7.0.1-Q16;C:\Program Files (x86)\iis express\PHP\v5.5;D:\Program Files (x86)\Tencent\QQ\Bin\;D:\Program Files (x86)\Tencent\QQ\Bin\;C:\Program Files (x86)\Common Files\Intel\Shared Files\cpp\bin\Intel64;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\Program Files\nodejs\;D:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\binn\;C:\Program Files (x86)\Microsoft SQL Server\90\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\90\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE\PrivateAssemblies\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\100\DTS\Binn\;C:\Program Files (x86)\VisualSVN\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin
+SYSTEMROOT : C:\Windows
+COMSPEC : C:\Windows\system32\cmd.exe
+PATHEXT : .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.VBS
+WINDIR : C:\Windows
+PHP_FCGI_MAX_REQUESTS : 1000
+PHPRC : D:/phpStudy/php56n
+_FCGI_SHUTDOWN_EVENT_ : 2192
+SCRIPT_NAME : /wmsj/index.php
+REQUEST_URI : /wmsj/index.php?action=checkLastOrder&app=1&appuid=1212
+QUERY_STRING : action=checkLastOrder&app=1&appuid=1212
+REQUEST_METHOD : POST
+SERVER_PROTOCOL : HTTP/1.1
+GATEWAY_INTERFACE : CGI/1.1
+REMOTE_PORT : 54565
+SCRIPT_FILENAME : D:/WWW/ihuoniao.cn/wmsj/index.php
+SERVER_ADMIN : admin@phpStudy.net
+CONTEXT_DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+CONTEXT_PREFIX : 
+REQUEST_SCHEME : http
+DOCUMENT_ROOT : D:/WWW/ihuoniao.cn
+REMOTE_ADDR : 192.168.1.108
+SERVER_PORT : 80
+SERVER_ADDR : 192.168.1.3
+SERVER_NAME : wa.huoniaomenhu.com
+SERVER_SOFTWARE : Apache/2.4.10 (Win32) OpenSSL/1.0.1i mod_fcgid/2.3.9
+SERVER_SIGNATURE : 
+SystemRoot : C:\Windows
+HTTP_ACCEPT_ENCODING : gzip
+HTTP_CONNECTION : close
+HTTP_HOST : wa.huoniaomenhu.com
+CONTENT_LENGTH : 0
+HTTP_USER_AGENT : HuoNiao/1.0.8(android)
+FCGI_ROLE : RESPONDER
+PHP_SELF : /wmsj/index.php
+REQUEST_TIME_FLOAT : 1509358043.4504
+REQUEST_TIME : 1509358043
+userid : -1
+
+

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
+<title>商店</title>
+<style media="screen">
+  .redirect {font-size: 14px; padding: 100px 0; font-family: 'microsoft yahei'; text-align: center; color: green;}
+</style>
+</head>
+<body>
+<div class="redirect">正在进入商店，请稍候...</div>
+<script type="text/javascript">
+if(self.location == top.location){
+  location.href = "../index.php?gotopage=siteConfig/store.php";
+}else{
+  location.href = '{#$redirectUrl#}';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
+<title>{#$pagetitle#}</title>
+{#$cssFile#}
+<script>
+var thumbSize = {#$thumbSize#}, thumbType = "{#$thumbType#}",  //缩略图配置
+	atlasSize = {#$atlasSize#}, atlasType = "{#$atlasType#}", atlasMax = 0,  //图集配置
+	imglist = {"list1": {#$imglist#}}, modelType = "dating", adminPath = "{#$adminPath#}";
+</script>
+</head>
+
+<body>
+<form action="" method="post" name="editform" id="editform" class="editform">
+  <input type="hidden" name="dopost" id="dopost" value="{#$dopost#}" />
+  <input type="hidden" name="id" id="id" value="{#$id#}" />
+  <input type="hidden" name="token" id="token" value="{#$token#}" />
+  <dl class="clearfix">
+    <dt><label for="fidname">申请人：</label></dt>
+    <dd style="position:static;">
+      <input class="input-medium" type="text" name="fidname" id="fidname" autocomplete="off" value="{#$fidname#}" />
+      <input type="hidden" name="fid" id="fid" value="{#$fid#}" />
+      <span class="input-tips" style="display:inline-block;"><s></s>请输入申请人用户名</span>
+      <div id="fidList" class="popup_key"></div>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="tidname">爱人：</label></dt>
+    <dd style="position:static;">
+      <input class="input-medium" type="text" name="tidname" id="tidname" autocomplete="off" value="{#$tidname#}" />
+      <input type="hidden" name="tid" id="tid" value="{#$tid#}" />
+      <span class="input-tips" style="display:inline-block;"><s></s>请输入爱人用户名</span>
+      <div id="tidList" class="popup_key"></div>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt>合影：</dt>
+		<dd class="thumb clearfix listImgBox">
+			<div class="uploadinp filePicker thumbtn{#if $litpic != ""#} hide{#/if#}" id="filePicker1" data-type="thumb"  data-count="1" data-size="{#$thumbSize#}" data-imglist=""><div></div><span></span></div>
+			{#if $litpic != ""#}
+			<ul id="listSection1" class="listSection thumblist clearfix" style="display:inline-block;"><li id="WU_FILE_0_1"><a href='{#$cfg_attachment#}{#$litpic#}' target="_blank" title=""><img alt="" src="{#$cfg_attachment#}{#$litpic#}&type=small" data-val="{#$litpic#}"/></a><a class="reupload li-rm" href="javascript:;">删除图片</a></li></ul>
+			{#else#}
+			<ul id="listSection1" class="listSection thumblist clearfix"></ul>
+			{#/if#}
+			<input type="hidden" name="litpic" value="{#$litpic#}" class="imglist-hidden" id="litpic">
+		</dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="process">甜蜜进程：</label></dt>
+    <dd class="radio">
+      {#html_radios name="process" values=$processopt checked=$process output=$processnames separator="&nbsp;&nbsp;"#}
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="kdate">确定关系时间：</label></dt>
+    <dd>
+      <input class="input-small" type="text" name="kdate" id="kdate" value="{#$kdate#}" />
+      <span class="input-tips"><s></s>请选择两人确定关系时间</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label>标签：</label></dt>
+    <dd>
+      {#html_checkboxes name='tags' values=$tagsValue output=$tagsList selected=$tags separator="&nbsp;&nbsp;"#}
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="title">故事主题：</label></dt>
+    <dd>
+      <input class="input-xlarge" type="text" name="title" id="title" value="{#$title#}" data-regex=".{2,50}" />
+      <span class="input-tips"><s></s>请输入故事主题，2-50个字符</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="content">故事内容：</label></dt>
+    <dd>
+      <textarea class="input-xxlarge" rows="10" name="content" id="content" data-regex=".*">{#$content#}</textarea>
+      <span class="input-tips"><s></s>请输入故事内容</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt>相册：</dt>
+		<dd class="listImgBox hide">
+			<div class="list-holder">
+				<ul id="listSection2" class="clearfix listSection piece"></ul>
+				<input type="hidden" name="imglist" value='{#$imglist#}' class="imglist-hidden">
+			</div>
+			<div class="btn-section clearfix">
+				<div class="uploadinp filePicker" id="filePicker2" data-type="album" data-count="999" data-size="{#$atlasSize#}" data-imglist="list1"><div id="flasHolder"></div><span>添加图片</span></div>
+				<div class="upload-tip">
+					<p><a href="javascript:;" class="hide deleteAllAtlas">删除所有</a>&nbsp;&nbsp;{#$atlasType|replace:"*.":""|replace:";":"、"#}&nbsp;&nbsp;单张最大{#$atlasSize/1024#}M<span class="fileerror"></span></p>
+				</div>
+			</div>
+		</dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="state">显示状态：</label></dt>
+    <dd class="radio">
+      {#html_radios name="state" values=$stateopt checked=$state output=$statenames separator="&nbsp;&nbsp;"#}
+    </dd>
+  </dl>
+  <dl class="clearfix formbtn">
+    <dt>&nbsp;</dt>
+    <dd><input class="btn btn-large btn-success" type="submit" name="submit" id="btnSubmit" value="确认提交" /></dd>
+  </dl>
+</form>
+
+{#$jsFile#}
+</body>
+</html>

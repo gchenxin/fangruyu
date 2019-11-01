@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
+<title>{#$pagetitle#}</title>
+{#$cssFile#}
+<script>
+var thumbSize = {#$thumbSize#}, thumbType = "{#$thumbType#}",
+	kfsListArr = {#$kfsListArr#}, addrListArr = {#$addrListArr#}, addr = {#$addr#},
+	adminPath = "{#$adminPath#}";
+var service = 'house';
+</script>
+<style>
+#gwTj .table {width: auto;}
+#gwTj .table th {min-width: 150px; height: 30px; text-align: center; line-height: 30px;}
+#gwTj .table th:last-child {min-width: 50px;}
+#gwTj .table td {text-align: center; height: 34px; line-height: 31px;}
+.gwTjBox {max-height: 400px;overflow-y: auto;display: inline-block;}
+</style>
+</head>
+
+<body>
+
+<div class="btn-group config-nav" data-toggle="buttons-radio">
+  <button type="button" class="btn active">基本信息</button>
+  <button type="button" class="btn">看房数据</button>
+</div>
+
+<form action="" method="post" name="editform" id="editform" class="editform">
+  <div class="item">
+    <input type="hidden" name="dopost" id="dopost" value="{#$dopost#}" />
+    <input type="hidden" name="id" id="id" value="{#$id#}" />
+    <input type="hidden" name="token" id="token" value="{#$token#}" />
+    <dl class="clearfix">
+      <dt><label for="type">选择开发商：</label></dt>
+      <dd style="position:static;">
+        <input class="input-xlarge" type="text" name="type" id="type" value="{#$typename#}" autocomplete="off" />
+        <input type="hidden" name="typeid" id="typeid" value="{#$typeid#}" />
+        <span class="input-tips"><s></s>请从列表中选择开发商</span>
+        <div id="kfsList" class="popup_key"></div>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="user">选择会员：</label></dt>
+      <dd style="position:static;">
+        <input class="input-medium" type="text" name="user" id="user" value="{#$username#}" autocomplete="off" />
+        <input type="hidden" name="userid" id="userid" value="{#$userid#}" />
+        <span class="input-tips"><s></s>请输入网站对应会员名</span>
+        <div id="userList" class="popup_key"></div>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="stores">所在门店：</label></dt>
+      <dd>
+        <input class="input-xlarge" type="text" name="stores" id="stores" data-regex=".{1,60}" maxlength="60" value="{#$stores#}" />
+        <span class="input-tips"><s></s>请输入所在门店</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="post">职位：</label></dt>
+      <dd>
+        <input class="input-xlarge" type="text" name="post" id="post" data-regex=".{1,60}" maxlength="60" value="{#$post#}" />
+        <span class="input-tips"><s></s>请输入职位</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="addr">工作区域：</label></dt>
+      <dd>
+  			<div class="cityName addrBtn" data-field="addrid" data-ids="{#getPublicParentInfo tab='site_area' id=$addr split=' '#}" data-id={#$addr#}>
+  				{#if $addr != '' && $addr != "''"#}{#getPublicParentInfo tab='site_area' id=$addr type='typename' split='/'#}{#else#}请选择{#/if#}
+  			</div>
+  			<input type="hidden" name="addr" id="addr" value={#$addr#}>
+        <input type="hidden" name="cityid" id="cityid" value={#$cityid#}>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="litpic">头像：</label></dt>
+  		<dd class="thumb fn-clear listImgBox">
+  			<div class="uploadinp filePicker thumbtn{#if $card != ""#} hide{#/if#}" id="filePicker1" data-type="thumb"  data-count="1" data-size="{#$thumbSize#}" data-imglist=""><div></div><span></span></div>
+  			{#if $card != ""#}
+  			<ul id="listSection1" class="listSection thumblist fn-clear" style="display:inline-block;"><li id="WU_FILE_0_1"><a href='{#$cfg_attachment#}{#$card#}' target="_blank" title=""><img alt="" src="{#$cfg_attachment#}{#$card#}" data-val="{#$card#}"/></a><a class="reupload li-rm" href="javascript:;">删除图片</a></li></ul>
+  			{#else#}
+  			<ul id="listSection1" class="listSection thumblist fn-clear"></ul>
+  			{#/if#}
+  			<input type="hidden" name="litpic" value="{#$card#}" class="imglist-hidden" id="litpic">
+  		</dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="weight">排序：</label></dt>
+      <dd>
+        <input class="input-mini" type="number" name="weight" id="weight" min="0" data-regex="[1-9]\d*" value="{#$weight#}" />
+        <span class="input-tips"><s></s>必填，排序越大，越排在前面</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt>状态：</dt>
+      <dd class="radio">
+        {#html_radios name="state" values=$stateList checked=$state output=$stateName separator="&nbsp;&nbsp;"#}
+      </dd>
+    </dl>
+  </div>
+  <div class="item hide">
+    <div id="gwTj">
+      <dl class="clearfix">
+        <dt>&nbsp;</dt>
+        <dd>
+          <div class="gwTjBox">
+            <table class="table table-hover table-bordered table-striped">
+              <thead>
+                <th>楼盘</th>
+                <th>看房次数</th>
+                <th>成交次数</th>
+              </thead>
+              <tbody>
+                {#foreach from=$tjList item="tj" key=k#}
+                <tr>
+                  <td><a href="loupanAdd.php?dopost=edit&id={#$tj.id#}" data-id="{#$tj.id#}" class="lp">{#$tj.title#}</a><input type="hidden" name="tj[{#$k#}][id]" value="{#$tj.id#}"></td>
+                  <td>
+                    <div class="input-append"><input class="input-mini see" type="number" name="tj[{#$k#}][see]" value="{#$tj.see#}" min="0"><span class="add-on">次</span></div>
+                  </td>
+                  <td>
+                    <div class="input-append"><input class="input-mini suc" type="number" name="tj[{#$k#}][suc]" value="{#$tj.suc#}" min="0"><span class="add-on">次</span></div>
+                  </td>
+                </tr>
+                {#/foreach#}
+              </tbody>
+            </table>
+          </div>
+        </dd>
+      </dl>
+    </div>
+  </div>
+  <dl class="clearfix formbtn">
+    <dt>&nbsp;</dt>
+    <dd><button class="btn btn-large btn-success" type="submit" name="button" id="btnSubmit">确认提交</button></dd>
+  </dl>
+</form>
+
+{#$jsFile#}
+</body>
+</html>

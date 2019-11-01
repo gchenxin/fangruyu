@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
+<title>{#$pagetitle#}</title>
+{#$cssFile#}
+<script>
+var modelType = "job", adminPath = "{#$adminPath#}";
+</script>
+</head>
+
+<body>
+<form action="" method="post" name="editform" id="editform" class="editform">
+  <input type="hidden" name="dopost" id="dopost" value="{#$dopost#}" />
+  <input type="hidden" name="id" id="id" value="{#$id#}" />
+  <input type="hidden" name="token" id="token" value="{#$token#}" />
+  <dl class="clearfix">
+    <dt><label for="fname">所在会场：</label></dt>
+    <dd style="position:static;">
+      <input class="input-xlarge" type="text" name="fname" id="fname" autocomplete="off" value="{#$fname#}" />
+      <input type="hidden" name="fid" id="fid" value="{#$fid#}" />
+      <span class="input-tips" style="display:inline-block;"><s></s>请输入招聘会所在会场</span>
+      <div id="fairsList" class="popup_key"></div>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="title">招聘会名称：</label></dt>
+    <dd>
+      <input class="input-xxlarge" type="text" name="title" id="title" value="{#$title#}" maxlength="50" data-regex=".{2,50}" />
+      <span class="input-tips"><s></s>请输入联系人，2-50位</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="date">举办时间：</label></dt>
+    <dd><input class="input-medium" type="text" name="date" id="date" value="{#$date#}" /></dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label>时间段：</label></dt>
+    <dd>
+      <div class="input-prepend input-append">
+        <span class="add-on">开始：</span>
+        <input class="input-mini" type="text" name="began" id="began" value="{#$began#}" />
+        <span class="add-on">结束：</span>
+        <input class="input-mini" type="text" name="end" id="end" value="{#$end#}" />
+      </div>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="click">浏览次数：</label></dt>
+    <dd>
+      <input class="input-mini" type="number" name="click" id="click" value="{#$click#}" data-regex="[1-9]\d*" />
+      <span class="input-tips"><s></s>请输入浏览次数，数字类型</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt>说明：</dt>
+    <dd>
+      <script id="note" name="note" type="text/plain" style="width:85%;height:500px">{#$note#}</script>
+    </dd>
+  </dl>
+  <dl class="clearfix formbtn">
+    <dt>&nbsp;</dt>
+    <dd><input class="btn btn-large btn-success" type="submit" name="submit" id="btnSubmit" value="确认提交" /></dd>
+  </dl>
+</form>
+
+{#$editorFile#}
+{#$jsFile#}
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
+<title>会员等级特权设置</title>
+{#$cssFile#}
+<style media="screen">
+  .table {width: auto;}
+  .table th {min-width: 150px; height: 30px; text-align: center; line-height: 30px;}
+  .table td {text-align: center; height: 34px; line-height: 31px;}
+  .level {font-size: 18px;}
+  .input-append, .input-prepend {margin-bottom: 0;}
+  .del {display: inline-block; vertical-align: middle;}
+  .add-on {width:50px !important;}
+  .subinfo {padding:10px 0;color:#ccc;}
+  #save {margin-bottom: 15px;}
+</style>
+</head>
+
+<body style="padding: 20px;">
+
+<table class="table table-hover table-bordered table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      {#foreach from=$levelList item=levelTitle#}
+      <th class="level">{#$levelTitle.name#}</th>
+      {#/foreach#}
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>聊天钥匙</td>
+      {#foreach from=$levelList item=list#}
+      <td data-id="{#$list['id']#}" data-module="key"><div class="input-append"><input class="span1" type="text" value="{#$list['privilege']['key']|default:0#}"><span class="add-on">把/天</span></div></td>
+      {#/foreach#}
+    </tr>
+    <tr>
+      <td>查看照片</td>
+      {#foreach from=$levelList item=list key=k#}
+      {#$disabled = ''#}
+      {#if $k > 0#}
+      {#$disabled = ' readonly="readonly"'#}
+      {#/if#}
+      <td data-id="{#$list['id']#}" data-module="album"><div class="input-append"><input class="span1" type="text" value="{#$list['privilege']['album']|default:0#}"{#$disabled#}><span class="add-on">张</span></div></td>
+      {#/foreach#}
+    </tr>
+    <tr>
+      <td>聊天条数</td>
+      {#foreach from=$levelList item=list key=k#}
+      {#$disabled = ''#}
+      {#if $k > 0#}
+      {#$disabled = ' readonly="readonly"'#}
+      {#/if#}
+      <td data-id="{#$list['id']#}" data-module="chat"><div class="input-append"><input class="span1" type="text" value="{#$list['privilege']['chat']|default:0#}"{#$disabled#}><span class="add-on">条/人</span></div></td>
+      {#/foreach#}
+    </tr>
+    <tr>
+      <td>查看会员</td>
+      {#foreach from=$levelList item=list key=k#}
+      {#$disabled = ''#}
+      {#if $k > 0#}
+      {#$disabled = ' readonly="readonly"'#}
+      {#/if#}
+      <td data-id="{#$list['id']#}" data-module="see"><div class="input-append"><input class="span1" type="text" value="{#$list['privilege']['see']|default:0#}"{#$disabled#}><span class="add-on">人</span></div></td>
+      {#/foreach#}
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td colspan="{#$levelList|@count + 2#}">
+        <p class="subinfo">除普通用户外，数字0表示不限制</p>
+        <button type="button" class="btn btn-success btn-small" id="save">保存修改</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+  var adminPath = "{#$adminPath#}";
+</script>
+{#$jsFile#}
+</body>
+</html>

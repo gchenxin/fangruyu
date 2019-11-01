@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
+<title>城市分站高级设置</title>
+{#$cssFile#}
+<script>
+    var thumbSize = {#$thumbSize#}, thumbType = "{#$thumbType#}", adminPath = "{#$adminPath#}", modelType = action = "{#$action#}", cfg_staticVersion = '{#$cfg_staticVersion#}', cid = {#$cid#};
+</script>
+<style>
+    .advanced {margin-top: 10px; padding-bottom: 20px;}
+    .modulelist {position: relative; float: left; margin-left: 20px; }
+    .modulelist ul {padding: 0; margin: 0;}
+    .modulelist li {height: 35px; line-height: 35px; background: #c4c4c4; font-size: 14px; margin-bottom: 1px; list-style: none;}
+    .modulelist li a {display: block; padding: 0 12px; color: #fff;}
+    .modulelist li.current {background: #2c75e9;}
+    .main {position: relative; overflow: hidden; padding-left: 15px;}
+    .tpl-list {padding: 0;}
+    .tpl-list h5 {margin: 0;}
+</style>
+</head>
+
+<body>
+<div class="alert alert-success" style="margin:10px 90px 0 20px"><button type="button" class="close" data-dismiss="alert">×</button>提示：此处配置留空不影响使用，系统将调用默认配置信息！</div>
+
+<form action="" method="post" name="editform" id="editform" class="advanced editform clearfix">
+    <input type="hidden" name="action" value="{#$action#}" />
+    <input type="hidden" name="cid" value="{#$cid#}" />
+    <input type="hidden" name="token" id="token" value="{#$token#}" />
+    <div class="modulelist">
+        <ul>
+            <li{#if $action == 'siteConfig'#} class="current"{#/if#}><a href="?cid={#$cid#}&action=siteConfig">系统设置</a></li>
+            <li{#if $action == 'business'#} class="current"{#/if#}><a href="?cid={#$cid#}&action=business">商家设置</a></li>
+            {#foreach from=$moduleArr item=m#}
+            <li{#if $action == $m.name#} class="current"{#/if#}><a href="?cid={#$cid#}&action={#$m.name#}">{#$m.title#}</a></li>
+            {#/foreach#}
+        </ul>
+    </div>
+
+    <div class="main">
+        {#if $action == 'siteConfig'#}
+        <dl class="clearfix">
+            <dt><label for="webname" class="sl">seo标题：</label></dt>
+            <dd>
+                <input class="input-xxlarge" type="text" name="webname" id="webname" value="{#$config[$action]['webname']#}" data-regex=".*" />
+            </dd>
+        </dl>
+        <dl class="clearfix">
+            <dt><label for="keywords" class="sl">seo关键词：</label></dt>
+            <dd>
+                <input class="input-xxlarge" type="text" name="keywords" id="keywords" placeholder="一般不超过100个字" value="{#$config[$action]['keywords']#}" data-regex=".*" />
+            </dd>
+        </dl>
+        <dl class="clearfix">
+            <dt><label for="description" class="sl">seo描述：</label></dt>
+            <dd>
+                <textarea name="description" id="description" placeholder="一般不超过200个字" data-regex=".{0,200}">{#$config[$action]['description']#}</textarea>
+            </dd>
+        </dl>
+        <dl class="clearfix">
+            <dt><label class="sl">自定义LOGO：</label></dt>
+            <dd class="thumb fn-clear listImgBox fn-hide">
+                <div class="uploadinp filePicker thumbtn{#if $config[$action]['weblogo'] != ""#} hide{#/if#}" id="filePicker1" data-type="logo"  data-count="1" data-size="{#$thumbSize#}" data-imglist=""><div></div><span></span></div>
+                {#if $config[$action]['weblogo'] != ""#}
+                <ul id="listSection1" class="listSection thumblist fn-clear" style="display:inline-block;"><li id="WU_FILE_0_1"><a href='{#$cfg_attachment#}{#$config[$action]['weblogo']#}' target="_blank" title=""><img alt="" src="{#$cfg_attachment#}{#$config[$action]['weblogo']#}" data-val="{#$config[$action]['weblogo']#}"/></a><a class="reupload li-rm" href="javascript:;">删除图片</a></li></ul>
+                {#else#}
+                <ul id="listSection1" class="listSection thumblist fn-clear"></ul>
+                {#/if#}
+                <input type="hidden" name="litpic" value="{#$config[$action]['weblogo']#}" class="imglist-hidden" id="litpic">
+            </dd>
+        </dl>
+        <dl class="clearfix">
+            <dt><label for="hotline" class="sl">咨询热线：</label></dt>
+            <dd>
+                <input class="input-large" type="text" name="hotline" id="hotline" value="{#$config[$action]['hotline']#}" data-regex=".*" />
+            </dd>
+        </dl>
+        <dl class="clearfix">
+            <dt><label class="sl">版权信息：</label></dt>
+            <dd>
+                <script id="powerby" name="powerby" type="text/plain" style="width:95.4%; height:200px;">{#$config[$action]['powerby']#}</script>
+            </dd>
+        </dl>
+        <dl class="clearfix">
+            <dt><label for="statisticscode" class="sl">统计代码：</label></dt>
+            <dd>
+                <textarea name="statisticscode" id="statisticscode" style="width: 90%; height: 150px;" placeholder="在第三方网站上注册并获得统计代码">{#$config[$action]['statisticscode']#}</textarea>
+            </dd>
+        </dl>
+        {#else#}
+        <dl class="clearfix">
+            <dt><label for="title" class="sl">seo标题：</label></dt>
+            <dd>
+                <input class="input-xxlarge" type="text" name="title" id="title" value="{#$config[$action]['title']#}" data-regex=".*" />
+            </dd>
+        </dl>
+        <dl class="clearfix">
+            <dt><label for="keywords" class="sl">seo关键词：</label></dt>
+            <dd>
+                <input class="input-xxlarge" type="text" name="keywords" id="keywords" value="{#$config[$action]['keywords']#}" data-regex=".*" />
+            </dd>
+        </dl>
+        <dl class="clearfix">
+            <dt><label for="description" class="sl">seo描述：</label></dt>
+            <dd>
+                <textarea name="description" id="description" placeholder="一般不超过200个字" data-regex=".{0,200}">{#$config[$action]['description']#}</textarea>
+            </dd>
+        </dl>
+        <dl class="clearfix">
+            <dt><label class="sl">自定义LOGO：</label></dt>
+            <dd class="thumb fn-clear listImgBox fn-hide">
+                <div class="uploadinp filePicker thumbtn{#if $config[$action]['logo'] != ""#} hide{#/if#}" id="filePicker1" data-type="logo"  data-count="1" data-size="{#$thumbSize#}" data-imglist=""><div></div><span></span></div>
+                {#if $config[$action]['logo'] != ""#}
+                <ul id="listSection1" class="listSection thumblist fn-clear" style="display:inline-block;"><li id="WU_FILE_0_1"><a href='{#$cfg_attachment#}{#$config[$action]['logo']#}' target="_blank" title=""><img alt="" src="{#$cfg_attachment#}{#$config[$action]['logo']#}" data-val="{#$config[$action]['logo']#}"/></a><a class="reupload li-rm" href="javascript:;">删除图片</a></li></ul>
+                {#else#}
+                <ul id="listSection1" class="listSection thumblist fn-clear"></ul>
+                {#/if#}
+                <input type="hidden" name="litpic" value="{#$config[$action]['logo']#}" class="imglist-hidden" id="litpic">
+            </dd>
+        </dl>
+        <dl class="clearfix">
+            <dt></dt>
+            <dd>
+                <span class="input-tips" style="display: block;"><s></s>注意：请先确认模块设置中是否开启了LOGO自定义选项！</span>
+            </dd>
+        </dl>
+        {#if $action != 'business'#}
+        <dl class="clearfix">
+            <dt><label for="hotline" class="sl">咨询热线：</label></dt>
+            <dd>
+                <input class="input-large" type="text" name="hotline" id="hotline" value="{#$config[$action]['hotline']#}" data-regex=".*" />
+                <span class="input-tips" style="display: inline-block;"><s></s>注意：请先确认模块设置中是否开启了咨询热线自定义选项！</span>
+            </dd>
+        </dl>
+        {#/if#}
+        {#/if#}
+        <div id="tplList">
+            <dl class="clearfix">
+                <dt><label class="sl">模板风格：</label></dt>
+                <dd>
+                    <div class="tpl-list">
+                        <h5 class="stit"><span class="label label-info">电脑端：</span></h5>
+                        <select class="copyTemplate" id="defaultTplList" data-type="">
+                            <option value="">请选择默认模板</option>
+                        </select>
+                        <ul class="clearfix" id="tplListUl"></ul>
+                        <input type="hidden" name="template" id="template" value="" />
+                    </div>
+                    <div class="tpl-list touch">
+                        <h5 class="stit"><span class="label label-warning">移动端：</span></h5>
+                        <select class="copyTemplate" id="touchDefaultTplList" data-type="touch">
+                            <option value="">请选择默认模板</option>
+                        </select>
+                        <ul class="clearfix" id="touchTplListUl"></ul>
+                        <input type="hidden" name="touchTemplate" id="touchTemplate" value="{#$touchTemplate#}" />
+                    </div>
+                </dd>
+            </dl>
+        </div>
+        <dl class="clearfix formbtn">
+            <dt>&nbsp;</dt>
+            <dd><input class="btn btn-large btn-success" type="submit" name="submit" id="btnSubmit" value="确认提交" /></dd>
+        </dl>
+    </div>
+</form>
+
+{#$editorFile#}
+{#$jsFile#}
+</body>
+</html>

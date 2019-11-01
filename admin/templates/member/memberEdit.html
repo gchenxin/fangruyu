@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
+<title>修改会员</title>
+{#$cssFile#}
+<script>
+var photoSize = {#$photoSize#}, photoType = "{#$photoType#}", adminPath = "{#$adminPath#}";
+</script>
+<style>.sourceclienthide{display: none;}</style>
+</head>
+
+<body class="editform">
+
+  <dl class="clearfix">
+    <dt><label>用户名：</label></dt>
+    <dd class="singel-line">
+      {#$username#}&nbsp;&nbsp;【ID：{#$id#}】（注册来源：【{#$from#}】，共登录：【{#$logincount#}次】，当前状态：【{#$online#}】）
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label>帐户信息：</label></dt>
+    <dd class="singel-line">
+      余额：<strong class="text-success" style="font-size:18px;">{#echoCurrency type="symbol"#}<span id="moneyObj">{#$money#}</span></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      冻结：<strong class="text-success" style="font-size:18px;">{#echoCurrency type="symbol"#}<span id="freezeObj">{#$freeze#}</span></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      保障金：<strong class="text-success" style="font-size:18px;">{#echoCurrency type="symbol"#}<span>{#$promotion#}</span></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      积分：<strong class="text-success" style="font-size:18px;"><span id="pointObj">{#$point#}</span></strong>
+    </dd>
+  </dl>
+  <div class="btn-group config-nav" data-toggle="buttons-radio" style="margin-bottom:15px;">
+    <button type="button" class="btn active" data-type="info">基本信息</button>
+    <button type="button" class="btn" data-type="money">余额操作</button>
+    <button type="button" class="btn" data-type="point">积分操作</button>
+  </div>
+  <div class="item">
+    <form action="" method="post" name="editform" id="editform">
+      <input type="hidden" name="id" id="id" value="{#$id#}" />
+      <input type="hidden" name="token" id="token" value="{#$token#}" />
+    <dl class="clearfix">
+      <dt><label>会员类型：</label></dt>
+      <dd class="radio">
+        {#html_radios name="mtype" values=$mtype checked=$mtypeChecked output=$mtypeNames separator="&nbsp;&nbsp;"#}
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>会员等级：</label><input type="hidden" name="level" id="level" value="{#$level#}" /></dt>
+      <dd class="radio" style="overflow: inherit; padding-left: 140px;">
+        <div class="btn-group" id="clevel">
+          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">{#$levelName#}<span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="javascript:;" data-id="0">普通会员</a></li>
+            {#foreach from=$levelList item=level#}
+            <li><a href="javascript:;" data-id="{#$level.id#}">{#$level.name#}</a></li>
+            {#/foreach#}
+          </ul>
+        </div>
+        <div class="input-prepend" style="margin-left:5px; margin-bottom: 0;">
+          <span class="add-on">过期时间</span>
+          <input class="input-medium" type="text" name="expired" id="expired" value="{#if $expired#}{#$expired|date_format:"%Y-%m-%d %H:%M:%S"#}{#/if#}">
+        </div>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="password">新密码：</label></dt>
+      <dd>
+        <input class="input-large" type="text" name="password" id="password" data-regex=".{5,}" maxlength="60" value="" />
+        <span class="input-tips" style="display:inline-block;"><s></s>最少5个字符。如不更改密码，留空即可！</span>
+      </dd>
+    </dl>
+    {#*
+    <dl class="clearfix">
+      <dt><label for="discount">打折卡号：</label></dt>
+      <dd>
+        <input class="input-large" type="text" name="discount" id="discount" data-regex=".*" maxlength="60" value="{#$discount#}" />
+        <span class="input-tips"><s></s>请输入打折卡号。</span>
+      </dd>
+    </dl>
+    *#}
+    <dl class="clearfix">
+      <dt><label for="nickname">昵称：</label></dt>
+      <dd>
+        <input class="input-large" type="text" name="nickname" id="nickname" data-regex=".{1,35}" maxlength="35" value="{#$nickname#}" />
+        <span class="input-tips"><s></s>请输入会员昵称，1-10个字符。</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="email">邮箱：</label></dt>
+      <dd>
+        <input class="input-large" type="text" name="email" id="email" data-regex="\w+((-w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+" maxlength="60" value="{#$email#}" />
+        <label><input type="checkbox" name="emailCheck" id="emailCheck" value="1"{#if $emailCheck ==1 #}checked="checked"{#/if#} />已验证</label>
+        <span class="input-tips"><s></s>请正确输入邮箱地址。</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="phone">手机：</label><input type="hidden" name="areaCode" id="areaCode" value="{#$areaCode#}" /></dt>
+      <dd style="overflow: inherit; padding-left: 140px;" id="phoneArea">
+        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">{#if $areaCode#}+{#$areaCode#}{#else#}区号{#/if#}<span class="caret"></span></button>
+        <ul class="dropdown-menu" style="left: 140px; max-height: 300px; overflow-y: auto;">
+	      <li><a href="javascript:;" data-id="+86">China（中国大陆）+86</a></li>
+	      <li><a href="javascript:;" data-id="+54">Argentina（阿根廷）+54</a></li>
+	      <li><a href="javascript:;" data-id="+61">Australia（澳大利亚）+61</a></li>
+	      <li><a href="javascript:;" data-id="+43">Austria（奥地利）+43</a></li>
+	      <li><a href="javascript:;" data-id="+1242">Bahamas（巴哈马）+1242</a></li>
+	      <li><a href="javascript:;" data-id="+375">Belarus（白俄罗斯）+375</a></li>
+	      <li><a href="javascript:;" data-id="+32">Belgium（比利时）+32</a></li>
+	      <li><a href="javascript:;" data-id="+501">Belize（伯利兹）+501</a></li>
+	      <li><a href="javascript:;" data-id="+55">Brazil（巴西）+55</a></li>
+	      <li><a href="javascript:;" data-id="+359">Bulgaria（保加利亚）+359</a></li>
+	      <li><a href="javascript:;" data-id="+855">Cambodia（柬埔寨）+855</a></li>
+	      <li><a href="javascript:;" data-id="+1">Canada（加拿大）+1</a></li>
+	      <li><a href="javascript:;" data-id="+56">Chile（智利）+56</a></li>
+	      <li><a href="javascript:;" data-id="+57">Colombia（哥伦比亚）+57</a></li>
+	      <li><a href="javascript:;" data-id="+45">Denmark（丹麦）+45</a></li>
+	      <li><a href="javascript:;" data-id="+20">Egypt（埃及）+20</a></li>
+	      <li><a href="javascript:;" data-id="+372">Estonia（爱沙尼亚）+372</a></li>
+	      <li><a href="javascript:;" data-id="+358">Finland（芬兰）+358</a></li>
+	      <li><a href="javascript:;" data-id="+33">France（法国）+33</a></li>
+	      <li><a href="javascript:;" data-id="+49">Germany（德国）+49</a></li>
+	      <li><a href="javascript:;" data-id="+30">Greece（希腊）+30</a></li>
+	      <li><a href="javascript:;" data-id="+852">Hong Kong（香港）+852</a></li>
+	      <li><a href="javascript:;" data-id="+36">Hungary（匈牙利）+36</a></li>
+	      <li><a href="javascript:;" data-id="+91">India（印度）+91</a></li>
+	      <li><a href="javascript:;" data-id="+62">Indonesia（印度尼西亚）+62</a></li>
+	      <li><a href="javascript:;" data-id="+353">Ireland（爱尔兰）+353</a></li>
+	      <li><a href="javascript:;" data-id="+972">Israel（以色列）+972</a></li>
+	      <li><a href="javascript:;" data-id="+39">Italy（意大利）+39</a></li>
+	      <li><a href="javascript:;" data-id="+81">Japan（日本）+81</a></li>
+	      <li><a href="javascript:;" data-id="+962">Jordan（约旦）+962</a></li>
+	      <li><a href="javascript:;" data-id="+996">Kyrgyzstan（吉尔吉斯斯坦）+996</a></li>
+	      <li><a href="javascript:;" data-id="+370">Lithuania（立陶宛）+370</a></li>
+	      <li><a href="javascript:;" data-id="+352">Luxembourg（卢森堡）+352</a></li>
+	      <li><a href="javascript:;" data-id="+853">Macau（澳门）+853</a></li>
+	      <li><a href="javascript:;" data-id="+60">Malaysia（马来西亚）+60</a></li>
+	      <li><a href="javascript:;" data-id="+960">Maldives（马尔代夫）+960</a></li>
+	      <li><a href="javascript:;" data-id="+52">Mexico（墨西哥）+52</a></li>
+	      <li><a href="javascript:;" data-id="+976">Mongolia（蒙古）+976</a></li>
+	      <li><a href="javascript:;" data-id="+212">Morocco（摩洛哥）+212</a></li>
+	      <li><a href="javascript:;" data-id="+31">Netherlands（荷兰）+31</a></li>
+	      <li><a href="javascript:;" data-id="+64">New Zealand（新西兰）+64</a></li>
+	      <li><a href="javascript:;" data-id="+234">Nigeria（尼日利亚）+234</a></li>
+	      <li><a href="javascript:;" data-id="+47">Norway（挪威）+47</a></li>
+	      <li><a href="javascript:;" data-id="+507">Panama（巴拿马）+507</a></li>
+	      <li><a href="javascript:;" data-id="+51">Peru（秘鲁）+51</a></li>
+	      <li><a href="javascript:;" data-id="+63">Philippines（菲律宾）+63</a></li>
+	      <li><a href="javascript:;" data-id="+48">Poland（波兰）+48</a></li>
+	      <li><a href="javascript:;" data-id="+351">Portugal（葡萄牙）+351</a></li>
+	      <li><a href="javascript:;" data-id="+974">Qatar（卡塔尔）+974</a></li>
+	      <li><a href="javascript:;" data-id="+40">Romania（罗马尼亚）+40</a></li>
+	      <li><a href="javascript:;" data-id="+7">Russia（俄罗斯）+7</a></li>
+	      <li><a href="javascript:;" data-id="+966">Saudi Arabia（沙特阿拉伯）+966</a></li>
+	      <li><a href="javascript:;" data-id="+381">Serbia（塞尔维亚）+381</a></li>
+	      <li><a href="javascript:;" data-id="+248">Seychelles（塞舌尔）+248</a></li>
+	      <li><a href="javascript:;" data-id="+65">Singapore（新加坡）+65</a></li>
+	      <li><a href="javascript:;" data-id="+27">South Africa（南非）+27</a></li>
+	      <li><a href="javascript:;" data-id="+82">South Korea（韩国）+82</a></li>
+	      <li><a href="javascript:;" data-id="+34">Spain（西班牙）+34</a></li>
+	      <li><a href="javascript:;" data-id="+94">Sri Lanka（斯里兰卡）+94</a></li>
+	      <li><a href="javascript:;" data-id="+46">Sweden（瑞典）+46</a></li>
+	      <li><a href="javascript:;" data-id="+41">Switzerland（瑞士）+41</a></li>
+	      <li><a href="javascript:;" data-id="+886">Taiwan（台湾）+886</a></li>
+	      <li><a href="javascript:;" data-id="+66">Thailand（泰国）+66</a></li>
+	      <li><a href="javascript:;" data-id="+216">Tunisia（突尼斯）+216</a></li>
+	      <li><a href="javascript:;" data-id="+90">Turkey（土耳其）+90</a></li>
+	      <li><a href="javascript:;" data-id="+380">Ukraine（乌克兰）+380</a></li>
+	      <li><a href="javascript:;" data-id="+971">United Arab Emirates（阿联酋）+971</a></li>
+	      <li><a href="javascript:;" data-id="+44">United Kingdom（英国）+44</a></li>
+	      <li><a href="javascript:;" data-id="+1">United States（美国）+1</a></li>
+	      <li><a href="javascript:;" data-id="+58">Venezuela（委内瑞拉）+58</a></li>
+	      <li><a href="javascript:;" data-id="+84">Vietnam（越南）+84</a></li>
+	      <li><a href="javascript:;" data-id="+1284">Virgin Islands（英属维尔京群岛）+1284</a></li>
+        </ul>
+        <input class="input-medium" type="text" name="phone" id="phone" maxlength="60" value="{#$phone#}" />
+        <label><input type="checkbox" name="phoneCheck" id="phoneCheck" value="1"{#if $phoneCheck ==1 #}checked="checked"{#/if#} />已验证</label>
+        <span class="input-tips"><s></s>请输入手机号码。</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="paypwd">支付密码：</label></dt>
+      <dd>
+        <input class="input-large" type="text" name="paypwd" id="paypwd" data-regex=".{0,10}" maxlength="20" value="" />
+        <span class="input-tips" style="display:inline-block;"><s></s>20个字符以内。如不更改密码，留空即可！</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="qq">QQ：</label></dt>
+      <dd>
+        <input class="input-large" type="number" name="qq" id="qq" data-regex="[1-9]*[1-9][0-9]*" maxlength="11" value="{#$qq#}" />
+        <span class="input-tips"><s></s>请输入联系QQ，数字型。</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+        <dt><label for="freeze">冻结金额：</label></dt>
+        <dd>
+            <input class="input-large" type="text" name="freeze" id="freeze" value="{#$freeze#}" />
+        </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt>头像：</dt>
+      <dd class="thumb fn-clear listImgBox">
+  			<div class="uploadinp filePicker thumbtn{#if $photo != ""#} hide{#/if#}" id="filePicker1" data-type="thumb"  data-count="1" data-size="{#$thumbSize#}" data-imglist=""><div></div><span></span></div>
+  			{#if $photo != ""#}
+  			<ul id="listSection1" class="listSection thumblist fn-clear" style="display:inline-block;"><li id="WU_FILE_0_1"><a href='{#if strstr($photo, 'http')#}{#$photo#}{#else#}{#$cfg_attachment#}{#$photo#}{#/if#}' target="_blank" title=""><img alt="" src="{#if strstr($photo, 'http')#}{#$photo#}{#else#}{#$cfg_attachment#}{#$photo#}{#/if#}" data-val="{#$photo#}"/></a><a class="reupload li-rm" href="javascript:;">删除图片</a></li></ul>
+  			{#else#}
+  			<ul id="listSection1" class="listSection thumblist fn-clear"></ul>
+  			{#/if#}
+  			<input type="hidden" name="litpic" value="{#$photo#}" class="imglist-hidden" id="litpic">
+  		</dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>性别：</label></dt>
+      <dd class="radio">
+        {#html_radios name="sex" values=$sex checked=$sexChecked output=$sexNames separator="&nbsp;&nbsp;"#}
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="birthday">出生日期：</label></dt>
+      <dd><input class="input-small" type="text" name="birthday" id="birthday" value="{#$birthday#}" /></dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>所在区域：</label></dt>
+      <dd style="overflow:visible;" id="addrList">
+        <div class="btn-group" style="margin-left:10px;">
+          <div class="cityName addrBtn" data-field="addrid" data-ids="{#getPublicParentInfo tab='site_area' id=$addr split=' '#}" data-id="{#$addr#}">{#if $addr#}{#getPublicParentInfo tab='site_area' id=$addr type='typename' split='/'#}{#else#}请选择{#/if#}</div>
+        </div>
+        <input type="hidden" name="addr" id="addr" value="{#$addr#}" />
+        <span class="input-tips"><s></s>请选择所在区域</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="realname">真实姓名：</label></dt>
+      <dd>
+        <input class="input-large" type="text" name="realname" id="realname" data-regex=".{2,10}" maxlength="10" value="{#$realname#}" />
+        <span class="input-tips"><s></s>请输入真实姓名，2-10个字符。</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="idcard">身份证号码：</label></dt>
+      <dd>
+        <input class="input-large" type="text" name="idcard" id="idcard" data-regex="[1-9][0-9]{16}(x|[0-9])" maxlength="18" value="{#$idcard#}" />
+        <span class="input-tips"><s></s>请输入身份证号码，18位。</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>身份证正面：</label></dt>
+      <dd class="thumb fn-clear listImgBox">
+  			<div class="uploadinp filePicker thumbtn{#if $idcardFront != ""#} hide{#/if#}" id="filePicker2" data-type="thumb"  data-count="1" data-size="{#$thumbSize#}" data-imglist=""><div></div><span></span></div>
+  			{#if $idcardFront != ""#}
+  			<ul id="listSection2" class="listSection thumblist fn-clear" style="display:inline-block;"><li id="WU_FILE_1_1"><a href='{#$cfg_attachment#}{#$idcardFront#}' target="_blank" title=""><img alt="" src="{#$cfg_attachment#}{#$idcardFront#}&type=middle" data-val="{#$idcardFront#}"/></a><a class="reupload li-rm" href="javascript:;">删除图片</a></li></ul>
+  			{#else#}
+  			<ul id="listSection2" class="listSection thumblist fn-clear"></ul>
+  			{#/if#}
+  			<input type="hidden" name="idcardFront" value="{#$idcardFront#}" class="imglist-hidden" id="idcardFrontObj">
+  		</dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>身份证反面：</label></dt>
+      <dd class="thumb fn-clear listImgBox">
+  			<div class="uploadinp filePicker thumbtn{#if $idcardBack != ""#} hide{#/if#}" id="filePicker3" data-type="thumb"  data-count="1" data-size="{#$thumbSize#}" data-imglist=""><div></div><span></span></div>
+  			{#if $idcardBack != ""#}
+  			<ul id="listSection3" class="listSection thumblist fn-clear" style="display:inline-block;"><li id="WU_FILE_2_1"><a href='{#$cfg_attachment#}{#$idcardBack#}' target="_blank" title=""><img alt="" src="{#$cfg_attachment#}{#$idcardBack#}&type=middle" data-val="{#$idcardBack#}"/></a><a class="reupload li-rm" href="javascript:;">删除图片</a></li></ul>
+  			{#else#}
+  			<ul id="listSection3" class="listSection thumblist fn-clear"></ul>
+  			{#/if#}
+  			<input type="hidden" name="idcardBack" value="{#$idcardBack#}" class="imglist-hidden" id="idcardBackObj">
+  		</dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>实名认证：</label></dt>
+      <dd class="radio">
+        {#html_radios name="certifyState" values=$certifyState checked=$certifyStateChecked output=$certifyStateNames separator="&nbsp;&nbsp;"#}
+      </dd>
+    </dl>
+    {#if $certifyStateChecked == 2#}
+    <dl class="clearfix">
+    {#else#}
+    <dl class="clearfix hide">
+    {#/if#}
+      <dt><label for="certifyInfo">审核备注：</label></dt>
+      <dd>
+        <textarea name="certifyInfo" id="certifyInfo" class="input-xxlarge" data-regex=".*" rows="2">{#$certifyInfo#}</textarea>
+        <span class="input-tips"><s></s>请输入认证失败的原因。</span>
+      </dd>
+    </dl>
+    {#if $mtypeChecked == 2#}
+    <div id="companyobj" style="background:#f5f5f5; padding:5px 0;">
+    {#else#}
+    <div id="companyobj" class="hide" style="background:#f5f5f5; padding:5px 0;">
+    {#/if#}
+      <dl class="clearfix">
+        <dt><label for="company">公司名称：</label></dt>
+        <dd>
+          <input class="input-xlarge" type="text" name="company" id="company" data-regex=".{0,100}" maxlength="100" value="{#$company#}" />
+          <span class="input-tips"><s></s>请输入公司名称。</span>
+        </dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label for="address">详细地址：</label></dt>
+        <dd>
+          <input class="input-xlarge" type="text" name="address" id="address" data-regex=".*" maxlength="100" value="{#$address#}" />
+          <span class="input-tips"><s></s>请输入公司详细地址。</span>
+        </dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label>营业执照：</label></dt>
+        <dd class="thumb fn-clear listImgBox">
+    			<div class="uploadinp filePicker thumbtn{#if $license != ""#} hide{#/if#}" id="filePicker4" data-type="thumb"  data-count="1" data-size="{#$thumbSize#}" data-imglist=""><div></div><span></span></div>
+    			{#if $license != ""#}
+    			<ul id="listSection4" class="listSection thumblist fn-clear" style="display:inline-block;"><li id="WU_FILE_3_1"><a href='{#$cfg_attachment#}{#$license#}' target="_blank" title=""><img alt="" src="{#$cfg_attachment#}{#$license#}&type=middle" data-val="{#$license#}"/></a><a class="reupload li-rm" href="javascript:;">删除图片</a></li></ul>
+    			{#else#}
+    			<ul id="listSection4" class="listSection thumblist fn-clear"></ul>
+    			{#/if#}
+    			<input type="hidden" name="license" value="{#$license#}" class="imglist-hidden" id="licenseObj">
+    		</dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label>审核状态：</label></dt>
+        <dd class="radio">
+          {#html_radios name="licenseState" values=$licenseState checked=$licenseStateChecked output=$licenseStateNames separator="&nbsp;&nbsp;"#}
+        </dd>
+      </dl>
+      {#if $licenseStateChecked == 2#}
+      <dl class="clearfix">
+      {#else#}
+      <dl class="clearfix hide">
+      {#/if#}
+        <dt><label for="licenseInfo">审核备注：</label></dt>
+        <dd>
+          <textarea name="licenseInfo" id="licenseInfo" class="input-xxlarge" data-regex=".*" rows="2">{#$licenseInfo#}</textarea>
+          <span class="input-tips"><s></s>请输入认证失败的原因。</span>
+        </dd>
+      </dl>
+    </div>
+    <dl class="clearfix">
+      <dt><label>会员状态：</label></dt>
+      <dd class="radio">
+        {#html_radios name="state" values=$state checked=$stateChecked output=$stateNames separator="&nbsp;&nbsp;"#}
+      </dd>
+    </dl>
+    {#if $stateChecked == 2#}
+    <dl class="clearfix">
+    {#else#}
+    <dl class="clearfix hide">
+    {#/if#}
+      <dt><label for="stateinfo">审核备注：</label></dt>
+      <dd>
+        <textarea name="stateinfo" id="stateinfo" class="input-xxlarge" data-regex=".*" rows="2">{#$stateinfo#}</textarea>
+        <span class="input-tips"><s></s>请输入审核拒绝的原因。</span>
+      </dd>
+    </dl>
+    {#if $recid != 0#}
+    <dl class="clearfix">
+      <dt><label>推荐会员：</label></dt>
+      <dd class="singel-line">
+      <a href="javascript:;" class="userinfo" data-id={#$recid#}>{#$recname#}</a>
+      </dd>
+    </dl>
+    {#/if#}
+    <dl class="clearfix">
+      <dt><label>注册信息：</label></dt>
+      <dd class="singel-line">
+        注册时间：{#$regtime#}&nbsp;&nbsp;注册IP：{#$regip#}
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>最后登录信息：</label></dt>
+      <dd class="singel-line">
+        {#if $lastlogintime == "" && $lastloginip == ""#}
+        还未登录
+        {#else#}
+        登录时间：{#$lastlogintime#}&nbsp;&nbsp;登录IP：{#$lastloginip#}
+        {#/if#}
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>登录设备信息：</label></dt>
+      <dd class="singel-line">
+        {#$n=1#}
+        {#foreach from=$sourceclient item=val#}
+        <div {#if $n>2#}class="sourceclienthide"{#/if#}>设备名称：{#$val['title']#}&nbsp;&nbsp;设备类型：{#$val['type']#}&nbsp;&nbsp;序列号：{#$val['serial']#}&nbsp;&nbsp;登录时间：{#$val.pudate|date_format:'%Y-%m-%d %H:%M:%S'#}&nbsp;&nbsp;{#if $n==1#}<a href="javascript:;" class="btn btn-primary sourceSee">查看全部</a>{#/if#}</div>
+        {#$n=$n+1#}
+        {#/foreach#}
+      </dd>
+    </dl>
+    <dl class="clearfix formbtn">
+      <dt>&nbsp;</dt>
+      <dd><button class="btn btn-large btn-success" type="submit" name="button" id="btnSubmit">确认提交</button></dd>
+    </dl>
+  </form>
+  </div>
+  <div class="item hide" style="padding-left:40px;">
+    <dl style="margin:0 40px 15px 10px; padding-top:5px; background:#f5f5f5">
+      <dd>
+        <label><input type="radio" name="moneyOpera" value="1" checked="true" />增加</label>&nbsp;&nbsp;
+        <label><input type="radio" name="moneyOpera" value="0" />减少</label>&nbsp;&nbsp;
+        <input type="text" class="input-mini" name="operaMoney" />{#echoCurrency type="short"#}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <label>操作原因：<input type="text" class="input-xlarge" name="operaMoneyInfo" /></label>
+        <input type="button" class="btn btn-success" id="operaMoney" value="提交" />
+      </dd>
+    </dl>
+    <div class="filter clearfix" style="margin-right:40px;">
+      <div class="btn-group" id="selectBtn">
+        <button class="btn dropdown-toggle" data-toggle="dropdown"><span class="check"></span><span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><a href="javascript:;" data-id="1">全选</a></li>
+          <li><a href="javascript:;" data-id="0">不选</a></li>
+        </ul>
+      </div>&nbsp;&nbsp;
+      <a href="javascript:;" class="btn btn-primary" id="delMoney">删除选定</a>&nbsp;
+      <a href="javascript:;" class="btn btn-danger" id="ClearMoney">清空记录</a>
+    </div>
+    <ul class="thead clearfix" style="margin-right:40px;">
+      <li class="row3">&nbsp;</li>
+      <li class="row15 left">收支</li>
+      <li class="row15 left">金额</li>
+      <li class="row40 left">原因</li>
+      <li class="row20 left">时间</li>
+      <li class="row7">操作</li>
+    </ul>
+    <div class="list common mt124" id="list" data-totalpage="1" data-atpage="1" style="margin-right:30px;"><table><tbody></tbody></table><div id="loading" class="loading hide"></div></div>
+    <div id="pageInfo" class="pagination pagination-centered" style="margin-right:40px;"></div>
+  </div>
+  <div class="item hide" style="padding-left:40px;">
+    <dl style="margin:0 40px 15px 10px; padding-top:5px; background:#f5f5f5">
+      <dd>
+        <label><input type="radio" name="pointOpera" value="1" checked="true" />增加</label>&nbsp;&nbsp;
+        <label><input type="radio" name="pointOpera" value="0" />减少</label>&nbsp;&nbsp;
+        <input type="text" class="input-mini" name="operaPoint" />分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <label>操作原因：<input type="text" class="input-xlarge" name="operaPointInfo" /></label>
+        <input type="button" class="btn btn-success" id="operaPoint" value="提交" />
+      </dd>
+    </dl>
+    <div class="filter clearfix" style="margin-right:40px;">
+      <div class="btn-group" id="selectBtn_">
+        <button class="btn dropdown-toggle" data-toggle="dropdown"><span class="check"></span><span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li><a href="javascript:;" data-id="1">全选</a></li>
+          <li><a href="javascript:;" data-id="0">不选</a></li>
+        </ul>
+      </div>&nbsp;&nbsp;
+      <a href="javascript:;" class="btn btn-primary" id="delPoint">删除选定</a>&nbsp;
+      <a href="javascript:;" class="btn btn-danger" id="ClearPoint">清空记录</a>
+    </div>
+    <ul class="thead clearfix" style="margin-right:40px;">
+      <li class="row3">&nbsp;</li>
+      <li class="row15 left">收支</li>
+      <li class="row15 left">积分</li>
+      <li class="row40 left">原因</li>
+      <li class="row20 left">时间</li>
+      <li class="row7">操作</li>
+    </ul>
+    <div class="list common mt124" id="list_" data-totalpage="1" data-atpage="1" style="margin-right:30px;"><table><tbody></tbody></table><div id="loading_" class="loading hide"></div></div>
+    <div id="pageInfo_" class="pagination pagination-centered" style="margin-right:40px;"></div>
+  </div>
+
+{#$jsFile#}
+</body>
+</html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
+<title>APP基本设置</title>
+{#$cssFile#}
+<script>
+var adminPath = "{#$adminPath#}", action = '{#$action#}';
+var imglist = {
+    "android_guide": {#$android_guide#},
+    "ios_guide": {#$ios_guide#}
+};
+</script>
+<style media="screen">
+    .editform dt {width: 200px;}
+    .tpl-list.touch{margin-bottom: 20px;margin-top: 0px;margin-left: 0px;padding-left:0px;}
+    #bottomButton img {width: 50px!important; height: 50px!important; display: block; margin: 0 auto;}
+    #bottomButton .reupload {margin: 0 auto;}
+    #bottomButton .table {width: auto;}
+    #bottomButton .table th {min-width: 100px; height: 30px; text-align: center; line-height: 30px;}
+    #bottomButton .table td {text-align: center; height: 34px; line-height: 31px;}
+</style>
+</head>
+
+<body>
+{#if $installWaimai#}
+<div class="btn-group config-nav" data-toggle="buttons-radio" style="margin-left: 160px;">
+  <button type="button" class="btn active" data-type="portal">门户平台</button>
+  <button type="button" class="btn" data-type="business">商家版</button>
+  <button type="button" class="btn" data-type="peisong">配送员</button>
+</div>
+{#/if#}
+
+<form action="appConfig.php" method="post" name="editform" id="editform" class="editform">
+  <input type="hidden" name="token" id="token" value="{#$token#}" />
+  <div class="item" id="portal">
+    <dl class="clearfix">
+      <dt><label for="appname">APP名称：</label></dt>
+      <dd><input class="input-medium" type="text" name="appname" id="appname" value="{#$appname#}" /></dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>最新版本：</label></dt>
+      <dd class="clearfix">
+    		<div class="input-prepend">
+          <span class="add-on">Android：</span>
+          <input class="span2" id="android_version" name="android_version" type="text" value="{#$android_version#}" />
+        </div>
+    		<div class="input-prepend">
+          <span class="add-on">iOS：</span>
+          <input class="span2" id="ios_version" name="ios_version" type="text" value="{#$ios_version#}" />
+        </div>
+        <label>
+          <input id="ios_shelf" name="ios_shelf" value="1" type="checkbox"{#if $ios_shelf#} checked{#/if#} />
+          <span class="add-on">iOS上架中</span>
+          <span class="input-tips" style="display:inline-block;margin:10px 0 10px;"><s></s>开启iOS上架将隐藏会员充值、提现等相关页面或入口</span>
+        </label>
+    	</dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>更新时间：</label></dt>
+      <dd class="clearfix">
+        <div class="input-prepend">
+          <span class="add-on">Android：</span>
+          <input class="span2 updateDate" id="android_update" name="android_update" type="text" value="{#$android_update#}" />
+        </div>
+        <div class="input-prepend">
+          <span class="add-on">iOS：</span>
+          <input class="span2 updateDate" id="ios_update" name="ios_update" type="text" value="{#$ios_update#}" />
+        </div>
+    	</dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>强制升级：</label></dt>
+      <dd class="clearfix">
+        <label>
+          <input id="android_force" name="android_force" value="1" type="checkbox"{#if $android_force#} checked{#/if#} />
+          <span class="add-on">Android</span>
+        </label>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <label>
+          <input id="ios_force" name="ios_force" value="1" type="checkbox"{#if $ios_force#} checked{#/if#} />
+          <span class="add-on">iOS</span>
+        </label>
+    	</dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>更新内容：</label></dt>
+      <dd class="clearfix">
+    		<div class="input-prepend">
+          <span class="add-on">Android：</span>
+          <textarea class="input-xlarge" style="height: 100px;" name="android_note" id="android_note">{#$android_note#}</textarea>
+        </div>
+    		<div class="input-prepend">
+          <span class="add-on">iOS：</span>
+          <textarea class="input-xlarge" style="height: 100px;" name="ios_note" id="ios_note">{#$ios_note#}</textarea>
+        </div>
+    	</dd>
+    </dl>
+      <dl class="clearfix">
+        <dt><label>文件大小：</label></dt>
+        <dd class="clearfix">
+    		<div class="input-prepend">
+              <span class="add-on">Android：</span>
+              <input class="span2" id="android_size" name="android_size" type="text" value="{#$android_size#}" />
+            </div>
+    	</dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label>LOGO：<br /><small>尺寸：180*180</small>&nbsp;&nbsp;&nbsp;</label></dt>
+        <dd class="thumb clearfix listImgBox">
+    		<div class="uploadinp filePicker thumbtn{#if $logo != ""#} hide{#/if#}" id="filePicker3" data-type="logo" data-count="1" data-size="5120" data-imglist=""><div></div><span></span></div>
+            {#if $logo != ""#}
+    		<ul id="listSection3" class="listSection thumblist clearfix" style="display:inline-block;"><li id="WU_FILE_3_1"><a href='{#$cfg_attachment#}{#$logo#}' target="_blank" title=""><img style="max-width: 150px;" alt="" src="{#$cfg_attachment#}{#$logo#}" data-val="{#$logo#}"/></a><a class="reupload li-rm" href="javascript:;">删除图片</a></li></ul>
+    		{#else#}
+    		<ul id="listSection3" class="listSection thumblist clearfix"></ul>
+    		{#/if#}
+    		<input type="hidden" name="logo" value="" class="imglist-hidden" id="logo">
+    	</dd>
+      </dl>
+      <dl class="clearfix" id="tplList">
+          <dt><label>风格模板：<br /><small></small>&nbsp;&nbsp;&nbsp;</label></dt>
+          <dd>
+        <div class="tpl-list touch">
+          <ul class="clearfix">
+            {#foreach from=$touchTplList item=tplItem#}
+            <li{#if $touchTemplate == $tplItem.directory#} class="current"{#/if#}>
+              <a href="javascript:;" data-id="{#$tplItem.directory#}" data-title="{#$tplItem.tplname#}" class="img" title="模板名称：{#$tplItem.tplname#}&#10;版权所有：{#$tplItem.copyright#}"><img src="{#$adminPath#}../static/images/admin/app/touch/{#$tplItem.directory#}/preview.jpg?v={#$cfg_staticVersion#}" /></a>
+              <p>
+                <span title="{#$tplItem.tplname#}">{#$tplItem.tplname#}({#$tplItem.directory#})</span><br />
+                <a href="javascript:;" class="choose">选择</a>
+              </p>
+            </li>
+            {#/foreach#}
+          </ul>
+          <input type="hidden" name="touchTemplate" id="touchTemplate" value="{#$touchTemplate#}" />
+        </div>
+      </dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label for="android_download">Android安装包下载地址：</label></dt>
+        <dd><input class="input-xxlarge" type="text" name="android_download" id="android_download" value="{#$android_download#}" /></dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label for="yyb_download">应用宝链接地址：</label></dt>
+        <dd><input class="input-xxlarge" type="text" name="yyb_download" id="yyb_download" value="{#$yyb_download#}" /></dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label for="ios_download">iOS安装包下载地址：</label></dt>
+        <dd><input class="input-xxlarge" type="text" name="ios_download" id="ios_download" value="{#$ios_download#}" /></dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label>Android引导页：<br /><small>尺寸：720*1280</small>&nbsp;&nbsp;&nbsp;</label></dt>
+        <dd class="listImgBox hide">
+    		<div class="list-holder">
+    			<ul id="listSection0" class="clearfix listSection piece"></ul>
+    			<input type="hidden" name="android_guide" value='{#$android_guide#}' class="imglist-hidden">
+    		</div>
+    		<div class="btn-section clearfix">
+    			<div class="uploadinp filePicker" id="filePicker0" data-type="single" data-count="10" data-size="5120" data-imglist="android_guide"><div id="flasHolder0"></div><span>添加图片</span></div>
+    			<div class="upload-tip">
+    				<p><a href="javascript:;" class="hide deleteAllAtlas">删除所有</a>&nbsp;&nbsp;{#$atlasType|replace:"*.":""|replace:";":"、"#}&nbsp;&nbsp;单张最大5M<span class="fileerror"></span></p>
+    			</div>
+    		</div>
+    	</dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label>iOS引导页：<br /><small>尺寸：1125*2436</small>&nbsp;&nbsp;&nbsp;</label></dt>
+        <dd class="listImgBox hide">
+    		<div class="list-holder">
+    			<ul id="listSection1" class="clearfix listSection piece"></ul>
+    			<input type="hidden" name="ios_guide" value='{#$ios_guide#}' class="imglist-hidden">
+    		</div>
+    		<div class="btn-section clearfix">
+    			<div class="uploadinp filePicker" id="filePicker1" data-type="single" data-count="10" data-size="5120" data-imglist="ios_guide"><div id="flasHolder1"></div><span>添加图片</span></div>
+    			<div class="upload-tip">
+    				<p><a href="javascript:;" class="hide deleteAllAtlas">删除所有</a>&nbsp;&nbsp;{#$atlasType|replace:"*.":""|replace:";":"、"#}&nbsp;&nbsp;单张最大5M<span class="fileerror"></span></p>
+    			</div>
+    		</div>
+    	</dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label>广告页：<br /><small>尺寸：640*1136</small>&nbsp;&nbsp;&nbsp;</label></dt>
+        <dd class="thumb clearfix listImgBox">
+    		<div class="uploadinp filePicker thumbtn{#if $ad_pic != ""#} hide{#/if#}" id="filePicker2" data-type="card" data-count="1" data-size="5120" data-imglist=""><div></div><span></span></div>
+            {#if $ad_pic != ""#}
+    		<ul id="listSection2" class="listSection thumblist clearfix" style="display:inline-block;"><li id="WU_FILE_2_1"><a href='{#$cfg_attachment#}{#$ad_pic#}' target="_blank" title=""><img style="max-width: 150px;" alt="" src="{#$cfg_attachment#}{#$ad_pic#}" data-val="{#$ad_pic#}"/></a><a class="reupload li-rm" href="javascript:;">删除图片</a></li></ul>
+    		{#else#}
+    		<ul id="listSection2" class="listSection thumblist clearfix"></ul>
+    		{#/if#}
+    		<input type="hidden" name="ad_pic" value="" class="imglist-hidden" id="ad_pic">
+            <br /><br />
+            <input class="input-xxlarge" type="text" name="ad_link" id="ad_link" value="{#$ad_link#}" placeholder="广告链接，留空表示没有链接" />
+            <div class="input-prepend input-append" style="display: block; margin-top: 15px;">
+              <span class="add-on">广告倒计时</span>
+              <input class="span1" id="ad_time" name="ad_time" type="number" min="1" value="{#$ad_time#}" />
+              <span class="add-on">秒</span>
+            </div>
+    	</dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label for="android_index">Android首页地址：</label></dt>
+        <dd><input class="input-xxlarge" type="text" name="android_index" id="android_index" value="{#if $android_index#}{#$android_index#}{#else#}{#$cfg_basehost#}/{#/if#}" /></dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label for="ios_index">iOS首页地址：</label></dt>
+        <dd><input class="input-xxlarge" type="text" name="ios_index" id="ios_index" value="{#if $ios_index#}{#$ios_index#}{#else#}{#$cfg_basehost#}/{#/if#}" /></dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label>百度地图：</label></dt>
+        <dd class="clearfix">
+          <div class="input-prepend">
+            <span class="add-on">Android</span>
+            <input class="span4" id="map_baidu_android" name="map_baidu_android" type="text" value="{#$map_baidu_android#}" />
+          </div>
+          <br />
+          <div class="input-prepend">
+            <span class="add-on">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iOS</span>
+            <input class="span4" id="map_baidu_ios" name="map_baidu_ios" type="text" value="{#$map_baidu_ios#}" />
+          </div>
+          <label><input type="radio" name="map_set" value="2" {#if $map_set == 2#}checked="checked"{#/if#}>默认</label>
+        </dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label for="map_google">谷歌地图：</label></dt>
+        <dd class="clearfix">
+          <div class="input-prepend">
+            <span class="add-on">Android</span>
+            <input class="span4" id="map_google_android" name="map_google_android" type="text" value="{#$map_google_android#}" />
+          </div>
+          <br />
+          <div class="input-prepend">
+            <span class="add-on">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iOS</span>
+            <input class="span4" id="map_google_ios" name="map_google_ios" type="text" value="{#$map_google_ios#}" />
+          </div>
+          <label><input type="radio" name="map_set" value="1" {#if $map_set == 1#}checked="checked"{#/if#}>默认</label>
+        </dd>
+      </dl>
+    <dl class="clearfix">
+        <dt><label for="map_amap">高德地图：</label></dt>
+        <dd class="clearfix">
+            <div class="input-prepend">
+                <span class="add-on">Android</span>
+                <input class="span4" id="map_amap_android" name="map_amap_android" type="text" value="{#$map_amap_android#}" />
+            </div>
+            <br />
+            <div class="input-prepend">
+                <span class="add-on">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iOS</span>
+                <input class="span4" id="map_amap_ios" name="map_amap_ios" type="text" value="{#$map_amap_ios#}" />
+            </div>
+            <label><input type="radio" name="map_set" value="4" {#if $map_set == 4#}checked="checked"{#/if#}>默认</label>
+        </dd>
+    </dl>
+      <dl class="clearfix">
+        <dt><label>融云设置：</label></dt>
+        <dd class="clearfix">
+          <div class="input-prepend">
+            <span class="add-on">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Access Key ID</span>
+            <input class="span4" id="rongKeyID" name="rongKeyID" type="text" value="{#$rongKeyID#}" />
+          </div>
+          <br />
+          <div class="input-prepend">
+            <span class="add-on">Access Key Secret</span>
+            <input class="span4" id="rongKeySecret" name="rongKeySecret" type="text" value="{#$rongKeySecret#}" />
+          </div>
+          <label>请填写生产环境App Key；<a href="http://www.rongcloud.cn" target="_blank">申请地址：http://www.rongcloud.cn</a></label>
+        </dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label>自定义底部按钮：</label></dt>
+        <dd class="clearfix" id="bottomButton">
+            <div class="tips" style="margin: 5px 0 15px 0;">
+                <span class="label label-info">注意：此处配置后，移动端全部生效（H5、APP、微信、小程序），图标尺寸：150*150px</span>
+            </div>
+          <table class="table table-hover table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>标题</th>
+                <th>默认图标</th>
+                <th>选中图标</th>
+                <th>跳转链接</th>
+                <th>是否登录</th>
+              </tr>
+            </thead>
+            <tbody>
+              {#if $customBottomButton#}
+              {#$foo=6#}
+              {#foreach from=$customBottomButton key=myId item=button#}
+              <tr>
+                <td><input type="text" class="input-small" name="bottomButton[name][{#$foo#}]" value="{#$button['name']#}" /></td>
+                <td class="thumb clearfix listImgBox">
+                  <div class="uploadinp filePicker thumbtn{#if $button['icon'] != ""#} hide{#/if#}" id="filePicker{#$foo#}" data-type="logo"  data-count="1" data-size="{#$thumbSize#}" data-imglist=""><div></div><span></span></div>
+                  {#if $button['icon'] != ""#}
+                  <ul id="listSection{#$foo#}" class="listSection thumblist fn-clear" style="display:inline-block;"><li id="WU_FILE_0_{#$foo#}"><a href='{#$cfg_attachment#}{#$button['icon']#}' target="_blank" title=""><img src="{#$cfg_attachment#}{#$button['icon']#}" data-val="{#$button['icon']#}"/></a><a class="reupload li-rm" href="javascript:;">删除图片</a></li></ul>
+                  {#else#}
+                  <ul id="listSection{#$foo#}" class="listSection thumblist fn-clear"></ul>
+                  {#/if#}
+                  <input type="hidden" name="bottomButton[icon][{#$foo#}]" value="{#$button['icon']#}" class="imglist-hidden" id="sharePic">
+                </td>
+                <td class="thumb clearfix listImgBox">
+                  <div class="uploadinp filePicker thumbtn{#if $button['icon_h'] != ""#} hide{#/if#}" id="filePicker{#$foo*2#}" data-type="logo"  data-count="1" data-size="{#$thumbSize#}" data-imglist=""><div></div><span></span></div>
+                  {#if $button['icon_h'] != ""#}
+                  <ul id="listSection{#$foo*2#}" class="listSection thumblist fn-clear" style="display:inline-block;"><li id="WU_FILE_0_{#$foo*2#}"><a href='{#$cfg_attachment#}{#$button['icon_h']#}' target="_blank" title=""><img src="{#$cfg_attachment#}{#$button['icon_h']#}" data-val="{#$button['icon_h']#}"/></a><a class="reupload li-rm" href="javascript:;">删除图片</a></li></ul>
+                  {#else#}
+                  <ul id="listSection{#$foo*2#}" class="listSection thumblist fn-clear"></ul>
+                  {#/if#}
+                  <input type="hidden" name="bottomButton[icon_h][{#$foo#}]" value="{#$button['icon_h']#}" class="imglist-hidden" id="sharePic"><br />
+                </td>
+                <td><input type="text" style="width: 450px;" name="bottomButton[url][{#$foo#}]" value="{#$button['url']#}"></td>
+                <td><input type="checkbox" name="bottomButton[login][{#$foo#}]" value="1" {#if $button.login==1#} checked{#/if#}></td>
+              </tr>
+              {#$foo=$foo+1#}
+              {#/foreach#}
+              {#if count($customBottomButton)<5#}
+                {#$num = 6+count($customBottomButton)#}
+                {#for $foo=$num to 10#}
+                <tr>
+                  <td><input type="text" name="bottomButton[name][{#$foo#}]" value="" /></td>
+                  <td class="thumb clearfix listImgBox" style="width: 100px;">
+                    <div class="uploadinp filePicker thumbtn" id="filePicker{#$foo#}" data-type="logo"  data-count="1" data-size="{#$thumbSize#}" data-imglist=""><div></div><span></span></div>
+                    <ul id="listSection{#$foo#}" class="listSection thumblist fn-clear"></ul>
+                    <input type="hidden" name="bottomButton[icon][{#$foo#}]" value="{#$sharePic#}" class="imglist-hidden" id="sharePic">
+                  </td>
+                  <td class="thumb clearfix listImgBox" style="width: 100px;">
+                    <div class="uploadinp filePicker thumbtn" id="filePicker{#$foo*2#}" data-type="logo"  data-count="1" data-size="{#$thumbSize#}" data-imglist=""><div></div><span></span></div>
+                    <ul id="listSection{#$foo*2#}" class="listSection thumblist fn-clear"></ul>
+                    <input type="hidden" name="bottomButton[icon_h][{#$foo#}]" value="{#$sharePic#}" class="imglist-hidden" id="sharePic"><br />
+                  </td>
+                  <td><input type="text" name="bottomButton[url][{#$foo#}]" value=""></td>
+                  <td><input type="checkbox" name="bottomButton[login][{#$foo#}]" value="1">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                {#/for#}
+              {#/if#}
+              {#else#}
+              {#for $foo=6 to 10#}
+              <tr>
+                <td><input type="text" name="bottomButton[name][{#$foo#}]" value="" /></td>
+                <td class="thumb clearfix listImgBox" style="width: 100px;">
+                  <div class="uploadinp filePicker thumbtn" id="filePicker{#$foo#}" data-type="logo"  data-count="1" data-size="{#$thumbSize#}" data-imglist=""><div></div><span></span></div>
+                  <ul id="listSection{#$foo#}" class="listSection thumblist fn-clear"></ul>
+                  <input type="hidden" name="bottomButton[icon][{#$foo#}]" value="{#$sharePic#}" class="imglist-hidden" id="sharePic">
+                </td>
+                <td class="thumb clearfix listImgBox" style="width: 100px;">
+                  <div class="uploadinp filePicker thumbtn" id="filePicker{#$foo*2#}" data-type="logo"  data-count="1" data-size="{#$thumbSize#}" data-imglist=""><div></div><span></span></div>
+                  <ul id="listSection{#$foo*2#}" class="listSection thumblist fn-clear"></ul>
+                  <input type="hidden" name="bottomButton[icon_h][{#$foo#}]" value="{#$sharePic#}" class="imglist-hidden" id="sharePic"><br />
+                </td>
+                <td><input type="text" name="bottomButton[url][{#$foo#}]" value=""></td>
+                <td><input type="checkbox" name="bottomButton[login][{#$foo#}]" value="1">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              </tr>
+              {#/for#}
+              {#/if#}
+
+            </tbody>
+          </table>
+        </dd>
+      </dl>
+  </div>
+  <div class="item hide" id="business">
+    <dl class="clearfix">
+      <dt><label for="business_appname">APP名称：</label></dt>
+      <dd><input class="input-medium" type="text" name="business_appname" id="business_appname" value="{#$business_appname#}" /></dd>
+    </dl>
+      <dl class="clearfix">
+        <dt><label>最新版本：</label></dt>
+        <dd class="clearfix">
+    		<div class="input-prepend">
+          <span class="add-on">Android：</span>
+          <input class="span2" id="business_android_version" name="business_android_version" type="text" value="{#$business_android_version#}" />
+        </div>
+    		<div class="input-prepend">
+          <span class="add-on">iOS：</span>
+          <input class="span2" id="business_ios_version" name="business_ios_version" type="text" value="{#$business_ios_version#}" />
+        </div>
+    	</dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label>更新时间：</label></dt>
+        <dd class="clearfix">
+    		<div class="input-prepend">
+              <span class="add-on">Android：</span>
+              <input class="span2 updateDate" id="business_android_update" name="business_android_update" type="text" value="{#$business_android_update#}" />
+            </div>
+    		<div class="input-prepend">
+              <span class="add-on">iOS：</span>
+              <input class="span2 updateDate" id="business_ios_update" name="business_ios_update" type="text" value="{#$business_ios_update#}" />
+            </div>
+    	</dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label>强制升级：</label></dt>
+        <dd class="clearfix">
+          <label>
+            <input id="business_android_force" name="business_android_force" value="1" type="checkbox"{#if $business_android_force#} checked{#/if#} />
+            <span class="add-on">Android</span>
+          </label>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <label>
+            <input id="business_ios_force" name="business_ios_force" value="1" type="checkbox"{#if $business_ios_force#} checked{#/if#} />
+            <span class="add-on">iOS</span>
+          </label>
+      	</dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label>更新内容：</label></dt>
+        <dd class="clearfix">
+    		<div class="input-prepend">
+              <span class="add-on">Android：</span>
+              <textarea class="input-xlarge" style="height: 100px;" name="business_android_note" id="business_android_note">{#$business_android_note#}</textarea>
+            </div>
+    		<div class="input-prepend">
+              <span class="add-on">iOS：</span>
+              <textarea class="input-xlarge" style="height: 100px;" name="business_ios_note" id="business_ios_note">{#$business_ios_note#}</textarea>
+            </div>
+    	</dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label>文件大小：</label></dt>
+        <dd class="clearfix">
+    		<div class="input-prepend">
+              <span class="add-on">Android：</span>
+              <input class="span2" id="business_android_size" name="business_android_size" type="text" value="{#$business_android_size#}" />
+            </div>
+    	</dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label>LOGO：<br /><small>尺寸：180*180</small>&nbsp;&nbsp;&nbsp;</label></dt>
+        <dd class="thumb clearfix listImgBox">
+        <div class="uploadinp filePicker thumbtn{#if $business_logo != ""#} hide{#/if#}" id="filePicker4" data-type="logo" data-count="1" data-size="5120" data-imglist=""><div></div><span></span></div>
+            {#if $business_logo != ""#}
+        <ul id="listSection4" class="listSection thumblist clearfix" style="display:inline-block;"><li id="WU_FILE_4_1"><a href='{#$cfg_attachment#}{#$business_logo#}' target="_blank" title=""><img style="max-width: 150px;" alt="" src="{#$cfg_attachment#}{#$business_logo#}" data-val="{#$business_logo#}"/></a><a class="reupload li-rm" href="javascript:;">删除图片</a></li></ul>
+        {#else#}
+        <ul id="listSection4" class="listSection thumblist clearfix"></ul>
+        {#/if#}
+        <input type="hidden" name="business_logo" value="" class="imglist-hidden" id="business_logo">
+      </dd>
+      </dl>
+
+      <dl class="clearfix">
+        <dt><label for="business_android_download">Android安装包下载地址：</label></dt>
+        <dd><input class="input-xxlarge" type="text" name="business_android_download" id="business_android_download" value="{#$business_android_download#}" /></dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label for="business_yyb_download">应用宝链接地址：</label></dt>
+        <dd><input class="input-xxlarge" type="text" name="business_yyb_download" id="business_yyb_download" value="{#$business_yyb_download#}" /></dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label for="business_ios_download">iOS安装包下载地址：</label></dt>
+        <dd><input class="input-xxlarge" type="text" name="business_ios_download" id="business_ios_download" value="{#$business_ios_download#}" /></dd>
+      </dl>
+  </div>
+  <div class="item hide" id="peisong">
+    <dl class="clearfix">
+      <dt><label for="peisong_appname">APP名称：</label></dt>
+      <dd><input class="input-medium" type="text" name="peisong_appname" id="peisong_appname" value="{#$peisong_appname#}" /></dd>
+    </dl>
+      <dl class="clearfix">
+        <dt><label>最新版本：</label></dt>
+        <dd class="clearfix">
+    		<div class="input-prepend">
+              <span class="add-on">Android：</span>
+              <input class="span2" id="peisong_android_version" name="peisong_android_version" type="text" value="{#$peisong_android_version#}" />
+            </div>
+    		<div class="input-prepend">
+              <span class="add-on">iOS：</span>
+              <input class="span2" id="peisong_ios_version" name="peisong_ios_version" type="text" value="{#$peisong_ios_version#}" />
+            </div>
+    	</dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label>更新时间：</label></dt>
+        <dd class="clearfix">
+    		<div class="input-prepend">
+              <span class="add-on">Android：</span>
+              <input class="span2 updateDate" id="peisong_android_update" name="peisong_android_update" type="text" value="{#$peisong_android_update#}" />
+            </div>
+    		<div class="input-prepend">
+              <span class="add-on">iOS：</span>
+              <input class="span2 updateDate" id="peisong_ios_update" name="peisong_ios_update" type="text" value="{#$peisong_ios_update#}" />
+            </div>
+    	</dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label>强制升级：</label></dt>
+        <dd class="clearfix">
+          <label>
+            <input id="peisong_android_force" name="peisong_android_force" value="1" type="checkbox"{#if $peisong_android_force#} checked{#/if#} />
+            <span class="add-on">Android</span>
+          </label>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <label>
+            <input id="peisong_ios_force" name="peisong_ios_force" value="1" type="checkbox"{#if $peisong_ios_force#} checked{#/if#} />
+            <span class="add-on">iOS</span>
+          </label>
+      	</dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label>更新内容：</label></dt>
+        <dd class="clearfix">
+    		<div class="input-prepend">
+              <span class="add-on">Android：</span>
+              <textarea class="input-xlarge" style="height: 100px;" name="peisong_android_note" id="peisong_android_note">{#$peisong_android_note#}</textarea>
+            </div>
+    		<div class="input-prepend">
+              <span class="add-on">iOS：</span>
+              <textarea class="input-xlarge" style="height: 100px;" name="peisong_ios_note" id="peisong_ios_note">{#$peisong_ios_note#}</textarea>
+            </div>
+    	</dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label>文件大小：</label></dt>
+        <dd class="clearfix">
+    		<div class="input-prepend">
+              <span class="add-on">Android：</span>
+              <input class="span2" id="peisong_android_size" name="peisong_android_size" type="text" value="{#$peisong_android_size#}" />
+            </div>
+    	</dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label>LOGO：<br /><small>尺寸：180*180</small>&nbsp;&nbsp;&nbsp;</label></dt>
+        <dd class="thumb clearfix listImgBox">
+        <div class="uploadinp filePicker thumbtn{#if $peisong_logo != ""#} hide{#/if#}" id="filePicker5" data-type="logo" data-count="1" data-size="5120" data-imglist=""><div></div><span></span></div>
+            {#if $peisong_logo != ""#}
+        <ul id="listSection5" class="listSection thumblist clearfix" style="display:inline-block;"><li id="WU_FILE_5_1"><a href='{#$cfg_attachment#}{#$peisong_logo#}' target="_blank" title=""><img style="max-width: 150px;" alt="" src="{#$cfg_attachment#}{#$peisong_logo#}" data-val="{#$peisong_logo#}"/></a><a class="reupload li-rm" href="javascript:;">删除图片</a></li></ul>
+        {#else#}
+        <ul id="listSection5" class="listSection thumblist clearfix"></ul>
+        {#/if#}
+        <input type="hidden" name="peisong_logo" value="" class="imglist-hidden" id="peisong_logo">
+      </dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label for="peisong_android_download">Android安装包下载地址：</label></dt>
+        <dd><input class="input-xxlarge" type="text" name="peisong_android_download" id="peisong_android_download" value="{#$peisong_android_download#}" /></dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label for="peisong_yyb_download">应用宝链接地址：</label></dt>
+        <dd><input class="input-xxlarge" type="text" name="peisong_yyb_download" id="peisong_yyb_download" value="{#$peisong_yyb_download#}" /></dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label for="peisong_ios_download">iOS安装包下载地址：</label></dt>
+        <dd><input class="input-xxlarge" type="text" name="peisong_ios_download" id="peisong_ios_download" value="{#$peisong_ios_download#}" /></dd>
+      </dl>
+    <dl class="clearfix">
+        <dt><label>百度地图：</label></dt>
+        <dd class="clearfix">
+            <div class="input-prepend">
+                <span class="add-on">Android</span>
+                <input class="span4" id="peisong_map_baidu_android" name="peisong_map_baidu_android" type="text" value="{#$peisong_map_baidu_android#}" />
+            </div>
+            <br />
+            <div class="input-prepend">
+                <span class="add-on">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iOS</span>
+                <input class="span4" id="peisong_map_baidu_ios" name="peisong_map_baidu_ios" type="text" value="{#$peisong_map_baidu_ios#}" />
+            </div>
+            <label><input type="radio" name="peisong_map_set" value="2" {#if $peisong_map_set == 2#}checked="checked"{#/if#}>默认</label>
+        </dd>
+    </dl>
+    <dl class="clearfix">
+        <dt><label for="map_google">谷歌地图：</label></dt>
+        <dd class="clearfix">
+            <div class="input-prepend">
+                <span class="add-on">Android</span>
+                <input class="span4" id="peisong_map_google_android" name="peisong_map_google_android" type="text" value="{#$peisong_map_google_android#}" />
+            </div>
+            <br />
+            <div class="input-prepend">
+                <span class="add-on">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iOS</span>
+                <input class="span4" id="peisong_map_google_ios" name="peisong_map_google_ios" type="text" value="{#$peisong_map_google_ios#}" />
+            </div>
+            <label><input type="radio" name="peisong_map_set" value="1" {#if $peisong_map_set == 1#}checked="checked"{#/if#}>默认</label>
+        </dd>
+    </dl>
+    <dl class="clearfix">
+        <dt><label for="map_amap">高德地图：</label></dt>
+        <dd class="clearfix">
+            <div class="input-prepend">
+                <span class="add-on">Android</span>
+                <input class="span4" id="peisong_map_amap_android" name="peisong_map_amap_android" type="text" value="{#$peisong_map_amap_android#}" />
+            </div>
+            <br />
+            <div class="input-prepend">
+                <span class="add-on">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iOS</span>
+                <input class="span4" id="peisong_map_amap_ios" name="peisong_map_amap_ios" type="text" value="{#$peisong_map_amap_ios#}" />
+            </div>
+            <label><input type="radio" name="peisong_map_set" value="4" {#if $peisong_map_set == 4#}checked="checked"{#/if#}>默认</label>
+        </dd>
+    </dl>
+  </div>
+
+  <dl class="clearfix formbtn">
+    <dt>&nbsp;</dt>
+    <dd><input class="btn btn-large btn-success" type="submit" name="submit" id="btnSubmit" value="确认提交" /></dd>
+  </dl>
+</form>
+
+{#$jsFile#}
+</body>
+</html>

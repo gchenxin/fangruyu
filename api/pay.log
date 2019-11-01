@@ -1,0 +1,45 @@
+[2017-10-25 16:35:50][debug] SELECT `body` FROM `huoniao_pay_log` WHERE `ordertype` = 'waimai' AND `ordernum` = 'a:1:{s:4:"type";s:6:"waimai";}'
+
+
+[2017-10-25 16:57:04][debug] SELECT `body` FROM `huoniao_pay_log` WHERE `ordertype` = 'waimai' AND `ordernum` = '17A2521785485930'
+
+
+[2017-10-25 16:58:21][debug] SELECT `body` FROM `huoniao_pay_log` WHERE `ordertype` = 'waimai' AND `ordernum` = '17A2521871062706'
+
+
+[2017-10-25 16:59:40][debug] SELECT `body` FROM `huoniao_pay_log` WHERE `ordertype` = 'waimai' AND `ordernum` = '17A2521975415718'
+
+
+[2017-10-25 17:20:48][debug] SELECT `body`, `amount` FROM `huoniao_pay_log` WHERE `ordertype` = 'waimai' AND `ordernum` = '17A2523219771984'
+
+
+[2017-10-25 17:58:43][debug] SELECT `body`, `amount` FROM `huoniao_pay_log` WHERE `ordertype` = 'waimai' AND `ordernum` = '17A2524125613705'
+
+
+[2017-10-25 18:10:45][debug] SELECT `body`, `amount` FROM `huoniao_pay_log` WHERE `ordertype` = 'waimai' AND `ordernum` = '17A2526225858804'
+
+
+[2017-10-25 18:11:40][debug] SELECT `body`, `amount` FROM `huoniao_pay_log` WHERE `ordertype` = 'waimai' AND `ordernum` = '17A2526294777807'
+
+
+[2017-10-25 18:15:45][debug] SELECT `body`, `amount` FROM `huoniao_pay_log` WHERE `ordertype` = 'waimai' AND `ordernum` = '17A2526416636760'
+
+
+[2017-10-25 19:06:46][debug] SELECT `body`, `amount` FROM `huoniao_pay_log` WHERE `ordertype` = 'waimai' AND `ordernum` = '17A2522835400997'
+
+
+[2017-10-25 19:07:56][debug] SELECT `body`, `amount` FROM `huoniao_pay_log` WHERE `ordertype` = 'waimai' AND `ordernum` = '17A2529664629515'
+
+
+[2017-10-26 10:34:39][debug] SELECT `body`, `amount` FROM `huoniao_pay_log` WHERE `ordertype` = 'waimai' AND `ordernum` = '17A2685188762647'
+
+
+[2017-10-26 11:00:21][debug] SELECT `body`, `amount` FROM `huoniao_pay_log` WHERE `ordertype` = 'waimai' AND `ordernum` = '17A2686801990960'
+
+
+[2017-10-26 11:00:58][debug] SELECT `body`, `amount` FROM `huoniao_pay_log` WHERE `ordertype` = 'waimai' AND `ordernum` = '17A2686853409820'
+
+
+[2017-10-26 14:20:10][debug] SELECT `body`, `amount` FROM `huoniao_pay_log` WHERE `ordertype` = 'waimai' AND `ordernum` = '17A2698761408983'
+
+

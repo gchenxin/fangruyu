@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
+<title>微信基本设置</title>
+{#$cssFile#}
+<script>
+var thumbSize = {#$thumbSize#}, thumbType = "{#$thumbType#}";
+var adminPath = "{#$adminPath#}", action = "wechat";
+</script>
+<style media="screen">
+    .thead {margin: 20px 10px;}
+    .weixinQr img,.miniProgramQr img{width: 94px; height: 94px; margin-left: -4px;}.editform dt{width: 180px;}.editform dt label.sl{margin-top: -10px;}.editform dt small{display: block; margin: -8px 12px 0 0;}.editform dt small i{font-style: normal;}
+</style>
+</head>
+
+<body>
+<div class="alert alert-success" style="margin:10px 10px 0;"><button type="button" class="close" data-dismiss="alert">×</button>微信配置教程：<a href="https://help.kumanyun.com/help-50-9.html" target="_blank">https://help.kumanyun.com/help-50-9.html</a></div>
+
+<form action="" method="post" name="editform" id="editform" class="editform">
+  <input type="hidden" name="token" id="token" value="{#$token#}" />
+  <div class="thead" style="margin-top: 0;">&nbsp;&nbsp;服务器配置</div>
+    <dl class="clearfix">
+      <dt><label>登录确认：</label></dt>
+      <dd class="radio">
+        {#html_radios name="wechatType" values=$typeState checked=$typeStateChecked output=$typeStateNames separator="&nbsp;&nbsp;"#}
+        <span class="input-tips" style="display: inline-block;"><s></s>如果开通了APP或者小程序，请选择【需要确认】，否则会再创建一个新的用户！</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>服务器URL：</label></dt>
+      <dd style="padding-top: 10px;">
+        <span style="font-size: 14px;">{#$cfg_basehost#}/api/weixin/</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="wechatToken">服务器Token：</label></dt>
+      <dd>
+        <input class="input-xlarge" type="text" name="wechatToken" id="wechatToken" value="{#$wechatToken#}" data-regex=".*" />
+        <span class="input-tips"><s></s>请输入服务器配置Token</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="wechatAppid">开发者AppID：</label></dt>
+      <dd>
+        <input class="input-xlarge" type="text" name="wechatAppid" id="wechatAppid" value="{#$wechatAppid#}" data-regex=".*" />
+        <span class="input-tips"><s></s>请输入开发者AppID</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="wechatAppsecret">开发者AppSecret：</label></dt>
+      <dd>
+        <input class="input-xlarge" type="text" name="wechatAppsecret" id="wechatAppsecret" value="{#$wechatAppsecret#}" data-regex=".*" />
+        <span class="input-tips"><s></s>请输入开发者AppSecret</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>微信访问自动登录：</label></dt>
+      <dd class="radio">
+        {#html_radios name="wechatAutoLogin" values=$loginState checked=$loginStateChecked output=$loginStateNames separator="&nbsp;&nbsp;"#}
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>微信注册必须绑定手机：</label></dt>
+      <dd class="radio">
+        {#html_radios name="wechatBindPhone" values=$bindState checked=$bindStateChecked output=$bindStateNames separator="&nbsp;&nbsp;"#}
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>图文消息跳转方式：</label></dt>
+      <dd class="radio">
+        {#html_radios name="wechatRedirect" values=$redirectState checked=$redirectStateChecked output=$redirectStateNames separator="&nbsp;&nbsp;"#}
+      </dd>
+    </dl>
+  <div class="thead" style="margin-top: 20px;">&nbsp;&nbsp;基本配置</div>
+  <dl class="clearfix">
+    <dt><label for="wechatName" class="sl">公众号名称：</label><small><i>{</i><i>#$</i>cfg_weixinName<i>#}</i></small></dt>
+    <dd>
+      <input class="input-xlarge" type="text" name="wechatName" id="wechatName" value="{#$wechatName#}" data-regex=".*" />
+      <span class="input-tips"><s></s>请输入公众号名称</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="wechatCode" class="sl">微信号：</label><small><i>{</i><i>#$</i>cfg_weixinCode<i>#}</i></small></dt>
+    <dd>
+      <input class="input-xlarge" type="text" name="wechatCode" id="wechatCode" value="{#$wechatCode#}" data-regex=".*" />
+      <span class="input-tips"><s></s>请输入微信号</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label class="sl">二维码：</label><small><i>{</i><i>#$</i>cfg_weixinQr<i>#}</i></small></dt>
+    <dd class="weixinQr">
+      <input name="wechatQr" type="hidden" id="wechatQr" value="{#$wechatQr#}" />
+      <div class="spic{#if $wechatQr == ''#} hide{#/if#}">
+        <div class="sholder">{#if $wechatQr#}<img src="/include/attachment.php?f={#$wechatQr#}" />{#/if#}</div>
+        <a href="javascript:;" class="reupload"{#if $wechatQr#} style="display: inline-block;"{#/if#}>重新上传</a>
+      </div>
+      <iframe src ="/include/upfile.inc.php?mod=siteConfig&type=card&obj=wechatQr" style="width:100%; height:25px;{#if $wechatQr#} display:none;{#/if#}" scrolling="no" frameborder="0" marginwidth="0" marginheight="0" ></iframe>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="mapkey_amap">高德地图API密钥：</label></dt>
+    <dd>
+      <div class="input-prepend input-append">
+        <span class="add-on">Web端(JS API)：</span>
+        <input class="input-xlarge" type="text" name="mapkey_amap" id="mapkey_amap" value="{#$map_amap#}" />
+        <div class="btn-group"><a href="http://lbs.amap.com/dev/key/app" class="btn" target="_blank">申请高德地图密钥 <i class="icon-share-alt"></i></a></div>
+        <span class="input-tips" style="display: inline-block; color: red; margin-left: 20px;"><s></s>如不配置，微信端将无法定位！</span>
+      </div>
+      <br />
+      <div class="input-prepend input-append">
+        <span class="add-on">Web服务：</span>
+        <input class="input-xlarge" type="text" name="mapkey_amap_server" id="mapkey_amap_server" value="{#$map_amap_server#}" />
+        <div class="btn-group"><a href="http://lbs.amap.com/dev/key/app" class="btn" target="_blank">申请高德地图密钥 <i class="icon-share-alt"></i></a></div>
+        <span class="input-tips" style="display: inline-block; color: red; margin-left: 20px;"><s></s>如不配置，微信端将无法定位！</span>
+      </div>
+    </dd>
+  </dl>
+  <div class="thead" style="margin-top: 20px;">&nbsp;&nbsp;小程序配置</div>
+  <dl class="clearfix">
+    <dt><label for="miniProgramName" class="sl">小程序名称：</label><small><i>{</i><i>#$</i>cfg_miniProgramName<i>#}</i></small></dt>
+    <dd>
+      <input class="input-xlarge" type="text" name="miniProgramName" id="miniProgramName" value="{#$miniProgramName#}" data-regex=".*" />
+      <span class="input-tips"><s></s>请输入小程序名称</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+      <dt><label for="miniProgramAppid">小程序AppID：</label></dt>
+      <dd>
+        <input class="input-xlarge" type="text" name="miniProgramAppid" id="miniProgramAppid" value="{#$miniProgramAppid#}" data-regex=".*" />
+        <span class="input-tips"><s></s>请输入小程序AppID</span>
+      </dd>
+  </dl>
+  <dl class="clearfix">
+      <dt><label for="miniProgramAppsecret">小程序AppSecret：</label></dt>
+      <dd>
+        <input class="input-xlarge" type="text" name="miniProgramAppsecret" id="miniProgramAppsecret" value="{#$miniProgramAppsecret#}" data-regex=".*" />
+        <span class="input-tips"><s></s>请输入小程序AppSecret</span>
+      </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label class="sl">二维码：</label><small><i>{</i><i>#$</i>cfg_miniProgramQr<i>#}</i></small></dt>
+    <dd class="miniProgramQr">
+      <input name="miniProgramQr" type="hidden" id="miniProgramQr" value="{#$miniProgramQr#}" />
+      <div class="spic{#if $miniProgramQr == ''#} hide{#/if#}">
+        <div class="sholder">{#if $miniProgramQr#}<img src="/include/attachment.php?f={#$miniProgramQr#}" />{#/if#}</div>
+        <a href="javascript:;" class="reupload"{#if $miniProgramQr#} style="display: inline-block;"{#/if#}>重新上传</a>
+      </div>
+      <iframe src ="/include/upfile.inc.php?mod=siteConfig&type=card&obj=miniProgramQr" style="width:100%; height:25px;{#if $miniProgramQr#} display:none;{#/if#}" scrolling="no" frameborder="0" marginwidth="0" marginheight="0" ></iframe>
+    </dd>
+  </dl>
+  <dl class="clearfix formbtn">
+    <dt>&nbsp;</dt>
+    <dd>
+        <input class="btn btn-large btn-success" type="submit" name="submit" id="btnSubmit" value="确认提交" />
+    </dd>
+  </dl>
+</form>
+
+{#$jsFile#}
+</body>
+</html>

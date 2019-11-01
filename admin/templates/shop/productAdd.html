@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
+<title>上架新商品</title>
+{#$cssFile#}
+<style>
+.graybg {background:#f5f5f5; padding:5px 0;}
+.graybg .input-ok {color:#f5f5f5;}
+#specification dd label {float:left; width:140px;}
+#speList .speTab {width:auto; max-height:500px; padding-right:10px; overflow:hidden; border: 0; overflow-y:auto; display:inline-block; vertical-align:middle;}
+#speList table {vertical-align:middle; color:#333; font-size:14px; border-left:1px solid #d7d7d7; border-bottom:1px solid #d7d7d7;}
+#speList table th {height:30px; text-align:center; vertical-align:middle; font-weight:500; border:1px solid #d7d7d7; border-left:none; border-bottom:none; background:#ededed;}
+#speList table td {padding:5px; min-width:90px; text-align:center; vertical-align:middle; border:1px solid #d7d7d7; border-left:none; border-bottom:none; background:#fff; white-space:nowrap;}
+#speList table td input {height:15px; margin:0;}
+</style>
+<script>
+var thumbSize = {#$thumbSize#}, thumbType = '{#$thumbType#}',  //缩略图配置
+	atlasSize = {#$atlasSize#}, atlasType = '{#$atlasType#}', atlasMax = 0;  //图集配置
+var imglist = {"list1": {#$imglist#},},
+	specifiVal = {#$specifiVal#}, modelType = 'shop',
+	cfg_term = "pc", adminPath = '{#$adminPath#}';
+</script>
+</head>
+
+<body>
+<form action="" method="post" name="editform" id="editform" class="editform">
+  <input type="hidden" name="id" id="id" value="{#$id#}" />
+  <input type="hidden" name="dopost" id="dopost" value="{#$dopost#}" />
+  <input type="hidden" name="typeid" id="typeid" value="{#$typeid#}" />
+  <input type="hidden" name="itemid" id="itemid" value="{#$itemid#}" />
+  <input type="hidden" name="token" id="token" value="{#$token#}" />
+  <dl class="clearfix">
+    <dt><label>分类：</label></dt>
+    <dd class="singel-line">{#$proType#}&nbsp;&nbsp;[<a id="editType" href="productAdd.php?typeid={#$typeid#}{#if $id#}&id={#$id#}{#/if#}">编辑</a>]</dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="brand">品牌：</label></dt>
+    <dd>
+      <span><select name="brand" id="brand" class="input-large">{#$brandOption#}</select></span>
+      <span class="input-tips"><s></s>请选择商品品牌</span>
+    </dd>
+  </dl>
+  {#if $proItemList != ""#}
+  <div class="graybg" id="proItem">
+    {#$proItemList#}
+  </div>
+  {#/if#}
+  <dl class="clearfix">
+    <dt><label for="title">商品标题：</label></dt>
+    <dd>
+      <input class="input-xxlarge" type="text" name="title" id="title" data-regex=".{2,60}" maxlength="60" value="{#$title#}" />
+      <span class="input-tips"><s></s>请输入标题，3-60个汉字</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="store">所属店铺：</label></dt>
+    <dd>
+      <select name="store" id="store" class="input-large">{#$storeOption#}</select>
+      <span class="input-tips" style="display:inline-block;"><s></s>请选择商品所属店铺</span>
+    </dd>
+  </dl>
+  <dl class="clearfix hide" id="categoryObj">
+    <dt><label for="category">店铺商品分类：</label></dt>
+    <dd>
+      <select name="category[]" id="category" class="input-xlarge" multiple style="height:135px;"></select>
+      <span class="input-tips" style="display:inline-block;"><s></s>请选择店铺商品分类，支持多选！</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label>价格：</label></dt>
+    <dd>
+      <div class="input-prepend input-append">
+        <span class="add-on">市场价</span>
+        <input class="input-mini" type="number" name="mprice" id="mprice" value="{#$mprice#}" min="0" data-regex="0|\d*\.?\d+">
+        <span class="add-on">{#echoCurrency type="short"#}</span>
+        <span class="input-tips" style="display:inline-block;"><s></s>数字类型</span>
+      </div>
+      <br />
+      <div class="input-prepend input-append">
+        <span class="add-on">一口价</span>
+        <input class="input-mini" type="number" name="price" id="price" value="{#$price#}" min="0" data-regex="0|\d*\.?\d+">
+        <span class="add-on">{#echoCurrency type="short"#}</span>
+        <span class="input-tips" style="display:inline-block;"><s></s>数字类型</span>
+      </div>
+      <!-- <br />
+      <div class="input-prepend input-append" style="margin:0;">
+        <span class="add-on">物流费</span>
+        <input class="input-mini" type="number" name="logistic" id="logistic" value="{#$logistic#}" min="0" data-regex="0|\d*\.?\d+">
+        <span class="add-on">{#echoCurrency type="short"#}</span>
+        <span class="input-tips" style="display:inline-block;"><s></s>输入0表示免运费</span>
+      </div> -->
+    </dd>
+  </dl>
+  <dl class="clearfix{#if $cfg_fenxiaoState != 1#} hide{#/if#}">
+    <dt><label>分销佣金：</label></dt>
+    <dd>
+      <div class="input-prepend input-append">
+        <input class="input-mini" type="text" name="fx_reward" id="fx_reward" value="{#$fx_reward#}" min="0" maxlength="6" data-regex="0|\d*\.?\d+">
+        <span class="add-on">{#echoCurrency type="short"#}</span>
+        <span class="input-tips" style="display:inline-block;"><s></s>数字类型或者百分数（相对实际支付商品价格），如 20、10%。留空则按照默认佣金额度计算</span>
+      </div>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="logistic">运费设置：</label></dt>
+    <dd style="padding-bottom: 10px;">
+      <span><select name="logistic" id="logistic" class="input-large">{#$logisticOption#}</select></span>
+      <span class="input-tips"><s></s>请选择运费模板</span>
+      <br /><span id="logisticDetail" class="hide" style="padding-top: 10px;"><small></small></span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label>物流参数：</label></dt>
+    <dd>
+      <div class="input-prepend input-append">
+        <span class="add-on">体积</span>
+        <input class="input-mini" type="text" name="volume" id="volume" value="{#$volume#}" min="0" data-regex="0|\d*\.?\d+">
+        <span class="add-on">m³</span>
+      </div>
+      <br />
+      <div class="input-prepend input-append">
+        <span class="add-on">重量</span>
+        <input class="input-mini" type="text" name="weight" id="weight" value="{#$weight#}" min="0" data-regex="0|\d*\.?\d+">
+        <span class="add-on">kg</span>
+      </div>
+    </dd>
+  </dl>
+  {#if $specification != ""#}
+  <div class="graybg" id="specification">
+    {#$specification#}
+    <div id="speList" class="hide">
+      <dl class="clearfix">
+        <dt>规格匹配表：</dt>
+        <dd>
+          <div class="speTab"><table><thead></thead><tbody></tbody></table></div>
+          <span class="input-tips" style="display:inline-block;"><s></s>请补全价格和库存，字段类型为数字！</span>
+        </dd>
+      </dl>
+    </div>
+  </div>
+  {#/if#}
+  <dl class="clearfix">
+    <dt><label for="inventory">库存：</label></dt>
+    <dd>
+      <div class="input-prepend input-append" style="margin:0;">
+        <input class="input-mini" type="number" name="inventory" id="inventory" value="{#$inventory#}" min="0" data-regex="0|[1-9]\d*">
+        <span class="add-on">件</span>
+        <span class="input-tips" style="display:inline-block;"><s></s>数字类型</span>
+      </div>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="limit">限购数量：</label></dt>
+    <dd>
+      <div class="input-prepend input-append" style="margin:0;">
+        <input class="input-mini" type="number" name="limit" id="limit" value="{#$limit#}" min="0" data-regex="0|[1-9]\d*">
+        <span class="add-on">件</span>
+        <span class="input-tips" style="display:inline-block;"><s></s>数字类型</span>
+      </div>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt>代表图片：</dt>
+		<dd class="thumb fn-clear listImgBox">
+			<div class="uploadinp filePicker thumbtn{#if $litpic != ""#} hide{#/if#}" id="filePicker1" data-type="thumb"  data-count="1" data-size="{#$thumbSize#}" data-imglist=""><div></div><span></span></div>
+			{#if $litpic != ""#}
+			<ul id="listSection1" class="listSection thumblist fn-clear" style="display:inline-block;"><li id="WU_FILE_0_1"><a href='{#$cfg_attachment#}{#$litpic#}' target="_blank" title=""><img alt="" src="{#$cfg_attachment#}{#$litpic#}" data-val="{#$litpic#}"/></a><a class="reupload li-rm" href="javascript:;">删除图片</a></li></ul>
+			{#else#}
+			<ul id="listSection1" class="listSection thumblist fn-clear"></ul>
+			{#/if#}
+			<input type="hidden" name="litpic" value="{#$litpic#}" class="imglist-hidden" id="litpic">
+		</dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="click">浏览次数：</label></dt>
+    <dd>
+      <span><input class="input-mini" type="number" name="click" min="0" id="click" value="{#$click#}" /></span>
+      <label class="ml30" for="sort">排序：</label><input class="input-mini" type="number" name="sort" id="sort" min="0" data-regex="[1-9]\d*" value="{#$sort#}" />
+      <span class="input-tips"><s></s>必填，排序越大，越排在前面</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="state">显示状态：</label></dt>
+    <dd class="radio">
+      {#html_radios name="state" values=$stateopt checked=$state output=$statenames separator="&nbsp;&nbsp;"#}
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="flag">自定义标签：</label></dt>
+    <dd class="radio">
+      {#html_checkboxes name="flag" values=$flagopt checked=$flag output=$flagnames separator="&nbsp;&nbsp;"#}
+    </dd>
+  </dl>
+  <dl class="clearfix hide" id="panicbuy"{#if $flag && 3|in_array:$flag#} style="display:block;"{#/if#}>
+    <dt><label>限时抢设置：</label></dt>
+    <dd>
+      <div class="input-prepend input-append" style="margin:0;">
+        <span class="add-on">开始时间</span>
+        <input class="input-medium" type="text" name="btime" id="btime" value="{#$btime#}" />
+        <span class="add-on">结束时间</span>
+        <input class="input-medium" type="text" name="etime" id="etime" value="{#$etime#}" />
+      </div>
+    </dd>
+  </dl>
+  <dl class="clearfix hide" id="secondkill"{#if $flag && 4|in_array:$flag#} style="display:block;"{#/if#}>
+    <dt><label>准点秒设置：</label></dt>
+    <dd>
+      <div class="input-prepend input-append" style="margin:0;">
+        <span class="add-on">开始时间</span>
+        <input class="input-medium" type="text" name="kstime" id="kstime" value="{#$kstime#}" />
+        <span class="add-on">结束时间</span>
+        <input class="input-medium" type="text" name="ketime" id="ketime" value="{#$ketime#}" />
+      </div>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt>商品图集：</dt>
+		<dd class="listImgBox hide">
+			<div class="list-holder">
+				<ul id="listSection2" class="clearfix listSection piece"></ul>
+				<input type="hidden" name="imglist" value='{#$imglist#}' class="imglist-hidden">
+			</div>
+			<div class="btn-section clearfix">
+				<div class="uploadinp filePicker" id="filePicker2" data-type="album" data-count="999" data-size="{#$atlasSize#}" data-imglist="list1"><div id="flasHolder"></div><span>添加图片</span></div>
+				<div class="upload-tip">
+					<p><a href="javascript:;" class="hide deleteAllAtlas">删除所有</a>&nbsp;&nbsp;{#$atlasType|replace:"*.":""|replace:";":"、"#}&nbsp;&nbsp;单张最大{#$atlasSize/1024#}M<span class="fileerror"></span></p>
+				</div>
+			</div>
+		</dd>
+  </dl>
+  <dl class="clearfix" id="type0">
+    <dt>上传视频：</dt>
+    <dd>
+		<input name="video" type="hidden" id="video" value="{#$video#}" />
+		<div class="spic{#if $video == ""#} hide{#/if#}">
+			<div class="sholder" id="videoPreview">
+				 <a href="/include/videoPreview.php?f=" data-id="{#$video#}">预览视频</a>
+			</div>
+			<a href="javascript:;" class="reupload">重新上传</a>
+		</div>
+		<iframe src ="/include/upfile.inc.php?mod=tuan&type=video&obj=video&filetype=video" style="width:100%; height:25px;{#if $video != ""#} display: none;{#/if#}" scrolling="no" frameborder="0" marginwidth="0" marginheight="0"></iframe>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt>商品描述：</dt>
+    <dd>
+      <ul class="nav nav-tabs" style="margin-bottom:5px;">
+        <li class="active"><a href="#pc">电脑端</a></li>
+        <li><a href="#mobile">移动端</a></li>
+      </ul>
+      <div id="pc">
+      	<script id="body" name="body" type="text/plain" style="width:85%;height:500px">{#$body#}</script>
+      </div>
+      <div id="mobile" class="hide">
+      	<script id="mbody" name="mbody" type="text/plain" style="width:960px;height:500px">{#$mbody#}</script>
+      </div>
+    </dd>
+  </dl>
+  <dl class="clearfix formbtn">
+    <dt>&nbsp;</dt>
+    <dd><button class="btn btn-large btn-success" type="submit" name="button" id="btnSubmit">确认提交</button></dd>
+  </dl>
+</form>
+
+{#$editorFile#}
+{#$jsFile#}
+</body>
+</html>

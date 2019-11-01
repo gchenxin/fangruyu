@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
+<title>{#$pagetitle#}</title>
+{#$cssFile#}
+<script>
+var thumbSize = {#$thumbSize#}, thumbType = "{#$thumbType#}",  //缩略图配置
+	modelType = "dating", adminPath = "{#$adminPath#}", mapCity = "{#$mapCity#}";
+var cityid = {#$cityid#}, cityList = {#$cityList#};
+var typeListArr = {#$typeListArr#};
+</script>
+</head>
+
+<body>
+<form action="" method="post" name="editform" id="editform" class="editform">
+  <input type="hidden" name="dopost" id="dopost" value="{#$dopost#}" />
+  <input type="hidden" name="id" id="id" value="{#$id#}" />
+  <input type="hidden" name="token" id="token" value="{#$token#}" />
+  <dl class="clearfix">
+    <dt><label for="module">城市：</label></dt>
+    <dd style="overflow: visible; padding-left: 140px;">
+      <select class="chosen-select" id="cityid" name="cityid" style="width: auto; min-width: 150px;"></select>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="title">活动标题：</label></dt>
+    <dd>
+      <input class="input-xxlarge" type="text" name="title" id="title" value="{#$title#}" data-regex=".{2,50}" />
+      <span class="input-tips"><s></s>请输入故事主题，2-100个字符</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt>信息分类：</dt>
+    <dd style="overflow:visible;">
+      <div class="btn-group" id="typeBtn" style="margin-left:10px;">
+        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">{#$typename#}<span class="caret"></span></button>
+      </div>
+      <input type="hidden" name="typeid" id="typeid" value="{#$typeid#}" />
+      <span class="input-tips"><s></s>请选择信息分类</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt>缩略图：</dt>
+		<dd class="thumb clearfix listImgBox">
+			<div class="uploadinp filePicker thumbtn{#if $litpic != ""#} hide{#/if#}" id="filePicker1" data-type="thumb"  data-count="1" data-size="{#$thumbSize#}" data-imglist=""><div></div><span></span></div>
+			{#if $litpic != ""#}
+			<ul id="listSection1" class="listSection thumblist clearfix" style="display:inline-block;"><li id="WU_FILE_0_1"><a href='{#$cfg_attachment#}{#$litpic#}' target="_blank" title=""><img alt="" src="{#$cfg_attachment#}{#$litpic#}&type=small" data-val="{#$litpic#}"/></a><a class="reupload li-rm" href="javascript:;">删除图片</a></li></ul>
+			{#else#}
+			<ul id="listSection1" class="listSection thumblist clearfix"></ul>
+			{#/if#}
+			<input type="hidden" name="litpic" value="{#$litpic#}" class="imglist-hidden" id="litpic">
+		</dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="btime">活动开始时间：</label></dt>
+    <dd>
+      <input class="input-xlarge" type="text" name="btime" id="btime" value="{#$btime#}" data-regex=".*" />
+      <span class="input-tips"><s></s>请选择活动开始时间</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="etime">活动结束时间：</label></dt>
+    <dd>
+      <input class="input-xlarge" type="text" name="etime" id="etime" value="{#$etime#}" data-regex=".*" />
+      <span class="input-tips"><s></s>请选择活动结束时间</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="deadline">报名截止时间：</label></dt>
+    <dd>
+      <input class="input-medium" type="text" name="deadline" id="deadline" value="{#$deadline#}" />
+      <span class="input-tips"><s></s>请选择报名截止时间</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="address">活动地址：</label></dt>
+    <dd>
+      <input type="text" class="input-xlarge" name="address" id="address" value="{#$address#}" data-regex=".*" />
+      <input type="hidden" name="lnglat" id="lnglat" value="{#$lnglat#}" />
+      <img src="{#$adminPath#}../static/images/admin/markditu.jpg" id="mark" style="cursor:pointer;" title="标注地图位置" />
+      <span class="input-tips"><s></s>请输入活动地址</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="pcount">人数限制：</label></dt>
+    <dd>
+      <input class="input-xlarge" type="text" name="pcount" id="pcount" value="{#$pcount#}" data-regex=".*" />
+      <span class="input-tips"><s></s>请输入活动人数限制</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="money">活动费用：</label></dt>
+    <dd>
+      <input class="input-xlarge" type="text" name="money" id="money" value="{#$money#}" data-regex=".*" />
+      <span class="input-tips"><s></s>请输入活动费用</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="tel">联系电话：</label></dt>
+    <dd>
+      <input class="input-xlarge" type="text" name="tel" id="tel" value="{#$tel#}" data-regex=".*" />
+      <span class="input-tips"><s></s>请输入联系电话</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="tag">标签：</label></dt>
+    <dd>
+      <input class="input-xlarge" type="text" name="tag" id="tag" value="{#$tag#}" maxlength="6" />
+      <span class="input-tips"><s></s>请输入标签</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="else">特别要求：</label></dt>
+    <dd>
+      <textarea class="input-xxlarge" rows="5" name="else" id="else" data-regex=".*">{#$else#}</textarea>
+      <span class="input-tips"><s></s>请输入特别要求</span>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt>活动详情：</dt>
+    <dd>
+      <script id="content" name="content" type="text/plain" style="width:85%;height:500px">{#$content#}</script>
+    </dd>
+  </dl>
+  <dl class="clearfix formbtn">
+    <dt>&nbsp;</dt>
+    <dd><input class="btn btn-large btn-success" type="submit" name="submit" id="btnSubmit" value="确认提交" /></dd>
+  </dl>
+</form>
+
+{#$editorFile#}
+{#$jsFile#}
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
+<title>{#$pagetitle#}</title>
+{#$cssFile#}
+<script>
+var action = '{#$action#}', adminPath = "{#$adminPath#}";
+</script>
+</head>
+
+<body>
+<form action="" method="post" name="editform" id="editform" class="editform">
+  <input type="hidden" name="dopost" id="dopost" value="{#$dopost#}" />
+  <input type="hidden" name="id" id="id" value="{#$id#}" />
+  {#if $bank == "alipay"#}
+  <dl class="clearfix">
+    <dt>提现到：</dt>
+    <dd class="singel-line">支付宝</dd>
+  </dl>
+  <dl class="clearfix">
+    <dt>收款人帐号：</dt>
+    <dd class="singel-line">{#$cardnum#}</dd>
+  </dl>
+  <dl class="clearfix">
+    <dt>收款人姓名：</dt>
+    <dd class="singel-line">{#$cardname#}</dd>
+  </dl>
+  {#else#}
+  <dl class="clearfix">
+    <dt>提现银行：</dt>
+    <dd class="singel-line">{#$bank#}</dd>
+  </dl>
+  <dl class="clearfix">
+    <dt>提现卡号：</dt>
+    <dd class="singel-line">{#$cardnum#}</dd>
+  </dl>
+  <dl class="clearfix">
+    <dt>收  款  人：</dt>
+    <dd class="singel-line">{#$cardname#}</dd>
+  </dl>
+  {#/if#}
+  <dl class="clearfix">
+    <dt>申请时间：</dt>
+    <dd class="singel-line">{#$tdate#}</dd>
+  </dl>
+  <dl class="clearfix">
+    <dt>提现金额：</dt>
+    <dd class="singel-line">{#$amount#}</dd>
+  </dl>
+  <dl class="clearfix">
+    <dt>申请会员：</dt>
+    <dd class="singel-line"><a href="javascript:;" data-id="{#$uid#}" class="userinfo">{#$username#}</a></dd>
+  </dl>
+
+  {#if $state != 0#}
+  <dl class="clearfix">
+    <dt>申请状态：</dt>
+    <dd class="singel-line">
+      {#if $state == 1#}
+      成功
+      {#elseif $state == 2#}
+      失败
+      {#/if#}
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt>备注：</dt>
+    <dd class="singel-line">{#$note#}</dd>
+  </dl>  
+  <dl class="clearfix">
+    <dt>操作时间：</dt>
+    <dd class="singel-line">{#$rdate#}</dd>
+  </dl>  
+  {#/if#}
+
+<br /><br />
+
+  {#if $state == 0#}
+  <dl class="clearfix">
+    <dt>状态：</dt>
+    <dd class="radio">
+      <label><input type="radio" name="state" value="1">成功</label>
+      <label><input type="radio" name="state" value="2">失败</label>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt>备注：</dt>
+    <dd class="radio">
+      <textarea class="input-xxlarge" type="text" name="note" id="note"></textarea>
+    </dd>
+  </dl>  
+  <dl class="clearfix formbtn">
+    <dt>&nbsp;</dt>
+    <dd><button class="btn btn-large btn-success" type="submit" name="button" id="btnSubmit">确认提交</button></dd>
+  </dl>
+  {#/if#}
+</form>
+
+{#$jsFile#}
+</body>
+</html>

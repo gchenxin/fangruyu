@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
+<title>计划任务管理</title>
+{#$cssFile#}
+</head>
+
+<body>
+<ul style="padding: 10px 100px 0 5px;">
+  <li>计划任务是一项使系统在规定时间自动执行某些特定任务的功能，在需要的情况下，您也可以方便的将其用于站点功能的扩展。</li>
+  <li>计划任务是与系统核心紧密关联的功能特性，不当的设置可能造成站点功能的隐患，严重时可能导致站点无法正常运行，因此请务必仅在您对计划任务特性十分了解，并明确知道正在做什么、有什么样后果的时候才自行添加或修改任务项目。</li>
+  <li>此处和其他功能不同，本功能中完全按照站点系统默认时差对时间进行设定和显示，而不会依据某一用户或管理员的时差设定而改变显示或设置的时间值。</li>
+</ul>
+<div class="filter clearfix" style="padding-top: 10px;">
+  <div class="f-left">
+    <div class="btn-group" id="selectBtn">
+      <button class="btn dropdown-toggle" data-toggle="dropdown"><span class="check"></span><span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="javascript:;" data-id="1">全选</a></li>
+        <li><a href="javascript:;" data-id="0">不选</a></li>
+      </ul>
+    </div>
+    <button class="btn btn-success hide" id="openBtn" data-type="开启">开启</button>
+    <button class="btn btn-danger hide" id="closeBtn" data-type="停用">停用</button>
+	<!--<button class="btn btn-inverse hide" id="delBtn">删除</button> -->
+    <div class="btn-group" id="moduleBtn">
+      <button class="btn dropdown-toggle" data-toggle="dropdown">频道<span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="javascript:;" data-id="">全部</a></li>
+        {#foreach from=$moduleArr item=module#}
+        <li><a href="javascript:;" data-id="{#$module.name#}">{#$module.title#}</a></li>
+        {#/foreach#}
+      </ul>
+    </div>
+    <button class="btn btn-primary" id="addNew">新增计划任务</button>
+  </div>
+</div>
+
+<ul class="thead t100 clearfix">
+  <li class="row3">&nbsp;</li>
+  <li class="row12 left">频道</li>
+  <li class="row20 left">名称</li>
+  <li class="row15 left">任务周期</li>
+  <li class="row15 left">上次执行时间</li>
+  <li class="row15 left">下次执行时间</li>
+  <li class="row10">状态</li>
+  <li class="row10">操作</li>
+</ul>
+
+<div class="list common mt124" id="list" data-totalpage="1" data-atpage="1">
+  <table>
+    <tbody>
+      {#foreach from=$list item=l#}
+      <tr data-id="{#$l.id#}" data-type="{#$l.moduleName#}">
+        <td class="row3"><span class="check"></span></td>
+        <td class="row12 left">{#$l.moduleTitle#}</td>
+        <td class="row20 left">{#$l.title#}<br /><small>{#$l.file#}.php</small></td>
+        <td class="row15 left">{#$l.cycle#}</td>
+        <td class="row15 left">{#$l.ltime|date_format:"%Y-%m-%d %H:%M"#}</td>
+        <td class="row15 left">{#$l.ntime|date_format:"%Y-%m-%d %H:%M"#}</td>
+        <td class="row10 state">{#$l.state#}<span class="more"><s></s></span></td>
+		<td class="row10"><a href="siteCron.php?action=edit&id={#$l.id#}" title="编辑{#$l.title#}计划任务" class="edit">编辑</a><a href="javascript:;" class="run" title="手动执行">执行</a><!--<a href="javascript:;" title="删除" class="del">删除</a> --></td>
+      </tr>
+      {#/foreach#}
+    </tbody>
+  </table>
+</div>
+
+<script>var adminPath = "{#$adminPath#}";</script>
+{#$jsFile#}
+</body>
+</html>

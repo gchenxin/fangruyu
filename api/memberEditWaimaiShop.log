@@ -1,0 +1,2 @@
+[2017-10-30 16:00:26][debug] query:会员（id:1212）修改外卖店铺 ok ：7 - UPDATE `huoniao_waimai_shop` SET `sort` = '0',`shopname` = '测试专用（请勿下单）',`typeid` = '25',`category` = '6',`phone` = '4000251158',`address` = '东环路378号',`qq` = '1820096345',`description` = '火鸟测试店铺火鸟测试店铺火鸟测试店铺火鸟测试店铺火鸟测试店铺火鸟测试店铺火鸟测试店铺' WHERE `id` = 7
+

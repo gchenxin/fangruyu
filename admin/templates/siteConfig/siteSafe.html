@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
+<title>网站安全设置</title>
+{#$cssFile#}
+<script type="text/javascript">
+var adminPath = "{#$adminPath#}", safeqa = {#$safeqa#};
+</script>
+</head>
+
+<body>
+<div class="btn-group config-nav" data-toggle="buttons-radio">
+  <button type="button" class="btn active" data-type="basic">基本设置</button>
+  <button type="button" class="btn" data-type="verify">验证码设置</button>
+  <button type="button" class="btn" data-type="question">验证问题设置</button>
+  <button type="button" class="btn" data-type="geetest">geetest 极验验证码</button>
+</div>
+
+<div class="info-tips hide" id="infoTip"></div>
+
+<form action="" method="post" name="editform" id="editform" class="editform">
+  <input type="hidden" name="configType" value="basic" />
+  <input type="hidden" name="token" id="token" value="{#$token#}" />
+  <div class="item">
+    <dl class="clearfix">
+      <dt><label for="holdsubdomain">保留子级域名：</label></dt>
+      <dd>
+        <textarea name="holdsubdomain" class="input-xxlarge" id="holdsubdomain" data-regex=".*">{#$holdsubdomain#}</textarea>
+        <span class="input-tips"><s></s>多个请用“|”分隔。<br />如：www|bbs|login</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="iplimit">IP访问限制：</label></dt>
+      <dd>
+        <textarea name="iplimit" class="input-xxlarge" id="iplimit" rows="3" data-regex=".*">{#$iplimit#}</textarea>
+        <span class="input-tips"><s></s>您可以添加多个限制IP，每个IP用回车分隔。<br />也可只输入 IP 开头，例如 "192.168."(不含引号) 可匹配 192.168.0.0～192.168.255.255 范围内的所有地址。<br />留空为不设置。</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="errLoginCount">登录错误几次锁定：</label></dt>
+      <dd>
+        <input class="input-mini" type="number" min="0" name="errLoginCount" id="errLoginCount" value="{#$errLoginCount#}" data-regex="[0-9]\d*" />次
+        <span class="input-tips"><s></s>0表示不限制，字段为数字型</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="loginLock">锁定时间：</label></dt>
+      <dd>
+        <input class="input-mini" type="number" min="0" name="loginLock" id="loginLock" value="{#$loginLock#}" data-regex="[0-9]\d*" />分钟
+        <span class="input-tips"><s></s>0表示不锁定，字段为数字型</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>短信验证码登录：</label></dt>
+      <dd class="radio">
+        {#html_radios name="smsLoginState" values=$smsLoginState checked=$smsLoginStateChecked output=$smsLoginStateNames separator="&nbsp;&nbsp;"#}
+        <span class="input-tips" style="display:inline-block;"><s></s>开启后请确认【<a href="siteNotify.php" id="siteNotify">消息通知配置</a>】中是否配置并开启 <i><u>[会员-短信登录-发送验证码]</u></i> 短信模板！</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>会员注册类型开关：</label></dt>
+      <dd class="radio">
+      	{#html_checkboxes name=regtype values=$regType output=$regTypeName selected=$regTypeChecked separator="&nbsp;&nbsp;"#}
+      </dd>
+  	</dl>
+  	<dl class="clearfix">
+      <dt><label>会员注册字段开关：</label></dt>
+      <dd class="radio">
+      	{#html_checkboxes name=regfields values=$regFields output=$regFieldsName selected=$regFieldsChecked separator="&nbsp;&nbsp;"#}
+      	<span class="input-tips" style="display:inline-block;"><s></s>仅针对用户名注册</span>
+      </dd>
+	  </dl>
+    <dl class="clearfix">
+      <dt><label>发布信息实名认证：</label></dt>
+      <dd class="radio">
+        {#html_radios name="memberVerified" values=$memberVerified checked=$memberVerifiedChecked output=$memberVerifiedNames separator="&nbsp;&nbsp;"#}
+        <span class="input-tips" style="display:inline-block;"><s></s>仅针对个人会员生效</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="memberVerifiedInfo">实名认证提示文案：</label></dt>
+      <dd>
+        <input class="input-xxlarge" type="text" name="memberVerifiedInfo" id="memberVerifiedInfo" value="{#$memberVerifiedInfo#}" />
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>发布信息绑定手机：</label></dt>
+      <dd class="radio">
+        {#html_radios name="memberBindPhone" values=$memberBindPhone checked=$memberBindPhoneChecked output=$memberBindPhoneNames separator="&nbsp;&nbsp;"#}
+        <!-- <span class="input-tips" style="display:inline-block;"><s></s></span> -->
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="memberBindPhoneInfo">绑定手机提示文案：</label></dt>
+      <dd>
+        <input class="input-xxlarge" type="text" name="memberBindPhoneInfo" id="memberBindPhoneInfo" value="{#$memberBindPhoneInfo#}" />
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>会员注册开关：</label></dt>
+      <dd class="radio">
+        {#html_radios name="regstatus" values=$regstatus checked=$regstatusChecked output=$regstatusNames separator="&nbsp;&nbsp;"#}
+      </dd>
+    </dl>
+    {#if !$regstatusChecked#}
+    <div class="hide" id="reg0">
+    {#else#}
+    <div id="reg0">
+    {#/if#}
+      <dl class="clearfix hide">
+        <dt><label>注册验证：</label></dt>
+        <dd>
+          {#html_radios name="regverify" values=$regverify checked=$regverifyChecked output=$regverifyNames separator="&nbsp;&nbsp;"#}
+        </dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label for="regtime">注册间隔时间：</label></dt>
+        <dd>
+          <input class="input-mini" type="number" min="0" name="regtime" id="regtime" value="{#$regtime#}" data-regex="[0-9]\d*" />分钟
+          <span class="input-tips"><s></s>0表示不限制，字段为数字型</span>
+        </dd>
+      </dl>
+      <dl class="clearfix">
+        <dt><label for="holduser">保留用户名：</label></dt>
+        <dd>
+          <textarea name="holduser" class="input-xxlarge" id="holduser" data-regex=".*">{#$holduser#}</textarea>
+          <span class="input-tips"><s></s>多个请用“|”分隔。<br />如：admin|123456|user</span>
+        </dd>
+      </dl>
+    </div>
+    {#if !$regstatusChecked#}
+    <div id="reg1">
+    {#else#}
+    <div id="reg1" class="hide">
+    {#/if#}
+      <dl class="clearfix">
+        <dt><label for="regclosemessage">关闭原因：</label></dt>
+        <dd>
+          <textarea name="regclosemessage" id="regclosemessage" class="input-xxlarge" rows="5" placeholder="注册关闭时出现的提示信息" data-regex=".*">{#$regclosemessage#}</textarea>
+          <span class="input-tips"><s></s>请输入关闭注册时要显示的提示信息</span>
+        </dd>
+      </dl>
+    </div>
+    <dl class="clearfix">
+      <dt><label for="replacestr">敏感词过滤：</label></dt>
+      <dd>
+        <textarea name="replacestr" class="input-xxlarge" id="replacestr" rows="3" data-regex=".*">{#$replacestr#}</textarea>
+        <span class="input-tips"><s></s>词语会被替换成“**”，多个请用“|”分隔开。</span>
+      </dd>
+    </dl>
+  </div>
+
+  <div class="item hide">
+    <dl class="clearfix hide">
+      <dt><label>启用验证码：</label></dt>
+      <dd>
+        {#html_checkboxes name='seccodestatus' values=$seccodestatus output=$seccodestatusList selected=$seccodestatusitem separator="&nbsp;&nbsp;"#}
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>验证码类型：</label></dt>
+      <dd>
+        {#html_radios name="seccodetype" values=$seccodetype checked=$seccodetypeChecked output=$seccodetypeNames separator="&nbsp;&nbsp;"#}
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>验证码尺寸：</label></dt>
+      <dd>
+        <div class="input-prepend input-append">
+          <span class="add-on">宽</span>
+          <input class="span1" id="seccodewidth" name="seccodewidth" type="text" value="{#$seccodewidth#}" />
+          <span class="add-on">px</span>
+        </div>
+        &times;
+        <div class="input-prepend input-append">
+          <span class="add-on">高</span>
+          <input class="span1" id="seccodeheight" name="seccodeheight" type="text" value="{#$seccodeheight#}" />
+          <span class="add-on">px</span>
+        </div>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="seccodefamily">验证码字体：</label></dt>
+      <dd>
+        <select name="seccodefamily" id="seccodefamily">
+          {#html_options values=$seccodefamily selected=$seccodefamilySelected output=$seccodefamily#}
+        </select>
+        <span class="input-tips" style="display:inline-block;"><s></s>字体文件存放在{#$HUONIAOINC#}/data/fonts下<br />如果是汉字水印，请选择“simhei.ttf”，否则水印不显示！</span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>随机倾斜度：</label></dt>
+      <dd class="radio">
+        {#html_radios name="scecodeangle" values=$scecodeangle checked=$scecodeangleChecked output=$scecodeangleNames separator="&nbsp;&nbsp;"#}
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>随机扭曲：</label></dt>
+      <dd class="radio">
+        {#html_radios name="scecodewarping" values=$scecodewarping checked=$scecodewarpingChecked output=$scecodewarpingNames separator="&nbsp;&nbsp;"#}
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>文字阴影：</label></dt>
+      <dd class="radio">
+        {#html_radios name="scecodeshadow" values=$scecodeshadow checked=$scecodeshadowChecked output=$scecodeshadowNames separator="&nbsp;&nbsp;"#}
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>GIF 动画：</label></dt>
+      <dd class="radio">
+        {#html_radios name="scecodeanimator" values=$scecodeanimator checked=$scecodeanimatorChecked output=$scecodeanimatorNames separator="&nbsp;&nbsp;"#}
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt>预览：</dt>
+      <dd><img id="sceimg" src="../../include/vdimgck.php" onClick="this.src='../../include/vdimgck.php'" /></dd>
+    </dl>
+  </div>
+  <div class="item hide">
+    <dl class="clearfix hide">
+      <dt><label>启用验证问题：</label></dt>
+      <dd>
+        {#html_checkboxes name='secqaastatus' values=$secqaastatus output=$secqaastatusList selected=$secqaastatusitem separator="&nbsp;&nbsp;"#}
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label>问题及答：</label></dt>
+      <dd>
+        <ul class="qalist" id="qaList">
+          <li class="qahead clearfix">
+            <span class="row60">问题</span>
+            <span class="row30">答案</span>
+          </li>
+        </ul>
+        <a href="javascript:;" class="add-type" style="display:inline-block;" id="addNew">添加新问题</a>
+      </dd>
+    </dl>
+  </div>
+  <div class="item hide">
+    <dl class="clearfix">
+      <dt><label>启用极验：</label></dt>
+      <dd>
+        {#html_radios name="geetest" values=$geetest checked=$geetestChecked output=$geetestNames separator="&nbsp;&nbsp;"#}
+          <span class="help-inline">注：2.0版本已不支持，请使用3.0版本，<a href="https://account.geetest.com/base/report/total" target="_blank">点击申请极验行为验证</a></span>
+      </dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="geetest_id">ID：</label></dt>
+      <dd><input class="input-xlarge" type="text" name="geetest_id" id="geetest_id" value="{#$geetest_id#}" /></dd>
+    </dl>
+    <dl class="clearfix">
+      <dt><label for="geetest_key">KEY：</label></dt>
+      <dd><input class="input-xlarge" type="text" name="geetest_key" id="geetest_key" value="{#$geetest_key#}" /></dd>
+    </dl>
+  </div>
+  <dl class="clearfix formbtn">
+    <dt>&nbsp;</dt>
+    <dd><input class="btn btn-large btn-success" type="submit" name="submit" id="btnSubmit" value="确认提交" /></dd>
+  </dl>
+</form>
+
+{#$jsFile#}
+</body>
+</html>

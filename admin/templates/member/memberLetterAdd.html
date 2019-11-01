@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
+<title>新增消息</title>
+{#$cssFile#}
+<script>var adminPath = '{#$adminPath#}';</script>
+</head>
+
+<body>
+<form action="" method="post" name="editform" id="editform" class="editform">
+  <input type="hidden" name="id" id="id" value="{#$id#}" />
+  <input type="hidden" name="dopost" id="dopost" value="add" />
+  <input type="hidden" name="token" id="token" value="{#$token#}" />
+  <dl class="clearfix">
+    <dt><label>接收用户：</label></dt>
+    <dd class="radio">
+      <label><input type="radio" name="userType" value="0" checked="checked">所有会员</label>&nbsp;&nbsp;
+      <label><input type="radio" name="userType" value="1">个人会员</label>&nbsp;&nbsp;
+      <label><input type="radio" name="userType" value="2">企业会员</label>&nbsp;&nbsp;
+      <label><input type="radio" name="userType" value="3">在线会员</label>&nbsp;&nbsp;
+      <label><input type="radio" name="userType" value="4">指定会员</label>&nbsp;&nbsp;
+      <label><input type="radio" name="userType" value="5">所有设备（APP专用）</label>&nbsp;&nbsp;
+    </dd>
+  </dl>
+  <dl class="clearfix hide" id="userIds">
+    <dt><label for="users">会员名：</label></dt>
+    <dd>
+      <textarea name="users" id="users" rows="5" style="width: 50%;" placeholder="多个会员名用,分隔"></textarea>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="title">标题：</label></dt>
+    <dd><input class="input-xxlarge" type="text" name="title" id="title" data-regex=".{2,60}" maxlength="60" value="{#$title#}" /></dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="body">内容：</label></dt>
+    <dd>
+      <textarea name="body" id="body" rows="10" style="width: 50%;" placeholder="支持html代码，如为阿里大于平台，此处直接填写营销短信的模板ID即可。"></textarea>
+    </dd>
+  </dl>
+  <dl class="clearfix">
+    <dt><label for="url">链接：</label></dt>
+    <dd><input class="input-xxlarge" type="text" name="url" id="url" value="{#$url#}" placeholder="非必填项，APP推送如果需要跳转链接时请填写！" /></dd>
+  </dl>
+  <dl class="clearfix mtype">
+    <dt><label>发送方式：</label></dt>
+    <dd class="radio">
+      <label><input type="radio" name="type" value="0" checked="checked">站内消息</label>&nbsp;&nbsp;
+      <label><input type="radio" name="type" value="1">邮件</label>&nbsp;&nbsp;
+      <label><input type="radio" name="type" value="2">短信</label>&nbsp;&nbsp;
+      <label><input type="radio" name="type" value="3">APP推送</label>&nbsp;&nbsp;
+    </dd>
+  </dl>
+  <dl class="clearfix formbtn">
+    <dt>&nbsp;</dt>
+    <dd><button class="btn btn-large btn-success" type="submit" name="button" id="btnSubmit">确认发送</button></dd>
+  </dl>
+</form>
+
+{#$jsFile#}
+</body>
+</html>

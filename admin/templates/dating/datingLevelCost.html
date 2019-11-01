@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
+<title>会员等级费用设置</title>
+{#$cssFile#}
+<style media="screen">
+  .table {width: auto;}
+  .table th {min-width: 150px; height: 30px; text-align: center; line-height: 30px;}
+  .table th:last-child {min-width: 50px;}
+  .table td {text-align: center; height: 34px; line-height: 31px;}
+  .level {font-size: 18px;}
+  .input-append, .input-prepend {margin-bottom: 0;}
+  .del {display: inline-block; vertical-align: middle;}
+  .input-append select {margin: -5px -6px 0 -6px; border-radius: 0;}
+</style>
+</head>
+
+<body style="padding: 20px;">
+
+<table class="table table-hover table-bordered table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      {#foreach from=$levelList item=levelTitle#}
+      <th class="level">{#$levelTitle.name#}</th>
+      {#/foreach#}
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {#if $levelList && $levelList[0]['cost']#}
+    {#$i = 0#}
+    {#foreach from=$levelList[0]['cost'] item=level#}
+    <tr>
+      <td><div class="input-append"><input class="span1" type="text" value="{#$level['day']#}"><span class="add-on"><select class="input-mini"><option value="day"{#if $level['daytype'] == "day"#} selected="selected"{#/if#}>天</option><option value="month"{#if $level['daytype'] == "month"#} selected="selected"{#/if#}>月</option><option value="year"{#if $level['daytype'] == "year"#} selected="selected"{#/if#}>年</option></select></span></div></td>
+      {#foreach from=$levelList item=l#}
+      <td data-id="{#$l['id']#}"><div class="input-append"><input class="span1" type="text" value="{#$l['cost'][$i]['price']#}"><span class="add-on">{#echoCurrency type='short'#}</span></div></td>
+      {#/foreach#}
+      <td><a href="javascript:;" class="del" title="删除"><i class="icon-trash"></i></a></td>
+    </tr>
+    {#$i = $i + 1#}
+    {#/foreach#}
+
+    {#else#}
+    <tr>
+      <td><div class="input-append"><input class="span1" type="text"><span class="add-on">月</span></div></td>
+      {#foreach from=$levelList item=list#}
+      <td data-id="{#$list['id']#}"><div class="input-append"><input class="span1" type="text"><span class="add-on">{#echoCurrency type='short'#}</span></div></td>
+      {#/foreach#}
+      <td><a href="javascript:;" class="del" title="删除"><i class="icon-trash"></i></a></td>
+    </tr>
+    {#/if#}
+  </tbody>
+  <tbody>
+    <tr>
+      <td colspan="{#$levelList|@count + 2#}">
+        <button type="button" class="btn btn-small" id="add">增加一行</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-success btn-small" id="save">保存修改</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<script type="text/templates" id="trTemp">
+  <tr>
+    <td><div class="input-append"><input class="span1" type="text"><span class="add-on"><select class="input-mini"><option value="day" selected="selected">天</option><option value="month">月</option><option value="year">年</option></select></span></div></td>
+    {#foreach from=$levelList item=level#}
+    <td data-id="{#$level['id']#}"><div class="input-append"><input class="span1" type="text"><span class="add-on">{#echoCurrency type='short'#}</span></div></td>
+    {#/foreach#}
+    <td><a href="javascript:;" class="del" title="删除"><i class="icon-trash"></i></a></td>
+  </tr>
+</script>
+
+<script>
+  var adminPath = "{#$adminPath#}";
+</script>
+{#$jsFile#}
+</body>
+</html>
