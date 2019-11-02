@@ -11061,11 +11061,16 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 	}
 
 	public function push(){
-		
+		set_time_limit(0);
+		$logs = @fopen(HUONIAOROOT.'/logs/push_timer_' . date('Ymd') . '.log','a');
+		fwrite($logs,'[' . date('Y-m-d H:i:s') .  ']'."定时推送程序运行中...\n");
 		//查询是否定时推送模板信息
 		$messageTemplateInfo = $this->getMessageTemplateInfo(self::MSG_TEMPID);
+		$isPushSiteMessage = true;
 		if(!is_array($messageTemplateInfo)){
-			return ["state"=>$messageTemplateInfo,"模板配置错误！"];
+			fwrite($logs,"模板配置错误！！");
+			$isPushSiteMessage = false;
+			//return ["state"=>$messageTemplateInfo,"模板配置错误！\n"];
 		}
 		global $cfg_basehost;
 		$port = $_SERVER['SERVER_PORT'] ?: 80;
@@ -11073,11 +11078,18 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 		global $dsql;
 		$zjSql = $dsql->setQuery("select m.id,m.level,m.overide,ml.privilege,m.phone from #@__house_zjuser zj inner join #@__member m on zj.userid=m.id inner join #@__member_level ml on m.level=ml.id where m.level>0");
 		$zjList = $dsql->dsqlOper($zjSql,'results');
-		$lastLoginTimeLimit = time() - 2592000;
-		//查询可以推送的用户数量 新增条件  and usertags>0
-		$userSql = $dsql->SetQuery("select id,phone,m.usertags from (select id,phone,usertags from #@__member where mtype=1 and lastlogintime>={$lastLoginTimeLimit} and usertags>0 union select -1,phone,usertags from #@__visitor where scantime>={$lastLoginTimeLimit}) m where not exists(select id from #@__house_zjuser where userid=m.id or wx=m.phone) and not exists(select * from #@__member_collect mc where (mc.aid=m.id or mc.visitorphone=m.phone) and module='push_timer') and not exists(select phone from #@__agentresource ar where ar.phone=m.phone)");
-		$userList = $dsql->dsqlOper($userSql,"results");
-		shuffle($userList);
+		if(!$zjList || !empty($zjList['state'])){
+			fwrite($logs,"没有符合条件的经纪人\n");
+		}else{
+			$lastLoginTimeLimit = time() - 2592000;
+			//查询可以推送的用户数量 新增条件  and usertags>0
+			$userSql = $dsql->SetQuery("select id,phone,m.usertags from (select id,phone,usertags from #@__member where mtype=1 and lastlogintime>={$lastLoginTimeLimit} and usertags>0 union select -1,phone,usertags from #@__visitor where scantime>={$lastLoginTimeLimit}) m where not exists(select id from #@__house_zjuser where userid=m.id or wx=m.phone) and not exists(select * from #@__member_collect mc where (mc.aid=m.id or mc.visitorphone=m.phone) and module='push_timer') and not exists(select phone from #@__agentresource ar where ar.phone=m.phone)");
+			$userList = $dsql->dsqlOper($userSql,"results");
+			if(!$userList || !empty($userList['state'])){
+				fwrite($logs,"客户池已空!\n");
+			}
+			shuffle($userList);
+		}
 		foreach($zjList as $key => $val){
 			//计算推送的个数
 			$levelPushTimes = (unserialize($val['privilege']))['push_timer'];
@@ -11098,8 +11110,12 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 				case 5:$zjCategory=2;break;//商铺会员
 				case 6:$zjCategory=8;break;//厂房仓库会员
 			}
+			$hasPushed = 0;
 			for($i = 0; $i < $pushTimes; $i++){
-				if(!$userList)	break;
+				if(!$userList){	
+					fwrite($logs,"可用客源已分完！\n");
+					break;
+				}
 				$userInfo = [];
 				foreach($userList as $k=>$values){
 					if($values['usertags'] & $zjCategory){
@@ -11108,24 +11124,36 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 						break;
 					}
 				}
-				if(!$userInfo) continue;
+				if(!$userInfo){ 
+					fwrite($logs,"该类客源不足！zjuserid:{$val['id']}，usertags:{$zjCategory}\n");
+					break;
+				}
 				$expire = date("Y-m-d") . " 23:59:59";
 				$visualPhone = getVisualPhone($val['phone'],$userInfo['phone']);
-				if(!$visualPhone)	continue;
+				if(!$visualPhone){	
+					fwrite($logs,"暂无可用的虚拟号码！zjuserid:{$val['id']}，usertags:{$zjCategory}\n");
+					break;
+				}
 				//虚拟号码绑定
 				$handle = new handlers('hwVisualPhone','bind');
 				$duration = strtotime(date('Y-m-d') . "19:30:00") - time();
 				$result = $handle->getHandle(array('relationPhone'=>$visualPhone,"caller"=>$val['phone'],'callee'=>$userInfo['phone'],'duration'=>$duration));
-				if(!$result)	continue;
+				if(!$result){
+					fwrite($logs,"绑定失败！zjuserid:{$val['id']}，usertags:{$zjCategory}\n");
+					continue;
+				}
 				$insertSql = $dsql->SetQuery("insert into #@__agentpushrecord(uid,zjid,expire,realphone,visualphone) values({$userInfo['id']},{$val['id']},'{$expire}','{$userInfo['phone']}','{$visualPhone}')");
 				$result = $dsql->dsqlOper($insertSql,"lastid");
+				$hasPushed++;
 			}
+			fwrite($logs,"zjuserid:{$val['id']},共需：{$pushTimes}个，成功：{$hasPushed}个，待推送：" . ($pushTimes - $hasPushed)."!\n");
 			//异步推送消息通知
-			if($result){
-				$messageBody = str_replace('{{number}}',$pushTimes,$messageTemplateInfo['site_body']);
+			if($isPushSiteMessage){
+				$messageBody = str_replace('{{number}}',$hasPushed,$messageTemplateInfo['site_body']);
 				asynExec($cfg_basehost,$port,"/include/ajax.php?service=member&action=sendMessage&uid={$val['id']}&title={$messageTemplateInfo['site_title']}&body={$messageBody}");
 			}
 		}
+		fclose($logs);
 		return true;
 
 	}
