@@ -58,7 +58,8 @@ class siteConfig {
 		global $cfg_atlasType;       //图集上传类型限制
 		global $cfg_photoSize;       //头像上传限制大小
 		global $cfg_photoType;       //头像上传类型限制
-
+		global $cfg_staticVersion;
+		//var_dump($cfg_staticVersion);
 		//获取当前城市名
 		global $siteCityInfo;
 		if(is_array($siteCityInfo)){
@@ -143,6 +144,8 @@ class siteConfig {
 					$return['photoSize'] = $cfg_photoSize;
 				}elseif($param == "photoType"){
 					$return['photoType'] = $cfg_photoType;
+				}elseif($param == "staticVersion"){
+					$return['staticVersion'] = $cfg_staticVerison;
 				}
 			}
 
@@ -173,6 +176,7 @@ class siteConfig {
 			$return['atlasType']      = $cfg_atlasType;
 			$return['photoSize']      = $cfg_photoSize;
 			$return['photoType']      = $cfg_photoType;
+			$return['staticVerison']  = $cfg_staticVersion;
 		}
 
 		return $return;

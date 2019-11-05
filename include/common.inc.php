@@ -788,6 +788,5 @@ function __autoload($classname){
 	}
 }
 
-
 //执行计划任务
 Cron::run();
