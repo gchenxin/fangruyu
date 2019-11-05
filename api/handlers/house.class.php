@@ -16248,4 +16248,16 @@ class house {
         }
     }
 
+	public function updateLoupanApi(){
+		global $dsql;
+		$files = fopen(HUONIAOROOT."/data/loupan.csv",'r');
+		while(($buffer = fgets($files,4096)) !== false){
+			$loupanInfo = explode(',',$buffer);
+			if(!$loupanInfo)    continue;
+			$updateSql = $dsql->SetQuery("update #@__house_loupan set phone='{$loupanInfo[2]}' where title like '%{$loupanInfo[0]}%'");
+			$dsql->dsqlOper($updateSql,'update');
+		}
+		fclose($files);
+	}
+
 }
