@@ -5035,4 +5035,9 @@ class siteConfig {
 
 	}
 
+	public function getUrl(){
+		//getUrlPath($this->param);
+		return getUrlPath($this->param['param']);
+	}
+
 }
