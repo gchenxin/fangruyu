@@ -1,5 +1,4 @@
 <?php 
-
 //系统核心配置文件
 require_once(dirname(__FILE__).'/include/common.inc.php');
 
