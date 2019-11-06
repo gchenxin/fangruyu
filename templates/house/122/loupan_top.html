@@ -1,0 +1,156 @@
+{#if $detail_banner#}
+{#$banner = $detail_banner#}
+{#else#}
+{#$banner = $templets_skin|cat:'images/detail_bg.png'#}
+{#/if#}
+<div class="mod-banner" >
+    <div class="filter-bg">
+         <img src="{#$banner#}">
+    </div>
+    <div class="opacity-bg"></div>
+    <div class="wrap crumb fn-clear">
+		<div class="cl">
+			<a href="{#$house_channelDomain#}" target="_blank">网站首页</a> > <a href="{#getUrlPath service='house' template='loupan'#}" target="_blank">楼盘列表</a> > <a href="{#getUrlPath service='house' template='loupan' addrid={#$detail_areaid#}#}" target="_blank">{#$detail_addr[$detail_addr|count-2]#}楼盘</a> > <a href="{#getUrlPath service='house' template='loupan' addrid={#$detail_areaid#} business={#$detail_addrid#}#}" target="_blank">{#$detail_addr[$detail_addr|count-1]#}楼盘</a> > 
+			<a href="{#getUrlPath service="house" template="loupan-detail" id="{#$detail_id#}"#}">{#$detail_title#}</a> > <span>{#$crumbTitle#}</span>
+		</div>
+	</div>
+    <div class="banner-box wrap" style="background-image: url({#$banner#})">
+		<div class="box_left">
+			<div class="box_left_top">
+				{#if $detail_salestate == 0#}
+				{#$salestate = "新盘待售"#}
+				{#elseif $detail_salestate == 1#}
+				{#$salestate = "在售"#}
+				{#elseif $detail_salestate == 2#}
+				{#$salestate = "尾盘"#}
+				{#elseif $detail_salestate == 3#}
+				{#$salestate = "售罄"#}
+				{#/if#}
+				{#if $detail_existing == 1#}
+				{#$existing = '<span class="s_xf">现房</span>'#}
+				{#elseif $detail_existing == 2#}
+				{#$existing = '<span class="s_xf">期房</span>'#}
+				{#/if#}
+				<h3 class="fn-clear"><span class="s_tit">{#$detail_title#}</span> <span class="s_ds">{#$salestate#}</span> {#$existing#}</h3>
+				{#if $detail_price > 0#}
+				<!-- 有价格时显示 s-->
+				<p>均价 <span class="s_price"><b>{#$detail_price#}</b>{#if $detail_ptype == 1#}元/㎡{#else#}万元/套{#/if#}</span> <a href="{#getUrlPath service='house' template='calculator' do='zh'#}" class="s_jsq" target="_blank">房贷计算器</a></p>
+				<!-- 有价格时显示 e-->
+				{#else#}
+				<!-- 没有价格时显示暂未定价 s-->
+				<p>均价 <span class="s_price noprice"><b>暂未定价</b></span></p>
+	 			<!-- 没有价格时显示暂未定价 e-->
+	 			{#/if#}
+
+				<span class="s_time">{#$detail_pubdate|date_format:'%Y-%m_%d'|replace:"-":"年"|replace:"_":"月"#}日更新</span>
+			</div>
+			<div class="box_left_main">
+				<div class="lpmark fn-clear">
+					{#foreach from=$detail_protypeArr item=item key=k#}
+					{#if $k < 4#}<span>{#$item#}</span>{#/if#}
+					{#/foreach#}
+				</div>
+				<div class="bm_content">
+					<p><span class="p_le">开盘时间：</span>{#if $detail_deliverdate#}<span class="p_ri">预计{#$detail_deliverdate|date_format:'%Y'#}年{#$detail_deliverdate|date_format:'%m'#}月{#$detail_deliverdate|date_format:'%d'#}日</span>{#if $smarty.now < $detail_deliverdate#}<span class="kp">开盘提醒</span>{#/if#}{#else#}<span class="p_ri">待定</span>{#/if#}</p>
+					<p><span class="p_le">交房时间：</span><span class="p_ri">{#if $detail_opendate#}预计{#$detail_opendate|date_format:'%Y'#}年{#$detail_opendate|date_format:'%m'#}月{#$detail_opendate|date_format:'%d'#}日{#else#}待定{#/if#}</span></p>
+					<p><span class="p_le">楼盘位置：</span><span class="p_ri">[ {#$detail_addr[$detail_addr|count-2]#} ] {#$detail_address#}</span> <a href="#around" class="see_map">地图</a></p>
+					<p><span class="p_le">建筑类型：</span><span class="p_ri">{#if $detail_buildtype#}{#$detail_buildtype#}{#else#}不详{#/if#}</span></p>
+					<p><span class="p_le">主力户型：</span><span class="p_ri">{#house action="apartmentList" act="loupan" get="roomGroup" loupanid={#$detail_id#} pageSize="1"#}<a href="{#getUrlPath service='house' template='loupan-hx' id={#$detail_id#} hx={#$row.room#}#}" target="_blank">{#numberDaxie number=$row.room#}居</a> {#/house#}</span></p>
+					<p><span class="p_le">装修标准：</span><span class="p_ri">{#$detail_zhuangxiu#}</span></p>
+				</div>
+				<!-- <div class="bm_bottom"><i class="iphone"></i> <em>售楼处</em> <b>{#$detail_tel|replace:"转":'</b>转 <b>'#}</b></div> -->
+
+			</div>
+		</div>
+		<!-- 手机看房 s-->
+		<div class="mobile_kf fn-clear">
+			<div class="mk_lef fn-left">
+				<div id="qrcode"></div>
+			</div>
+			<div class="mk_rig fn-right">
+				<span>手</span>
+				<span>机</span>
+				<span>看</span>
+				<span>房</span>
+			</div>
+		</div>
+		<!-- 手机看房 e-->
+		
+		<!-- 收藏、分享、相册 s-->
+		<div class="btnbx">
+			{#if $detail_collect#}
+			<a href="javascript:;" class="btnSc btnYsc"> <i class="isc"></i> 已收藏</a>
+			{#else#}
+			<a href="javascript:;" class="btnSc"> <i class="isc"></i> 收藏</a>
+			{#/if#}
+			<a href="javascript:;" class="btnShare share bdsharebuttonbox bds_more" data-cmd="more"> <i class="ishare"></i> 分享</a>
+			<a href="{#getUrlPath service="house" template="loupan-album" id="{#$detail_id#}"#}#nav" class="btnAlbum">相册(<em>{#$detail_total_album#}</em>)</a>
+		</div>
+		<!-- 收藏、分享、相册 e-->
+    </div>
+</div>
+
+<div class="wrap loupan-nav">
+	<ul class="fn-clear" id="nav">
+		<li{#if $loupanNav == 1#} class="curr"{#/if#}><a href="{#getUrlPath service="house" template="loupan-detail" id="{#$detail_id#}"#}">楼盘首页</a></li>
+		<li><a href="{#getUrlPath service="house" template="loupan-detail" id="{#$detail_id#}"#}#map">周边配套</a></li>
+		<li{#if $loupanNav == 2#} class="curr"{#/if#}><a href="{#getUrlPath service="house" template="loupan-info" id="{#$detail_id#}"#}#nav">详细信息</a></li>
+		<li{#if $loupanNav == 3#} class="curr"{#/if#}><a href="{#getUrlPath service="house" template="loupan-hx" id="{#$detail_id#}"#}#nav">户型</a></li>
+		<li{#if $loupanNav == 4#} class="curr"{#/if#}><a href="{#getUrlPath service="house" template="loupan-adviser" id="{#$detail_id#}"#}#nav">新房顾问</a></li>
+		<li{#if $loupanNav == 5#} class="curr"{#/if#}><a href="{#getUrlPath service="house" template="loupan-album" id="{#$detail_id#}"#}#nav">楼盘相册</a></li>
+		<li><a href="{#getUrlPath service="house" template="loupan-detail" id="{#$detail_id#}"#}#shapan">沙盘看房</a></li>
+		<li><a href="{#getUrlPath service="house" template="loupan-detail" id="{#$detail_id#}"#}#quanjing">全景看房</a></li>
+		<li><a href="{#getUrlPath service="house" template="loupan-detail" id="{#$detail_id#}"#}#video">视频看房</a></li>
+		<li{#if $loupanNav == 6#} class="curr"{#/if#}><a href="{#getUrlPath service="house" template="loupan-news" id="{#$detail_id#}"#}#nav">楼盘动态</a></li>
+	</ul>
+</div>
+
+
+<div class="dy modal-dy">
+	<s class="close"></s>
+	<div class="lp_title">信息订阅</div>
+	<div class="dc">
+		<div class="fn-clear">
+			<dl><dd><s class="checkbox cbj" data-val="1"><i></i></s>变价通知<span>及时优惠折扣，不容错过</span></dd></dl>
+			<dl><dd><s class="checkbox ckp" data-val="2"><i></i></s>开盘通知<span>开盘必特价，特价必升值</span></dd></dl>
+			<dl><dd><s class="checkbox cbm" data-val="3"><i></i></s>看房团报名<span>多线路多楼盘，免费大巴</span></dd></dl>
+			<dl><dd><s class="checkbox" data-val="4"><i></i></s>订阅消息<span>新鲜楼盘动态，第一时间掌握</span></dd></dl>
+		</div>
+		<ul>
+			<li><input type="text" id="name" placeholder="怎么称呼您" title="怎么称呼您">
+				<div class="sexbox fn-clear">
+					<label><input type="radio" name="sex" data-type="male" value="1" checked> <em>先生</em></label>
+					<label><input type="radio" name="sex" data-type="female" value="2"> <em>女士</em></label>
+				</div>
+			</li>
+			<li><input type="text" id="phone" placeholder="您的手机号码" maxlength="11" title="请输入您的手机号码"></li>
+			<li><input type="text" id="vercode" placeholder="验证码" maxlength="4" title="请输入验证码"><img src="{#$cfg_basehost#}/include/vdimgck.php" title="看不清？点击换一张" id="verifycode"></li>
+			<li class="tj"><button id="tj">立即订阅</button><s class="checkbox xy"><i></i></s>同意[<a href="#" target="_blank">免责协议</a>]</li>
+		</ul>
+
+	</div>
+</div>
+
+<!-- <div class="dy modal-bm">
+	<s class="close"></s>
+	<div class="lp_title">报名</div>
+	<div class="dc">
+		<div class="con-tit">请留下您的联系方式</div>
+		<ul>
+			<li><input type="text" id="yname" placeholder="怎么称呼您" title="怎么称呼您">
+				<div class="sexbox fn-clear">
+					<label><input type="radio" name="sex1" data-type="male" value="1" checked> 先生</label>
+					<label><input type="radio" name="sex1" data-type="female" value="2"> 女士</label>
+				</div>
+			</li>
+			<li><input type="text" id="telphone" placeholder="您的手机号" maxlength="11" title="请输入您的手机号码"><a href="javascript:;" class="getCodes">发送验证码</a></li>
+			<li><input type="text" id="mvercode" placeholder="短信验证码" maxlength="4" title="请输入验证码">
+			</li>
+			<li class="tj"><button id="bm">立即报名</button></li>
+		</ul>
+	</div>
+</div>
+ -->
+
+<div class="popup_bg"></div>
+
