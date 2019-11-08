@@ -9271,10 +9271,16 @@ function getTimeStep(){
     return strtotime(date("Y-m-d {$hour}:{$minute_}"));
 }
 
-//获取虚拟号码
-function getVisualPhone($caller,$callee){
+//获取虚拟号码,type:1 AXB模式 0:AX模式
+function getVisualPhone($caller,$callee = '',$type=1){
 	$dsql = new dsql($dbo);
-	$sql = $dsql->SetQuery("select phone from #@__relationphone r where r.state=1 and not exists(select * from #@__phonebind pb where now()<=pb.expire and pb.state=1 and pb.relationphone=r.phone and (pb.caller='{$caller}' or pb.callee='{$caller}' or pb.caller='{$callee}' or pb.callee='{$callee}'))");
+	if($type){
+		if(!$caller || !callee)	return false;
+		$sql = $dsql->SetQuery("select phone from #@__relationphone r where r.model=1 and r.state=1 and not exists(select * from #@__phonebind pb where now()<=pb.expire and pb.state=1 and pb.relationphone=r.phone and (pb.caller='{$caller}' or pb.callee='{$caller}' or pb.caller='{$callee}' or pb.callee='{$callee}'))");
+	}else{
+		if(!$caller && !$callee) return false;
+		$sql = $dsql->SetQuery("select phone from #@__relationphone r where r.model=0 and r.state=1 and now()>expire");
+	}
 	$phoneList = $dsql->dsqlOper($sql,"results");
 	if(!is_array($phoneList))	return false;
 	shuffle($phoneList);

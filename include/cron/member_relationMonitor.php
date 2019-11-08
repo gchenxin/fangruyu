@@ -1,5 +1,5 @@
 <?php   
-$files = fopen("/www/wwwroot/dengyunlong_26dj_com/logs/monitorLogs.txt","a");
+$files = fopen(HUONIAOROOT."/logs/monitorLogs.log","a");
 fwrite($files,"[" . date('Y-m-d H:i:s') . "]The Monitor Has Done!\n");
 fclose($files);
 //if(!defined('HUONIAOINC')) exit('Request Error!');

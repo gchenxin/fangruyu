@@ -11157,6 +11157,7 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 		return true;
 
 	}
+
  /**
 	错误编码：
 	400：模板不存在
@@ -11211,15 +11212,11 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 	}
 
 	public function calltest(){
-		$duration=37800;
-		$handle = new handlers('hwVisualPhone','unbind');
-		$result = $handle->getHandle(array('subscriptionId'=>'220d5057-8b20-4778-af65-fbe86d43af32','caller'=>'17341390521','callee'=>'17843552753','duration'=>300));
+		$handle = new handlers('hwVisualPhoneAX','bind');
+		$result = $handle->getHandle(array('relationPhone'=>'17162370091','caller'=>'15111806987','callee'=>'17341390521','duration'=>300));
 		return $result;
 	}	
 
-	public function test(){
-		//var_dump(getUrlPath(['service'=>'house','template'=>'map','action'=>'loupan']));
-	}
 	/*public function callstop(){
 		$sessionId = '1202_9560_4294967295_20191022082307';
 		$handle = new handlers('hwVisualPhone','callStop');
@@ -11233,7 +11230,6 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 	 */
 	public function getTempVisualPhone(){
 		global $dsql;
-		global $userLogin;
 		global $langData;
 		if(empty($this->param["itemid"]) && empty($this->param['type'])){
 			return array("state" => 101, "info" => 'Param Invalid!');
@@ -11247,40 +11243,28 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 			case "cf" : $table="house_cf";break;
 			case "loupan": $table="house_loupan";break;
 		}
-		$uid = $userLogin->getMemberID();
-		if($uid > 0)  
-			$userInfo = $userLogin->getMemberInfo($uid);
-		elseif($this->param['userphone']){
-			$userInfo = ['phone'=>$this->param['userphone']];
-		}else{
-			return array("state" => 101, "info" => 'User Authoriazion Failed!');//登录超时，请重新登录！
-		}
 		$zjPhone = '';
-		//管理员账号发出的信息
-		if($this->param['id']){
+		if($this->param['id']){	//房源有经纪人
 			$zjInfo = $userLogin->getMemberInfo($this->param['id']);
-			$zjPhone = $zjInfo['phone'];
+			$zjPhone = preg_replace("/[^0-9]/",'',$zjInfo['phone']);
 		}else{
 			//查询经纪人联系方式
 			$sql = $dsql->SetQuery("select id,contact from #@__{$table} where id={$this->param['itemid']}");
 			$result = $dsql->dsqlOper($sql, "results");
 			if($result && !isset($result['state'])){
 				$zjInfo = $result[0];
-				$zjPhone = $zjInfo['contact'];
+				$zjPhone = preg_replace("/[^0-9]/",'',$zjInfo['contact']);
 			}
 		}
-		//查询当天已经拨打的次数
-		$handler = new handlers("hwVisualPhone",'judgeCalledTimesLimit');
-		$times = $handler->getHandle(array('caller'=>$userInfo['phone'],'callee'=>$zjPhone));
-		if(!$times)	return ['state'=>101, 'info'=>'The Phone Called Times has Exceeded the Limit!'];
-		
-		$sql = $dsql->SetQuery("select * from #@__phonebind where now()<=expire and state=1 and ((caller='{$userInfo['phone']}' and callee='{$zjPhone}') or (caller='{$zjPhone}' and callee='{$userInfo['phone']}'))");
+		//没有联系方式的返回固定的真实电话
+		if(!$zjPhone)	return ['phone'=>'18580105610'];	
+		$sql = $dsql->SetQuery("select * from #@__phonebind where now()<=expire and state=1 and callee='{$zjPhone}'");
 		$isPhoneHasBound = $dsql->dsqlOper($sql,'results');
 		if(!$isPhoneHasBound || isset($isPhoneHasBound['state'])){
-			$visualPhone = getVisualPhone($userInfo['phone'],$zjPhone);
+			$visualPhone = getVisualPhone($zjPhone,'',0);
 			if($visualPhone){
-				$handler = new handlers('hwVisualPhone','bind');
-				$result = $handler->getHandle(array('relationPhone'=>$visualPhone,'caller'=>$zjPhone,'callee'=>$userInfo['phone'],'duration'=>300));
+				$handler = new handlers('hwVisualPhoneAX','bind');
+				$result = $handler->getHandle(array('relationPhone'=>$visualPhone,'callee'=>$zjPhone));
 				if($result)	return ['phone'=>$visualPhone];
 			}
 		}
@@ -11288,8 +11272,96 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 			return ['phone'=>$isPhoneHasBound[0]['relationphone']];
 		}
 		
-		return ['phone'=>'17145782548'];
+		return null;
 	}
+	
+	/**
+		* @brief 获取爬取数据中未被经纪人认领的数据
+		*
+		* @return 
+	 */
+	public function getFreeHouseList(){
+        global $dsql;
+        global $userLogin;
+        $pageinfo = array();
+        $type = $page = $pageSize = $cityId = 0;
 
+        if(!empty($this->param)){
+            if(!is_array($this->param)){
+                return array("state" => 200, "info" => self::$langData['siteConfig'][33][0]);//格式错误！
+            }else{
+                $page     = $this->param['page'];
+				$pageSize = $this->param['pageSize'];
+				$type = empty($this->param['type']) ? 0 : $this->param['type'];
+				$cityId = empty($this->param['cityId']) ? 0 : $this->param['cityId'];
+            }
+        }
+		if(!$type) return array("state" => 200, "info" => self::$langData['siteConfig'][33][0]);//格式错误！
+        $uid = $this->param['userid'] ? $this->param['userid'] : $userLogin->getMemberID();
+
+        if(!is_numeric($uid)) return array("state" => 200, "info" => self::$langData['siteConfig'][20][262]);//登录超时，请重新登录！
+
+        $pageSize = empty($pageSize) ? 10 : $pageSize;
+		$page     = empty($page) ? 1 : $page;
+		$table = $fields = '';
+		switch($type){
+		case 1:
+			$table = 'house_loupan';
+			$fields = 'id,title,price,addr,addrid,litpic,null area,salestate,1 usertype';
+			break;
+		case 2:
+			$table = 'house_sale';
+			$fields = 'id,title,price,unitprice,address,addrid,litpic,area,usertype,room,hall,guard';
+			break;
+		case 4:
+			$table = 'house_zu';
+			$fields = 'id,title,price,address,addrid,litpic,area,rentype,usertype,room,hall,guard';
+			break;
+		case 8:
+			$table = 'house_sp';
+			$fields = 'id,title,price,address,addrid,litpic,area,type,usertype';
+			break;
+		case 16:
+			$table = 'house_xzl';
+			$fields = 'id,title,price,address,addrid,litpic,area,type,usertype,zhuangxiu';
+			break;
+		case 32:
+			$table = 'house_cf';
+			$fields = 'id,title,price,address,addrid,litpic,area,type,usertype';
+			break;
+		}
+		$where = "state=1 and externalno!='' and (userid='' or userid=0)";
+		if($cityId)	$where .= " and cityId in ({$cityId})";
+		if($type == 1)	$where .= " and hot=1";
+		$orderby = "weight desc";
+        $archives = $dsql->SetQuery("select {$fields} from #@__{$table} where {$where} order by {$orderby}");
+		echo $archives;
+        //总条数
+        $totalCount = $dsql->dsqlOper($archives, "totalCount");
+
+        if($totalCount == 0) return array("state" => 200, "info" => self::$langData['siteConfig'][21][64]);//暂无数据！
+
+        //总分页数
+        $totalPage = ceil($totalCount/$pageSize);
+
+        $pageinfo = array(
+            "page" => $page,
+            "pageSize" => $pageSize,
+            "totalPage" => $totalPage,
+            "totalCount" => $totalCount,
+        );
+
+        $atpage = $pageSize*($page-1);
+        $results = $dsql->dsqlOper($archives." LIMIT $atpage, $pageSize", "results");
+
+        $uinfo = $userLogin->getMemberInfo();
+        if($results){
+            foreach($results as $key => $val){
+                $results[$key]['litpic']  = getFilePath($val['litpic']);
+            }
+        }
+
+        return array("pageInfo" => $pageinfo, "list" => $results);
+    }
 
 }

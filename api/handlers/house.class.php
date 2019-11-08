@@ -16260,4 +16260,44 @@ class house {
 		fclose($files);
 	}
 
+	public function zjRecordHouse(){
+		global $dsql;
+		global $userLogin;
+		if(empty($this->param['hid']) || empty($this->param['type']))
+			return array("state" => 200, "info" => self::$langData['siteConfig'][33][0]);//格式错误！
+		$uid = $userLogin->getMemberID();
+		if(!$uid){
+			return array("state" => 200, "info" => self::$langData['siteConfig'][20][262]);//登录超时！
+		}
+		//查询经纪人是否存在
+		$sql = $dsql->SetQuery("select id from #@__house_zjuser where userid=$uid");
+		$zjInfo = $dsql->dsqlOper($sql,'results');
+		if(!$zjInfo || isset($zjInfo['state']))	return ['state'=>200, 'info'=>'请先入驻经纪人！'];
+		$table = ''; 
+		switch($this->param['type']){
+		case 1:
+			$table = 'house_loupan';
+			break;
+		case 2:
+			$table = 'house_sale';
+			break;
+		case 4:
+			$table = 'house_zu';
+			break;
+		case 8:
+			$table = 'house_sp';
+			break;
+		case 16:
+			$table = 'house_xzl';
+			break;
+		case 32:
+			$table = 'house_cf';
+			break;
+		}
+		$updateSql = $dsql->SetQuery("update #@__{$table} set userid={$zjInfo[0]['id']} where id={$this->param['hid']} and externalno!='' and (userid='' or userid=0)");
+		$result = $dsql->dsqlOper($updateSql,'update');
+		if($result && !isset($result['state']))	return true;
+		else return false;
+	}
+
 }

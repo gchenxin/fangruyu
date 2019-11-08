@@ -719,7 +719,7 @@ eot;
 				foreach ($userinfo as $key => $value) {
 					array_push($userinfoArr, '"'.$key.'": "'.$value.'"');
 				}
-				$userinfoStr = '<script>var userinfo = {'.join(', ', $userinfoArr).'}</script>';
+				$userinfoStr = '<script>var userinfo = {'.join(', ', $userinfoArr).'};window.sessionStorage.setItem("userid",true)</script>';
 				echo '<span style="display:none;">'.$userinfoStr.'100</span>';
 				die;
 
