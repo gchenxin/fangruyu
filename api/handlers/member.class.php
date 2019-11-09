@@ -2569,24 +2569,24 @@ class member {
 		global $dsql;
 		global $userLogin;
 		global $langData;
-        $uid = $userLogin->getMemberID();
+		$uid = $userLogin->getMemberID();
 		if($uid == -1) return array("state" => 200, "info" => $langData['siteConfig'][20][262]);  //登录超时，请重新登录！
 		if(empty($this->param['id'])){
-			return '参数错误！';
+			return ['state'=>200,'info'=>'参数错误！'];
 		}
 		//查看是否已经收藏
 		$checkSql = $dsql->SetQuery("select id,collected from #@__agentpushrecord where id=" . $this->param['id']);
 		$isCollected = $dsql->dsqlOper($checkSql,"results");
 		if($isCollected && !isset($isCollected['state'])){
 			if($isCollected[0]['collected'] == 1)
-				return "已经收藏！";
+				return ['state'=>200,'info'=>"已经收藏！"];
 		}
 		$userInfo = $userLogin->getMemberInfo($uid);
 		if($userInfo['level'] == 0 || time()>$userInfo['expired'])	return "身份信息有误！";
 		$pushSql = $dsql->SetQuery("select * from #@__agentpushrecord where id={$this->param['id']}");
 		$pushInfo = $dsql->dsqlOper($pushSql,'results');
 		if(!$pushInfo || !empty($pushInfo['state']))
-			return '记录不存在！';
+			return ['state'=>200,'info'=>'记录不存在！'];
 		$pushInfo = $pushInfo[0];
 		//检查是否有绑定关系
 		$checkSql = $dsql->SetQuery("select subscriptionId from #@__phonebind pb where state=1 and now()<=expire and ((caller='{$userInfo['phone']}' and callee='{$pushInfo['realphone']}') or (caller='{$pushInfo['realphone']}' and callee='{$userInfo['phone']}'))");
@@ -2607,7 +2607,7 @@ class member {
 		}
 		$visualPhone = getVisualPhone($userInfo['phone'],$pushInfo['realphone']);
 		if(!$visualPhone){
-			return '无法获取号码!';
+			return ['state'=>200,'info'=>'无法获取号码!'];
 		}
 		$handler = new handlers('hwVisualPhone','bind');
 		$duration = intval($userInfo['expired']) - time();
@@ -2620,7 +2620,7 @@ class member {
 			$dsql->dsqlOper($updateTempSql,'update');
 			return true;
 		}
-		return '绑定失败！';
+		return ['state'=>200,'info'=>'绑定失败！'];
 	}
 
 
@@ -2632,7 +2632,7 @@ class member {
         global $langData;
         $uid = $userLogin->getMemberID();
 
-        if($uid == -1) return array("state" => 200, "info" => $langData['siteConfig'][20][262]);  //登录超时，请重新登录！
+        if($uid == -1 || !$uid) return array("state" => 200, "info" => $langData['siteConfig'][20][262]);  //登录超时，请重新登录！
 
         $id = $this->param['id'];
 
@@ -11257,7 +11257,7 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 			}
 		}
 		//没有联系方式的返回固定的真实电话
-		if(!$zjPhone)	return ['phone'=>'18580105610'];	
+		if(!$zjPhone)	$zjPhone = '18580105610';	
 		$sql = $dsql->SetQuery("select * from #@__phonebind where now()<=expire and state=1 and callee='{$zjPhone}'");
 		$isPhoneHasBound = $dsql->dsqlOper($sql,'results');
 		if(!$isPhoneHasBound || isset($isPhoneHasBound['state'])){
