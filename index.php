@@ -1,8 +1,6 @@
 <?php 
 //系统核心配置文件
 include_once('./domain_reverse.php');
-var_dump($_SERVER);
-return;
 require_once(dirname(__FILE__).'/include/common.inc.php');
 
 //域名检测
