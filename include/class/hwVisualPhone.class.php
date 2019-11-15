@@ -57,7 +57,7 @@ class hwVisualPhone{
 		 // $recordHintTone = 'recordHintTone.wav'; // 设置录音提示音
 		 // $maxDuration = 60; // 设置允许单次通话进行的最长时间,单位为分钟。通话时间从接通被叫的时刻开始计算
 		 // $lastMinVoice = 'lastMinVoice.wav'; // 设置通话剩余最后一分钟时的提示音
-		$privateSms = 'true'; // 设置该绑定关系是否支持短信功能
+		$privateSms = 'false'; // 设置该绑定关系是否支持短信功能
 		
 		 // $callerHintTone = 'callerHintTone.wav'; // 设置A拨打X号码时的通话前等待音
 		 // $calleeHintTone = 'calleeHintTone.wav'; // 设置B拨打X号码时的通话前等待音
@@ -243,6 +243,9 @@ class hwVisualPhone{
 		* @return 
 	 */
 	public function onCallState(){
+		$files = fopen(HUONIAOROOT."/logs/call.log",'a');
+		fwrite($files,"\n".$this->param['jsonBody']."\n");
+		fclose($files);
 		$jsonArr = json_decode($this->param['jsonBody'], true); //将通知消息解析为关联数组
 		$eventType = $jsonArr['eventType']; //通知事件类型
 
@@ -271,6 +274,8 @@ class hwVisualPhone{
 				$sql = $dsql->SetQuery("select caller,callee from #@__phonebind where subscriptionId='{$statusInfo['subscriptionId']}'");
 				$info = $dsql->dsqlOper($sql, 'results');
 				if($info && !isset($info['state'])){
+					//不限制客户回拨经纪人次数
+					if(strstr($statusInfo['called'], $info[0]['caller']))	return;
 					$isLimit = $this->judgeCalledTimesLimit($info[0]['caller'],$info[0]['callee']);
 					if(!$isLimit){
 						$this->callStop($statusInfo['sessionId']);
@@ -288,25 +293,35 @@ class hwVisualPhone{
 		if (strcasecmp($eventType, 'fee') != 0 || !array_key_exists('feeLst', $jsonArr)) {
 			return;
 		}
-
 		$feeLst = $jsonArr['feeLst'];
 		if (sizeof($feeLst)) {
 			foreach ($feeLst as $loop){
 				if (array_key_exists('subscriptionId', $loop)) {
 					//正常绑定
-					if(!$loop['fwdUnaswRsn'] && !$loop['ulFailReason']){
-						//接通,记录次数
-						global $dsql;
-						$query = $dsql->SetQuery("select caller,callee,subscriptionId from #@__phonebind where subscriptionId='{$loop['subscriptionId']}'");
-						$callInfo = $dsql->dsqlOper($query, "results");
-						$insertSql = $dsql->SetQuery("insert into #@__callrecord values('{$callInfo[0]['caller']}','{$callInfo[0]['callee']}','" . date("Y-m-d") . "')");
-						$dsql->dsqlOper($insertSql, 'update');
-						/*$callLimit = $this->judgeCalledTimesLimit($callInfo[0]['caller'],$callInfo[0]['callee']);
-						if(!$callLimit){
-							//取消绑定
-							$this->unbind($callInfo[0]['subscriptionId']);
-						}*/
+					$callUnaswRsn = $callFaild = 0;
+					if($loop['fwdUnaswRsn']){
+						$callUnaswRsn = $loop['fwdUnaswRsn'];
 					}
+					if($loop['ulFailReason']){
+						$callFaild = $loop['ulFailReason'];
+					}
+					//记录次数
+					global $dsql;
+					$query = $dsql->SetQuery("select caller,callee,subscriptionId from #@__phonebind where subscriptionId='{$loop['subscriptionId']}'");
+					$callInfo = $dsql->dsqlOper($query, "results");
+					if(!$callInfo || isset($callInfo['state']))	continue;
+					if(strstr($loop['callerNum'], $callInfo[0]['caller'])){
+						$caller = $callInfo[0]['caller'];
+						$callee = $callInfo[0]['callee'];
+						$callDirection = 0;
+					}else{
+						$caller = $callInfo[0]['callee'];
+						$callee = $callInfo[0]['caller'];
+						$callDirection = 1;
+					}
+					$callDuration = strtotime($loop['callEndTime']) - strtotime($loop['fwdAnswerTime']);
+					$insertSql = $dsql->SetQuery("insert into #@__callrecord values('{$caller}','{$callee}','" . date("Y-m-d") . "',{$callDuration},{$callDirection},{$callFaild},{$callUnaswRsn})");
+					$dsql->dsqlOper($insertSql, 'update');
 				}
 			}
 		} 
@@ -317,12 +332,12 @@ class hwVisualPhone{
 		$callee = $callee ?: $this->param['callee'];
 		global $dsql;
 		//查询当天已经拨打的次数
-		$hasCalledSql = $dsql->SetQuery("select * from #@__callrecord where caller in ('{$caller}','{$callee}') and callee in ('{$caller}','{$callee}') and `date`='" . date("Y-m-d") . "'");
+		$hasCalledSql = $dsql->SetQuery("select * from #@__callrecord where caller in ('{$caller}','{$callee}') and callee in ('{$caller}','{$callee}') and `date`='" . date("Y-m-d") . "' and calldirection=0 and callfailCode=0 and callunanswerCode=0");
 		$hasCalledTimes = $dsql->dsqlOper($hasCalledSql, 'results');
 		if(!isset($hasCalledTimes['state'])){
 			if(count($hasCalledTimes) >= 2) return false;
 			else return true;
-		}	
+		}
 	}
 
 }

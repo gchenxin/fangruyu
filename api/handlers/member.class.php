@@ -11185,8 +11185,11 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 		* @return 
 	 */
 	public function callNotify(){
-		//file_put_contents('/www/wwwroot/dengyunlong_26dj_com/failed.txt',file_get_contents('php://input'));
-		return 11;
+		$jsonBody = file_get_contents('php://input');
+		file_put_contents("/www/wwwroot/dengyunlong_26dj_dev/list.log",$jsonBody);
+		$handle = new handlers('hwVisualPhone','onFeeEvent');
+		$result = $handle->getHandle(array('jsonBody'=>$jsonBody));
+		return $result;
 	}
 	
 	/**
@@ -11212,16 +11215,16 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 	}
 
 	public function calltest(){
-		$handle = new handlers('hwVisualPhoneAX','bind');
-		$result = $handle->getHandle(array('relationPhone'=>'17162370091','caller'=>'15111806987','callee'=>'17341390521','duration'=>300));
+		$handle = new handlers('hwVisualPhone','bind');
+		$result = $handle->getHandle(array('relationPhone'=>'17152381853','caller'=>'13379462155','callee'=>'17341390521','duration'=>3600));
 		return $result;
 	}	
 
-	/*public function callstop(){
-		$sessionId = '1202_9560_4294967295_20191022082307';
+	public function callstop(){
+		$sessionId = '1202_8883_4294967295_20191115021457@callenabler245hlj.huaweicaas.com';
 		$handle = new handlers('hwVisualPhone','callStop');
 		$result = $handle->getHandle(array('sessionId'=>$sessionId));
-	}*/
+	}
 
 	/**
 		* @brief 楼盘详情页临时分配虚拟号码
@@ -11363,5 +11366,31 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 
         return array("pageInfo" => $pageinfo, "list" => $results);
     }
+	
+	public function wxShare(){
+		global $userLogin;
+		global $dsql;
+		global $langData;
+		if(empty($this->param['aid']) || empty($this->param['type']))
+			return array("state" => 200, "info" => self::$langData['siteConfig'][33][0]);//格式错误！
+		$uid = $userLogin->getMemberID();
+		if(!$uid || $uid == -1){
+			return array("state" => 200, "info" => self::$langData['siteConfig'][20][262]);//登录超时！
+		}
+		if(!empty($this->param['sid'])){
+			$updateSql = $dsql->SetQuery("update #@__wechat_share set image_serverid = '{$this->param['serverid']}',description = '{$this->param['description']}',link = '{$this->param['link']}',state = 1 where id={$this->param['sid']}");
+			$result = $dsql->dsqlOper($updateSql, "update");
+			if($result && empty($result['state']))
+				return true;
+			else
+				return false;
+		}else{
+			$insertSql = $dsql->SetQuery("insert into #@__wechat_share(userid,aid,type) values({$uid},{$this->param['aid']},{$this->param['type']})");
+			$result = $dsql->dsqlOper($insertSql, "lastid");
+			return ['sid'=>$result];
+		}
+		
+	}
+
 
 }
