@@ -5582,7 +5582,8 @@ class house {
      * 二手房详细
      * @return array
      */
-	public function saleDetail(){
+	public function saleDetail(){	
+
 		global $dsql;
 		global $userLogin;
 		$saleDetail = array();
@@ -6848,6 +6849,7 @@ class house {
      * @return array
      */
 	public function zuDetail(){
+		$this->recordWxShare();
 		global $dsql;
 		global $userLogin;
 		$zuDetail = array();
@@ -16254,7 +16256,7 @@ class house {
 		while(($buffer = fgets($files,4096)) !== false){
 			$loupanInfo = explode(',',$buffer);
 			if(!$loupanInfo)    continue;
-			$updateSql = $dsql->SetQuery("update #@__house_loupan set phone='{$loupanInfo[2]}' where title like '%{$loupanInfo[0]}%'");
+			$updateSql = $dsql->SetQuery("update #@__house_loupan set tel='{$loupanInfo[2]}' where title like '%{$loupanInfo[0]}%'");
 			$dsql->dsqlOper($updateSql,'update');
 		}
 		fclose($files);
@@ -16263,6 +16265,7 @@ class house {
 	public function zjRecordHouse(){
 		global $dsql;
 		global $userLogin;
+		global $langData;
 		if(empty($this->param['hid']) || empty($this->param['type']))
 			return array("state" => 200, "info" => self::$langData['siteConfig'][33][0]);//格式错误！
 		$uid = $userLogin->getMemberID();
@@ -16300,4 +16303,23 @@ class house {
 		else return false;
 	}
 
+	public function recordWxShare(){
+		if(isset($_GET['ori']) && $_GET['ori'] == 'wxShare' && isWeixin() && isMobile()){
+			//微信分享链接:1.查询是否已经授权 2.授权获取access_token 3.获取用户信息 4.存储用户信息
+			global $cfg_wechatAppid;
+			global $cfg_wechatAppsecret;
+			global $dsql;
+			$test = new Wechat($cfg_wechatAppid, $cfg_wechatAppsecret);
+			$wxUserInfo = $test->getWxUser();
+			if($wxUserInfo){
+				//是否已经查看
+				$sql = $dsql->SetQuery("select * from #@__wechat_clickrecord where openid='{$wxUserInfo['openid']}' and sid={$_GET['sid']}");
+				$result = $dsql->dsqlOper($sql, "results");
+				if(!$result || !empty($result['state'])){
+					$insertSql = $dsql->SetQuery("insert into #@__wechat_clickrecord(openid,unionid,sid) values('{$wxUserInfo['openid']}','{$wxUserInfo['unionid']}',{$_GET['sid']})");
+					$dsql->dsqlOper($insertSql,'update');
+				}
+			}
+		}
+	}
 }

@@ -243,12 +243,8 @@ class hwVisualPhone{
 		* @return 
 	 */
 	public function onCallState(){
-		$files = fopen(HUONIAOROOT."/logs/call.log",'a');
-		fwrite($files,"\n".$this->param['jsonBody']."\n");
-		fclose($files);
 		$jsonArr = json_decode($this->param['jsonBody'], true); //将通知消息解析为关联数组
 		$eventType = $jsonArr['eventType']; //通知事件类型
-
 		if (strcasecmp($eventType, 'fee') == 0 || !array_key_exists('statusInfo', $jsonArr)) {
 			return;
 		}

@@ -11083,7 +11083,7 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 		}else{
 			$lastLoginTimeLimit = time() - 2592000;
 			//查询可以推送的用户数量 新增条件  and usertags>0
-			$userSql = $dsql->SetQuery("select id,phone,m.usertags from (select id,phone,usertags from #@__member where mtype=1 and lastlogintime>={$lastLoginTimeLimit} and usertags>0 union select -1,phone,usertags from #@__visitor where scantime>={$lastLoginTimeLimit}) m where not exists(select id from #@__house_zjuser where userid=m.id or wx=m.phone) and not exists(select * from #@__member_collect mc where (mc.aid=m.id or mc.visitorphone=m.phone) and module='push_timer') and not exists(select phone from #@__agentresource ar where ar.phone=m.phone)");
+			$userSql = $dsql->SetQuery("select id,phone,m.usertags from (select id,phone,usertags from #@__member where mtype=1 and lastlogintime>={$lastLoginTimeLimit} and usertags>0 union select 0,phone,max(v.usertags) usertags from #@__visitor v where scantime>={$lastLoginTimeLimit} and not exists(select * from #@__member m where m.phone=v.phone) group by v.phone) m where not exists(select id from #@__house_zjuser where userid=m.id or wx=m.phone) and not exists(select * from #@__member_collect mc where (mc.aid=m.id or mc.visitorphone=m.phone) and module='push_timer') and not exists(select phone from #@__agentresource ar where ar.phone=m.phone)");
 			$userList = $dsql->dsqlOper($userSql,"results");
 			if(!$userList || !empty($userList['state'])){
 				fwrite($logs,"客户池已空!\n");
@@ -11186,7 +11186,6 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 	 */
 	public function callNotify(){
 		$jsonBody = file_get_contents('php://input');
-		file_put_contents("/www/wwwroot/dengyunlong_26dj_dev/list.log",$jsonBody);
 		$handle = new handlers('hwVisualPhone','onFeeEvent');
 		$result = $handle->getHandle(array('jsonBody'=>$jsonBody));
 		return $result;
