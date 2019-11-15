@@ -2614,7 +2614,8 @@ class member {
 		$bindResult = $handler->getHandle(array('relationPhone'=>$visualPhone,'caller'=>$userInfo['phone'],'callee'=>$pushInfo['realphone'],'duration'=>$duration));
 		if($bindResult){
 			$visitorPhone = $pushInfo['uid'] == -1 ? $pushInfo['realphone'] : '';
-			$insertSql = $dsql->SetQuery("insert into #@__member_collect(module,action,aid,userid,pubdate,visualphone,visitorphone) values('push_timer','push',{$pushInfo['uid']},{$uid}," . time() . ",'{$visualPhone}','{$visitorPhone}')");
+			$aid = $pushInfo['uid'] == -1 ? "-9999" : $pushInfo['uid'];
+			$insertSql = $dsql->SetQuery("insert into #@__member_collect(module,action,aid,userid,pubdate,visualphone,visitorphone) values('push_timer','push',{$aid},{$uid}," . time() . ",'{$visualPhone}','{$visitorPhone}')");
 			$dsql->dsqlOper($insertSql, "update");
 			$updateTempSql = $dsql->SetQuery("update #@__agentpushrecord set visualphone='{$visualPhone}',collected=1 where id={$this->param['id']}");
 			$dsql->dsqlOper($updateTempSql,'update');
@@ -11083,7 +11084,7 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 		}else{
 			$lastLoginTimeLimit = time() - 2592000;
 			//查询可以推送的用户数量 新增条件  and usertags>0
-			$userSql = $dsql->SetQuery("select id,phone,m.usertags from (select id,phone,usertags from #@__member where mtype=1 and lastlogintime>={$lastLoginTimeLimit} and usertags>0 union select 0,phone,max(v.usertags) usertags from #@__visitor v where scantime>={$lastLoginTimeLimit} and not exists(select * from #@__member m where m.phone=v.phone) group by v.phone) m where not exists(select id from #@__house_zjuser where userid=m.id or wx=m.phone) and not exists(select * from #@__member_collect mc where (mc.aid=m.id or mc.visitorphone=m.phone) and module='push_timer') and not exists(select phone from #@__agentresource ar where ar.phone=m.phone)");
+			$userSql = $dsql->SetQuery("select id,phone,m.usertags from (select id,phone,usertags from #@__member where mtype=1 and lastlogintime>={$lastLoginTimeLimit} and usertags>0 union select -1,phone,max(v.usertags) usertags from #@__visitor v where scantime>={$lastLoginTimeLimit} and not exists(select * from #@__member m where m.phone=v.phone) group by v.phone) m where not exists(select id from #@__house_zjuser where userid=m.id or wx=m.phone) and not exists(select * from #@__member_collect mc where (mc.aid=m.id or mc.visitorphone=m.phone) and module='push_timer') and not exists(select phone from #@__agentresource ar where ar.phone=m.phone)");
 			$userList = $dsql->dsqlOper($userSql,"results");
 			if(!$userList || !empty($userList['state'])){
 				fwrite($logs,"客户池已空!\n");
