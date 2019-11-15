@@ -1,7 +1,7 @@
 <?php   
 $files = fopen(HUONIAOROOT."/logs/unbind.log","a");
 fwrite($files,"[" . date('Y-m-d H:i:s') . "]The unbind Relatione Monitor Has Done!\n");
-fclose($files);
+
 //if(!defined('HUONIAOINC')) exit('Request Error!');
 /**
  * 定时检查取消AX模式的绑定
