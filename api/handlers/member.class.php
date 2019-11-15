@@ -11212,8 +11212,8 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 	}
 
 	public function calltest(){
-		$handle = new handlers('hwVisualPhoneAX','bind');
-		$result = $handle->getHandle(array('relationPhone'=>'17162370091','caller'=>'15111806987','callee'=>'17341390521','duration'=>300));
+		$handle = new handlers('hwVisualPhone','getRelationPhone');
+		$result = $handle->getHandle(array('relationPhone'=>'17152381853','caller'=>'15111806987','callee'=>'17341390521','duration'=>300));
 		return $result;
 	}	
 
