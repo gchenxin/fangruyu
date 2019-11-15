@@ -2614,7 +2614,8 @@ class member {
 		$bindResult = $handler->getHandle(array('relationPhone'=>$visualPhone,'caller'=>$userInfo['phone'],'callee'=>$pushInfo['realphone'],'duration'=>$duration));
 		if($bindResult){
 			$visitorPhone = $pushInfo['uid'] == -1 ? $pushInfo['realphone'] : '';
-			$insertSql = $dsql->SetQuery("insert into #@__member_collect(module,action,aid,userid,pubdate,visualphone,visitorphone) values('push_timer','push',{$pushInfo['uid']},{$uid}," . time() . ",'{$visualPhone}','{$visitorPhone}')");
+			$aid = $pushInfo['uid'] == -1 ? "-9999" : $pushInfo['uid'];
+			$insertSql = $dsql->SetQuery("insert into #@__member_collect(module,action,aid,userid,pubdate,visualphone,visitorphone) values('push_timer','push',{$aid},{$uid}," . time() . ",'{$visualPhone}','{$visitorPhone}')");
 			$dsql->dsqlOper($insertSql, "update");
 			$updateTempSql = $dsql->SetQuery("update #@__agentpushrecord set visualphone='{$visualPhone}',collected=1 where id={$this->param['id']}");
 			$dsql->dsqlOper($updateTempSql,'update');
