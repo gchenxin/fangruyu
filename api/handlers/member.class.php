@@ -11392,5 +11392,5 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 		
 	}
 
-
+	
 }

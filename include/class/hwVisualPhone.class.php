@@ -315,8 +315,9 @@ class hwVisualPhone{
 						$callee = $callInfo[0]['caller'];
 						$callDirection = 1;
 					}
+					$bindNum = substr($loop['bindNum'],2);
 					$callDuration = strtotime($loop['callEndTime']) - strtotime($loop['fwdAnswerTime']);
-					$insertSql = $dsql->SetQuery("insert into #@__callrecord values('{$caller}','{$callee}','" . date("Y-m-d") . "',{$callDuration},{$callDirection},{$callFaild},{$callUnaswRsn})");
+					$insertSql = $dsql->SetQuery("insert into #@__callrecord values('{$caller}','{$callee}','{$bindNum}','" . date("Y-m-d") . "',{$callDuration},{$callDirection},{$callFaild},{$callUnaswRsn})");
 					$dsql->dsqlOper($insertSql, 'update');
 				}
 			}
