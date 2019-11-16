@@ -1369,6 +1369,7 @@ class house {
      * @return array
      */
 	public function loupanDetail(){
+		$this->recordWxShare();
 		global $dsql;
 		global $userLogin;
 		$loupanDetail = array();
@@ -5583,7 +5584,7 @@ class house {
      * @return array
      */
 	public function saleDetail(){	
-
+		$this->recordWxShare();
 		global $dsql;
 		global $userLogin;
 		$saleDetail = array();
@@ -7655,6 +7656,7 @@ class house {
      * @return array
      */
 	public function xzlDetail(){
+		$this->recordWxShare();
 		global $dsql;
 		global $userLogin;
 		$xzlDetail = array();
@@ -8425,6 +8427,7 @@ class house {
      * @return array
      */
 	public function spDetail(){
+		$this->recordWxShare();
 		global $dsql;
 		global $userLogin;
 		$spDetail = array();
@@ -9175,6 +9178,7 @@ class house {
      * @return array
      */
 	public function cfDetail(){
+		$this->recordWxShare();
 		global $dsql;
 		global $userLogin;
 		$cfDetail = array();
@@ -16309,15 +16313,22 @@ class house {
 			global $cfg_wechatAppid;
 			global $cfg_wechatAppsecret;
 			global $dsql;
+			global $cfg_basehost;
 			$test = new Wechat($cfg_wechatAppid, $cfg_wechatAppsecret);
 			$wxUserInfo = $test->getWxUser();
 			if($wxUserInfo){
+				//查询分享的经纪人id
+				$sql = $dsql->SetQuery("select * from #@__wechat_share where id={$_GET['sid']}");
+				$shareInfo = $dsql->dsqlOper($sql, "results");
+				if(!$shareInfo || !empty($shareInfo['state']))	return;
 				//是否已经查看
 				$sql = $dsql->SetQuery("select * from #@__wechat_clickrecord where openid='{$wxUserInfo['openid']}' and sid={$_GET['sid']}");
 				$result = $dsql->dsqlOper($sql, "results");
 				if(!$result || !empty($result['state'])){
 					$insertSql = $dsql->SetQuery("insert into #@__wechat_clickrecord(openid,unionid,sid) values('{$wxUserInfo['openid']}','{$wxUserInfo['unionid']}',{$_GET['sid']})");
 					$dsql->dsqlOper($insertSql,'update');
+					//异步消息推送
+					asynExec($cfg_basehost, 80, "/include/ajax.php?service=member&action=sendMessage&uid={$share[0]['userid']}&title=微信分享通知&body=微信好友{$wxUserInfo['nickname']}浏览了您的房源！");
 				}
 			}
 		}
