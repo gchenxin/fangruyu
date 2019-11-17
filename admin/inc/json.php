@@ -329,7 +329,7 @@ if ($action == "checkFtpConn") {
             $where = " AND `mtype` BETWEEN 1 AND 2";
         }
 
-        $userSql = $dsql->SetQuery("SELECT `id`, `username`, `nickname`, `phone`, `email` FROM `#@__member` WHERE (`username` like '%$key%' || `nickname` like '%$key%')" .$where. " LIMIT 0, 10");
+        $userSql = $dsql->SetQuery("SELECT `id`, `username`, `nickname`, `phone`, `email` FROM `#@__member` WHERE (`username` like '%$key%' || `nickname` like '%$key%' || `phone` like '$key%')" .$where. " LIMIT 0, 10");
         $userResult = $dsql->dsqlOper($userSql, "results");
         if ($userResult) {
             echo json_encode($userResult);
