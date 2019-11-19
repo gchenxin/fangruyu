@@ -39,7 +39,7 @@ if($_POST['submit'] == "提交"){
 
 	//二次验证
 	if($type == 0){
-		if($comid == 0 && trim($comid) == ''){
+		if($comid == 0 || trim($comid) == ''){
 			echo '{"state": 200, "info": "请选择中介公司"}';
 			exit();
 		}
