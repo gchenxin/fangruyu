@@ -15325,7 +15325,44 @@ class house {
 	 * 100 购买了经纪人套餐 套餐有效期内，有剩余数量
 	 */
 	public function checkZjuserMeal($zjuserConfig, $type = ""){
-
+		global $userLogin;
+		global $dsql;
+		$userInfo = $userLogin->getMemberInfo(1387);
+		if($userInfo['expired'] >= time() && $userInfo['level'] > 0){
+			//查询已经发布的房源;
+			$sql = <<<EOT
+select SUM(Num) total from 
+(
+	select count(1) Num from #@__house_loupan lp INNER JOIN huoniao_house_zjuser z on lp.userid = z.id and lp.state=1 and z.userid=1387
+	UNION ALL
+	select count(1) from #@__house_sale s INNER JOIN huoniao_house_zjuser z on s.userid = z.id and s.state=1 and z.userid=1387 where usertype=1
+	UNION ALL
+	select count(1) from #@__house_sp sp INNER JOIN huoniao_house_zjuser z on sp.userid = z.id and sp.state=1 and z.userid=1387 where usertype=1
+	UNION ALL
+	select count(1) from #@__house_zu zu INNER JOIN huoniao_house_zjuser z on zu.userid = z.id and zu.state=1 and z.userid=1387 where usertype=1
+	UNION ALL
+	select count(1) from #@__house_xzl xzl INNER JOIN huoniao_house_zjuser z on xzl.userid = z.id and xzl.state=1 and z.userid=1387 where usertype=1
+	UNION ALL
+	select count(1) from #@__house_cf cf INNER JOIN huoniao_house_zjuser z on cf.userid = z.id and cf.state=1 and z.userid=1387 where usertype=1
+) A
+EOT;
+			$sql = $dsql->SetQuery($sql);
+			$result = $dsql->dsqlOper($sql,'results');
+			$privSql = $dsql->SetQuery("select * from #@__member_level where id={$userInfo['level']}");
+			$privInfo = $dsql->dsqlOper($privSql,'results');
+			$privInfo = unserialize($privInfo[0]['privilege']);
+			if($result && empty($result['state'])){
+				if($result[0]['total'] >= $privInfo['house']){
+					return ['state'=>200,'info'=>'房源发布次数超出限制'];
+				}
+			}
+		}
+		return ['state'=>100,'info'=>'ok'];
+		/**
+		 *	下面的为老方案，按会员购买套餐来计算
+		 *
+		 */
+		
 		// 如果没有购买套餐，判断系统是否配置了套餐
 		if(!$zjuserConfig){
 			$this->param = "zjuserPriceCost";
@@ -16308,7 +16345,7 @@ class house {
 	}
 
 	public function recordWxShare(){
-		if(isset($_GET['ori']) && $_GET['ori'] == 'wxShare' && isWeixin() && isMobile()){
+		if(isset($_GET['ori']) && $_GET['wxShare'] && isWeixin() && isMobile()){
 			//微信分享链接:1.查询是否已经授权 2.授权获取access_token 3.获取用户信息 4.存储用户信息
 			global $cfg_wechatAppid;
 			global $cfg_wechatAppsecret;
