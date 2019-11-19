@@ -6339,6 +6339,7 @@ class member {
         global $langData;
 
         $uid = $userLogin->getMemberID();
+		$uid=1373;
         if($uid == -1){
             return array("state" => 200, "info" => $langData['siteConfig'][20][262]);  //登录超时，请重新登录！
         }
