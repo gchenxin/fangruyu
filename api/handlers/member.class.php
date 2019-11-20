@@ -11090,7 +11090,8 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 			//return ["state"=>$messageTemplateInfo,"模板配置错误！\n"];
 		}
 		global $cfg_basehost;
-		$port = $_SERVER['SERVER_PORT'] ?: 80;
+		global $cfg_httpSecureAccess;
+		$port = $cfg_httpSecureAccess == 'http://' ? 80 : 443;
 		//查询经纪人信息
 		global $dsql;
 		//当天是否已经推送
@@ -11192,7 +11193,8 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 			//异步推送消息通知
 			if($isPushSiteMessage){
 				$messageBody = str_replace('{{number}}',$hasPushed,$messageTemplateInfo['site_body']);
-				asynExec($cfg_basehost,$port,"/include/ajax.php?service=member&action=sendMessage&uid={$val['id']}&title={$messageTemplateInfo['site_title']}&body={$messageBody}");
+				file_get_contents($cfg_httpSecureAccess.$cfg_basehost."/include/ajax.php?service=member&action=sendMessage&uid={$val['id']}&title={$messageTemplateInfo['site_title']}&body={$messageBody}");
+				//asynExec($cfg_httpSecureAccess.$cfg_basehost,$port,"/include/ajax.php?service=member&action=sendMessage&uid={$val['id']}&title={$messageTemplateInfo['site_title']}&body={$messageBody}");
 			}
 		}
 		return true;
