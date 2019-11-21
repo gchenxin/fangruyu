@@ -13,3 +13,6 @@ $sql = $dsql->SetQuery("delete from #@__agentpushrecord where now()>expire");
 $dsql->dsqlOper($sql,'update');
 $sql = $dsql->SetQuery('delete from #@__callrecord where now()>`date`');
 $dsql->dsqlOper($sql,'update');
+$sql = $dsql->SetQuery("delete from #@__agentpushlog where date<'" . date('Y-m-d') . "'");
+$dsql->dsqlOper($sql,'update');
+

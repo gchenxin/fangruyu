@@ -15325,7 +15325,7 @@ class house {
 	 * 100 购买了经纪人套餐 套餐有效期内，有剩余数量
 	 */
 	public function checkZjuserMeal($zjuserConfig, $type = ""){
-		global $userLogin;
+		/*global $userLogin;
 		global $dsql;
 		$userInfo = $userLogin->getMemberInfo(1387);
 		if($userInfo['expired'] >= time() && $userInfo['level'] > 0){
@@ -15357,7 +15357,7 @@ EOT;
 				}
 			}
 		}
-		return ['state'=>100,'info'=>'ok'];
+		return ['state'=>100,'info'=>'ok'];*/
 		/**
 		 *	下面的为老方案，按会员购买套餐来计算
 		 *
@@ -16345,29 +16345,50 @@ EOT;
 	}
 
 	public function recordWxShare(){
-		if(isset($_GET['ori']) && $_GET['wxShare'] && isWeixin() && isMobile()){
+		if(isset($_GET['ori']) && $_GET['ori'] == 'wxShare' && isWeixin() && isMobile()){
 			//微信分享链接:1.查询是否已经授权 2.授权获取access_token 3.获取用户信息 4.存储用户信息
 			global $cfg_wechatAppid;
 			global $cfg_wechatAppsecret;
 			global $dsql;
 			global $cfg_basehost;
+			$id = $this->param;
+			$id = is_numeric($id) ? $id : $id['id'];
 			$test = new Wechat($cfg_wechatAppid, $cfg_wechatAppsecret);
 			$wxUserInfo = $test->getWxUser();
 			if($wxUserInfo){
-				//查询分享的经纪人id
-				$sql = $dsql->SetQuery("select * from #@__wechat_share where id={$_GET['sid']}");
+				$type = 0;
+				if(strstr('loupan-detail',$_SERVER['PATH_INFO'])){
+					$type = 1;
+				}elseif(strstr('sale-detail',$_SERVER['PATH_INFO'])){
+					$type = 2;
+				}elseif(strstr('zu-detail',$_SERVER['PATH_INFO'])){
+					$type = 3;
+				}elseif(strstr('sp-detail',$_SERVER['PATH_INFO'])){
+					$type = 4;
+				}elseif(strstr('xzl-detail',$_SERVER['PATH_INFO'])){
+					$type = 5;
+				}elseif(strstr('cf-detail',$_SERVER['PATH_INFO'])){
+					$type = 6;
+				}
+				//查询分享的经纪人
+				$sql = $dsql->SetQuery("select * from #@__wechat_share where type={$type} and aid={$id}");
 				$shareInfo = $dsql->dsqlOper($sql, "results");
 				if(!$shareInfo || !empty($shareInfo['state']))	return;
 				//是否已经查看
-				$sql = $dsql->SetQuery("select * from #@__wechat_clickrecord where openid='{$wxUserInfo['openid']}' and sid={$_GET['sid']}");
+				$sql = $dsql->SetQuery("select * from #@__wechat_clickrecord where openid='{$wxUserInfo['openid']}' and sid={$shareInfo[0]['id']}");
 				$result = $dsql->dsqlOper($sql, "results");
 				if(!$result || !empty($result['state'])){
-					$insertSql = $dsql->SetQuery("insert into #@__wechat_clickrecord(openid,unionid,sid) values('{$wxUserInfo['openid']}','{$wxUserInfo['unionid']}',{$_GET['sid']})");
+					$insertSql = $dsql->SetQuery("insert into #@__wechat_clickrecord(openid,unionid,sid) values('{$wxUserInfo['openid']}','{$wxUserInfo['unionid']}',{$shareInfo[0]['id']})");
 					$dsql->dsqlOper($insertSql,'update');
 					//异步消息推送
 					asynExec($cfg_basehost, 80, "/include/ajax.php?service=member&action=sendMessage&uid={$share[0]['userid']}&title=微信分享通知&body=微信好友{$wxUserInfo['nickname']}浏览了您的房源！");
 				}
 			}
 		}
+	}
+
+	public function getWxShareStatistic(){
+		//微信分享统计数据
+
 	}
 }

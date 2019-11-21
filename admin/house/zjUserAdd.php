@@ -30,6 +30,7 @@ if(empty($userid)) $userid = 0;
 if(empty($weight)) $weight = 1;
 if(empty($state)) $state = 0;
 if(empty($click)) $click = mt_rand(50, 200);
+$userInfo = [];
 
 if($_POST['submit'] == "提交"){
 
@@ -69,16 +70,18 @@ if($_POST['submit'] == "提交"){
 		exit();
 	}
 	if($userid == 0){
-		$userSql = $dsql->SetQuery("SELECT `id` FROM `#@__member` WHERE `username` = '".$user."'");
+		$userSql = $dsql->SetQuery("SELECT m.`id`,m.level,m.expired,lvl.privilege FROM `#@__member` m left join #@__member_level lvl on m.level=lvl.id WHERE m.`username` = '".$user."'");
 		$userResult = $dsql->dsqlOper($userSql, "results");
 		if(!$userResult){
 			echo '{"state": 200, "info": "会员不存在，请在联想列表中选择"}';
 			exit();
 		}
+		$userInfo = $userResult[0];
 		$userid = $userResult[0]['id'];
 	}else{
-		$userSql = $dsql->SetQuery("SELECT `id` FROM `#@__member` WHERE `id` = ".$userid);
+		$userSql = $dsql->SetQuery("SELECT m.`id`,m.level,m.expired,lvl.privilege FROM `#@__member` m left join #@__member_level lvl on m.level=lvl.id WHERE m.`id` = ".$userid);
 		$userResult = $dsql->dsqlOper($userSql, "results");
+		$userInfo = $userResult[0];
 		if(!$userResult){
 			echo '{"state": 200, "info": "会员不存在，请在联想列表中选择"}';
 			exit();
@@ -109,8 +112,21 @@ if($_POST['submit'] == "提交"){
 }
 
 if($dopost == "save" && $submit == "提交"){
+	//添加经纪人时，设置默认套餐
+	$nowTime = time();
+	$priv = unserialize($userInfo['privilege']);
+	$mealArr = [
+		'name' => '默认套餐',
+		'type' => $nowTime * 1000,
+		'item' => $nowTime * 1000,
+		'begin'=> $nowTime,
+		'expired' => $userInfo['expired'],
+		'house' => $priv['house'],
+		'refresh' => 40,
+		'settop' => 0
+	];
 	//保存到表
-	$archives = $dsql->SetQuery("INSERT INTO `#@__".$tab."` (`cityid`, `userid`, `zjcom`, `store`, `addr`, `community`, `litpic`, `note`, `weight`, `click`, `state`, `flag`, `pubdate`, `wx`, `wxQr`, `qq`, `qqQr`, `license`, `post`, `suc`) VALUES ('$cityid', '$userid', '$comid', '$store', '$addr', '$community', '$litpic', '$note', '$weight', '$click', '$state', '$flag', '".GetMkTime(time())."', '$wx', '$wxQr', '$qq', '$qqQr', '$license', $post, $suc)");
+	$archives = $dsql->SetQuery("INSERT INTO `#@__".$tab."` (`cityid`, `userid`, `zjcom`, `store`, `addr`, `community`, `litpic`, `note`, `weight`, `click`, `state`, `flag`, `pubdate`, `wx`, `wxQr`, `qq`, `qqQr`, `license`, `post`, `suc`, `meal`) VALUES ('$cityid', '$userid', '$comid', '$store', '$addr', '$community', '$litpic', '$note', '$weight', '$click', '$state', '$flag', '".GetMkTime(time())."', '$wx', '$wxQr', '$qq', '$qqQr', '$license', $post, $suc, '" . serialize($mealArr) . "')");
 	$aid = $dsql->dsqlOper($archives, "lastid");
 
 	if($aid){

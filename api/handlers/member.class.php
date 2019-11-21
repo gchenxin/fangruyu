@@ -11420,20 +11420,29 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 		if(!$uid || $uid == -1){
 			return array("state" => 200, "info" => self::$langData['siteConfig'][20][262]);//登录超时！
 		}
-		if(!empty($this->param['sid'])){
-			$updateSql = $dsql->SetQuery("update #@__wechat_share set image_serverid = '{$this->param['serverid']}',description = '{$this->param['description']}',link = '{$this->param['link']}',state = 1 where id={$this->param['sid']}");
-			$result = $dsql->dsqlOper($updateSql, "update");
-			if($result && empty($result['state']))
-				return true;
-			else
-				return false;
-		}else{
-			$insertSql = $dsql->SetQuery("insert into #@__wechat_share(userid,aid,type) values({$uid},{$this->param['aid']},{$this->param['type']})");
-			$result = $dsql->dsqlOper($insertSql, "lastid");
-			return ['sid'=>$result];
+		$table = "";
+		switch($this->param['type']){
+			case 1:$table = "house_loupan";break;
+			case 2:$table = "house_sale";break;
+			case 3:$table = "house_zu";break;
+			case 4:$table = "house_sp";break;
+			case 5:$table = "house_xzl";break;
+			case 6:$table = "house_cf";break;
 		}
-		
+		//检查房源和用户是否一致
+		$checkSql = $dsql->SetQuery("select * from #@__{$table} h inner join #@__house_zjuser z on h.userid=z.id inner join #@__member m on z.userid=m.id where h.id={$this->param['aid']} and m.id={$uid}");
+		$result = $dsql->dsqlOper($checkSql,'results');
+		if(!$result){
+			return ['state'=>200,'info'=>"身份和房源信息核对失败！"];
+		}
+		//查询记录是否存在
+		$sql = $dsql->SetQuery("select id from #@__wechat_share where userid={$uid} and aid={$this->param['aid']} and type={$this->param['type']}");
+		$isExists = $dsql->dsqlOper($sql,"results");
+		if(!$isExists){
+			$insertSql = $dsql->SetQuery("insert into #@__wechat_share(userid,aid,type,state) values({$uid},{$this->param['aid']},{$this->param['type']},1)");
+			$result = $dsql->dsqlOper($insertSql, "lastid");
+		}
+		return true;
 	}
-
 	
 }
