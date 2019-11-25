@@ -315,7 +315,7 @@ class hwVisualPhone{
 						$isExists = $dsql->dsqlOper($checkSql,'results');
 						if(!$isExists && empty($isExists['state'])){
 							$area = getAddridByPhone($caller);
-							$zjInfo = $dsql->SetQuery("select id,phone,level from #@__member where m.phone='{$callee}'");
+							$zjInfo = $dsql->SetQuery("select id,phone,level from #@__member where phone='{$callee}'");
 							$zjInfo = $dsql->dsqlOper($zjInfo,'results');
 							if(!$zjInfo || !empty($zjInfo['state']))	continue;
 							switch($zjInfo[0]['level']){
