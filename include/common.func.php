@@ -9308,3 +9308,35 @@ function asynExec($domainName, $domainPort, $detailPage){
 		fclose($fp);
 	}
 }
+
+function getAddridByPhone($phone){
+	global $dsql;
+	$url = "http://mobsec-dianhua.baidu.com/dianhua_api/open/location?tel={$phone}";
+	$context_options = [
+		'http'=>[
+			'method'=>"GET",
+			"header"=>[
+				'Accept: application/json',
+				'Content-Type: application/json;charset=UTF-8',
+				"User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)"
+			]
+		],
+		"ssl" => [
+			'verify_peer' => false,
+			'verify_peer_name' => false
+		]
+	];
+	$response = file_get_contents($url,false,stream_context_create($context_options));
+	$response = json_decode($response, true);
+	if($response['responseHeader']['status'] == 200){
+		$city = $response['response'][$phone]['detail']['area'][0]['city'];
+		if($city){
+			$sql = $dsql->SetQuery("select id from #@__site_area where typename like '{$city}%'");
+			$cityInfo = $dsql->dsqlOper($sql,'results');
+			if($sql){
+				return $cityInfo[0]['id'];
+			}
+		}
+	}
+	return 0;
+}

@@ -11100,7 +11100,7 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 		$isRetry = false;
 		if($isPushed && empty($isPushed['state'])){
 			//查询未推送成功的用户列表
-			$pushFailedSql = $dsql->SetQuery("select l.`id` logid,l.`zjid` id,l.`usertags`,l.`state`,l.`totalpush`,l.`success`,l.`failed`,m.phone from #@__agentpushlog l inner join #@__member m on l.zjid=m.id where l.state=0 and l.date='" . date('Y-m-d') . "'");
+			$pushFailedSql = $dsql->SetQuery("select l.`id` logid,l.`zjid` id,l.`usertags`,l.`state`,l.`totalpush`,l.`success`,l.`failed`,m.phone,(case when ISNULL(zj.addr) or zj.addr='' or zj.addr=0 then zj.cityid else zj.addr end) addr from #@__agentpushlog l inner join #@__member m on l.zjid=m.id inner join huoniao_house_zjuser zj on zj.userid=l.zjid where l.state=0 and l.date='" . date('Y-m-d') . "'");
 			$zjList = $dsql->dsqlOper($pushFailedSql, 'results');
 			if(!$zjList || isset($zjList['state'])){
 				return true;
@@ -11108,11 +11108,11 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 			$isRetry = true;
 			if(count($zjList) == 1 && !isset($zjList['state']) && $zjList[0]['id'] == 0){
 				$isRetry = false;
-				$zjSql = $dsql->setQuery("select m.id,m.level,m.overide,ml.privilege,m.phone from #@__house_zjuser zj inner join #@__member m on zj.userid=m.id inner join #@__member_level ml on m.level=ml.id where m.level>0");
+				$zjSql = $dsql->setQuery("select m.id,m.level,m.overide,ml.privilege,m.phone,(case when ISNULL(zj.addr) or zj.addr='' or zj.addr=0 then zj.cityid else zj.addr end) addr from #@__house_zjuser zj inner join #@__member m on zj.userid=m.id inner join #@__member_level ml on m.level=ml.id where m.level>0");
 				$zjList = $dsql->dsqlOper($zjSql,'results');
 			}
 		}else{
-			$zjSql = $dsql->setQuery("select m.id,m.level,m.overide,ml.privilege,m.phone from #@__house_zjuser zj inner join #@__member m on zj.userid=m.id inner join #@__member_level ml on m.level=ml.id where m.level>0");
+			$zjSql = $dsql->setQuery("select m.id,m.level,m.overide,ml.privilege,m.phone,(case when ISNULL(zj.addr) or zj.addr='' or zj.addr=0 then zj.cityid else zj.addr end) addr from #@__house_zjuser zj inner join #@__member m on zj.userid=m.id inner join #@__member_level ml on m.level=ml.id where m.level>0");
 			$zjList = $dsql->dsqlOper($zjSql,'results');
 		}
 		if(!$zjList || !empty($zjList['state'])){
@@ -11120,7 +11120,7 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 		}else{
 			$lastLoginTimeLimit = time() - 2592000;
 			//查询可以推送的用户数量 新增条件  and usertags>0
-			$userSql = $dsql->SetQuery("select id,phone,m.usertags from (select id,phone,usertags from #@__member where mtype=1 and lastlogintime>={$lastLoginTimeLimit} and usertags>0 union select -1,phone,max(v.usertags) usertags from #@__visitor v where scantime>={$lastLoginTimeLimit} and not exists(select * from #@__member m where m.phone=v.phone) group by v.phone) m where not exists(select id from #@__house_zjuser where (userid=m.id and userid!=-1) or wx=m.phone) and not exists(select * from #@__member_collect mc where (mc.aid=m.id or mc.visitorphone=m.phone) and module='push_timer') and not exists(select phone from #@__agentresource ar where ar.phone=m.phone)");
+			$userSql = $dsql->SetQuery("select id,phone,m.usertags,addr from (select id,phone,usertags,addr from #@__member where mtype=1 and lastlogintime>={$lastLoginTimeLimit} and usertags>0 union select -1,phone,max(v.usertags) usertags,max(area) addr from #@__visitor v where scantime>={$lastLoginTimeLimit} and not exists(select * from #@__member m where m.phone=v.phone) group by v.phone) m where not exists(select id from #@__house_zjuser where (userid=m.id and userid!=-1) or wx=m.phone) and not exists(select * from #@__member_collect mc where (mc.aid=m.id or mc.visitorphone=m.phone) and module='push_timer') and not exists(select phone from #@__agentresource ar where ar.phone=m.phone)");
 			$userList = $dsql->dsqlOper($userSql,"results");
 			if(!$userList || !empty($userList['state'])){
 				$this->recordPushLog(0,0,0,0,0,0,'无可用客源');
@@ -11162,9 +11162,20 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 				$userInfo = [];
 				foreach($userList as $k=>$values){
 					if($values['usertags'] & $zjCategory){
-						$userInfo = $values;
-						unset($userList[$k]);
-						break;
+						if($val['addr']){
+							$addridArr = arr_foreach($dsql->getTypeList($val['addr'], "site_area"));
+							$addridArr = join(',',$addridArr) . ",{$val['addr']}";
+							$addridArr = explode(',', $addridArr);
+							if(in_array($values['addr'], $addridArr)){
+								$userInfo = $values;
+								unset($userList[$k]);
+								break;
+							}
+						}else{
+							$userInfo = $values;
+							unset($userList[$k]);
+							break;
+						}
 					}
 				}
 				if(!$userInfo){ 
@@ -11413,7 +11424,7 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 		global $userLogin;
 		global $dsql;
 		global $langData;
-		if(empty($this->param['aid']) || empty($this->param['type']))
+		if(empty($this->param['aid']) || empty($this->param['type']) || !$this->param['aid'] || !$this->param['type'])
 			return array("state" => 200, "info" => self::$langData['siteConfig'][33][0]);//格式错误！
 		$uid = $userLogin->getMemberID();
 		if(!$uid || $uid == -1){
@@ -11502,5 +11513,9 @@ EOT;
 			$data[$value['tags']][] = &$result[$key];
 		}
 		return $data;
+	}
+	
+	public function test(){
+		return getAddridByPhone('17341390521');
 	}
 }

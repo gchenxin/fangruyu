@@ -306,7 +306,28 @@ class hwVisualPhone{
 					$query = $dsql->SetQuery("select caller,callee,subscriptionId from #@__phonebind where subscriptionId='{$loop['subscriptionId']}'");
 					$callInfo = $dsql->dsqlOper($query, "results");
 					if(!$callInfo || isset($callInfo['state']))	continue;
-					if(strstr($loop['callerNum'], $callInfo[0]['caller'])){
+					if(!$callInfo[0]['caller'] && $callInfo[0]['callee']){ //AX模式
+						$caller = substr($loop['callerNum'],3);
+						$callee = $callInfo[0]['callee'];
+						$callDirection = 1;
+						//查询改号码是否是本网站已收录用户，若没有，加入到访客表中
+						$checkSql = $dsql->SetQuery("select phone from #@__member where phone='{$caller}' union ALL select phone from #@__visitor where phone='{$caller}'");
+						$isExists = $dsql->dsqlOper($checkSql,'results');
+						if(!$isExists && empty($isExists['state'])){
+							$area = getAddridByPhone($caller);
+							$zjInfo = $dsql->SetQuery("select id,phone,level from #@__member where m.phone='{$callee}'");
+							$zjInfo = $dsql->dsqlOper($zjInfo,'results');
+							if(!$zjInfo || !empty($zjInfo['state']))	continue;
+							switch($zjInfo[0]['level']){
+							case 1:$usertags=4;break;	//写字楼会员
+							case 4:$usertags=1;break;//住房会员
+							case 5:$usertags=2;break;//商铺会员
+							case 6:$usertags=8;break;//厂房仓库会员
+							}
+							$insertSql = $dsql->SetQuery("insert into #@__visitor(phone,usertags,scantime,area) values('$caller','{$usertags}','" . time() . "','{$area}')");
+							$dsql->dsqlOper($insertSql,"update");
+						}
+					}elseif(strstr($loop['callerNum'], $callInfo[0]['caller'])){
 						$caller = $callInfo[0]['caller'];
 						$callee = $callInfo[0]['callee'];
 						$callDirection = 0;
