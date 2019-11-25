@@ -11305,7 +11305,11 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 			$zjPhone = preg_replace("/[^0-9]/",'',$zjInfo['phone']);
 		}else{
 			//查询经纪人联系方式
-			$sql = $dsql->SetQuery("select id,contact from #@__{$table} where id={$this->param['itemid']}");
+			if($this->param['type'] == 'loupan'){
+				$sql = $dsql->SetQuery("select id,tel contact from #@__{$table} where id={$this->param['itemid']}");
+			}else{
+				$sql = $dsql->SetQuery("select id,contact from #@__{$table} where id={$this->param['itemid']}");
+			}
 			$result = $dsql->dsqlOper($sql, "results");
 			if($result && !isset($result['state'])){
 				$zjInfo = $result[0];
