@@ -16357,18 +16357,26 @@ EOT;
 			$wxUserInfo = $test->getWxUser();
 			if($wxUserInfo){
 				$type = 0;
-				if(strstr('loupan-detail',$_SERVER['PATH_INFO'])){
+				if(strstr($_SERVER['PATH_INFO'],'loupan-detail')){
 					$type = 1;
-				}elseif(strstr('sale-detail',$_SERVER['PATH_INFO'])){
+				}elseif(strstr($_SERVER['PATH_INFO'],'sale-detail')){
 					$type = 2;
-				}elseif(strstr('zu-detail',$_SERVER['PATH_INFO'])){
+				}elseif(strstr($_SERVER['PATH_INFO'],'zu-detail')){
 					$type = 3;
-				}elseif(strstr('sp-detail',$_SERVER['PATH_INFO'])){
+				}elseif(strstr($_SERVER['PATH_INFO'],'sp-detail')){
 					$type = 4;
-				}elseif(strstr('xzl-detail',$_SERVER['PATH_INFO'])){
+				}elseif(strstr($_SERVER['PATH_INFO'],'xzl-detail')){
 					$type = 5;
-				}elseif(strstr('cf-detail',$_SERVER['PATH_INFO'])){
+				}elseif(strstr($_SERVER['PATH_INFO'],'cf-detail')){
 					$type = 6;
+				}elseif(strstr($_SERVER['PATH_INFO'],'-detail')){
+					$type = 7;
+				}elseif(strstr($_SERVER['PATH_INFO'],'news-detail')){
+					$type = 8;
+				}elseif(strstr($_SERVER['PATH_INFO'],'post-detail')){
+					$type = 9;
+				}elseif(preg_match('/user-[\d]+.html/',$_SERVER['PATH_INFO'])){
+					$type = 10;
 				}
 				//查询分享的经纪人
 				$sql = $dsql->SetQuery("select * from #@__wechat_share where type={$type} and aid={$id}");
@@ -16377,18 +16385,18 @@ EOT;
 				//是否已经查看
 				$sql = $dsql->SetQuery("select * from #@__wechat_clickrecord where openid='{$wxUserInfo['openid']}' and sid={$shareInfo[0]['id']}");
 				$result = $dsql->dsqlOper($sql, "results");
+				$clickDate = date("Y-m-d H:i:d");
 				if(!$result || !empty($result['state'])){
-					$insertSql = $dsql->SetQuery("insert into #@__wechat_clickrecord(openid,unionid,sid) values('{$wxUserInfo['openid']}','{$wxUserInfo['unionid']}',{$shareInfo[0]['id']})");
+					$insertSql = $dsql->SetQuery("insert into #@__wechat_clickrecord(openid,unionid,sid,date) values('{$wxUserInfo['openid']}','{$wxUserInfo['unionid']}',{$shareInfo[0]['id']},'{$clickDate}')");
 					$dsql->dsqlOper($insertSql,'update');
 					//异步消息推送
 					asynExec($cfg_basehost, 80, "/include/ajax.php?service=member&action=sendMessage&uid={$share[0]['userid']}&title=微信分享通知&body=微信好友{$wxUserInfo['nickname']}浏览了您的房源！");
+				}else{
+					$sql = $dsql->SetQuery("update #@__wechat_clickrecord set clickTimes=clickTimes+1 where openid='{$wxUserInfo['openid']}' and sid={$shareInfo[0]['id']}");
+					$dsql->dsqlOper($sql,"update");
 				}
 			}
 		}
 	}
 
-	public function getWxShareStatistic(){
-		//微信分享统计数据
-
-	}
 }

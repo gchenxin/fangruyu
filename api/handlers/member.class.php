@@ -11416,7 +11416,6 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 		if(empty($this->param['aid']) || empty($this->param['type']))
 			return array("state" => 200, "info" => self::$langData['siteConfig'][33][0]);//格式错误！
 		$uid = $userLogin->getMemberID();
-		$uid=1387;
 		if(!$uid || $uid == -1){
 			return array("state" => 200, "info" => self::$langData['siteConfig'][20][262]);//登录超时！
 		}
@@ -11430,19 +11429,78 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 			case 6:$table = "house_cf";break;
 		}
 		//检查房源和用户是否一致
-		$checkSql = $dsql->SetQuery("select * from #@__{$table} h inner join #@__house_zjuser z on h.userid=z.id inner join #@__member m on z.userid=m.id where h.id={$this->param['aid']} and m.id={$uid}");
+		/*$checkSql = $dsql->SetQuery("select * from #@__{$table} h inner join #@__house_zjuser z on h.userid=z.id inner join #@__member m on z.userid=m.id where h.id={$this->param['aid']} and m.id={$uid}");
 		$result = $dsql->dsqlOper($checkSql,'results');
 		if(!$result){
 			return ['state'=>200,'info'=>"身份和房源信息核对失败！"];
-		}
+		}*/
 		//查询记录是否存在
 		$sql = $dsql->SetQuery("select id from #@__wechat_share where userid={$uid} and aid={$this->param['aid']} and type={$this->param['type']}");
 		$isExists = $dsql->dsqlOper($sql,"results");
+		$date = date("Y-m-d H:i:s");
 		if(!$isExists){
-			$insertSql = $dsql->SetQuery("insert into #@__wechat_share(userid,aid,type,state) values({$uid},{$this->param['aid']},{$this->param['type']},1)");
+			$insertSql = $dsql->SetQuery("insert into #@__wechat_share(userid,aid,type,state,date) values({$uid},{$this->param['aid']},{$this->param['type']},1,'{$date}')");
 			$result = $dsql->dsqlOper($insertSql, "lastid");
+		}else{
+			$updateSql = $dsql->SetQuery("update #@__wechat_share set shareTimes=shareTimes+1 where id={$isExists[0]['id']}");
+			$dsql->dsqlOper($updateSql,"update");
 		}
+
 		return true;
 	}
-	
+
+	public function getWxShareData(){
+		//查询微信分享的统计数据
+		global $userLogin;
+		global $dsql;
+		$uid = $userLogin->getMemberID();
+		if(!$uid || $uid == -1){
+			return ['state'=>200,'info'=>'login timeout!'];
+		}
+		$userInfo = $userLogin->getMemberInfo($uid);
+		if($userInfo['usertype'] == 0 && ($userInfo['level'] == 0 or $userInfo['expired'] < time())){
+			return ['state'=>200,'info'=>'permission denied!'];
+		}
+		$date = date('Y-m-d') . ' 00:00:00';
+		$recentThreeDays = date('Y-m-d', strtotime(date('Y-m-d').' -2 day')) . ' 00:00:00';
+		$recentAWeek = date('Y-m-d', strtotime(date('Y-m-d').' -6 day')) . ' 00:00:00';
+		$sql = <<<EOT
+-- share
+select A.title,sum(A.shareTimes) totalTimes,A.tags from (
+select 'shareTime' title,shareTimes,(case when type<=6 then 6 else type end) tags from huoniao_wechat_share where userid={$uid}
+) A GROUP BY A.tags
+union All
+-- scan
+select B.title,sum(B.clickTimes) totalTimes,B.tags from (
+select 'scanTime' title,clickTimes,(case when s.type<=6 then 6 else type end) tags from huoniao_wechat_clickrecord cr inner join huoniao_wechat_share s on cr.sid=s.id 
+where s.userid={$uid} and cr.date>='{$date}'
+) B GROUP BY B.tags
+union All
+-- customer
+select C.title,count(C.openid) totalTimes,C.tags from (
+select 'visitorNumber' title,openid,(case when s.type<=6 then 6 else type end) tags from huoniao_wechat_clickrecord cr inner join huoniao_wechat_share s on cr.sid=s.id 
+where s.userid={$uid} and cr.date>='{$date}'
+) C GROUP BY C.tags
+union All
+-- 今日新增访客数
+select 'visitorsInDay',count(openid) customNum,0 from huoniao_wechat_clickrecord cr inner join huoniao_wechat_share s on cr.sid=s.id 
+where s.userid={$uid} and cr.date>='{$date}'
+union ALL
+-- 最近三天访客数
+select 'visitorsInThreeDays',count(openid) customNum,0 from huoniao_wechat_clickrecord cr inner join huoniao_wechat_share s on cr.sid=s.id 
+where s.userid={$uid} and cr.date>='{$recentThreeDays}'
+union All
+-- 最近七天访客数
+select 'visitorsInWeek',count(openid) customNum,0 from huoniao_wechat_clickrecord cr inner join huoniao_wechat_share s on cr.sid=s.id 
+where s.userid={$uid} and cr.date>='{$recentAWeek}'
+EOT;
+		$sql = $dsql->SetQuery($sql);
+		$result = $dsql->dsqlOper($sql,'results');
+		$data = [];
+		//按类别的键值处理数据
+		foreach ($result as $key=>$value){
+			$data[$value['tags']][] = &$result[$key];
+		}
+		return $data;
+	}
 }

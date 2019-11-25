@@ -58,8 +58,8 @@ class Wechat {
 			echo 'error:' . $user->errcode.'<hr>msg  :' . $user->errmsg;exit;
 		}
 		$data = json_decode(json_encode($user),true);//返回的json数组转换成array数组
-		$insertSql = $dsql->SetQuery("insert into #@__user_wechat(openid,unionid,nickname,headimg) values('{$data['openid']}','{$data['unionid']}','{$data['nickname']}','{$data['headimgurl']}')");
-		$dsql->dsqlOper($insertSql,'update');
+		$insertSql = $dsql->SetQuery("insert into #@__user_wechat(openid,unionid,nickname,headimg) values('{$data['openid']}','','{$data['nickname']}','{$data['headimgurl']}')");
+		$result = $dsql->dsqlOper($insertSql,'update');
 		return $data;
 	}
 }
