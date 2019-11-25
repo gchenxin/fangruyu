@@ -167,6 +167,8 @@ EOT;
 		$dsql->dsqlOper($sql,'update');
 		$sql = $dsql->SetQuery('delete from #@__callrecord where now()>`date`');
 		$dsql->dsqlOper($sql,'update');
+		$sql = $dsql->SetQuery('delete from #@__agentpushlog where now()>`date`');
+		$dsql->dsqlOper($sql,'update');
 	}
 
 }
