@@ -4974,9 +4974,8 @@ class house {
 
 		// echo $archives;
 		//总条数
-		// $totalCount = $dsql->dsqlOper($archives, "totalCount");
-        $totalCount = getCache("house_sale_total", $archives, 300, array("savekey" => 1, "type" => "totalCount", "disabled
-            " => $u));
+		//$totalCount = $dsql->dsqlOper($archives, "totalCount");
+        $totalCount = getCache("house_sale_total", $archives, 300, array("savekey" => 1, "type" => "totalCount", "disabled" => $u));
 
 		if($backTotal) return $totalCount;
 

@@ -11323,8 +11323,9 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 		if(!$isPhoneHasBound || isset($isPhoneHasBound['state'])){
 			$visualPhone = getVisualPhone($zjPhone,'',0);
 			if($visualPhone){
-				$handler = new handlers('hwVisualPhoneAX','bind');
-				$result = $handler->getHandle(array('relationPhone'=>$visualPhone,'callee'=>$zjPhone));
+				//$handler = new handlers('hwVisualPhoneAX','bind');
+				//$result = $handler->getHandle(array('relationPhone'=>$visualPhone,'callee'=>$zjPhone));
+				$result = 1;
 				if($result)	return ['phone'=>$visualPhone];
 			}
 		}
@@ -11352,50 +11353,50 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
             }else{
                 $page     = $this->param['page'];
 				$pageSize = $this->param['pageSize'];
-				$type = empty($this->param['type']) ? 0 : $this->param['type'];
 				$cityId = empty($this->param['cityId']) ? 0 : $this->param['cityId'];
             }
         }
-		if(!$type) return array("state" => 200, "info" => self::$langData['siteConfig'][33][0]);//格式错误！
-        $uid = $this->param['userid'] ? $this->param['userid'] : $userLogin->getMemberID();
-
-        if(!is_numeric($uid)) return array("state" => 200, "info" => self::$langData['siteConfig'][20][262]);//登录超时，请重新登录！
+		//if(!$type) return array("state" => 200, "info" => self::$langData['siteConfig'][33][0]);//格式错误！
+        $uid = $userLogin->getMemberID();
+		$uid = 1387;
+		if(!is_numeric($uid) || !$uid || $uid==-1) return array("state" => 200, "info" => self::$langData['siteConfig'][20][262]);//登录超时，请重新登录！
+		$userInfo = $userLogin->getMemberInfo($uid);
+		$type = $userInfo['level'];
+		//遍历城市id
+		$zjSql = $dsql->SetQuery("select id,addr from #@__house_zjuser where userid={$uid}");
+		$zjInfo = $dsql->dsqlOper($zjSql, 'results');
+		if(!$zjInfo)
+			return ['state'=>200, 'info' => '请先入驻经纪人！'];
+		$cityId = $cityId ?: $zjInfo[0]['addr'];
+		$addridArr = arr_foreach($dsql->getTypeList($cityId, "site_area"));
+		$addridArr = join(',',$addridArr) . ",{$cityId}";
 
         $pageSize = empty($pageSize) ? 10 : $pageSize;
 		$page     = empty($page) ? 1 : $page;
-		$table = $fields = '';
+		$subSql = '';
+		$condition = "state=1 and externalno!=''";
 		switch($type){
-		case 1:
-			$table = 'house_loupan';
-			$fields = 'id,title,price,addr,addrid,litpic,null area,salestate,1 usertype';
-			break;
-		case 2:
-			$table = 'house_sale';
-			$fields = 'id,title,price,unitprice,address,addrid,litpic,area,usertype,room,hall,guard';
-			break;
 		case 4:
-			$table = 'house_zu';
-			$fields = 'id,title,price,address,addrid,litpic,area,rentype,usertype,room,hall,guard';
+			$saleFields = "id,title,price,unitprice,address,addrid,litpic,area,usertype,'' rentype,room,hall,guard,userid";
+			$zuFields = "id,title,price,'',address,addrid,litpic,area,usertype,rentype,room,hall,guard,userid";
+			$subSql = "select {$saleFields} from #@__house_sale where {$condition}  union select {$zuFields} from #@__house_zu where {$condition}";
 			break;
-		case 8:
-			$table = 'house_sp';
-			$fields = 'id,title,price,address,addrid,litpic,area,type,usertype';
+		case 5:
+			$fields = 'id,title,price,address,addrid,litpic,area,type,usertype,userid';
+			$subSql = "select {$fields} from #@__house_sp where {$condition}";
 			break;
-		case 16:
-			$table = 'house_xzl';
-			$fields = 'id,title,price,address,addrid,litpic,area,type,usertype,zhuangxiu';
+		case 1:
+			$fields = 'id,title,price,address,addrid,litpic,area,type,usertype,zhuangxiu,userid';
+			$subSql = "select {$fields} from #@__house_xzl where {$condition}";
 			break;
-		case 32:
-			$table = 'house_cf';
-			$fields = 'id,title,price,address,addrid,litpic,area,type,usertype';
+		case 6:
+			$fields = 'id,title,price,address,addrid,litpic,area,type,usertype,userid';
+			$subSql = "select {$fields} from #@__house_cf where {$condition}";
 			break;
 		}
-		$where = "state=1 and externalno!='' and (userid='' or userid=0)";
-		if($cityId)	$where .= " and cityId in ({$cityId})";
-		if($type == 1)	$where .= " and hot=1";
+		$where = "hs.userid='' or hs.userid=0 or zj.userid=-1 and hs.addrid in ({$addridArr})";
 		$orderby = "weight desc";
-        $archives = $dsql->SetQuery("select {$fields} from #@__{$table} where {$where} order by {$orderby}");
-		echo $archives;
+        $archives = $dsql->SetQuery("select hs.* from ({$subSql}) hs inner join #@__house_zjuser zj on hs.userid=zj.id where {$where} order by {$orderby}");
         //总条数
         $totalCount = $dsql->dsqlOper($archives, "totalCount");
 
@@ -11518,8 +11519,61 @@ EOT;
 		}
 		return $data;
 	}
+
+	public function getWxShareVisitor(){
+		//查询微信分享的访客记录
+		global $dsql;
+		global $userLogin;
+		$uid = $userLogin->getMemberID();
+		if(!$uid || $uid == -1){
+			return ['state'=>200,'info'=>'login timeout!'];
+		}
+		$shareSql = $dsql->SetQuery("select id,type,aid from #@__wechat_share where userid={$uid}");
+		$shareRecord = $dsql->dsqlOper($shareSql, 'results');
+		$houseSql = '';
+		if($shareRecord){
+			$typeArr = [];
+			foreach ($shareRecord as $item){
+				$typeArr[$item['type']][] = $item['aid'];	
+			}
+			foreach($typeArr as $key=>$value){
+				$table = '';
+				switch($key){
+				case 1:$table = "house_loupan";break;
+				case 2:$table = "house_sale";break;
+				case 3:$table = "house_zu";break;
+				case 4:$table = "house_sp";break;
+				case 5:$table = "house_xzl";break;
+				case 6:$table = "house_cf";break;
+				}
+				if($table){
+					$ids = implode(',', $value);
+					if($houseSql){
+						$houseSql .= " union all select id,title,{$key} type from #@__{$table} where id in ({$ids})";
+					}else{
+						$houseSql = "select id,title,{$key} type from #@__{$table} where id in ($ids)";
+					}
+				}
+			}
+		}
+		$houseSql = $dsql->SetQuery($houseSql);
+		$dateLimit = date('Y-m-d H:i:s', time() - 30*24*60*60);
+		$visitSql = <<<EOT
+select s.id,u.nickname,u.headimg,A.title houseTitle,cl.clickTimes visitTime,cl.date from huoniao_wechat_clickrecord cl
+inner join huoniao_wechat_share s on s.id=cl.sid
+inner join huoniao_user_wechat u on cl.openid=u.openid
+inner join (
+{$houseSql}
+) A on s.aid=A.id and s.type=A.type
+where cl.date>='{$dateLimit}' and s.userid={$uid}
+group by cl.date desc
+EOT;
+		$info = $dsql->SetQuery($visitSql);
+		$info = $dsql->dsqlOper($info,'results');
+		return $info;
+	}
 	
 	public function test(){
-		return getAddridByPhone('17341390521');
+		return 'test';
 	}
 }
