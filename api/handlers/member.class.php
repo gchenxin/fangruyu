@@ -109,7 +109,21 @@ class member {
         return $return;
 
     }
-
+	
+	public function getZjIdByUid($uid){
+		if(!$uid)	return null;
+		global $dsql;
+		global $HN_memory;
+		$zjInfo = $HN_memory->get("member_zj_".$id);
+		if(!$zjInfo){
+			$sql = $dsql->SetQuery("select * from #@__house_zjuser where userid=$uid");
+			$result = $dsql->dsqlOper($sql, 'results');
+			if(!$result) return null;
+			$zjInfo = $result[0];
+			$HN_memory->set('member_zj_' . $id, $zjInfo);
+		}
+		return $zjInfo['id'];
+	}
 
     /**
      * 会员信息详情
@@ -171,12 +185,15 @@ class member {
             $results = $dsql->dsqlOper($archives, "results");
         }
         if($results && is_array($results)){
-
+			if(!isset($result[0]['isZJ'])){
+				$isZJ = $this->getZjIdByUid($id);
+				$result[0]['isZJ'] = $isZJ;
+			}
             //写入缓存
             $HN_memory->set('member_' . $id, $results);
 
             $detail['userid'] = $results[0]['id'];
-
+			$detail['isZJ'] = $result[0]['isZJ'];
             //验证会员是否已经登录，如果没有登录，将不输出重要信息
             if($userid == $id || $isloginUser){
                 $RenrenCrypt = new RenrenCrypt();
@@ -11358,7 +11375,7 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
         }
 		//if(!$type) return array("state" => 200, "info" => self::$langData['siteConfig'][33][0]);//格式错误！
         $uid = $userLogin->getMemberID();
-		$uid = 1387;
+		$uid=1387;
 		if(!is_numeric($uid) || !$uid || $uid==-1) return array("state" => 200, "info" => self::$langData['siteConfig'][20][262]);//登录超时，请重新登录！
 		$userInfo = $userLogin->getMemberInfo($uid);
 		$type = $userInfo['level'];
@@ -11368,35 +11385,35 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 		if(!$zjInfo)
 			return ['state'=>200, 'info' => '请先入驻经纪人！'];
 		$cityId = $cityId ?: $zjInfo[0]['addr'];
+		if(!$cityId) return null;
 		$addridArr = arr_foreach($dsql->getTypeList($cityId, "site_area"));
 		$addridArr = join(',',$addridArr) . ",{$cityId}";
 
         $pageSize = empty($pageSize) ? 10 : $pageSize;
 		$page     = empty($page) ? 1 : $page;
 		$subSql = '';
-		$condition = "state=1 and externalno!=''";
 		switch($type){
 		case 4:
-			$saleFields = "id,title,price,unitprice,address,addrid,litpic,area,usertype,'' rentype,room,hall,guard,userid";
-			$zuFields = "id,title,price,'',address,addrid,litpic,area,usertype,rentype,room,hall,guard,userid";
-			$subSql = "select {$saleFields} from #@__house_sale where {$condition}  union select {$zuFields} from #@__house_zu where {$condition}";
+			$saleFields = "id,title,price,unitprice,address,addrid,litpic,area,usertype,'' rentype,room,hall,guard,userid,'sale' housetype,pubdate";
+			$zuFields = "id,title,price,'',address,addrid,litpic,area,usertype,rentype,room,hall,guard,userid,'zu' housetype,pubdate";
+			$subSql = "select {$saleFields} from #@__house_sale union select {$zuFields} from #@__house_zu";
 			break;
 		case 5:
-			$fields = 'id,title,price,address,addrid,litpic,area,type,usertype,userid';
-			$subSql = "select {$fields} from #@__house_sp where {$condition}";
+			$fields = "id,title,price,address,addrid,litpic,area,type,usertype,userid,'sp' housetype,pubdate";
+			$subSql = "select {$fields} from #@__house_sp";
 			break;
 		case 1:
-			$fields = 'id,title,price,address,addrid,litpic,area,type,usertype,zhuangxiu,userid';
-			$subSql = "select {$fields} from #@__house_xzl where {$condition}";
+			$fields = "id,title,price,address,addrid,litpic,area,type,usertype,zhuangxiu,userid,'xzl' housetype,pubdate";
+			$subSql = "select {$fields} from #@__house_xzl";
 			break;
 		case 6:
-			$fields = 'id,title,price,address,addrid,litpic,area,type,usertype,userid';
-			$subSql = "select {$fields} from #@__house_cf where {$condition}";
+			$fields = "id,title,price,address,addrid,litpic,area,type,usertype,userid,'cf' housetype,pubdate";
+			$subSql = "select {$fields} from #@__house_cf";
 			break;
 		}
-		$where = "hs.userid='' or hs.userid=0 or zj.userid=-1 and hs.addrid in ({$addridArr})";
-		$orderby = "weight desc";
-        $archives = $dsql->SetQuery("select hs.* from ({$subSql}) hs inner join #@__house_zjuser zj on hs.userid=zj.id where {$where} order by {$orderby}");
+		$where = "hs.addrid in ({$addridArr})";
+		$orderby = "pubdate desc";
+        $archives = $dsql->SetQuery("select hs.* from ({$subSql}) hs where {$where} order by {$orderby}");
         //总条数
         $totalCount = $dsql->dsqlOper($archives, "totalCount");
 
@@ -11574,6 +11591,14 @@ EOT;
 	}
 	
 	public function test(){
-		return 'test';
+		global $dsql;
+		$sql = $dsql->SetQuery("select * from #@__house_zu where id=38");
+		$result = $dsql->dsqlOper($sql, 'results');
+		unset($result[0]['id']);
+		$values = "'" . implode("','", $result[0]) . "'";
+		$keys = implode(',', array_keys($result[0]));
+		$insertSql = $dsql->SetQuery("insert into #@__house_zu($keys) values({$values})");
+		$result = $dsql->dsqlOper($insertSql, 'update');
+		return $keys;
 	}
 }

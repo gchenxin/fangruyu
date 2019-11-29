@@ -16309,7 +16309,8 @@ EOT;
 		if(empty($this->param['hid']) || empty($this->param['type']))
 			return array("state" => 200, "info" => self::$langData['siteConfig'][33][0]);//格式错误！
 		$uid = $userLogin->getMemberID();
-		if(!$uid){
+		$uid = 1387;
+		if(!$uid || $uid == -1){
 			return array("state" => 200, "info" => self::$langData['siteConfig'][20][262]);//登录超时！
 		}
 		//查询经纪人是否存在
@@ -16318,28 +16319,41 @@ EOT;
 		if(!$zjInfo || isset($zjInfo['state']))	return ['state'=>200, 'info'=>'请先入驻经纪人！'];
 		$table = ''; 
 		switch($this->param['type']){
-		case 1:
-			$table = 'house_loupan';
-			break;
-		case 2:
+		case 'sale':
 			$table = 'house_sale';
 			break;
-		case 4:
+		case 'zu':
 			$table = 'house_zu';
 			break;
-		case 8:
+		case 'sp':
 			$table = 'house_sp';
 			break;
-		case 16:
+		case 'xzl':
 			$table = 'house_xzl';
 			break;
-		case 32:
+		case 'cf':
 			$table = 'house_cf';
 			break;
 		}
-		$updateSql = $dsql->SetQuery("update #@__{$table} set userid={$zjInfo[0]['id']} where id={$this->param['hid']} and externalno!='' and (userid='' or userid=0)");
+		//查询房源信息是否绑定了经纪人
+		$sql = $dsql->SetQuery("select h.* from #@__{$table} h inner join #@__house_zjuser zj on h.userid=zj.id inner join #@__member m on zj.userid=m.id where h.id={$this->param['hid']}");
+		$houseInfo = $dsql->dsqlOper($sql, 'results');
+		if($houseInfo && empty($house['state'])){
+			$sql = $dsql->SetQuery("select max(id) id from #@__{$table}");
+			$id = $dsql->dsqlOper($sql, 'results');
+			$id = $id[0]['id'] + 1;
+			unset($houseInfo[0]['id']);
+			$keys = implode(',', array_keys($houseInfo[0]));
+			$insertSql = $dsql->SetQuery("insert into #@__{$table} select '{$id}' id,{$keys} from #@__{$table} where id={$this->param['hid']}");
+			$lastId = $dsql->dsqlOper($insertSql,'lastid');
+			if($lastId){
+				$this->param['hid'] = $lastId;
+			}else
+				return false;
+		}
+		$updateSql = $dsql->SetQuery("update #@__{$table} set userid={$zjInfo[0]['id']},pubdate='" . time() . "' where id={$this->param['hid']}");
 		$result = $dsql->dsqlOper($updateSql,'update');
-		if($result && !isset($result['state']))	return true;
+		if($result && !isset($result['state']))	return $this->param['hid'];
 		else return false;
 	}
 
