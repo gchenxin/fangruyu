@@ -1838,7 +1838,7 @@ class house {
 			$where .= " AND n.`loupan` = " . $loupanid;
 		}
 
-		$orderby = ' ORDER BY n.`weight` DESC, n.`id` DESC';
+		$orderby = ' ORDER BY n.pubdate desc,n.`weight` DESC, n.`id` DESC';
 		if(!empty($rand)){
 			$orderby = ' ORDER BY rand()';
 		}
