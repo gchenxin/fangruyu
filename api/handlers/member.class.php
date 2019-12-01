@@ -11099,6 +11099,9 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 
 	public function push(){
 		set_time_limit(0);
+		if(date('w', time()) == 6 || date('w', time()) == 0){
+			return true;
+		}
 		//查询是否定时推送模板信息
 		$messageTemplateInfo = $this->getMessageTemplateInfo(self::MSG_TEMPID);
 		$isPushSiteMessage = true;
@@ -11219,7 +11222,7 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 			}
 			$this->recordPushLog($val['id'],$zjCategory,1,$pushTimes,$hasPushed,$pushTimes - $hasPushed,'成功');
 			//异步推送消息通知
-			if($isPushSiteMessage){
+			if($isPushSiteMessage && $hasPushed){
 				$messageBody = str_replace('{{number}}',$hasPushed,$messageTemplateInfo['site_body']);
 				file_get_contents($cfg_secureAccess.$cfg_basehost."/include/ajax.php?service=member&action=sendMessage&uid={$val['id']}&title={$messageTemplateInfo['site_title']}&body={$messageBody}");
 				//asynExec($cfg_httpSecureAccess.$cfg_basehost,$port,"/include/ajax.php?service=member&action=sendMessage&uid={$val['id']}&title={$messageTemplateInfo['site_title']}&body={$messageBody}");
@@ -11375,7 +11378,6 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
         }
 		//if(!$type) return array("state" => 200, "info" => self::$langData['siteConfig'][33][0]);//格式错误！
         $uid = $userLogin->getMemberID();
-		$uid=1387;
 		if(!is_numeric($uid) || !$uid || $uid==-1) return array("state" => 200, "info" => self::$langData['siteConfig'][20][262]);//登录超时，请重新登录！
 		$userInfo = $userLogin->getMemberInfo($uid);
 		$type = $userInfo['level'];
