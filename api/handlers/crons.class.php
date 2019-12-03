@@ -34,7 +34,7 @@ class crons {
 	public function pushTimer(){
 		global $cfg_basehost;
 		global $cfg_secureAccess;
-		file_get_contents($cfg_secureAccess.$cfg_basehost."/include/ajax.php?service=crons&action=pushTimer");
+		file_get_contents($cfg_secureAccess.$cfg_basehost."/include/ajax.php?service=member&action=push");
 		return true;
 	}
 

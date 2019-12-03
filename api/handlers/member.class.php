@@ -11099,9 +11099,9 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 
 	public function push(){
 		set_time_limit(0);
-		/*if(date('w', time()) == 6 || date('w', time()) == 0){
+		if(date('w', time()) == 6 || date('w', time()) == 0){
 			return true;
-		}*/
+		}
 		//查询是否定时推送模板信息
 		$messageTemplateInfo = $this->getMessageTemplateInfo(self::MSG_TEMPID);
 		$isPushSiteMessage = true;
