@@ -16309,7 +16309,6 @@ EOT;
 		if(empty($this->param['hid']) || empty($this->param['type']))
 			return array("state" => 200, "info" => self::$langData['siteConfig'][33][0]);//格式错误！
 		$uid = $userLogin->getMemberID();
-		$uid = 1387;
 		if(!$uid || $uid == -1){
 			return array("state" => 200, "info" => self::$langData['siteConfig'][20][262]);//登录超时！
 		}
