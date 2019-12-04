@@ -4,6 +4,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
 <title>管理经纪人</title>
 {#$cssFile#}
+<style>
+	.mealBox{
+		display: none;
+		padding: 20px 50px;
+	}
+	.mealSubmit{
+		display:block;
+		background-color: #51a351;
+		border-radius: 5px;
+		border: 1px solid lightgray;
+		color: white;
+		width: 60px !important;
+		margin: 0 auto;
+	}
+	form#mealForm>div{
+		margin-top: 5px;
+	}
+</style>
 </head>
 
 <body>
@@ -105,6 +123,33 @@
   <span id="sKeyword"></span>
   <span id="sFlag"></span>
   <span id="sAddr"></span>
+</div>
+
+<div class="mealBox">
+	<form id='mealForm' action='/admin/house/zjUserEdit.php' method='POST'>
+		<div>
+			<i class='mealName'>套餐名称:</i>
+		</div>
+		<div>
+			<i>房源数：</i>
+			<input class='mealHouse' type='number' value='' />
+		</div>
+		<div>
+			<i>刷新数：</i>
+			<input class='mealRefresh' type='number' value='' />
+		</div>
+		<div>
+			<i>置顶金币：</i>
+			<input class='mealTop' type='number' value='' />
+		</div>
+		<div>
+			<i>到期时间：</i>
+			<input class='mealExpired' type='text' value='' />
+		</div>
+		<div>
+			<input type='button' class='mealSubmit' value='提交' />
+		</div>
+	</form>
 </div>
 
 <script>

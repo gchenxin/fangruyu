@@ -242,7 +242,7 @@ var thumbSize = {#$thumbSize#}, thumbType = "{#$thumbType#}", action = "{#$actio
                 <th class="price">价格</th>
                 <th>房源数</th>
                 <th>刷新</th>
-                <th>置顶</th>
+                <th>置顶金币数</th>
                 <th></th>
                 <th></th>
               </tr>
@@ -261,8 +261,8 @@ var thumbSize = {#$thumbSize#}, thumbType = "{#$thumbType#}", action = "{#$actio
                 <td><div class="input-append"><input class="input-mini price" step="1" type="number" name="trialCost[{#$k#}][list][{#$ik#}][time]" value="{#$item.time#}"><span class="add-on">月</span></div></td>
                 <td><div class="input-append"><input class="input-mini price" step="1" type="number" name="trialCost[{#$k#}][list][{#$ik#}][price]" value="{#$item.price#}"><span class="add-on">元</span></div></td>
                 <td><div class="input-append"><input class="input-mini house" type="number" name="trialCost[{#$k#}][list][{#$ik#}][house]" min="0" value="{#$item.house#}"><span class="add-on">个</span></div></td>
-                <td><div class="input-append"><input class="input-mini refresh" type="number" name="trialCost[{#$k#}][list][{#$ik#}][refresh]" min="0" value="{#$item.refresh#}"><span class="add-on">次</span></div></td>
-                <td><div class="input-append"><input class="input-mini settop" type="number" name="trialCost[{#$k#}][list][{#$ik#}][settop]" min="0" value="{#$item.settop#}"><span class="add-on">天</span></div></td>
+                <td><div class="input-append"><input class="input-mini refresh" type="number" name="trialCost[{#$k#}][list][{#$ik#}][refresh]" min="0" value="{#$item.refresh#}"><span class="add-on">次/天</span></div></td>
+                <td><div class="input-append"><input class="input-mini settop" type="number" name="trialCost[{#$k#}][list][{#$ik#}][settop]" min="0" value="{#$item.settop#}"><span class="add-on">个</span></div></td>
                 <td class="td_del"><a href="javascript:;" class="btn del" title="删除"><i class="icon-trash"></i>删除价格</a></td>
                 <td class="td_oper" rowspan="{#$cost.list|@count#}"><a href="javascript:;" class="btn add" title="新增"><i class="icon-plus"></i>新增价格</a><a href="javascript:;" class="btn delGroup" title="删除"><i class="icon-trash"></i>删除套餐</a></td>
               </tr>
@@ -274,8 +274,8 @@ var thumbSize = {#$thumbSize#}, thumbType = "{#$thumbType#}", action = "{#$actio
                 <td><div class="input-append"><input class="input-mini price" step="1" type="number" name="trialCost[{#$k#}][list][{#$ik#}][time]" value="{#$item.time#}"><span class="add-on">月</span></div></td>
                 <td><div class="input-append"><input class="input-mini price" step="1" type="number" name="trialCost[{#$k#}][list][{#$ik#}][price]" value="{#$item.price#}"><span class="add-on">元</span></div></td>
                 <td><div class="input-append"><input class="input-mini house" type="number" name="trialCost[{#$k#}][list][{#$ik#}][house]" min="0" value="{#$item.house#}"><span class="add-on">个</span></div></td>
-                <td><div class="input-append"><input class="input-mini refresh" type="number" name="trialCost[{#$k#}][list][{#$ik#}][refresh]" min="0" value="{#$item.refresh#}"><span class="add-on">次</span></div></td>
-                <td><div class="input-append"><input class="input-mini settop" type="number" name="trialCost[{#$k#}][list][{#$ik#}][settop]" min="0" value="{#$item.settop#}"><span class="add-on">天</span></div></td>
+                <td><div class="input-append"><input class="input-mini refresh" type="number" name="trialCost[{#$k#}][list][{#$ik#}][refresh]" min="0" value="{#$item.refresh#}"><span class="add-on">次/天</span></div></td>
+                <td><div class="input-append"><input class="input-mini settop" type="number" name="trialCost[{#$k#}][list][{#$ik#}][settop]" min="0" value="{#$item.settop#}"><span class="add-on">个</span></div></td>
                 <td class="td_del"><a href="javascript:;" class="btn del" title="删除"><i class="icon-trash"></i>删除价格</a></td>
                 <td class="td_oper hide"><a href="javascript:;" class="btn add" title="新增"><i class="icon-plus"></i>新增价格</a><a href="javascript:;" class="btn delGroup" title="删除"><i class="icon-trash"></i>删除套餐</a></td>
               </tr>
@@ -294,8 +294,8 @@ var thumbSize = {#$thumbSize#}, thumbType = "{#$thumbType#}", action = "{#$actio
                 <td><div class="input-append"><input class="input-mini price" step="1" type="number" name="trialCost[{#$smartytime#}][list][{#$smartytime#}][time]" value=""><span class="add-on">月</span></div></td>
                 <td><div class="input-append"><input class="input-mini price" step="1" type="number" name="trialCost[{#$smartytime#}][list][{#$smartytime#}][price]" value=""><span class="add-on">元</span></div></td>
                 <td><div class="input-append"><input class="input-mini house" type="number" name="trialCost[{#$smartytime#}][list][{#$smartytime#}][house]" min="0" value=""><span class="add-on">个</span></div></td>
-                <td><div class="input-append"><input class="input-mini refresh" type="number" name="trialCost[{#$smartytime#}][list][{#$smartytime#}][refresh]" min="0" value=""><span class="add-on">次</span></div></td>
-                <td><div class="input-append"><input class="input-mini settop" type="number" name="trialCost[{#$smartytime#}][list][{#$smartytime#}][settop]" min="0" value=""><span class="add-on">天</span></div></td>
+                <td><div class="input-append"><input class="input-mini refresh" type="number" name="trialCost[{#$smartytime#}][list][{#$smartytime#}][refresh]" min="0" value=""><span class="add-on">次/天</span></div></td>
+                <td><div class="input-append"><input class="input-mini settop" type="number" name="trialCost[{#$smartytime#}][list][{#$smartytime#}][settop]" min="0" value=""><span class="add-on">个</span></div></td>
                 <td class="td_del"><a href="javascript:;" class="btn del" title="删除"><i class="icon-trash"></i>删除价格</a></td>
                 <td class="td_oper"><a href="javascript:;" class="btn add" title="新增"><i class="icon-plus"></i>新增价格</a><a href="javascript:;" class="btn delGroup" title="删除"><i class="icon-trash"></i>删除套餐</a></td>
               </tr>
@@ -821,8 +821,8 @@ var thumbSize = {#$thumbSize#}, thumbType = "{#$thumbType#}", action = "{#$actio
     <td><div class="input-append"><input class="input-mini price" step="1" type="number" name="trialCost[#id][list][#k][time]" value=""><span class="add-on">月</span></div></td>
     <td><div class="input-append"><input class="input-mini price" step="0.01" type="number" name="trialCost[#id][list][#k][price]" value=""><span class="add-on">元</span></div></td>
     <td><div class="input-append"><input class="input-mini house" type="number" name="trialCost[#id][list][#k][house]" min="0" value=""><span class="add-on">个</span></div></td>
-    <td><div class="input-append"><input class="input-mini refresh" type="number" name="trialCost[#id][list][#k][refresh]" min="0" value=""><span class="add-on">次</span></div></td>
-    <td><div class="input-append"><input class="input-mini settop" type="number" name="trialCost[#id][list][#k][settop]" min="0" value=""><span class="add-on">天</span></div></td>
+    <td><div class="input-append"><input class="input-mini refresh" type="number" name="trialCost[#id][list][#k][refresh]" min="0" value=""><span class="add-on">次/天</span></div></td>
+    <td><div class="input-append"><input class="input-mini settop" type="number" name="trialCost[#id][list][#k][settop]" min="0" value=""><span class="add-on">个</span></div></td>
     <td class="td_del"><a href="javascript:;" class="btn del" title="删除"><i class="icon-trash"></i>删除价格</a></td>
     <td class="td_oper"><a href="javascript:;" class="btn add" title="新增"><i class="icon-plus"></i>新增价格</a><a href="javascript:;" class="btn delGroup" title="删除"><i class="icon-trash"></i>删除套餐</a></td>
   </tr>

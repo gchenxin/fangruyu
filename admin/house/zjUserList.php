@@ -104,14 +104,18 @@ if($dopost == "getList"){
 
 	$atpage = $pagestep*($page-1);
 	$where .= " LIMIT $atpage, $pagestep";
-	$archives = $dsql->SetQuery("SELECT `id`, `userid`, `zjcom`, `store`, `addr`, `state`, `flag`, `weight`, `pubdate` FROM `#@__".$tab."` WHERE 1 = 1".$where);
+	$archives = $dsql->SetQuery("SELECT `id`, `userid`, `zjcom`, `store`, `addr`, `state`, `flag`, `weight`, `pubdate`, `meal` FROM `#@__".$tab."` WHERE 1 = 1".$where);
 	$results = $dsql->dsqlOper($archives, "results");
 
 	if(count($results) > 0){
 		$list = array();
 		foreach ($results as $key=>$value) {
 			$list[$key]["id"] = $value["id"];
-
+			$list[$key]['meal'] = unserialize($value['meal']);
+			if($list[$key]['meal']){
+				$list[$key]['meal']['begin'] = date("Y-m-d H:i:s",$list[$key]['meal']['begin']);
+				$list[$key]['meal']['expired'] = date("Y-m-d H:i:s",$list[$key]['meal']['expired']);
+			}
 			$list[$key]["userid"] = $value["userid"];
 			$userSql = $dsql->SetQuery("SELECT `username`, `nickname` FROM `#@__member` WHERE `id` = ". $value['userid']);
 			$username = $dsql->getTypeName($userSql);
@@ -218,7 +222,25 @@ if($dopost == "getList"){
 
 	}
 	die;
-
+//修改经纪人套餐
+}elseif($dopost == 'modifyMeal'){
+	//查询经纪人套餐
+	//$meal = json_decode(str_replace("\\",'',$meal), true);
+	$meal['expired'] = strtotime($meal['expired']);
+	$sql = $dsql->SetQuery("select id,meal from #@__house_zjuser where id={$id}");
+	$info = $dsql->dsqlOper($sql, 'results');
+	if($info && empty($info['state'])){
+		$zjMeal = unserialize($info[0]['meal']);
+		if($zjMeal){
+			$zjMeal = array_merge($zjMeal, $meal);
+		}else{
+			$zjMeal = $meal;
+		}
+		$zjMeal = serialize($zjMeal);
+		$updateSql = $dsql->SetQuery("update #@__house_zjuser set meal='{$zjMeal}' where id={$id}");
+		$dsql->dsqlOper($updateSql, "updates");
+		die('{"state"=>100, "info"=>"修改成功！"}');
+	}
 //更新状态
 }elseif($dopost == "updateState"){
 	if(!testPurview("zjUserEdit")){
@@ -266,14 +288,17 @@ if(file_exists($tpl."/".$templates)){
     //css
     $cssFile = array(
         'ui/jquery.chosen.css',
-        'admin/chosen.min.css'
+		'admin/chosen.min.css',
+		'ui/layer/layer.css'
     );
     $huoniaoTag->assign('cssFile', includeFile('css', $cssFile));
 	//js
 	$jsFile = array(
 		'ui/bootstrap.min.js',
 		'ui/jquery-ui-selectable.js',
-        'ui/chosen.jquery.min.js',
+		'ui/chosen.jquery.min.js',
+		'ui/layer/layer.js',
+		'ui/bootstrap-datetimepicker.min.js',
 		'admin/house/zjUserList.js'
 	);
 	$huoniaoTag->assign('jsFile', includeFile('js', $jsFile));
