@@ -11381,6 +11381,7 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 		if(!is_numeric($uid) || !$uid || $uid==-1) return array("state" => 200, "info" => self::$langData['siteConfig'][20][262]);//登录超时，请重新登录！
 		$userInfo = $userLogin->getMemberInfo($uid);
 		$type = $userInfo['level'];
+		if(!in_array($type,[1,4,5,6]) || time() > $userInfo['expired'])	return null;
 		//遍历城市id
 		$zjSql = $dsql->SetQuery("select id,addr from #@__house_zjuser where userid={$uid}");
 		$zjInfo = $dsql->dsqlOper($zjSql, 'results');
@@ -11412,11 +11413,12 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 			$fields = "id,title,price,address,addrid,litpic,area,type,usertype,userid,'cf' housetype,pubdate";
 			$subSql = "select {$fields} from #@__house_cf";
 			break;
+		default:
+			$subSql = "select * from #@__house_sale where id=0";
 		}
 		$where = "hs.addrid in ({$addridArr}) and hs.userid!={$zjInfo[0]['id']}";
 		$orderby = "pubdate desc";
 		$archives = $dsql->SetQuery("select hs.* from ({$subSql}) hs where {$where} order by {$orderby}");
-		file_put_contents('/www/wwwroot/dengyunlong_26dj_dev/sql.log',$archives);
         //总条数
         $totalCount = $dsql->dsqlOper($archives, "totalCount");
 

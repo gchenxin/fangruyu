@@ -9946,7 +9946,7 @@ class house {
 		$alreadyFabu = 0; // 付费会员当天已免费发布数量
 
 		$arcrank = $customagentCheck;	// 审核开关
-
+		$externalno = $param['externalno'];	//第三方爬虫数据
 		//企业会员或已经升级为收费会员的状态才可以发布
 		if($userinfo['userType'] == 1 && $type != "demand"){
 
@@ -9972,7 +9972,9 @@ class house {
 
 				$memberLevelAuth = getMemberLevelAuth($userinfo['level']);
 				$houseCount = (int)$memberLevelAuth['house'];
-
+				if($ischeck_zjuserMeal){
+					$houseCount += $zjuserConfig['house'];
+				}
 				//统计用户当天已发布数量
 				// $today = GetMkTime(date("Y-m-d", time()));
 				// $tomorrow = GetMkTime(date("Y-m-d", strtotime("+1 day")));
@@ -10028,7 +10030,7 @@ class house {
 				$alreadyFabu = $saleCount + $zuCount + $xzlCount + $spCount + $cfCount + $cwCount;
 				if($alreadyFabu >= $houseCount){
 					$toMax = true;
-					// return array("state" => 200, "info" => '当天发布信息数量已达等级上限！');
+					return array("state" => 200, "info" => '当天发布信息数量已达等级上限！');
 				}else{
 					 $arcrank = 1;
 				}
@@ -10222,13 +10224,19 @@ class house {
             $sourceid  = $param['sourceid'];
             $vercode   = $param['vercode'];
 
-			if(empty($community) && empty($communityid)) return array("state" => 200, "info" => '请输入小区名称');
+			if(empty($community) && empty($communityid) && empty($externalno)) return array("state" => 200, "info" => '请输入小区名称');
 			if(empty($communityid) && empty($addrid)) return array("state" => 200, "info" => '请选择小区所在区域');
 			if(empty($communityid) && empty($address)) return array("state" => 200, "info" => '请输入小区详细地址');
 			// if(empty($litpic)) return array("state" => 200, "info" => '请上传房源代表图片');
 			// if(empty($note)) return array("state" => 200, "info" => '请输入房源描述');
-			if(empty($person)) return array("state" => 200, "info" => '请输入联系人');
-			if(empty($tel)) return array("state" => 200, "info" => '请输入手机号码');
+			if(empty($person)){
+				if($userInfo['nickname'])	$person = $userInfo['nickname'];
+				else	return array("state" => 200, "info" => '请输入联系人');
+			}
+			if(empty($tel)){
+				if($userInfo['phone'])	$tel = $userInfo['phone'];
+				else return array("state" => 200, "info" => '请输入手机号码');
+			}
             if(!$userinfo['phone'] || !$userinfo['phoneCheck'] || $userinfo['phone'] != $tel){
                 if(empty($vercode)) return array("state" => 200, "info" => '请输入验证码');
                 //国际版需要验证区域码
@@ -10368,7 +10376,7 @@ class house {
 			$qj_type     = (int)$param['qj_type'];
 			$qj_pics     = $param['qj_pics'];
 			$qj_url      = $param['qj_url'];
-			$elevator    = (int)$param['elevator'];
+			$elevator    = (int)$param['elevator'];	
 
             // 201903新增
             // $buildpos  = $param['buildpos'];
@@ -10380,18 +10388,28 @@ class house {
             $flag      = !empty($_POST['flag']) ? (is_array($_POST['flag']) ? join(",", $_POST['flag']) : $_POST['flag']) : "";
 
 
-			if(empty($community) && empty($communityid)) return array("state" => 200, "info" => '请输入小区名称');
+			if(empty($community) && empty($communityid) && empty($externalno)) return array("state" => 200, "info" => '请输入小区名称');
 			if(empty($communityid) && empty($addrid)) return array("state" => 200, "info" => '请选择小区所在区域');
 			if(empty($communityid) && empty($address)) return array("state" => 200, "info" => '请输入小区详细地址');
-			if($rentype == 1 && $sharetype == 0) return array("state" => 200, "info" => '请选择要出租的房间');
-			if($rentype == 1 && $sharesex === "") return array("state" => 200, "info" => '请选择合租男女限制');
+			if($rentype == 1 && $sharetype == 0 && !$externalno) return array("state" => 200, "info" => '请选择要出租的房间');
+			if($rentype == 1 && $sharesex === "" && !$externalno) return array("state" => 200, "info" => '请选择合租男女限制');
 			// if(empty($litpic)) return array("state" => 200, "info" => '请上传房源代表图片');
 			// if(empty($note)) return array("state" => 200, "info" => '请输入房源描述');
-			if(empty($person)) return array("state" => 200, "info" => '请输入联系人');
+			if(empty($person)){
+				if($userInfo['nickname'])	$person = $userInfo['nickname'];
+				else	return array("state" => 200, "info" => '请输入联系人');
+			}
             //if($area == 0) return array("state" => 200, "info" => '房源面积必须为整数，不得为0');
             //if($price == 0) return array("state" => 200, "info" => '房源价格必须为整数，不得为0');
-            if($paytype == 0) return array("state" => 200, "info" => '请选择租金压付方式');
-			if(empty($tel)) return array("state" => 200, "info" => '请输入手机号码');
+			if($paytype == 0){
+				//是否来自第三方爬虫数据
+				if($externalno)	$paytype == 43;
+				return array("state" => 200, "info" => '请选择租金压付方式');
+			}
+			if(empty($tel)){
+				if($userInfo['phone'])	$tel = $userInfo['phone'];
+				else return array("state" => 200, "info" => '请输入手机号码');
+			}
             if($detail['contact'] != $tel && (!$userinfo['phone'] || !$userinfo['phoneCheck'] || $userinfo['phone'] != $tel) ){
                 if(empty($vercode)) return array("state" => 200, "info" => '请输入验证码');
                 //国际版需要验证区域码
@@ -10538,10 +10556,10 @@ class house {
             $vercode   = $param['vercode'];
             $wuye_in   = (int)$param['wuye_in'];
 
-			if(empty($loupanid) && empty($loupan)) return array("state" => 200, "info" => '请输入楼盘名称');
+			if(empty($loupanid) && empty($loupan) && empty($externalno)) return array("state" => 200, "info" => '请输入楼盘名称');
 			if(empty($loupanid) && empty($addrid)) return array("state" => 200, "info" => '请选择楼盘所在区域');
 			if(empty($loupanid) && empty($address)) return array("state" => 200, "info" => '请输入楼盘详细地址');
-			if(empty($loupanid) && (empty($longitude) || empty($latitude))) return array("state" => 200, "info" => '请选择楼盘坐标');
+			if(empty($loupanid) && (empty($longitude) || empty($latitude)) && empty($externalno)) return array("state" => 200, "info" => '请选择楼盘坐标');
 
 			if(empty($cityid)){
 				$cityInfoArr = getPublicParentInfo(array('tab' => 'site_area', 'id' => $addrid));
@@ -10551,8 +10569,14 @@ class house {
 
 			// if(empty($litpic)) return array("state" => 200, "info" => '请上传楼盘代表图片');
 			// if(empty($note)) return array("state" => 200, "info" => '请输入房源描述');
-			if(empty($person)) return array("state" => 200, "info" => '请输入联系人');
-			if(empty($tel)) return array("state" => 200, "info" => '请输入手机号码');
+			if(empty($person)){
+				if($userInfo['nickname'])	$person = $userInfo['nickname'];
+				else	return array("state" => 200, "info" => '请输入联系人');
+			}
+			if(empty($tel)){
+				if($userInfo['phone'])	$tel = $userInfo['phone'];
+				else return array("state" => 200, "info" => '请输入手机号码');
+			}
             if(!$userinfo['phone'] || !$userinfo['phoneCheck'] || $userinfo['phone'] != $tel){
                 if(empty($vercode)) return array("state" => 200, "info" => '请输入验证码');
                 //国际版需要验证区域码
@@ -10707,10 +10731,10 @@ class house {
             $vercode   = $param['vercode'];
             $flag      = !empty($_POST['flag']) ? (is_array($_POST['flag']) ? join(",", $_POST['flag']) : $_POST['flag']) : "";
 
-			if(empty($loupanid) && empty($loupan)) return array("state" => 200, "info" => '请输入楼盘名称');
+			if(empty($loupanid) && empty($loupan) && empty($externalno)) return array("state" => 200, "info" => '请输入楼盘名称');
 			if(empty($loupanid) && empty($addrid)) return array("state" => 200, "info" => '请选择楼盘所在区域');
 			if(empty($loupanid) && empty($address)) return array("state" => 200, "info" => '请输入楼盘详细地址');
-			if(empty($loupanid) && (empty($longitude) || empty($latitude))) return array("state" => 200, "info" => '请选择楼盘坐标');
+			if(empty($loupanid) && (empty($longitude) || empty($latitude)) && empty($externalno)) return array("state" => 200, "info" => '请选择楼盘坐标');
 
 			if(empty($cityid)){
 				$cityInfoArr = getPublicParentInfo(array('tab' => 'site_area', 'id' => $addrid));
@@ -10724,13 +10748,19 @@ class house {
 				$cityid = $cityInfoArr[0];
 			}
 
-			if($lei == 2 && empty($industry)) return array("state" => 200, "info" => '请选择现在经营的行业');
+			if($lei == 2 && empty($industry) && empty($externalno)) return array("state" => 200, "info" => '请选择现在经营的行业');
 			if(empty($addrid)) return array("state" => 200, "info" => '请选择商铺所在区域');
 			if(empty($address)) return array("state" => 200, "info" => '请输入商铺详细地址');
 			// if(empty($litpic)) return array("state" => 200, "info" => '请上传楼盘代表图片');
 			// if(empty($note)) return array("state" => 200, "info" => '请输入房源描述');
-			if(empty($person)) return array("state" => 200, "info" => '请输入联系人');
-			if(empty($tel)) return array("state" => 200, "info" => '请输入手机号码');
+			if(empty($person)){
+				if($userInfo['nickname'])	$person = $userInfo['nickname'];
+				else	return array("state" => 200, "info" => '请输入联系人');
+			}
+			if(empty($tel)){
+				if($userInfo['phone'])	$tel = $userInfo['phone'];
+				else return array("state" => 200, "info" => '请输入手机号码');
+			}
             if(!$userinfo['phone'] || !$userinfo['phoneCheck'] || $userinfo['phone'] != $tel){
                 if(empty($vercode)) return array("state" => 200, "info" => '请输入验证码');
                 //国际版需要验证区域码
@@ -10871,8 +10901,14 @@ class house {
 			if(empty($address)) return array("state" => 200, "info" => '请输入厂房、仓库详细地址');
 			// if(empty($litpic)) return array("state" => 200, "info" => '请上传厂房、仓库代表图片');
 			// if(empty($note)) return array("state" => 200, "info" => '请输入房源描述');
-			if(empty($person)) return array("state" => 200, "info" => '请输入联系人');
-			if(empty($tel)) return array("state" => 200, "info" => '请输入手机号码');
+			if(empty($person)){
+				if($userInfo['nickname'])	$person = $userInfo['nickname'];
+				else	return array("state" => 200, "info" => '请输入联系人');
+			}
+			if(empty($tel)){
+				if($userInfo['phone'])	$tel = $userInfo['phone'];
+				else return array("state" => 200, "info" => '请输入手机号码');
+			}
             if(!$userinfo['phone'] || !$userinfo['phoneCheck'] || $userinfo['phone'] != $tel){
                 if(empty($vercode)) return array("state" => 200, "info" => '请输入验证码');
                 //国际版需要验证区域码
@@ -11018,8 +11054,14 @@ class house {
 			if(empty($communityid) && empty($address)) return array("state" => 200, "info" => '请输入车位详细地址');
 			// if(empty($litpic)) return array("state" => 200, "info" => '请上传厂房、仓库代表图片');
 			// if(empty($note)) return array("state" => 200, "info" => '请输入车位描述');
-			if(empty($person)) return array("state" => 200, "info" => '请输入联系人');
-			if(empty($tel)) return array("state" => 200, "info" => '请输入手机号码');
+			if(empty($person)){
+				if($userInfo['nickname'])	$person = $userInfo['nickname'];
+				else	return array("state" => 200, "info" => '请输入联系人');
+			}
+			if(empty($tel)){
+				if($userInfo['phone'])	$tel = $userInfo['phone'];
+				else return array("state" => 200, "info" => '请输入手机号码');
+			}
             if(!$userinfo['phone'] || !$userinfo['phoneCheck'] || $userinfo['phone'] != $tel){
                 if(empty($vercode)) return array("state" => 200, "info" => '请输入验证码');
                 //国际版需要验证区域码
@@ -15297,7 +15339,7 @@ class house {
 	/**
 	 * 更新经纪人套餐余量
 	 */
-	public function updateZjuserMeal($zjuid, $dopost = "house:1", $zjuserConfig = array()){
+	public function updateZjuserMeal($zjuid, $dopost = "house:1", $zjuserConfig = array(), $sourceId = '', $refreshSourceType = '', $type = ''){
 		global $dsql;
 		if(empty($zjuid) || empty($zjuserConfig)) return false;
 
@@ -15309,12 +15351,29 @@ class house {
 		if($num == 0) return false;
 
 		$differ = $num - $len;
-		$zjuserConfig[$type] = $differ >= 0 ? $differ : 0;
+		$type = 0;
+		if($type == 'toppingPlan'){
+			$type = 2;
+		}elseif(strstr($type, 'efresh')){	//包含大小写
+			$type = 1;
+		}
+		switch($refreshSourceType){
+		case "sale":$type |= 4;break;
+		case "zu" : $type |= 8;break;
+		case "sp" : $type |= 16;break;
+		case "xzl": $type |= 32;break;
+		case "cf" : $type |= 64;break;
+		default: $type |= 128;break;
+		}
+		//此处改为按天计算刷新
+		$sql = $dsql->SetQuery("insert into #@__house_refreshTopRecord(zjid,aid,type,date) values({$zjuid},{$sourceId},{$type},'" . date('Y-m-d H:i:s') . "')");
+		$dsql->dsqlOper($sql, 'update');
+		//$zjuserConfig[$type] = $differ >= 0 ? $differ : 0;
 
-		$config = serialize($zjuserConfig);
+		//$config = serialize($zjuserConfig);
 
-		$sql = $dsql->SetQuery("UPDATE `#@__house_zjuser` SET `meal` = '$config' WHERE `id` = $zjuid");
-		$dsql->dsqlOper($sql, "update");
+		//$sql = $dsql->SetQuery("UPDATE `#@__house_zjuser` SET `meal` = '$config' WHERE `id` = $zjuid");
+		//$dsql->dsqlOper($sql, "update");
 	}
 
 	/**
@@ -15323,7 +15382,7 @@ class house {
 	 * 200 没有购买套餐 套餐过期 套餐用完
 	 * 100 购买了经纪人套餐 套餐有效期内，有剩余数量
 	 */
-	public function checkZjuserMeal($zjuserConfig, $type = ""){
+	public function checkZjuserMeal(&$zjuserConfig, $type = ""){
 		/*global $userLogin;
 		global $dsql;
 		$userInfo = $userLogin->getMemberInfo(1387);
@@ -15376,16 +15435,23 @@ EOT;
 		}else{
 			$now = GetMktime(time());
 			if($zjuserConfig['expired'] <= $now) return array("state" => 200, "info" => '您的经纪人套餐已过期，请续费');
-
+			global $dsql;
+			global $userLogin;
+			$uid = $userLogin->getMemberID();
+			if($uid == -1 || !$uid) return array('state'=>200, 'info'=>'登录超时！');	
 			if($type == ""){
 				return array("state" => 100, "info" => 'ok');
 			}
 			if($type == "house"){
 				$tit = "发布房源数量";
 			}elseif($type == "refresh"){
+				//查询当天已经刷新的次数
+				$sql = $dsql->SetQuery("select * from #@__house_refreshTopRecord zr inner join #@__house_zjuser zj on zj.id=zr.zjid where zj.userid={$uid} and date>='" . date('Y-m-d 00:00:00') . "'");
+				$hasRefreshTimes = $dsql->dsqlOper($sql, 'results');
+				$zjuserConfig['refresh'] -= count($hasRefreshTimes);
 				$tit = "刷新次数";
 			}elseif($type == "settop"){
-				$tit = "置顶次数";
+				$tit = "置顶金币个数";
 			}
 			if($zjuserConfig[$type] <= 0) return array("state" => 200, "info" => '您的经纪人套餐'.$tit.'已用完，请升级套餐');
 
@@ -16308,22 +16374,17 @@ EOT;
 		global $langData;
 		if(empty($this->param['hid']) || empty($this->param['type']))
 			return array("state" => 200, "info" => self::$langData['siteConfig'][33][0]);//格式错误！
-		$uid = $userLogin->getMemberID();
-		if(!$uid || $uid == -1){
-			return array("state" => 200, "info" => self::$langData['siteConfig'][20][262]);//登录超时！
-		}
-		$userInfo = $userLogin->getMemberInfo($uid);
-		//查询经纪人是否存在
-		$sql = $dsql->SetQuery("select id from #@__house_zjuser where userid=$uid");
-		$zjInfo = $dsql->dsqlOper($sql,'results');
-		if(!$zjInfo || isset($zjInfo['state']))	return ['state'=>200, 'info'=>'请先入驻经纪人！'];
-		$table = ''; 
-		switch($this->param['type']){
+		$userInfo = $userLogin->getMemberInfo();
+		if(!$userInfo) return ['state'=>200, 'info'=>"登录超时！"];
+		//查询房源信息
+		$type = $this->param['type'];
+		$table = "";
+		switch($type){
 		case 'sale':
-			$table = 'house_sale';
+			$table = "house_sale";
 			break;
 		case 'zu':
-			$table = 'house_zu';
+			$table = "house_zu";
 			break;
 		case 'sp':
 			$table = 'house_sp';
@@ -16335,26 +16396,24 @@ EOT;
 			$table = 'house_cf';
 			break;
 		}
-		//查询房源信息是否绑定了经纪人
-		$sql = $dsql->SetQuery("select h.* from #@__{$table} h inner join #@__house_zjuser zj on h.userid=zj.id inner join #@__member m on zj.userid=m.id where h.id={$this->param['hid']}");
+		$sql = $dsql->SetQuery("select h.*,GROUP_CONCAT(p.picPath) imglist from #@__{$table} h left join #@__house_pic p on p.type='housesale' and p.aid=h.id where h.id={$this->param['hid']}");
 		$houseInfo = $dsql->dsqlOper($sql, 'results');
 		if($houseInfo && empty($house['state'])){
-			$sql = $dsql->SetQuery("select max(id) id from #@__{$table}");
-			$id = $dsql->dsqlOper($sql, 'results');
-			$id = $id[0]['id'] + 1;
-			unset($houseInfo[0]['id']);
-			$keys = implode(',', array_keys($houseInfo[0]));
-			$insertSql = $dsql->SetQuery("insert into #@__{$table} select '{$id}' id,{$keys} from #@__{$table} where id={$this->param['hid']}");
-			$lastId = $dsql->dsqlOper($insertSql,'lastid');
-			if($lastId){
-				$this->param['hid'] = $lastId;
-			}else
-				return false;
+			$houseInfo = $houseInfo[0];
+			$houseInfo['lnglat'] = $houseInfo['longitude'] . "," . $houseInfo['latitude'];
+			unset($houseInfo['id']);
+			unset($houseInfo['usertype']);
+			unset($houseInfo['username']);
+			unset($houseInfo['contact']);
+			$this->param = array_merge($this->param, $houseInfo);
+			$this->param['type'] = $type;
+			$this->param['person'] = $userInfo['nickname'];
+			$this->param['tel'] = $userInfo['phone'];
+			$result = $this->put();
+			return $result;
+		}else{
+			return [];
 		}
-		$updateSql = $dsql->SetQuery("update #@__{$table} set userid={$zjInfo[0]['id']},pubdate='" . time() . "',username='{$userInfo['nickname']}',contact='{$userInfo['phone']}' where id={$this->param['hid']}");
-		$result = $dsql->dsqlOper($updateSql,'update');
-		if($result && !isset($result['state']))	return $this->param['hid'];
-		else return false;
 	}
 
 	public function recordWxShare(){
@@ -16411,5 +16470,26 @@ EOT;
 			}
 		}
 	}
-
+	
+	/**
+		* @brief 查询发过该小区房源的经纪人列表
+		*
+		* @return 
+	 */
+	public function getCommunityZjList(){
+		global $dsql;
+		$param = $this->param;
+		if(empty($param['cid']))	return array('state'=>200, 'info'=>'Param Invalid!');
+		$sql = <<<EOT
+select m.nickname,m.realname,m.phone,m.photo from (
+	select usertype,userid from huoniao_house_sale where communityid={$param['cid']}
+	union
+	select usertype,userid from huoniao_house_zu where communityid={$param['cid']}
+) A inner join huoniao_house_zjuser zj on A.userid=zj.id
+inner join huoniao_member m on m.id=zj.userid
+where m.state=1
+EOT;
+		$limit = !empty($param['pageSize']) ? $param['pageSize'] : 5;
+		return $dsql->dsqlOper($sql, "results");
+	}
 }
