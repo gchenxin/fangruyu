@@ -16309,10 +16309,10 @@ EOT;
 		if(empty($this->param['hid']) || empty($this->param['type']))
 			return array("state" => 200, "info" => self::$langData['siteConfig'][33][0]);//格式错误！
 		$uid = $userLogin->getMemberID();
-		$uid = 1387;
 		if(!$uid || $uid == -1){
 			return array("state" => 200, "info" => self::$langData['siteConfig'][20][262]);//登录超时！
 		}
+		$userInfo = $userLogin->getMemberInfo($uid);
 		//查询经纪人是否存在
 		$sql = $dsql->SetQuery("select id from #@__house_zjuser where userid=$uid");
 		$zjInfo = $dsql->dsqlOper($sql,'results');
@@ -16351,7 +16351,7 @@ EOT;
 			}else
 				return false;
 		}
-		$updateSql = $dsql->SetQuery("update #@__{$table} set userid={$zjInfo[0]['id']},pubdate='" . time() . "' where id={$this->param['hid']}");
+		$updateSql = $dsql->SetQuery("update #@__{$table} set userid={$zjInfo[0]['id']},pubdate='" . time() . "',username='{$userInfo['nickname']}',contact='{$userInfo['phone']}' where id={$this->param['hid']}");
 		$result = $dsql->dsqlOper($updateSql,'update');
 		if($result && !isset($result['state']))	return $this->param['hid'];
 		else return false;

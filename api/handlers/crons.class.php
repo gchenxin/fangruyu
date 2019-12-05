@@ -34,7 +34,7 @@ class crons {
 	public function pushTimer(){
 		global $cfg_basehost;
 		global $cfg_secureAccess;
-		file_get_contents($cfg_secureAccess.$cfg_basehost."/include/ajax.php?service=crons&action=pushTimer");
+		file_get_contents($cfg_secureAccess.$cfg_basehost."/include/ajax.php?service=member&action=push");
 		return true;
 	}
 
@@ -169,6 +169,24 @@ EOT;
 		$dsql->dsqlOper($sql,'update');
 		$sql = $dsql->SetQuery('delete from #@__agentpushlog where now()>`date`');
 		$dsql->dsqlOper($sql,'update');
+	}
+	
+	public function updatePublishTime(){
+		$time = strtotime(date('Y-m-d')) - 24*60*60;
+		global $dsql;
+		$config = [
+			"house_loupan"=>'pubdate',
+			'house_sale'	=>	'pubdate',
+			'house_zu'	=>	'pubdate',
+			'house_sp'	=>	'pubdate',
+			'house_xzl'	=>	'pubdate',
+			'house_cf'	=>	'pubdate'
+		];
+
+		foreach ($config as $key=>$value){
+			$sql = $dsql->SetQuery("update #@__{$key} set {$value}=".time()." where {$value}<{$time}");
+			$dsql->dsqlOper($sql,'update');
+		}
 	}
 
 }
