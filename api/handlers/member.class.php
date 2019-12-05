@@ -11390,7 +11390,11 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 		$cityId = $cityId ?: $zjInfo[0]['addr'];
 		if(!$cityId) return null;
 		$addridArr = arr_foreach($dsql->getTypeList($cityId, "site_area"));
-		$addridArr = join(',',$addridArr) . ",{$cityId}";
+		if(!$addridArr){
+			$addridArr = $cityId;
+		}else{
+			$addridArr = join(',',$addridArr) . ",{$cityId}";
+		}
 
         $pageSize = empty($pageSize) ? 10 : $pageSize;
 		$page     = empty($page) ? 1 : $page;
