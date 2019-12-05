@@ -503,7 +503,7 @@ $(function () {
                         html.push('<div class="imgbox fn-left">');
                         var litpic = d.litpic != "" && d.litpic != undefined ? huoniao.changeFileSize(d.litpic, "small") :
                             "/static/images/404.jpg";
-                        html.push('<a href="' + d.url + '" target="_blank"><img src="' + litpic + '" alt="">');
+                        html.push('<a href="' + d.url + '" target="_blank"><img src="' + litpic + '"onerror="javascript:this.src=\'/static/images/404.jpg\';" alt="">');
                         var is_Video = '';
                         if (d.videocount) {
                             is_Video = '<i class="ivplay"></i>';
@@ -721,7 +721,7 @@ $(function () {
                                     getList();
                                 }
                             }
-                            info.find(".pagination-pages").append(page);
+                            // info.find(".pagination-pages").append(page);
                         }
                     }
                 }
@@ -743,7 +743,7 @@ $(function () {
                             atpage = Number($(this).text());
                             getList();
                         }
-                        info.find(".pagination-pages").append(page);
+                        // info.find(".pagination-pages").append(page);
                     }
                 }
             }

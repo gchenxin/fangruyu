@@ -62,14 +62,19 @@ if((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['H
 }
 
 //Session跨域设置
-if(!empty($cfg_cookieDomain)){
+/*if(!empty($cfg_cookieDomain)){
   ini_set('session.cookie_path', '/');
   ini_set('session.cookie_domain', '.'.$cfg_cookieDomain);
   ini_set('session.cookie_lifetime', '1800');
   @session_set_cookie_params(0, '/', $cfg_cookieDomain);
 }
 session_start();
-header("Cache-control: private");
+header("Cache-control: private");*/
+
+header("Access-Control-Allow-Origin: *");
+header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Allow-Methods: GET, POST');
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 //会员配置参数
 include_once(HUONIAOINC.'/config/member.inc.php');
@@ -551,9 +556,9 @@ $huoniaoTag->assign('installModuleTitleArr', $installModuleTitleArr);
 
 
 //保证session中的防跨站标记与提交过来的标记一致
-if($_POST['token'] != "" && $_POST['token'] != $_SESSION['token']){
+/*if($_POST['token'] != "" && $_POST['token'] != $_SESSION['token']){
 	die('Error!<br />Code:Token');
-}
+}*/
 
 
 //会员等级费用及特权

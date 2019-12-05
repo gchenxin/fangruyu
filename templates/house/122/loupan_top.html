@@ -1,7 +1,8 @@
 {#if $detail_banner#}
-{#$banner = $detail_banner#}
+{#$banner =$detail_litpic#}
 {#else#}
-{#$banner = $templets_skin|cat:'images/detail_bg.png'#}
+<!--{#$banner = $templets_skin|cat:'images/detail_bg.png'#}-->
+{#$banner = $detail_litpic#}
 {#/if#}
 <div class="mod-banner" >
     <div class="filter-bg">
@@ -98,9 +99,9 @@
 		<li{#if $loupanNav == 3#} class="curr"{#/if#}><a href="{#getUrlPath service="house" template="loupan-hx" id="{#$detail_id#}"#}#nav">户型</a></li>
 		<li{#if $loupanNav == 4#} class="curr"{#/if#}><a href="{#getUrlPath service="house" template="loupan-adviser" id="{#$detail_id#}"#}#nav">新房顾问</a></li>
 		<li{#if $loupanNav == 5#} class="curr"{#/if#}><a href="{#getUrlPath service="house" template="loupan-album" id="{#$detail_id#}"#}#nav">楼盘相册</a></li>
-		<li><a href="{#getUrlPath service="house" template="loupan-detail" id="{#$detail_id#}"#}#shapan">沙盘看房</a></li>
-		<li><a href="{#getUrlPath service="house" template="loupan-detail" id="{#$detail_id#}"#}#quanjing">全景看房</a></li>
-		<li><a href="{#getUrlPath service="house" template="loupan-detail" id="{#$detail_id#}"#}#video">视频看房</a></li>
+		<!--<li><a href="{#getUrlPath service="house" template="loupan-detail" id="{#$detail_id#}"#}#shapan">沙盘看房</a></li>-->
+		<!--<li><a href="{#getUrlPath service="house" template="loupan-detail" id="{#$detail_id#}"#}#quanjing">全景看房</a></li>-->
+		<!--<li><a href="{#getUrlPath service="house" template="loupan-detail" id="{#$detail_id#}"#}#video">视频看房</a></li>-->
 		<li{#if $loupanNav == 6#} class="curr"{#/if#}><a href="{#getUrlPath service="house" template="loupan-news" id="{#$detail_id#}"#}#nav">楼盘动态</a></li>
 	</ul>
 </div>

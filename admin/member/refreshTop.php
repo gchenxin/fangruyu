@@ -82,6 +82,8 @@ if(!empty($_POST)){
 		}
 		$cfg_house_refreshSmart = serialize($house_refreshArr);
 
+		$cfg_house_topDeposit = serialize($house_topDeposit);
+
 		$house_topNormalArr = array();
 		if($house_topNormal){
 			for ($i = 0; $i < count($house_topNormal['day']); $i++) {
@@ -249,6 +251,7 @@ if(!empty($_POST)){
 		$configFile .= "\$cfg_house_refreshNormalPrice = ".(float)$cfg_house_refreshNormalPrice.";\r\n";
 		$configFile .= "\$cfg_house_refreshSmart = '".$cfg_house_refreshSmart."';\r\n";
 		$configFile .= "\$cfg_house_topNormal = '".$cfg_house_topNormal."';\r\n";
+		$configFile .= "\$cfg_house_topDeposit = '".$cfg_house_topDeposit."';\r\n";
 		$configFile .= "\$cfg_house_topPlan = '".$cfg_house_topPlan."';\r\n";
 	}
 
@@ -326,6 +329,7 @@ if(file_exists($tpl."/".$templates)){
 		$huoniaoTag->assign('house_refreshNormalPrice', (float)$cfg_house_refreshNormalPrice);
 		$huoniaoTag->assign('house_refreshSmart', $cfg_house_refreshSmart ? unserialize($cfg_house_refreshSmart) : array());
 		$huoniaoTag->assign('house_topNormal', $cfg_house_topNormal ? unserialize($cfg_house_topNormal) : array());
+		$huoniaoTag->assign('house_topDeposit', $cfg_house_topDeposit ? unserialize($cfg_house_topDeposit) : array());
 		$huoniaoTag->assign('house_topPlan', $cfg_house_topPlan ? unserialize($cfg_house_topPlan) : array());
 	}
 

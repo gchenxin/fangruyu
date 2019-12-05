@@ -2862,7 +2862,7 @@ class siteConfig {
 		// if(empty($act)) return array("state" => 200, "info" => '参数传递错误，act！');
 
 		$uid = $userid ? $userid : $userLogin->getMemberID();
-		if($uid == -1) return array("state" => 200, "info" => self::$langData['siteConfig'][21][121]);//登录超时，请刷新页面重试！
+		if($uid == -1 || !$uid) return array("state" => 200, "info" => self::$langData['siteConfig'][21][121]);//登录超时，请刷新页面重试！
 
 		$refreshTopConfig = $this->getRefreshTopConfig();
 		if($refreshTopConfig){
@@ -3316,7 +3316,7 @@ class siteConfig {
 			if($check_zjuser){
 				$dopost = $type_ . ":" . $need_times;
 				$house = new house();
-				$house->updateZjuserMeal($zjuid, $dopost, $meal);
+				$house->updateZjuserMeal($zjuid, $dopost, $meal, $aid, $act, $type);
 
 				return self::$langData['siteConfig'][20][244];//"操作成功";
 			}

@@ -189,4 +189,22 @@ EOT;
 		}
 	}
 
+	public function updatePublishTime(){
+		$time = strtotime(date('Y-m-d')) - 24*60*60;
+		global $dsql;
+		$config = [
+			"house_loupan"=>'pubdate',
+			'house_sale'	=>	'pubdate',
+			'house_zu'	=>	'pubdate',
+			'house_sp'	=>	'pubdate',
+			'house_xzl'	=>	'pubdate',
+			'house_cf'	=>	'pubdate'
+		];
+
+		foreach ($config as $key=>$value){
+			$sql = $dsql->SetQuery("update #@__{$key} set {$value}=".time()." where {$value}<{$time}");
+			$dsql->dsqlOper($sql,'update');
+		}
+	}
+
 }

@@ -6,6 +6,7 @@
 /data/
 /logs/
 /wmsj/
+/serv/
 /include/tpl/
 /include/config/
 /include/lang/
@@ -13,5 +14,7 @@
 /include/phpqrcode/
 /include/data/
 /include/dbinfo.inc.php
+/include/common.inc.php
+/api/handlers/gitpull.class.php
 /*.json
 /favicon.ico

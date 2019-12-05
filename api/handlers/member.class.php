@@ -11413,9 +11413,10 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 			$subSql = "select {$fields} from #@__house_cf";
 			break;
 		}
-		$where = "hs.addrid in ({$addridArr})";
+		$where = "hs.addrid in ({$addridArr}) and hs.userid!={$zjInfo[0]['id']}";
 		$orderby = "pubdate desc";
-        $archives = $dsql->SetQuery("select hs.* from ({$subSql}) hs where {$where} order by {$orderby}");
+		$archives = $dsql->SetQuery("select hs.* from ({$subSql}) hs where {$where} order by {$orderby}");
+		file_put_contents('/www/wwwroot/dengyunlong_26dj_dev/sql.log',$archives);
         //总条数
         $totalCount = $dsql->dsqlOper($archives, "totalCount");
 
@@ -11603,4 +11604,5 @@ EOT;
 		$result = $dsql->dsqlOper($insertSql, 'update');
 		return $keys;
 	}
+
 }
