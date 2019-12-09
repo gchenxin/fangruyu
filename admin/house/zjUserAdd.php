@@ -122,7 +122,7 @@ if($dopost == "save" && $submit == "提交"){
 		'begin'=> $nowTime,
 		'expired' => $userInfo['expired'],
 		'house' => 80,
-		'refresh' => 80,
+		'refresh' => 200,
 		'settop' => 0
 	];
 	//保存到表
