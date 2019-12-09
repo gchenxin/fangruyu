@@ -121,8 +121,8 @@ if($dopost == "save" && $submit == "提交"){
 		'item' => $nowTime * 1000,
 		'begin'=> $nowTime,
 		'expired' => $userInfo['expired'],
-		'house' => $priv['house'],
-		'refresh' => 40,
+		'house' => 80,
+		'refresh' => 80,
 		'settop' => 0
 	];
 	//保存到表
