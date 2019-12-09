@@ -2680,7 +2680,7 @@ class siteConfig {
 	 * @return array
 	 */
 	public function getRefreshTopConfig(){
-
+		global $userLogin;
 		global $installModuleArr;
 
 		$configFile = HUONIAOINC.'/config/refreshTop.inc.php';
@@ -2706,13 +2706,17 @@ class siteConfig {
 
 			//房产
 			if(in_array('house', $installModuleArr)){
+				$userInfo = $userLogin->getMemberInfo();
+				$money = $userInfo['money'];
 				$arr['house'] = array(
 					'refreshFreeTimes' => (int)$cfg_house_refreshFreeTimes,
 					'refreshNormalPrice' => (float)$cfg_house_refreshNormalPrice,
 					'refreshSmart' => $this->computeRefreshSmart((float)$cfg_house_refreshNormalPrice, $cfg_house_refreshSmart ? unserialize($cfg_house_refreshSmart) : array()),
 					'topNormal' => $this->computeTopNormal($cfg_house_topNormal ? unserialize($cfg_house_topNormal) : array()),
-					'topPlan' => $cfg_house_topPlan ? unserialize($cfg_house_topPlan) : array()
+					'topPlan' => $cfg_house_topPlan ? unserialize($cfg_house_topPlan) : array(),
+					'topDeposit' => $cfg_house_topPlan ? unserialize($cfg_house_topDeposit) : array()
 				);
+				$arr['house']['topDeposit']['availableCoins'] = $money / $arr['house']['topDeposit']['price'];
 			}
 
 			//招聘
@@ -2898,8 +2902,9 @@ class siteConfig {
 					if($ret){
 
 						$meal = $ret[0]['meal'] ? unserialize($ret[0]['meal']) : array();
-	                    $house = new house();
-	                    $check = $house->checkZjuserMeal($meal);
+						$house = new house();
+						//置顶计算的是金币不需要计算次数，刷新需要计算已经刷新的次数
+	                    $check = $house->checkZjuserMeal($meal, 'refresh');
 
 	                	if($check['state'] != 101){
 	                    	$ischeck_zjuserMeal = true;
@@ -3148,6 +3153,7 @@ class siteConfig {
 			$refreshSmart = $rtConfig['refreshSmart'];  //智能刷新配置
 			$topNormal = $rtConfig['topNormal'];  //普通置顶配置
 			$topPlan = $rtConfig['topPlan'];  //计划置顶配置
+			$topExchange = $rtConfig['topDeposit'];
 
 			$titleBlodlDay   = $rtConfig['titleBlodlDay'];  //标题加粗时长
 			$titleBlodlPrice = $rtConfig['titleBlodlPrice'];  //标题加粗价格
@@ -3234,17 +3240,17 @@ class siteConfig {
         }
 		// 使用余额
 		if($useBalance){
-
-			if($amount <= $userinfo['money']){
+			//金币转换为金额
+			if(($amount * $topExchange['price']) <= $userinfo['money']){
 				$payAmount = 0;
 			}else{
-				$payAmount = $amount - $userinfo['money'];
+				$payAmount = ($amount * $topExchange['price']) - $userinfo['money'];
 			}
 
-			$balance = $amount - $payAmount;
+			$balance = ($amount * $topExchange['price']) - $payAmount;
 
 		}else{
-			$payAmount = $amount;
+			$payAmount = ($amount * $topExchange['price']);
 		}
 
 		$param = array(
@@ -3275,10 +3281,13 @@ class siteConfig {
 				$type_ = "settop";
 				$tit_ = self::$langData['siteConfig'][34][4];//置顶天数
 			}
-			if($has_times < $need_times){
+			/*if($has_times < $need_times){
 				return array("state" => 200, "info" => self::$langData['siteConfig'][20][603].$tit_.self::$langData['siteConfig'][34][2]);//"剩余".$tit_."不足"
+			}*/
+			
+			if($has_times < $amount && (($amount - $has_times) * $topExchange['price']) > $userinfo['money']){
+				return array("state"=>200, "info"=>"可用余额不足！");
 			}
-
 
 		}
 
@@ -3314,9 +3323,13 @@ class siteConfig {
 
 			// 更新套餐余量
 			if($check_zjuser){
-				$dopost = $type_ . ":" . $need_times;
+				if(strstr($type, "topping")){
+					$dopost = $type_ . ":" . $amount;
+				}else{
+					$dopost = $type_ . ":" . $need_times;
+				}
 				$house = new house();
-				$house->updateZjuserMeal($zjuid, $dopost, $meal, $aid, $act, $type);
+				$house->updateZjuserMeal($zjuid, $dopost, $meal, $aid, $act, $type, $topExchange['price']);
 
 				return self::$langData['siteConfig'][20][244];//"操作成功";
 			}

@@ -5261,6 +5261,7 @@ class house {
 		*/
 	public function saleDistrict(){
 		global $dsql;
+		$houseType = $this->param["houseType"] ?: 'sale';
 		$price    = $this->param['price'];
 		$area     = $this->param['area'];
 		$keywords = $this->param['keywords'];
@@ -5286,6 +5287,11 @@ class house {
 		$bc = 0;
 
 		$where = " AND (s.`usertype` = 0 OR (s.`usertype` = 1 AND s.`userid` = z.`id` AND z.`state` = 1))";
+		
+		$columnName = "community";
+		if(!in_array($houseType, ['sale','zu'])){
+			$columnName = "loupan";
+		}
 
 		//价格区间
 		if($price != ""){
@@ -5300,7 +5306,7 @@ class house {
 		}
 
 		//房型
-		if($room != ""){
+		if($room != "" && !in_array($houseType, ['xzl','sp'])){
 			if($room == 0){
 				$where .= " AND s.`room` > 5";
 			}else{
@@ -5322,10 +5328,11 @@ class house {
 
 		//关键字
 		if(!empty($keywords)){
-			$where .= " AND (s.`title` like '%".$keywords."%' OR s.`community` like '%".$keywords."%'";
+			
+			$where .= " AND (s.`title` like '%".$keywords."%' OR s.`{$columnName}` like '%".$keywords."%'";
 
 			//查询小区信息
-			$archives = $dsql->SetQuery("SELECT `id` FROM `#@__house_community` WHERE `state` = 1 AND (`title` like '%".$keywords."%' OR `addr` like '%".$keywords."%')");
+			$archives = $dsql->SetQuery("SELECT `id` FROM `#@__house_{$columnName}` WHERE `state` = 1 AND (`title` like '%".$keywords."%' OR `addr` like '%".$keywords."%')");
 			$results = $dsql->dsqlOper($archives, "results");
 			if($results){
 				$ids = array();
@@ -5334,15 +5341,14 @@ class house {
 				}
 				if(!empty($ids)){
 					$ids = join(",", $ids);
-					$where .= " OR s.`communityid` in ($ids)";
+					$where .= " OR s.`{$columnName}id` in ($ids)";
 				}
 			}
-
 			$where .= ")";
 		}
 
 		//建筑年代
-		if($buildage != ""){
+		if($buildage != "" && !in_array($houseType, ['xzl','sp'])){
 			$buildage = explode(",", $buildage);
 			if(empty($buildage[0])){
 				$where .= " AND s.`buildage` < " . $buildage[1];
@@ -5371,7 +5377,7 @@ class house {
 		}
 
 		//朝向
-		if(!empty($direction)){
+		if(!empty($direction) && in_array($houseType, ['sale','zu'])){
 			$where .= " AND s.`direction` = $direction";
 		}
 
@@ -5381,7 +5387,7 @@ class house {
 		}
 
 		//属性
-		if($flags != ""){
+		if($flags != "" && in_array($houseType, ['sale','zu'])){
 			$flag = array();
 			$flagArr = explode(",", $flags);
 			foreach ($flagArr as $key => $value) {
@@ -5393,21 +5399,22 @@ class house {
 
 		//只统计区域内的小区数据
 		if($community == 1){
-
-			$sql = $dsql->SetQuery("SELECT `id`, `title`, `longitude`, `latitude` FROM `#@__house_community` WHERE `state` = 1 AND `longitude` <= '".$max_longitude."' AND `longitude` >= '".$min_longitude."' AND `latitude` <= '".$max_latitude."' AND `latitude` >= '".$min_latitude."'");
+			$sql = $dsql->SetQuery("SELECT `id`, `title`, `longitude`, `latitude` FROM `#@__house_{$columnName}` WHERE `state` = 1 AND `longitude` <= '".$max_longitude."' AND `longitude` >= '".$min_longitude."' AND `latitude` <= '".$max_latitude."' AND `latitude` >= '".$min_latitude."'");
 			$ret = $dsql->dsqlOper($sql, "results");
 			if($ret){
-
+			
 				foreach ($ret as $key => $value) {
-					$nwhere = $where . " AND s.`communityid` = ".$value['id'];
-
+					$nwhere = $where . " AND s.`{$columnName}id` = ".$value['id'];
+					
+					$unitpriceString = "";
+					if(in_Array($houseType, ['sale','zu']))	$unitpriceString = ", AVG(s.`unitprice`) unitprice";
 					$count = $price = $unitprice = 0;
-					$saleSql = $dsql->SetQuery("SELECT COUNT(s.`id`) count, AVG(s.`price`) price, AVG(s.`unitprice`) unitprice FROM `#@__house_sale` s LEFT JOIN `#@__house_zjuser` z ON z.`id` = s.`userid` WHERE s.`state` = 1".$nwhere);
+					$saleSql = $dsql->SetQuery("SELECT COUNT(s.`id`) count, AVG(s.`price`) price{$unitpriceString} FROM `#@__house_sale` s LEFT JOIN `#@__house_zjuser` z ON z.`id` = s.`userid` WHERE s.`state` = 1".$nwhere);
 					$saleRet = $dsql->dsqlOper($saleSql, "results");
 					if($saleRet){
 						$count = $saleRet[0]['count'];
 						$price = sprintf("%.2f", $saleRet[0]['price']);
-						$unitprice = sprintf("%.2f", $saleRet[0]['unitprice']);
+						$unitprice = sprintf("%.2f", $saleRet[0]['unitprice'] ?: 0);
 					}
 
 					if($count > 0){
@@ -5422,13 +5429,13 @@ class house {
 						if(isMobile()){
 							$param = array(
 								"service"  => "house",
-								"template" => "sale",
-								"param"    => "community=" . $value['id']
+								"template" => $houseType,
+								"param"    => $columnName . "=" . $value['id']
 							);
 						}else{
 							$param = array(
 								"service"  => "house",
-								"template" => "community-sale",
+								"template" => $columnName . '-' . $houseType,
 								"id"       => $value['id']
 							);
 						}
@@ -5442,7 +5449,9 @@ class house {
 
 		//区域数据
 		}else{
-
+			
+			$unitpriceString = "";
+			if(in_Array($houseType, ['sale','zu']))	$unitpriceString = ", AVG(s.`unitprice`) unitprice";
 			//所有一级区域
 			$sql = $dsql->SetQuery("SELECT `id`, `typename`, `longitude`, `latitude` FROM `#@__site_area` WHERE `parentid` = $cityid ORDER BY `weight`");
 			$ret = $dsql->dsqlOper($sql, "results");
@@ -5461,7 +5470,7 @@ class house {
 
 							//查询小区信息
 							$cid = array();
-							$archives = $dsql->SetQuery("SELECT `id` FROM `#@__house_community` WHERE `state` = 1 AND `addrid` = ".$v['id']);
+							$archives = $dsql->SetQuery("SELECT `id` FROM `#@__house_{$columnName}` WHERE `state` = 1 AND `addrid` = ".$v['id']);
 							$results = $dsql->dsqlOper($archives, "results");
 							if($results){
 								foreach($results as $loupan){
@@ -5470,7 +5479,7 @@ class house {
 								//有结果
 								if(!empty($cid)){
 									$cid = join(",", $cid);
-									$nwhere .= " AND s.`communityid` in ($cid)";
+									$nwhere .= " AND s.`{$columnName}id` in ($cid)";
 								//无结果
 								}else{
 									$nwhere .= " AND 1 = 2";
@@ -5479,15 +5488,15 @@ class house {
 							}else{
 								$nwhere .= " AND 1 = 2";
 							}
-
+								
 							$count = $price = $unitprice = 0;
 							if($cid){
-								$saleSql = $dsql->SetQuery("SELECT COUNT(s.`id`) count, AVG(s.`price`) price, AVG(s.`unitprice`) unitprice FROM `#@__house_sale` s LEFT JOIN `#@__house_zjuser` z ON z.`id` = s.`userid` WHERE s.`state` = 1".$nwhere);
+								$saleSql = $dsql->SetQuery("SELECT COUNT(s.`id`) count, AVG(s.`price`) price{$unitpriceString} FROM `#@__house_{$houseType}` s LEFT JOIN `#@__house_zjuser` z ON z.`id` = s.`userid` WHERE s.`state` = 1".$nwhere);
 								$saleRet = $dsql->dsqlOper($saleSql, "results");
 								if($saleRet){
 									$count = $saleRet[0]['count'];
 									$price = sprintf("%.2f", $saleRet[0]['price']);
-									$unitprice = sprintf("%.2f", $saleRet[0]['unitprice']);
+									$unitprice = sprintf("%.2f", $saleRet[0]['unitprice'] ?: 0);
 								}
 							}
 
@@ -5519,7 +5528,7 @@ class house {
 
 						//查询小区信息
 						$cid = array();
-						$archives = $dsql->SetQuery("SELECT `id` FROM `#@__house_community` WHERE `state` = 1 AND `addrid` in (".join(",", $ids).")");
+						$archives = $dsql->SetQuery("SELECT `id` FROM `#@__house_{$columnName}` WHERE `state` = 1 AND `addrid` in (".join(",", $ids).")");
 						$results = $dsql->dsqlOper($archives, "results");
 						if($results){
 							foreach($results as $loupan){
@@ -5528,7 +5537,7 @@ class house {
 							//有结果
 							if(!empty($cid)){
 								$cid = join(",", $cid);
-								$nwhere .= " AND s.`communityid` in ($cid)";
+								$nwhere .= " AND s.`{$columnName}id` in ($cid)";
 							//无结果
 							}else{
 								$nwhere .= " AND 1 = 2";
@@ -5541,12 +5550,12 @@ class house {
 						$count = $price = $unitprice = 0;
 
 						if($cid){
-							$saleSql = $dsql->SetQuery("SELECT COUNT(s.`id`) count, AVG(s.`price`) price, AVG(s.`unitprice`) unitprice FROM `#@__house_sale` s LEFT JOIN `#@__house_zjuser` z ON z.`id` = s.`userid` WHERE s.`state` = 1".$nwhere);
+							$saleSql = $dsql->SetQuery("SELECT COUNT(s.`id`) count, AVG(s.`price`) price{$unitpriceString} FROM `#@__house_{$houseType}` s LEFT JOIN `#@__house_zjuser` z ON z.`id` = s.`userid` WHERE s.`state` = 1".$nwhere);
 							$saleRet = $dsql->dsqlOper($saleSql, "results");
 							if($saleRet){
 								$count = $saleRet[0]['count'];
 								$price = sprintf("%.2f", $saleRet[0]['price']);
-								$unitprice = sprintf("%.2f", $saleRet[0]['unitprice']);
+								$unitprice = sprintf("%.2f", $saleRet[0]['unitprice'] ?: 0);
 							}
 						}
 
@@ -10030,7 +10039,7 @@ class house {
 				$alreadyFabu = $saleCount + $zuCount + $xzlCount + $spCount + $cfCount + $cwCount;
 				if($alreadyFabu >= $houseCount){
 					$toMax = true;
-					return array("state" => 200, "info" => '当天发布信息数量已达等级上限！');
+					return array("state" => 200, "info" => '当前发布信息数量已达等级上限！');
 				}else{
 					 $arcrank = 1;
 				}
@@ -15339,8 +15348,9 @@ class house {
 	/**
 	 * 更新经纪人套餐余量
 	 */
-	public function updateZjuserMeal($zjuid, $dopost = "house:1", $zjuserConfig = array(), $sourceId = '', $refreshSourceType = '', $type = ''){
+	public function updateZjuserMeal($zjuid, $dopost = "house:1", $zjuserConfig = array(), $sourceId = '', $refreshSourceType = '', $type = '', $rate = 0.01){
 		global $dsql;
+		global $userLogin;
 		if(empty($zjuid) || empty($zjuserConfig)) return false;
 
 		$dopost = explode(":", $dopost);
@@ -15348,32 +15358,40 @@ class house {
 		$len = isset($dopost[1]) ? (int)$dopost[1] : 1;
 
 		$num = $zjuserConfig[$type];
-		if($num == 0) return false;
 
 		$differ = $num - $len;
-		$type = 0;
-		if($type == 'toppingPlan'){
-			$type = 2;
+		$typeValue = 0;
+		if(strstr($type, 'settop')){
+			$typeValue = 2;
 		}elseif(strstr($type, 'efresh')){	//包含大小写
-			$type = 1;
+			$typeValue = 1;
 		}
 		switch($refreshSourceType){
-		case "sale":$type |= 4;break;
-		case "zu" : $type |= 8;break;
-		case "sp" : $type |= 16;break;
-		case "xzl": $type |= 32;break;
-		case "cf" : $type |= 64;break;
-		default: $type |= 128;break;
+		case "sale":$typeValue |= 4;break;
+		case "zu" : $typeValue |= 8;break;
+		case "sp" : $typeValue |= 16;break;
+		case "xzl": $typeValue |= 32;break;
+		case "cf" : $typeValue |= 64;break;
+		default: $typeValue |= 128;break;
 		}
 		//此处改为按天计算刷新
-		$sql = $dsql->SetQuery("insert into #@__house_refreshTopRecord(zjid,aid,type,date) values({$zjuid},{$sourceId},{$type},'" . date('Y-m-d H:i:s') . "')");
+		$sql = $dsql->SetQuery("insert into #@__house_refreshTopRecord(zjid,aid,type,date) values({$zjuid},{$sourceId},{$typeValue},'" . date('Y-m-d H:i:s') . "')");
 		$dsql->dsqlOper($sql, 'update');
-		//$zjuserConfig[$type] = $differ >= 0 ? $differ : 0;
+		if(strstr($type, "settop")){	
+			$uid = $userLogin->getMemberID();
+			$userInfo = $userLogin->getMemberInfo($uid);
+			if($differ < 0){
+				$money = $userInfo['money'] + ($differ * $rate);
+				$updateSql = $dsql->SetQuery("update #@__member set money={$money} where id={$uid}");
+				$dsql->dsqlOper($updateSql,"update");
+			}
+			$zjuserConfig[$type] = $differ >= 0 ? $differ : 0;
+			
+			$config = serialize($zjuserConfig);
 
-		//$config = serialize($zjuserConfig);
-
-		//$sql = $dsql->SetQuery("UPDATE `#@__house_zjuser` SET `meal` = '$config' WHERE `id` = $zjuid");
-		//$dsql->dsqlOper($sql, "update");
+			$sql = $dsql->SetQuery("UPDATE `#@__house_zjuser` SET `meal` = '$config' WHERE `id` = $zjuid");
+			$dsql->dsqlOper($sql, "update");
+		}
 	}
 
 	/**
