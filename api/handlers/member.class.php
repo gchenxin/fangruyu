@@ -11515,16 +11515,20 @@ union All
 -- scan
 select B.title,sum(B.clickTimes) totalTimes,B.tags from (
 select 'scanTime' title,clickTimes,(case when s.type<=6 then 6 else type end) tags from huoniao_wechat_clickrecord cr inner join huoniao_wechat_share s on cr.sid=s.id 
-where s.userid={$uid} and cr.date>='{$date}'
+where s.userid={$uid} -- and cr.date>='{$date}'
 ) B GROUP BY B.tags
 union All
 -- customer
-select C.title,count(C.openid) totalTimes,C.tags from (
+/*select C.title,count(C.openid) totalTimes,C.tags from (
 select 'visitorNumber' title,openid,(case when s.type<=6 then 6 else type end) tags from huoniao_wechat_clickrecord cr inner join huoniao_wechat_share s on cr.sid=s.id 
 where s.userid={$uid} and cr.date>='{$date}'
-) C GROUP BY C.tags
+) C GROUP BY C.tags*/
+select T.title,count(T.openid) totalTimes,T.tags from (
+select 'visitorNumber' title,openid,(case when s.type<=6 then 6 else type end) tags from huoniao_wechat_clickrecord cr inner join huoniao_wechat_share s on cr.sid=s.id 
+where s.userid={$uid} GROUP BY tags,openid
+) T GROUP BY T.tags
 union All
--- 今日新增访客数
+/*-- 今日新增访客数
 select 'visitorsInDay',count(openid) customNum,0 from huoniao_wechat_clickrecord cr inner join huoniao_wechat_share s on cr.sid=s.id 
 where s.userid={$uid} and cr.date>='{$date}'
 union ALL
@@ -11534,7 +11538,24 @@ where s.userid={$uid} and cr.date>='{$recentThreeDays}'
 union All
 -- 最近七天访客数
 select 'visitorsInWeek',count(openid) customNum,0 from huoniao_wechat_clickrecord cr inner join huoniao_wechat_share s on cr.sid=s.id 
-where s.userid={$uid} and cr.date>='{$recentAWeek}'
+where s.userid={$uid} and cr.date>='{$recentAWeek}'*/
+-- 今日新增访客数
+select D.title,count(D.openid) customNum,0 from (
+	select 'visitorsInDay' title,openid,0 from huoniao_wechat_clickrecord cr inner join huoniao_wechat_share s on cr.sid=s.id 
+	where s.userid={$uid} and cr.date>='{$date}' GROUP BY openid
+) D
+union ALL
+-- 最近三天访客数
+select E.title,count(E.openid) customNum,0 from (
+	select 'visitorsInThreeDays' title,openid,0 from huoniao_wechat_clickrecord cr inner join huoniao_wechat_share s on cr.sid=s.id 
+	where s.userid={$uid} and cr.date>='{$recentThreeDays}' GROUP BY openid
+) E
+union All
+-- 最近七天访客数
+select F.title,count(F.openid) customNum,0 from (
+	select 'visitorsInWeek' title,openid,0 from huoniao_wechat_clickrecord cr inner join huoniao_wechat_share s on cr.sid=s.id 
+	where s.userid={$uid} and cr.date>='{$recentAWeek}' GROUP BY openid
+) F
 EOT;
 		$sql = $dsql->SetQuery($sql);
 		$result = $dsql->dsqlOper($sql,'results');
@@ -11610,5 +11631,25 @@ EOT;
 		$result = $dsql->dsqlOper($insertSql, 'update');
 		return $keys;
 	}
-
+	
+	public function tt(){
+		global $dsql;
+		$sql = $dsql->SetQuery("select id, meal from #@__house_zjuser where meal!=''");
+		$result = $dsql->dsqlOper($sql, "results");
+		foreach($result as $key=>$value){
+			$mealInfo = unserialize($value['meal']);
+			if($mealInfo){
+				if($mealInfo['name'] == "默认套餐"){
+					$mealInfo['house'] = 60;
+					$mealInfo['refresh'] = 200;
+				}else{
+					continue;
+				}
+				$mealInfo = serialize($mealInfo);
+				$updateSql = $dsql->SetQuery("update #@__house_zjuser set meal='{$mealInfo}' where id={$value['id']}");
+				$meals = $dsql->dsqlOper($updateSql, "update");
+				null;
+			}
+		}
+	}
 }
