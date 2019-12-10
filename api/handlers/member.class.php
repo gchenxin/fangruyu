@@ -11575,6 +11575,8 @@ EOT;
 		if(!$uid || $uid == -1){
 			return ['state'=>200,'info'=>'login timeout!'];
 		}
+		$page= empty($this->param['page']) ? 1 : $this->param['page'];
+		$pageSize = empty($this->param['pageSize']) ? 10 : $this->param['pageSize'];;
 		$shareSql = $dsql->SetQuery("select id,type,aid from #@__wechat_share where userid={$uid}");
 		$shareRecord = $dsql->dsqlOper($shareSql, 'results');
 		$houseSql = '';
@@ -11615,9 +11617,21 @@ inner join (
 where cl.date>='{$dateLimit}' and s.userid={$uid}
 group by cl.date desc
 EOT;
-		$info = $dsql->SetQuery($visitSql);
-		$info = $dsql->dsqlOper($info,'results');
-		return $info;
+		$totalCount = $dsql->dsqlOper($visitSql, "totalCount");
+		$totalPage = ceil($totalCount/$pageSize);
+
+        if($totalCount == 0) return array("state" => 200, "info" => $langData['siteConfig'][21][64]);   //暂无数据！
+
+        $pageinfo = array(
+            "page" => $page,
+            "pageSize" => $pageSize,
+            "totalPage" => $totalPage,
+            "totalCount" => $totalCount,
+        );
+
+        $atpage = $pageSize*($page-1);
+        $results = $dsql->dsqlOper($visitSql." ORDER BY `date` DESC LIMIT $atpage, $pageSize", "results");
+		return ["pageInfo"=>$pageinfo,"list"=>$results];
 	}
 	
 	public function test(){
