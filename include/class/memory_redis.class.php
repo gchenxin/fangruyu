@@ -88,7 +88,9 @@ class memory_redis {
     }
 
     function rm($key) {
-        return $this->obj->delete($key);
+		//redis 5+版本将delete改为del
+        //return $this->obj->delete($key);
+		return $this->obj->del($key);
     }
 
     function setMulti($arr, $ttl = 0) {

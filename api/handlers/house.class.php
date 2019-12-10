@@ -5007,10 +5007,13 @@ class house {
 
 		$atpage = $pageSize*($page-1);
 		$where = $pageSize != -1 ? " LIMIT $atpage, $pageSize" : "";
+		$where1 .= " and (s.isbid=0 or s.bid_end<UNIX_TIMESTAMP())";
 
+		//查询置顶数据
+		$topArr = $this->getTopHouse($archives);
 		// $results = $dsql->dsqlOper($archives.$where1.$orderby.$where, "results");
         $results = getCache("house_sale_list", $archives.$where1.$orderby.$where, 300, array("disabled" => $u));
-
+		$results = array_merge($topArr, $results);
 		if($results){
 			$now = $time;
 			foreach($results as $key => $val){
@@ -5253,6 +5256,59 @@ class house {
 		return array("pageInfo" => $pageinfo, "list" => $list);
 	}
 
+
+	/**
+		* @brief 获取当前置顶的房源信息
+		*
+		* @param $houseSql
+		*
+		* @return 
+	 */
+	public function getTopHouse($houseSql){
+		global $dsql;
+		global $HN_memory;
+		$topSize = 20;
+		$topArr = [];
+		$lastUpdateTime = $HN_memory->get("lastTopTime");
+		$hasTopArr = json_decode($HN_memory->get("hasTop"), true);
+		if($hasTopArr)
+			asort($hasTopArr);
+		if((time() - $lastUpdateTime) / 60 >= 5){
+			$sql = $dsql->SetQuery($houseSql." AND isbid=1 and (bid_type='normal' or (bid_type='plan' and bid_start<now())) ORDER BY case when bid_type='normal' then 1 else 2 end");
+			$result = $dsql->dsqlOper($sql, "results");
+
+			if($result && empty($result['state'])){
+				if(count($result) <= $topSize){
+					return $result;
+				}else{
+					foreach($result as $key => $value){
+						if(count($topArr) >= $topSize)
+							break;
+						if(!isset($hasTopArr[$value['id']])){
+							$topArr[] = $result[$key];
+							$hasTopArr[$value['id']] = time();
+						}
+					}
+					$HN_memory->set("lastTopTime", time());
+					if(count($topArr) >= $topSize){
+						$HN_memory->set("hasTop", json_encode($hasTopArr), 24*60*60);
+						return $topArr;
+					}	
+				}
+			}else{
+				return [];
+			}
+		}
+		$length = $topSize - count($topArr);
+		$idArr = array_slice(array_keys($hasTopArr),0,$length);
+		$ids = join(',',$idArr);
+		$sql = $dsql->SetQuery("select T.* from ({$houseSql}) T where T.id in ({$ids})");
+		$topInfo = $dsql->dsqlOper($sql, "results");
+		if($topInfo && empty($topInfo['state']))
+			$topArr = array_merge($topArr,$topInfo);
+		return $topArr;
+	}
+	
 
 	/**
 		* 区域二手房统计
@@ -6286,9 +6342,13 @@ class house {
 
 		$atpage = $pageSize*($page-1);
 		$where = " LIMIT $atpage, $pageSize";
-
+		
+		//查询置顶数据
+		$topArr = $this->getTopHouse($archives);
+		$where1 .= " and (s.isbid=0 or s.bid_end<UNIX_TIMESTAMP())";
 		// $results = $dsql->dsqlOper($archives.$where1.$orderby.$where, "results");
         $results = getCache("house_zu_list", $archives.$where1.$orderby.$where, 300, array("disabled" => $u));
+		$results = array_merge($topArr, $results);
 		if($results){
 			$now = $time;
 			foreach($results as $key => $val){
@@ -7463,9 +7523,13 @@ class house {
 
 		$atpage = $pageSize*($page-1);
 		$where = " LIMIT $atpage, $pageSize";
-
+		
+		//查询置顶数据
+		$where1 .= " and (s.isbid=0 or s.bid_end<UNIX_TIMESTAMP())";
+		$topArr = $this->getTopHouse($archives);
 		// $results = $dsql->dsqlOper($archives.$where1.$orderby.$where, "results");
-        $results = getCache("house_xzl_list", $archives.$where1.$orderby.$where, 300, array("disabled" => $u));
+		$results = getCache("house_xzl_list", $archives.$where1.$orderby.$where, 300, array("disabled" => $u));
+		$results = array_merge($topArr, $results);
 		if($results){
 			$now = $time;
 			foreach($results as $key => $val){
@@ -8244,9 +8308,13 @@ class house {
 
 		$atpage = $pageSize*($page-1);
 		$where = " LIMIT $atpage, $pageSize";
-
+		
+		//查询置顶数据
+		$where1 .= " and (s.isbid=0 or s.bid_end<UNIX_TIMESTAMP())";
+		$topArr = $this->getTopHouse($archives);
 		// $results = $dsql->dsqlOper($archives.$where1.$orderby.$where, "results");
         $results = getCache("house_sp_list", $archives.$where1.$orderby.$where, 300, array("disabled" => $u));
+		$results = array_merge($topArr, $results);
 		if($results){
 			$now = $time;
 			foreach($results as $key => $val){
@@ -9015,9 +9083,13 @@ class house {
 
 		$atpage = $pageSize*($page-1);
 		$where = " LIMIT $atpage, $pageSize";
-
+		
+		//查询置顶数据
+		$where1 .= " and (s.isbid=0 or s.bid_end<UNIX_TIMESTAMP())";
+		$topArr = $this->getTopHouse($archives);
 		// $results = $dsql->dsqlOper($archives.$where1.$orderby.$where, "results");
         $results = getCache("house_cf_list", $archives.$where1.$orderby.$where, 300, array("disabled" => $u));
+		$results = array_merge($topArr, $results);
 		if($results){
 			$now = $time;
 			foreach($results as $key => $val){
