@@ -2897,7 +2897,7 @@ class siteConfig {
 					);
 
 					//查询当前会员是否为中介
-					$sql = $dsql->SetQuery("SELECT `id`, `meal` FROM `#@__house_zjuser` WHERE `userid` = $uid");
+					$sql = $dsql->SetQuery("SELECT `id`, `meal` FROM `#@__house_zjuser` WHERE state=1 and `userid` = $uid");
 					$ret = $dsql->dsqlOper($sql, "results");
 					if($ret){
 
