@@ -11343,8 +11343,8 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 		if(!$isPhoneHasBound || isset($isPhoneHasBound['state'])){
 			$visualPhone = getVisualPhone($zjPhone,'',0);
 			if($visualPhone){
-				//$handler = new handlers('hwVisualPhoneAX','bind');
-				//$result = $handler->getHandle(array('relationPhone'=>$visualPhone,'callee'=>$zjPhone));
+				$handler = new handlers('hwVisualPhoneAX','bind');
+				$result = $handler->getHandle(array('relationPhone'=>$visualPhone,'callee'=>$zjPhone));
 				$result = 1;
 				if($result)	return ['phone'=>$visualPhone];
 			}
