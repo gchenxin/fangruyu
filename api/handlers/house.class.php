@@ -954,13 +954,13 @@ class house {
 		$archives = $dsql->SetQuery("SELECT " .
 									"l.`id`, l.`title`, l.`addrid`, l.`addr`, l.`longitude`, l.`latitude`, l.`litpic`, l.`deliverdate`, l.`opendate`, l.`price`, l.`ptype`, l.`salestate`, l.`hot`, l.`rec`, l.`tuan`, l.`tuanbegan`, l.`tuanend`, l.`protype`, l.`buildtype`, l.`zhuangxiu`, l.`tel`, l.`existing`, l.`investor`, l.`buildarea`, ".$select."s.`id` shapanid, video.`id` video, qj.`id` qj " .
 									"FROM `#@__house_loupan` l LEFT JOIN `#@__house_shapan` s ON s.`loupan` = l.`id` LEFT JOIN `#@__house_loupanvideo` video ON video.`loupan` = l.`id` LEFT JOIN `#@__house_360qj` qj ON qj.`loupan` = l.`id` " .
-									"WHERE " .
+									"WHERE l.quoteType=1 and " .
 									"l.`state` = 1".$where .$groupby . $orderby);
 
 		//总条数
 		// $totalCount = $dsql->dsqlOper($archives, "totalCount");
         $arc = $dsql->SetQuery("SELECT l.`id` FROM `#@__house_loupan` l LEFT JOIN `#@__house_shapan` s ON s.`loupan` = l.`id` LEFT JOIN `#@__house_loupanvideo` video ON video.`loupan` = l.`id` LEFT JOIN `#@__house_360qj` qj ON qj.`loupan` = l.`id` " .
-            "WHERE " .
+            "WHERE l.quoteType=1 and " .
             "l.`state` = 1".$where .$groupby);
         $totalCount = getCache("house_loupan_total", $arc, 0, array("savekey" => 1, "type" => "totalCount"));
 		//总分页数
