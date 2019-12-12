@@ -11634,17 +11634,6 @@ EOT;
 		return ["pageInfo"=>$pageinfo,"list"=>$results];
 	}
 	
-	public function test(){
-		global $dsql;
-		$sql = $dsql->SetQuery("select * from #@__house_zu where id=38");
-		$result = $dsql->dsqlOper($sql, 'results');
-		unset($result[0]['id']);
-		$values = "'" . implode("','", $result[0]) . "'";
-		$keys = implode(',', array_keys($result[0]));
-		$insertSql = $dsql->SetQuery("insert into #@__house_zu($keys) values({$values})");
-		$result = $dsql->dsqlOper($insertSql, 'update');
-		return $keys;
-	}
 	
 	public function tt(){
 		global $dsql;

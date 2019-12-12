@@ -11,6 +11,13 @@
 global $installModuleArr;
 $smartRefresh_time = time();
 $smartRefresh_tab = array();
+$refreshLog = [
+	'house_sale' => 4,
+	'house_zu' => 8,
+	'house_sp' => 16,
+	'house_xzl' => 32,
+	'house_cf' => 64
+];
 
 if(in_array('info', $installModuleArr)){
   array_push($smartRefresh_tab, 'infolist');
@@ -18,9 +25,9 @@ if(in_array('info', $installModuleArr)){
 
 if(in_array('house', $installModuleArr)){
   array_push($smartRefresh_tab, 'house_sale');
-  array_push($smartRefresh_tab, 'house_zu');
-  array_push($smartRefresh_tab, 'house_xzl');
+  array_push($smartRefresh_tab, 'house_zu'); 
   array_push($smartRefresh_tab, 'house_sp');
+  array_push($smartRefresh_tab, 'house_xzl');
   array_push($smartRefresh_tab, 'house_cf');
 }
 
@@ -38,7 +45,7 @@ if(in_array('education', $installModuleArr)){
 
 if($smartRefresh_tab){
   foreach ($smartRefresh_tab as $key => $value) {
-    $sql = $dsql->SetQuery("SELECT `id`, `refreshCount`, `refreshTimes`, `refreshNext`, `refreshSurplus` FROM `#@__".$value."` WHERE `refreshSmart` = 1 AND `refreshNext` <= '$smartRefresh_time' AND `refreshSurplus` > 0");
+    $sql = $dsql->SetQuery("SELECT `id`, `refreshCount`, `refreshTimes`, `refreshNext`, `refreshSurplus`,userid,usertype FROM `#@__".$value."` WHERE `refreshSmart` = 1 AND `refreshNext` <= '$smartRefresh_time' AND `refreshSurplus` > 0");
     $ret = $dsql->dsqlOper($sql, "results");
     if(is_array($ret)){
       foreach ($ret as $k => $v) {
@@ -60,6 +67,13 @@ if($smartRefresh_tab){
 
         $sql = $dsql->SetQuery("UPDATE `#@__".$value."` SET `refreshNext` = '$nextRefreshTime', `refreshSurplus` = '$refreshSurplus', `pubdate` = '$smartRefresh_time'".$where." WHERE `id` = $id");
         $ret = $dsql->dsqlOper($sql, "update");
+
+		if(!$v['usertype']) continue;
+
+		$type = 1 | $refreshLog[$value];
+		//记录一次刷新记录
+		$insertSql = $dsql->SetQuery("insert into #@__house_refreshTopRecord(zjid,aid,type,date,consume) values({$v['userid']},{$id},{$type},'" . date('Y-m-d H:i:s') . "',1)");
+		$dsql->dsqlOper($insertSql, "update");
 
       }
     }
