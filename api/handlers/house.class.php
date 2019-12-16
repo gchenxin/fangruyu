@@ -11,6 +11,18 @@
 class house {
 	private $param;  //参数
 
+	const USERTAGS_HOUSE = 1;
+	const USERTAGS_SP = 2;
+	const USERTAGS_XZL = 4;
+	const USERTAGS_CF = 8;
+
+	const SCANTYPE_LOUPAN = 1;
+	const SCANTYPE_SALE = 2;
+	const SCANTYPE_ZU = 4;
+	const SCANTYPE_SP = 8;
+	const SCANTYPE_XZL = 16;
+	const SCANTYPE_CF = 32;
+
 	/**
      * 构造函数
 	 *
@@ -1378,7 +1390,7 @@ class house {
 		if(!is_numeric($id)) return array("state" => 200, "info" => '格式错误！');
 
 		//记录用户标签
-		$this->recordUserTags($userLogin->getMemberID(), 1);
+		$this->recordUserTags($userLogin->getMemberID(), $id, self::USERTAGS_HOUSE, self::SCANTYPE_LOUPAN);
 		
 		$archives = $dsql->SetQuery("SELECT * FROM `#@__house_loupan` WHERE `state` = 1 AND `id` = ".$id);
 		$results  = $dsql->dsqlOper($archives, "results");
@@ -4968,13 +4980,13 @@ class house {
 		$page     = empty($page) ? 1 : $page;
 
 		$archives = $dsql->SetQuery("SELECT " .
-									"s.`id`, s.`title`, s.`communityid`, s.`community`, s.`addrid`, s.`address`, s.`litpic`, s.`price`, s.`unitprice`, s.`protype`, s.`room`, s.`hall`, s.`guard`, s.`bno`, s.`floor`, s.`buildage`, s.`area`, s.`flag`, s.`state`, s.`direction`, s.`zhuangxiu`, s.`flag`, s.`pubdate`, s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`usertype`, s.`username`, s.`contact`, s.`userid`, s.`video`, s.`qj_file`, s.`elevator` " .
+									"s.`id`, s.`title`, s.`communityid`, s.`community`, s.`addrid`, s.`address`, s.`litpic`, s.`price`, s.`unitprice`, s.`protype`, s.`room`, s.`hall`, s.`guard`, s.`bno`, s.`floor`, s.`buildage`, s.`area`, s.`flag`, s.`state`, s.`direction`, s.`zhuangxiu`, s.`flag`, s.`pubdate`, s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`usertype`, s.`username`, s.`contact`, s.`userid`, s.`video`, s.`qj_file`, s.`elevator`,s.longitude,s.latitude " .
 									"FROM `#@__house_sale` s LEFT JOIN `#@__house_zjuser` z ON z.`id` = s.`userid`" .
 									"WHERE (s.`usertype` = 0 OR (s.`usertype` = 1 AND s.`userid` = z.`id`".$zj_state."))" . $where);
 
 		// echo $archives;
 		//总条数
-		//$totalCount = $dsql->dsqlOper($archives, "totalCount");
+		//$totalCount = $dsql->dsqlOper($archives, "totalCount");	
         $totalCount = getCache("house_sale_total", $archives, 300, array("savekey" => 1, "type" => "totalCount", "disabled" => $u));
 
 		if($backTotal) return $totalCount;
@@ -5010,9 +5022,13 @@ class house {
 		$where1 .= " and (s.isbid=0 or s.bid_end<UNIX_TIMESTAMP())";
 
 		//查询置顶数据
-		$topArr = $this->getTopHouse($archives);
+		if($page == 1){
+			$topArr = $this->getTopHouse($archives);
+		}else{
+			$topArr = [];
+		}
 		// $results = $dsql->dsqlOper($archives.$where1.$orderby.$where, "results");
-        $results = getCache("house_sale_list", $archives.$where1.$orderby.$where, 300, array("disabled" => $u));
+		$results = getCache("house_sale_list", $archives.$where1.$orderby.$where, 300, array("disabled" => $u));
 		$results = array_merge($topArr, $results);
 		if($results){
 			$now = $time;
@@ -5021,6 +5037,8 @@ class house {
 				$list[$key]['title']  = $val['title'];
 				$list[$key]['username']  = $val['username'];
 				$list[$key]['contact']  = $val['contact'];
+				$list[$key]['longitude']  = $val['longitude'];
+				$list[$key]['latitude']  = $val['latitude'];
 
 				//会员信息
 				$nickname = $userPhoto = $userPhone = "";
@@ -5131,6 +5149,8 @@ class house {
 					if($val['bid_week' . $week] == '' || ($val['bid_start'] > $now && !$u) || ($val['bid_week' . $week] == 'day' && ($hour < 8 || $hour > 20))){
 						$isbid = 0;
 					}
+				}elseif($val['bid_type'] == 'normal' && $val['bid_end'] < $now){
+					$isbid = 0;
 				}
 				$list[$key]['isbid']    = $isbid;
 
@@ -5271,10 +5291,17 @@ class house {
 		$topArr = [];
 		$lastUpdateTime = $HN_memory->get("lastTopTime");
 		$hasTopArr = json_decode($HN_memory->get("hasTop"), true);
+		$week = date('w',time());
+		$hour = date('H',time());
+		$where = "bid_week{$week}='all'";
+		if($hour >= 8 && $hour<20){
+			$where .= " or bid_week{$week} = 'day'";
+		}
 		if($hasTopArr)
 			asort($hasTopArr);
 		if((time() - $lastUpdateTime) / 60 >= 5){
-			$sql = $dsql->SetQuery($houseSql." AND isbid=1 and (bid_type='normal' or (bid_type='plan' and bid_start<now())) ORDER BY case when bid_type='normal' then 1 else 2 end");
+			$sql = $dsql->SetQuery($houseSql." AND isbid=1 and bid_start<UNIX_TIMESTAMP() and UNIX_TIMESTAMP()<bid_end and (bid_type='normal' or (bid_type='plan' and ({$where}))) ORDER BY case when bid_type='normal' then 1 else 2 end");
+			file_put_contents(HUONIAOROOT."/sql.log",$sql);
 			$result = $dsql->dsqlOper($sql, "results");
 
 			if($result && empty($result['state'])){
@@ -5334,6 +5361,7 @@ class house {
 		$min_longitude = $this->param['min_longitude'];
 		$max_longitude = $this->param['max_longitude'];
 		$cityid      = $this->param['cityid'];
+		$district = $this->param['district'];
 
 		if(empty($cityid)){
 			$cityid = getCityId();
@@ -5509,8 +5537,13 @@ class house {
 			$unitpriceString = "";
 			if(in_Array($houseType, ['sale','zu']))	$unitpriceString = ", AVG(s.`unitprice`) unitprice";
 			//所有一级区域
-			$sql = $dsql->SetQuery("SELECT `id`, `typename`, `longitude`, `latitude` FROM `#@__site_area` WHERE `parentid` = $cityid ORDER BY `weight`");
-			$ret = $dsql->dsqlOper($sql, "results");
+			if($district){
+				$sql = $dsql->SetQuery("SELECT `id`, `typename`, `longitude`, `latitude` FROM `#@__site_area` WHERE id={$district}");
+				$ret = $dsql->dsqlOper($sql, "results");
+			}else{
+				$sql = $dsql->SetQuery("SELECT `id`, `typename`, `longitude`, `latitude` FROM `#@__site_area` WHERE `parentid` = $cityid ORDER BY `weight`");
+				$ret = $dsql->dsqlOper($sql, "results");
+			}
 			if($ret){
 				$kk = 0;
 				foreach ($ret as $key => $value) {
@@ -5521,7 +5554,7 @@ class house {
 						$addrSql = $dsql->SetQuery("SELECT `id`, `typename`, `longitude`, `latitude` FROM `#@__site_area` WHERE `parentid` = ".$value['id']." OR `id` = ".$value['id']." ORDER BY `weight`");
 						$addrRet = $dsql->dsqlOper($addrSql, "results");
 						foreach ($addrRet as $k => $v) {
-
+							if($v['id'] == $value['id']) continue;
 							$nwhere = $where;
 
 							//查询小区信息
@@ -5672,7 +5705,7 @@ class house {
 		// }
 		
 		//记录用户标签
-		$this->recordUserTags($userLogin->getMemberID(), 1);
+		$this->recordUserTags($userLogin->getMemberID(), $id, self::USERTAGS_HOUSE,self::SCANTYPE_SALE);
 
 		$where = " AND s.`waitpay` = 0";
 
@@ -6299,7 +6332,7 @@ class house {
 		$page     = empty($page) ? 1 : $page;
 
 		$archives = $dsql->SetQuery("SELECT " .
-									"s.`id`, s.`config`, s.`buildage`, s.`contact`, s.`title`, s.`communityid`, s.`community`, s.`addrid`, s.`address`, s.`litpic`, s.`price`, s.`rentype`, s.`protype`, s.`room`, s.`hall`, s.`guard`, s.`bno`, s.`floor`, s.`area`, s.`sharetype`, s.`direction`, s.`zhuangxiu`, s.`usertype`, s.`username`, s.`userid`, s.`state`, s.`pubdate`, ".$select." s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`video`, s.`qj_file`, s.`elevator` " .
+									"s.`id`, s.`config`, s.`buildage`, s.`contact`, s.`title`, s.`communityid`, s.`community`, s.`addrid`, s.`address`, s.`litpic`, s.`price`, s.`rentype`, s.`protype`, s.`room`, s.`hall`, s.`guard`, s.`bno`, s.`floor`, s.`area`, s.`sharetype`, s.`direction`, s.`zhuangxiu`, s.`usertype`, s.`username`, s.`userid`, s.`state`, s.`pubdate`, ".$select." s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`video`, s.`qj_file`, s.`elevator`,s.longitude,s.latitude " .
 									"FROM `#@__house_zu` s LEFT JOIN `#@__house_zjuser` z ON z.`id` = s.`userid`" .
                                     ($lat && $lng ? " LEFT JOIN `#@__house_community` c ON c.`id` = s.`communityid`" : "") .
 									" WHERE " .
@@ -6344,7 +6377,11 @@ class house {
 		$where = " LIMIT $atpage, $pageSize";
 		
 		//查询置顶数据
-		$topArr = $this->getTopHouse($archives);
+		if($page == 1){
+			$topArr = $this->getTopHouse($archives);
+		}else{
+			$topArr = [];
+		}
 		$where1 .= " and (s.isbid=0 or s.bid_end<UNIX_TIMESTAMP())";
 		// $results = $dsql->dsqlOper($archives.$where1.$orderby.$where, "results");
         $results = getCache("house_zu_list", $archives.$where1.$orderby.$where, 300, array("disabled" => $u));
@@ -6356,6 +6393,8 @@ class house {
 				$list[$key]['title']  = $val['title'];
                 $list[$key]['buildage']  = $val['buildage'];
                 $list[$key]['config']  = $val['config'];
+				$list[$key]['longitude']  = $val['longitude'];
+                $list[$key]['latitude']  = $val['latitude'];
 
                 //配置
                 $configlist = array();
@@ -6762,8 +6801,13 @@ class house {
 		}else{
 
 			//所有一级区域
-			$sql = $dsql->SetQuery("SELECT `id`, `typename`, `longitude`, `latitude` FROM `#@__site_area` WHERE `parentid` = $cityid ORDER BY `weight`");
-			$ret = $dsql->dsqlOper($sql, "results");
+			if($district){
+				$sql = $dsql->SetQuery("SELECT `id`, `typename`, `longitude`, `latitude` FROM `#@__site_area` WHERE id={$district}");
+				$ret = $dsql->dsqlOper($sql, "results");
+			}else{
+				$sql = $dsql->SetQuery("SELECT `id`, `typename`, `longitude`, `latitude` FROM `#@__site_area` WHERE `parentid` = $cityid ORDER BY `weight`");
+				$ret = $dsql->dsqlOper($sql, "results");
+			}
 			if($ret){
 				$kk = 0;
 				foreach ($ret as $key => $value) {
@@ -6774,7 +6818,7 @@ class house {
 						$addrSql = $dsql->SetQuery("SELECT `id`, `typename`, `longitude`, `latitude` FROM `#@__site_area` WHERE `parentid` = ".$value['id']." OR `id` = ".$value['id']." ORDER BY `weight`");
 						$addrRet = $dsql->dsqlOper($addrSql, "results");
 						foreach ($addrRet as $k => $v) {
-
+							if($v['id'] == $value['id']) continue;
 							$nwhere = $where;
 
 							//查询小区信息
@@ -6899,7 +6943,7 @@ class house {
 		*
 		* @return 
 	 */
-	public function recordUserTags($userid,$type){
+	public function recordUserTags($userid,$aid,$type,$scanType = 1){
 		global $dsql;
 		$sql = $dsql->SetQuery("select `usertags` from #@__member where id=".$userid);
 		$userTags = $dsql->dsqlOper($sql,'results');
@@ -6909,6 +6953,8 @@ class house {
 			$recordTagSql = $dsql->SetQuery("update #@__member set usertags={$userTags} where id={$userid}");
 			$dsql->dsqlOper($recordTagSql,'update');
 		}
+		$insertSql = $dsql->SetQuery("insert into #@__house_scan(userid,aid,type,date) values('{$userid}', {$aid}, {$scanType}, '" .date('Y-m-d H:i:s') ."')");
+		$dsql->dsqlOper($insertSql,"update");
 		return;
 	}
 
@@ -6943,7 +6989,7 @@ class house {
 		
 		//记录用户标签
 		$login_id = $userLogin->getMemberID();
-		$this->recordUserTags($login_id,1);
+		$this->recordUserTags($login_id, $id, self::USERTAGS_HOUSE, self::SCANTYPE_ZU);
 
 		$archives = $dsql->SetQuery("SELECT s.*, z.`zjcom` FROM `#@__house_zu` s LEFT JOIN `#@__house_zjuser` z ON z.`id` = s.`userid` WHERE s.`id` = ".$id.$where);
 		// $results  = $dsql->dsqlOper($archives, "results");
@@ -7484,7 +7530,7 @@ class house {
 		$page     = empty($page) ? 1 : $page;
 
 		$archives = $dsql->SetQuery("SELECT " .
-									"s.`id`, s.`contact`, s.`type`, s.`floor`, s.`bno`, s.`type`, s.`title`, s.`loupan`, s.`addrid`, s.`address`, s.`nearby`, s.`protype`, s.`area`, s.`litpic`, s.`price`, s.`zhuangxiu`, s.`userid`, s.`usertype`, s.`username`, s.`state`, s.`pubdate`, ".$select." s.`config`, s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`video`, s.`qj_file`, s.`loupanid` " .
+									"s.`id`, s.`contact`, s.`type`, s.`floor`, s.`bno`, s.`type`, s.`title`, s.`loupan`, s.`addrid`, s.`address`, s.`nearby`, s.`protype`, s.`area`, s.`litpic`, s.`price`, s.`zhuangxiu`, s.`userid`, s.`usertype`, s.`username`, s.`state`, s.`pubdate`, ".$select." s.`config`, s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`video`, s.`qj_file`, s.`loupanid`,s.longitude,s.latitude " .
 									"FROM `#@__house_xzl` s " .
 									"WHERE " .
 									"1 = 1".$where);
@@ -7526,7 +7572,11 @@ class house {
 		
 		//查询置顶数据
 		$where1 .= " and (s.isbid=0 or s.bid_end<UNIX_TIMESTAMP())";
-		$topArr = $this->getTopHouse($archives);
+		if($page == 1){
+			$topArr = $this->getTopHouse($archives);
+		}else{
+			$topArr = [];
+		}
 		// $results = $dsql->dsqlOper($archives.$where1.$orderby.$where, "results");
 		$results = getCache("house_xzl_list", $archives.$where1.$orderby.$where, 300, array("disabled" => $u));
 		$results = array_merge($topArr, $results);
@@ -7544,6 +7594,8 @@ class house {
                 $list[$key]['contact']  = $val['contact'];
 				$list[$key]['loupanid'] = $val['loupanid'];
 				$list[$key]['proprice'] = $val['proprice'];
+				$list[$key]['longitude']  = $val['longitude'];
+				$list[$key]['latitude']  = $val['latitude'];
 
 				if($val['loupanid']){
 					$sql = $dsql->SetQuery("SELECT `title`, `price`, `ptype` FROM `#@__house_loupan` WHERE `id` = ".$val['loupanid']." AND `state` = 1");
@@ -7752,7 +7804,7 @@ class house {
 		// }
 
 		//记录用户标签
-		$this->recordUserTags($userLogin->getMemberID(), 4);
+		$this->recordUserTags($userLogin->getMemberID(), $id, self::USERTAGS_XZL, self::SCANTYPE_XZL);
 
 		$archives = $dsql->SetQuery("SELECT s.*, z.`zjcom` FROM `#@__house_xzl` s LEFT JOIN `#@__house_zjuser` z ON z.`id` = s.`userid` WHERE s.`id` = ".$id.$where);
 		// $results  = $dsql->dsqlOper($archives, "results");
@@ -8311,7 +8363,11 @@ class house {
 		
 		//查询置顶数据
 		$where1 .= " and (s.isbid=0 or s.bid_end<UNIX_TIMESTAMP())";
-		$topArr = $this->getTopHouse($archives);
+		if($page == 1){
+			$topArr = $this->getTopHouse($archives);
+		}else{
+			$topArr = [];
+		}
 		// $results = $dsql->dsqlOper($archives.$where1.$orderby.$where, "results");
         $results = getCache("house_sp_list", $archives.$where1.$orderby.$where, 300, array("disabled" => $u));
 		$results = array_merge($topArr, $results);
@@ -8323,6 +8379,8 @@ class house {
 				$list[$key]['title']  = $val['title'];
 				$list[$key]['addrid'] = $val['addrid'];
 				$list[$key]['loupan'] = $val['loupan'];
+				$list[$key]['longitude']  = $val['longitude'];
+				$list[$key]['latitude']  = $val['latitude'];
 
 				$addrName = getParentArr("site_area", $val['addrid']);
 				global $data;
@@ -8527,7 +8585,7 @@ class house {
 		// }
 		
 		//记录用户标签
-		$this->recordUserTags($userLogin->getMemberID(), 2);
+		$this->recordUserTags($userLogin->getMemberID(), $id, self::USERTAGS_SP, self::SCANTYPE_SP);
 		
 		$archives = $dsql->SetQuery("SELECT s.*, z.`zjcom` FROM `#@__house_sp` s LEFT JOIN `#@__house_zjuser` z ON z.`id` = s.`userid` WHERE s.`id` = ".$id.$where);
 		// $results  = $dsql->dsqlOper($archives, "results");
@@ -9044,7 +9102,7 @@ class house {
 		$page     = empty($page) ? 1 : $page;
 
 		$archives = $dsql->SetQuery("SELECT " .
-									"s.`id`, s.`cenggao`, s.`bno`, s.`floor`, s.`type`, s.`title`, s.`addrid`, s.`address`, s.`nearby`, s.`protype`, s.`area`, s.`litpic`, s.`price`, s.`transfer`, s.`usertype`, s.`userid`, s.`username`, s.`state`, s.`pubdate`, s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`video`, s.`qj_file` " .
+									"s.`id`, s.`cenggao`, s.`bno`, s.`floor`, s.`type`, s.`title`, s.`addrid`, s.`address`, s.`nearby`, s.`protype`, s.`area`, s.`litpic`, s.`price`, s.`transfer`, s.`usertype`, s.`userid`, s.`username`, s.`state`, s.`pubdate`, s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`video`, s.`qj_file`,s.longitude,s.latitude " .
 									"FROM `#@__house_cf` s " .
 									"WHERE " .
 									"1 = 1".$where);
@@ -9086,7 +9144,11 @@ class house {
 		
 		//查询置顶数据
 		$where1 .= " and (s.isbid=0 or s.bid_end<UNIX_TIMESTAMP())";
-		$topArr = $this->getTopHouse($archives);
+		if($page == 1){
+			$topArr = $this->getTopHouse($archives);
+		}else{
+			$topArr = [];
+		}
 		// $results = $dsql->dsqlOper($archives.$where1.$orderby.$where, "results");
         $results = getCache("house_cf_list", $archives.$where1.$orderby.$where, 300, array("disabled" => $u));
 		$results = array_merge($topArr, $results);
@@ -9099,7 +9161,9 @@ class house {
 				$list[$key]['addrid'] = $val['addrid'];
                 $list[$key]['bno'] = $val['bno'];
                 $list[$key]['floor'] = $val['floor'];
-                $list[$key]['cenggao'] = $val['cenggao'];
+				$list[$key]['cenggao'] = $val['cenggao'];
+				$list[$key]['longitude']  = $val['longitude'];
+				$list[$key]['latitude']  = $val['latitude'];
 
 				$addrName = getParentArr("site_area", $val['addrid']);
 				global $data;
@@ -9282,7 +9346,7 @@ class house {
 		// }
 
 		//记录用户标签
-		$this->recordUserTags($userLogin->getMemberID(), 8);
+		$this->recordUserTags($userLogin->getMemberID(), $id, self::USERTAGS_CF, self::SCANTYPE_CF);
 
 		$archives = $dsql->SetQuery("SELECT s.*, z.`zjcom` FROM `#@__house_cf` s LEFT JOIN `#@__house_zjuser` z ON z.`id` = s.`userid` WHERE s.`id` = ".$id.$where);
 		// $results  = $dsql->dsqlOper($archives, "results");
@@ -16458,6 +16522,11 @@ EOT;
 		fclose($files);
 	}
 
+	/**
+		* @brief 经纪人认领房源
+		*
+		* @return 
+	 */
 	public function zjRecordHouse(){
 		global $dsql;
 		global $userLogin;

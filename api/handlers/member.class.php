@@ -11310,6 +11310,10 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 		if(empty($this->param["itemid"]) && empty($this->param['type'])){
 			return array("state" => 101, "info" => 'Param Invalid!');
 		}
+
+		//记录电话点击次数
+		$insertSql = $dsql->SetQuery("insert into #@__house_imclick(type,date) values(1,'" .date('Y-m-d H:i:s') . "')");
+		$dsql->dsqlOper($insertSql, "update");
 		$table = "";
 		switch($this->param['type']){
 			case "sale": $table="house_sale";break;
@@ -11481,12 +11485,17 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 		$isExists = $dsql->dsqlOper($sql,"results");
 		$date = date("Y-m-d H:i:s");
 		if(!$isExists){
-			$insertSql = $dsql->SetQuery("insert into #@__wechat_share(userid,aid,type,state,date) values({$uid},{$this->param['aid']},{$this->param['type']},1,'{$date}')");
+			$insertSql = $dsql->SetQuery("insert into #@__wechat_share(userid,aid,type,state) values({$uid},{$this->param['aid']},{$this->param['type']},1)");
 			$result = $dsql->dsqlOper($insertSql, "lastid");
+			$shareid = $result;
 		}else{
 			$updateSql = $dsql->SetQuery("update #@__wechat_share set shareTimes=shareTimes+1 where id={$isExists[0]['id']}");
 			$dsql->dsqlOper($updateSql,"update");
+			$shareid = $isExists[0]['id'];
 		}
+		//记录分享详情
+		$insertSql = $dsql->SetQuery("insert into #@__wechat_sharedetail(sid,date) values({$shareid}, '{$date}')");
+		$dsql->dsqlOper($insertSql, 'update');
 
 		return true;
 	}
