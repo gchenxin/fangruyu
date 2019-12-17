@@ -5018,11 +5018,16 @@ class house {
 		}
 
 		$atpage = $pageSize*($page-1);
-		$where = $pageSize != -1 ? " LIMIT $atpage, $pageSize" : "";
-		$where1 .= " and (s.isbid=0 or s.bid_end<UNIX_TIMESTAMP())";
+		$where = $pageSize != -1 ? " LIMIT $atpage, $pageSize" : "";	
 
 		//查询置顶数据
-		if($page == 1){
+		if($page == 1 && empty($u)){
+			if($hour >=8 && $hour <20){
+				$topType = "s.bid_week{$week}='day' or s.bid_week{$week}='all'";
+			}else{
+				$topType = "s.bid_week{$week}='all'";
+			}
+			$where1 .= " and (s.isbid=0 or s.bid_end<UNIX_TIMESTAMP() or (s.bid_type='plan' and ({$topType})))";
 			$topArr = $this->getTopHouse($archives);
 		}else{
 			$topArr = [];
@@ -6377,12 +6382,17 @@ class house {
 		$where = " LIMIT $atpage, $pageSize";
 		
 		//查询置顶数据
-		if($page == 1){
+		if($page == 1 && empty($u)){
+			if($hour >=8 && $hour <20){
+				$topType = "s.bid_week{$week}='day' or s.bid_week{$week}='all'";
+			}else{
+				$topType = "s.bid_week{$week}='all'";
+			}
+			$where1 .= " and (s.isbid=0 or s.bid_end<UNIX_TIMESTAMP() or (s.bid_type='plan' and ({$topType})))";
 			$topArr = $this->getTopHouse($archives);
 		}else{
 			$topArr = [];
 		}
-		$where1 .= " and (s.isbid=0 or s.bid_end<UNIX_TIMESTAMP())";
 		// $results = $dsql->dsqlOper($archives.$where1.$orderby.$where, "results");
         $results = getCache("house_zu_list", $archives.$where1.$orderby.$where, 300, array("disabled" => $u));
 		$results = array_merge($topArr, $results);
@@ -7571,8 +7581,13 @@ class house {
 		$where = " LIMIT $atpage, $pageSize";
 		
 		//查询置顶数据
-		$where1 .= " and (s.isbid=0 or s.bid_end<UNIX_TIMESTAMP())";
-		if($page == 1){
+		if($page == 1 && empty($u)){
+			if($hour >=8 && $hour <20){
+				$topType = "s.bid_week{$week}='day' or s.bid_week{$week}='all'";
+			}else{
+				$topType = "s.bid_week{$week}='all'";
+			}
+			$where1 .= " and (s.isbid=0 or s.bid_end<UNIX_TIMESTAMP() or (s.bid_type='plan' and ({$topType})))";
 			$topArr = $this->getTopHouse($archives);
 		}else{
 			$topArr = [];
@@ -8362,8 +8377,13 @@ class house {
 		$where = " LIMIT $atpage, $pageSize";
 		
 		//查询置顶数据
-		$where1 .= " and (s.isbid=0 or s.bid_end<UNIX_TIMESTAMP())";
-		if($page == 1){
+		if($page == 1 && empty($u)){
+			if($hour >=8 && $hour <20){
+				$topType = "s.bid_week{$week}='day' or s.bid_week{$week}='all'";
+			}else{
+				$topType = "s.bid_week{$week}='all'";
+			}
+			$where1 .= " and (s.isbid=0 or s.bid_end<UNIX_TIMESTAMP() or (s.bid_type='plan' and ({$topType})))";
 			$topArr = $this->getTopHouse($archives);
 		}else{
 			$topArr = [];
@@ -9143,8 +9163,13 @@ class house {
 		$where = " LIMIT $atpage, $pageSize";
 		
 		//查询置顶数据
-		$where1 .= " and (s.isbid=0 or s.bid_end<UNIX_TIMESTAMP())";
-		if($page == 1){
+		if($page == 1 && empty($u)){
+			if($hour >=8 && $hour <20){
+				$topType = "s.bid_week{$week}='day' or s.bid_week{$week}='all'";
+			}else{
+				$topType = "s.bid_week{$week}='all'";
+			}
+			$where1 .= " and (s.isbid=0 or s.bid_end<UNIX_TIMESTAMP() or (s.bid_type='plan' and ({$topType})))";
 			$topArr = $this->getTopHouse($archives);
 		}else{
 			$topArr = [];
