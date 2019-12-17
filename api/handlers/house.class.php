@@ -5017,9 +5017,6 @@ class house {
 			$pageinfo['refresh'] = $totalRefuse;
 		}
 
-		$atpage = $pageSize*($page-1);
-		$where = $pageSize != -1 ? " LIMIT $atpage, $pageSize" : "";	
-
 		//查询置顶数据
 		if($page == 1 && empty($u)){
 			if($hour >=8 && $hour <20){
@@ -5032,6 +5029,11 @@ class house {
 		}else{
 			$topArr = [];
 		}
+		$pageSize -= count($topArr);
+		$atpage = $pageSize*($page-1);
+		$where = $pageSize != -1 ? " LIMIT $atpage, $pageSize" : "";	
+
+		
 		// $results = $dsql->dsqlOper($archives.$where1.$orderby.$where, "results");
 		$results = getCache("house_sale_list", $archives.$where1.$orderby.$where, 300, array("disabled" => $u));
 		$results = array_merge($topArr, $results);
@@ -6376,10 +6378,7 @@ class house {
 			$pageinfo['gray'] = $totalGray;
 			$pageinfo['audit'] = $totalAudit;
 			$pageinfo['refresh'] = $totalRefuse;
-		}
-
-		$atpage = $pageSize*($page-1);
-		$where = " LIMIT $atpage, $pageSize";
+		}	
 		
 		//查询置顶数据
 		if($page == 1 && empty($u)){
@@ -6393,6 +6392,10 @@ class house {
 		}else{
 			$topArr = [];
 		}
+	
+		$atpage = $pageSize*($page-1);
+		$where = " LIMIT $atpage, $pageSize";
+
 		// $results = $dsql->dsqlOper($archives.$where1.$orderby.$where, "results");
         $results = getCache("house_zu_list", $archives.$where1.$orderby.$where, 300, array("disabled" => $u));
 		$results = array_merge($topArr, $results);
@@ -7575,10 +7578,7 @@ class house {
 			$pageinfo['gray'] = $totalGray;
 			$pageinfo['audit'] = $totalAudit;
 			$pageinfo['refresh'] = $totalRefuse;
-		}
-
-		$atpage = $pageSize*($page-1);
-		$where = " LIMIT $atpage, $pageSize";
+		}	
 		
 		//查询置顶数据
 		if($page == 1 && empty($u)){
@@ -7592,6 +7592,10 @@ class house {
 		}else{
 			$topArr = [];
 		}
+
+		$atpage = $pageSize*($page-1);
+		$where = " LIMIT $atpage, $pageSize";
+
 		// $results = $dsql->dsqlOper($archives.$where1.$orderby.$where, "results");
 		$results = getCache("house_xzl_list", $archives.$where1.$orderby.$where, 300, array("disabled" => $u));
 		$results = array_merge($topArr, $results);
@@ -8371,10 +8375,7 @@ class house {
 			$pageinfo['gray'] = $totalGray;
 			$pageinfo['audit'] = $totalAudit;
 			$pageinfo['refresh'] = $totalRefuse;
-		}
-
-		$atpage = $pageSize*($page-1);
-		$where = " LIMIT $atpage, $pageSize";
+		}	
 		
 		//查询置顶数据
 		if($page == 1 && empty($u)){
@@ -8388,6 +8389,10 @@ class house {
 		}else{
 			$topArr = [];
 		}
+
+		$atpage = $pageSize*($page-1);
+		$where = " LIMIT $atpage, $pageSize";
+
 		// $results = $dsql->dsqlOper($archives.$where1.$orderby.$where, "results");
         $results = getCache("house_sp_list", $archives.$where1.$orderby.$where, 300, array("disabled" => $u));
 		$results = array_merge($topArr, $results);
@@ -9157,10 +9162,7 @@ class house {
 			$pageinfo['gray'] = $totalGray;
 			$pageinfo['audit'] = $totalAudit;
 			$pageinfo['refresh'] = $totalRefuse;
-		}
-
-		$atpage = $pageSize*($page-1);
-		$where = " LIMIT $atpage, $pageSize";
+		}	
 		
 		//查询置顶数据
 		if($page == 1 && empty($u)){
@@ -9174,6 +9176,10 @@ class house {
 		}else{
 			$topArr = [];
 		}
+
+		$atpage = $pageSize*($page-1);
+		$where = " LIMIT $atpage, $pageSize";
+
 		// $results = $dsql->dsqlOper($archives.$where1.$orderby.$where, "results");
         $results = getCache("house_cf_list", $archives.$where1.$orderby.$where, 300, array("disabled" => $u));
 		$results = array_merge($topArr, $results);
