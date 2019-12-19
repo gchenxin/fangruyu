@@ -286,6 +286,7 @@ class hwVisualPhone{
 		$jsonArr = json_decode($this->param['jsonBody'], true); //将通知消息解析为关联数组
 		$eventType = $jsonArr['eventType']; //通知事件类型
 
+		date_default_timezone_set("PRC");
 		if (strcasecmp($eventType, 'fee') != 0 || !array_key_exists('feeLst', $jsonArr)) {
 			return;
 		}
@@ -338,7 +339,7 @@ class hwVisualPhone{
 					}
 					$bindNum = substr($loop['bindNum'],3);
 					$callDuration = strtotime($loop['callEndTime']) - strtotime($loop['fwdAnswerTime']);
-					$insertSql = $dsql->SetQuery("insert into #@__callrecord values('{$caller}','{$callee}','{$bindNum}','" . date("Y-m-d") . "',{$callDuration},{$callDirection},{$callFaild},{$callUnaswRsn})");
+					$insertSql = $dsql->SetQuery("insert into #@__callrecord values('{$caller}','{$callee}','{$bindNum}','" . date("Y-m-d") . "',{$callDuration},{$callDirection},{$callFaild},{$callUnaswRsn},'" . date('Y-m-d H:i:s') . "')");
 					$dsql->dsqlOper($insertSql, 'update');
 				}
 			}
