@@ -53,7 +53,7 @@ class hwVisualPhone{
 		//$areaCode = '0755'; // 需要绑定的X号码对应的城市码
 		 // $callDirection = 0; // 允许呼叫的方向
 		 // $duration = 86400; // 绑定关系保持时间,单位为秒。到期后会被系统自动解除绑定关系
-		$recordFlag = 'false'; // 是否需要针对该绑定关系产生的所有通话录音
+		$recordFlag = 'true'; // 是否需要针对该绑定关系产生的所有通话录音
 		 // $recordHintTone = 'recordHintTone.wav'; // 设置录音提示音
 		 // $maxDuration = 60; // 设置允许单次通话进行的最长时间,单位为分钟。通话时间从接通被叫的时刻开始计算
 		 // $lastMinVoice = 'lastMinVoice.wav'; // 设置通话剩余最后一分钟时的提示音
