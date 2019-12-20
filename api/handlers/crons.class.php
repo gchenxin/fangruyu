@@ -103,6 +103,10 @@ class crons {
 		//查询当天推送列表
 		$date = date('Y-m-d');
 		$expire = $date . " 23:59:59";
+		$week = date('w', time());
+		if($week == 5){
+			$nextDate = date('Y-m-d', strtotime($date." +3 day"));
+		}
 		$nextDate = date('Y-m-d', strtotime($date." +1 day"));
 		$callFailedSql = <<<EOT
 	select distinct p.uid,p.zjid,p.realphone,p.visualphone,m.overide from #@__agentpushrecord p

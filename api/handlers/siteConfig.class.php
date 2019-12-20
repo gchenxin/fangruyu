@@ -3258,7 +3258,7 @@ class siteConfig {
 			"amount" => $amount,
 			"balance" => $balance,
 			"online" => $payAmount,
-			"type" => "refreshTop",
+			"type" => $param['type'],
 			"module" => $module,
 			"act" => $act,
 			"class" => $type,
@@ -5050,6 +5050,13 @@ class siteConfig {
 			return $ret;
 		}
 
+	}
+
+	public function imStatistics(){
+		global $dsql;
+		$insertSql = $dsql->SetQuery("insert into #@__house_imclick(type,date) values(0,'" . date("Y-m-d H:i:s") . "')");
+		$dsql->dsqlOper($insertSql, "update");
+		return true;
 	}
 
 	public function getUrl(){
