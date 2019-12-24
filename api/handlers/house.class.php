@@ -3777,9 +3777,18 @@ class house {
 			$collect = checkIsCollect($params);
 			$communityDetail['collect'] = $collect == "has" ? 1 : 0;
 
-
+			$communityDetail['tradeList'] = $this->getTradeList($id);
 		}
 		return $communityDetail;
+	}
+
+	public function getTradeList($cid = ''){
+		$cid = $cid ?: $this->param['cid'];
+		if(!$cid)	return null;
+		global $dsql;
+		$sql = $dsql->SetQuery("select * from #@__community_trade where communityid={$cid}");
+		$list = $dsql->dsqlOper($sql, "results");
+		return $list;
 	}
 
 	/**
@@ -7057,7 +7066,7 @@ class house {
 					$zuDetail["longitude"] = $communityResult[0]["longitude"];
 					$zuDetail["latitude"]  = $communityResult[0]["latitude"];
 					$addrid                = $communityResult[0]["addrid"];
-					$zuDetail["price_trend"]  = $results[0]["price_trend"];
+					$zuDetail["price_trend"]  = $results[0]["price_trend"];	
 				}
 			}
 
