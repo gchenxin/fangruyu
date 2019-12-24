@@ -11642,6 +11642,22 @@ EOT;
         $results = $dsql->dsqlOper($visitSql." ORDER BY `date` DESC LIMIT $atpage, $pageSize", "results");
 		return ["pageInfo"=>$pageinfo,"list"=>$results];
 	}
+
+	public function getZjHouseFlow(){
+		global $userLogin;
+		global $dsql;
+		$uid = $userLogin->getMemberID();
+		if(!$uid || $uid == -1){
+			return ['state'=>200,'info'=>'login timeout!'];
+		}
+		if(empty($this->param['type'])){
+			return ['state'=>200, 'info'=>'Invalid Category!'];
+		}
+		$page = empty($this->param['page']) ? 1 : $this->param['page'];
+		$pageSize = empty($this->param['pageSize']) ? 10 : $this->param['pageSize'];
+		$sql = $dsql->SetQuery("call getZjHouseFlow('{$this->param['type']}',{$uid},{$page},{$pageSize})");
+		return $dsql->dsqlOper($sql, "results");
+	}
 	
 	
 	public function tt(){
