@@ -3707,6 +3707,7 @@ class house {
 
 			$communityDetail["property"]  = $results[0]['property'];
 			$communityDetail["proprice"]  = $results[0]['proprice'];
+			$communityDetail["price_trend"]  = $results[0]['price_trend'];
 			$communityDetail["protel"]    = $results[0]['protel'];
 			$communityDetail["proaddr"]   = $results[0]['proaddr'];
 			$communityDetail["opendate"]  = $results[0]['opendate'];
@@ -5740,8 +5741,9 @@ class house {
 				$saleDetail["address"]   = $results[0]["address"];
 				$saleDetail["longitude"] = $results[0]["longitude"];
 				$saleDetail["latitude"]  = $results[0]["latitude"];
+				$saleDetail["price_trend"]  = "";
 			}else{
-				$communitySql = $dsql->SetQuery("SELECT `id`, `cityid`, `title`, `addrid`, `addr`, `longitude`, `latitude`, `price`, `opendate`, `rongji`, `green`, `property`, `proprice`, `buildarea`, `litpic` FROM `#@__house_community` WHERE `id` = ". $results[0]["communityid"]);
+				$communitySql = $dsql->SetQuery("SELECT `id`, `cityid`, `title`, `addrid`, `addr`, `longitude`, `latitude`, `price`, `opendate`, `rongji`, `green`, `property`, `proprice`, `buildarea`, `litpic`,`price_trend` FROM `#@__house_community` WHERE `id` = ". $results[0]["communityid"]);
 				$communityResult = $dsql->getTypeName($communitySql);
 				if(!$communityResult){
 					$saleDetail["community"] = "小区不存在";
@@ -5749,6 +5751,7 @@ class house {
 					$saleDetail["address"]   = "";
 					$saleDetail["longitude"] = "";
 					$saleDetail["latitude"]  = "";
+					$saleDetail["price_trend"]  = "";
 					$addrid = 0;
 				}else{
 					$saleDetail["community"] = $communityResult[0]["title"];
@@ -5761,6 +5764,7 @@ class house {
 					$saleDetail["address"]   = $communityResult[0]["addr"];
 					$saleDetail["longitude"] = $communityResult[0]["longitude"];
 					$saleDetail["latitude"]  = $communityResult[0]["latitude"];
+					$saleDetail["price_trend"]  = $communityResult[0]['price_trend'];
 					$addrid                  = $communityResult[0]["addrid"];
 
 					$community = array();
@@ -7029,8 +7033,9 @@ class house {
 				$zuDetail["address"]   = $results[0]["address"];
 				$zuDetail["longitude"] = $results[0]["longitude"];
 				$zuDetail["latitude"]  = $results[0]["latitude"];
+				$zuDetail["price_trend"]  = "";
 			}else{
-				$communitySql = $dsql->SetQuery("SELECT `id`, `cityid`, `title`, `addrid`, `addr`, `longitude`, `latitude` FROM `#@__house_community` WHERE `id` = ". $results[0]["communityid"]);
+				$communitySql = $dsql->SetQuery("SELECT `id`, `cityid`, `title`, `addrid`, `addr`, `longitude`, `latitude`,`price_trend` FROM `#@__house_community` WHERE `id` = ". $results[0]["communityid"]);
 				$communityResult = $dsql->getTypeName($communitySql);
 				if(!$communityResult){
 					$zuDetail["community"] = "小区不存在";
@@ -7039,6 +7044,7 @@ class house {
 					$zuDetail["longitude"] = "";
 					$zuDetail["latitude"]  = "";
 					$addrid = 0;
+					$zuDetail["price_trend"]  = "";
 				}else{
 					$zuDetail["community"] = $communityResult[0]["title"];
 					$addrName = getParentArr("site_area", $communityResult[0]['addrid']);
@@ -7051,6 +7057,7 @@ class house {
 					$zuDetail["longitude"] = $communityResult[0]["longitude"];
 					$zuDetail["latitude"]  = $communityResult[0]["latitude"];
 					$addrid                = $communityResult[0]["addrid"];
+					$zuDetail["price_trend"]  = $results[0]["price_trend"];
 				}
 			}
 
