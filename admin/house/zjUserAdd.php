@@ -117,6 +117,8 @@ if($_POST['submit'] == "提交"){
 		if(!$info){
 			$insertSql = $dsql->SetQuery("insert into #@__house_store(zjcom,name,addrid,address,masterId,state) values({$comid},'{$store}',{$addr},'',{$userid},1)");
 			$storeId = $dsql->dsqlOper($insertSql,'lastid');
+		}else{
+			$storeId = $info[0]['id'];
 		}
 	}
 
