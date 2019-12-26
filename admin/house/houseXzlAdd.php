@@ -188,8 +188,12 @@ if($_POST['submit'] == "提交"){
 }
 
 if($dopost == "save" && $submit == "提交"){
+	$videoUploadTime = "";
+	if($video){
+		$videoUploadTime = date('Y-m-d H::i:s');
+	}
 	//保存到表
-	$archives = $dsql->SetQuery("INSERT INTO `#@__".$tab."` (`cityid`, `type`, `title`, `loupan`, `addrid`, `address`, `nearby`, `litpic`, `proprice`, `protype`, `area`, `price`, `usertype`, `userid`, `username`, `contact`, `zhuangxiu`, `bno`, `floor`, `note`, `mbody`, `weight`, `config`, `state`, `pubdate`, `video`, `qj_type`, `qj_file`, `longitude`, `latitude`, `loupanid`, `fg`, `level`, `peitao`, `floortype`, `floorspr`, `sex`, `wx_tel`, `wuye_in`) VALUES ('$cityid', '$type', '$title', '$loupan', '$addrid', '$address', '$nearby', '$litpic', '$proprice', '$protype', '$area', '$price', '$usertype', '$userid', '$username', '$contact', '$zhuangxiu', '$bno', '$floor', '$note', '$mbody', '$weight', '$config', '$state', '".GetMkTime(time())."', '$video', '$qj_type', '$qj_file', '$longitude', '$latitude', '$loupanid', $fg, $level, '$peitao', '$floortype', '$floorspr', '$sex', '$wx_tel', '$wuye_in')");
+	$archives = $dsql->SetQuery("INSERT INTO `#@__".$tab."` (`cityid`, `type`, `title`, `loupan`, `addrid`, `address`, `nearby`, `litpic`, `proprice`, `protype`, `area`, `price`, `usertype`, `userid`, `username`, `contact`, `zhuangxiu`, `bno`, `floor`, `note`, `mbody`, `weight`, `config`, `state`, `pubdate`, `video`, `qj_type`, `qj_file`, `longitude`, `latitude`, `loupanid`, `fg`, `level`, `peitao`, `floortype`, `floorspr`, `sex`, `wx_tel`, `wuye_in`, `videoUploadTime`) VALUES ('$cityid', '$type', '$title', '$loupan', '$addrid', '$address', '$nearby', '$litpic', '$proprice', '$protype', '$area', '$price', '$usertype', '$userid', '$username', '$contact', '$zhuangxiu', '$bno', '$floor', '$note', '$mbody', '$weight', '$config', '$state', '".GetMkTime(time())."', '$video', '$qj_type', '$qj_file', '$longitude', '$latitude', '$loupanid', $fg, $level, '$peitao', '$floortype', '$floorspr', '$sex', '$wx_tel', '$wuye_in', '{$videoUploadTime}')");
 	$aid = $dsql->dsqlOper($archives, "lastid");
 
 	//保存图集表

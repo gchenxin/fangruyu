@@ -136,7 +136,7 @@ if($_POST['submit'] == "提交"){
 if($dopost == "save" && $submit == "提交"){
 
 	//保存到表
-	$archives = $dsql->SetQuery("INSERT INTO `#@__".$tab."` (`cityid`, `title`, `litpic`, `domaintype`, `userid`, `tel`, `address`, `email`, `note`, `weight`, `click`, `state`, `flag`, `pubdate`, `addr`, `store_switch`) VALUES ('$cityid', '$title', '$litpic', '$domaintype', '$userid', '$tel', '$address', '$email', '$note', '$weight', '$click', '$state', '$flag', '".GetMkTime(time())."', '$addr', '$store_switch')");
+	$archives = $dsql->SetQuery("INSERT INTO `#@__".$tab."` (`cityid`, `title`, `litpic`, `domaintype`, `userid`, `tel`, `address`, `email`, `note`, `weight`, `click`, `state`, `flag`, `pubdate`, `addr`, `store_switch`, `business_manage`) VALUES ('$cityid', '$title', '$litpic', '$domaintype', '$userid', '$tel', '$address', '$email', '$note', '$weight', '$click', '$state', '$flag', '".GetMkTime(time())."', '$addr', '$store_switch','$business_manage')");
 	$aid = $dsql->dsqlOper($archives, "lastid");
 
 	if($aid){
@@ -171,7 +171,7 @@ if($dopost == "save" && $submit == "提交"){
 		$state_ = $res[0]['state'];
 
 		//保存到表
-		$archives = $dsql->SetQuery("UPDATE `#@__".$tab."` SET `addr`='$addr', `cityid` = '$cityid', `title` = '$title', `litpic` = '$litpic', `domaintype` = '$domaintype', `userid` = '$userid', `tel` = '$tel', `address` = '$address', `email` = '$email', `note` = '$note', `weight` = '$weight', `click` = '$click', `state` = '$state', `flag` = '$flag', `store_switch` = $store_switch WHERE `id` = ".$id);
+		$archives = $dsql->SetQuery("UPDATE `#@__".$tab."` SET `addr`='$addr', `cityid` = '$cityid', `title` = '$title', `litpic` = '$litpic', `domaintype` = '$domaintype', `userid` = '$userid', `tel` = '$tel', `address` = '$address', `email` = '$email', `note` = '$note', `weight` = '$weight', `click` = '$click', `state` = '$state', `flag` = '$flag', `store_switch` = $store_switch,`business_manage`= $business_manage WHERE `id` = ".$id);
 		$results = $dsql->dsqlOper($archives, "update");
 
 		if($results == "ok"){
@@ -233,6 +233,7 @@ if($dopost == "save" && $submit == "提交"){
 			$flag        = $results[0]['flag'];
             $cityid      = $results[0]['cityid'];
             $store_switch      = $results[0]['store_switch'];
+			$business_manage = $results[0]['business_manage'];
 
 		}else{
 			ShowMsg('要修改的信息不存在或已删除！', "-1");
@@ -321,6 +322,11 @@ if(file_exists($tpl."/".$templates)){
 	$huoniaoTag->assign('stateopt', array('0', '1', '2'));
 	$huoniaoTag->assign('statenames',array('待审核','已审核','审核拒绝'));
 	$huoniaoTag->assign('state', $state == "" ? 1 : $state);
+
+	//是否开通商户后台
+	$huoniaoTag->assign('business_manageopt', array('0', '1'));
+	$huoniaoTag->assign('business_managenames',array('关闭','开通'));
+	$huoniaoTag->assign('business_manage', $business_manage == "" ? 0 : $business_manage);
 
 	//店铺开关
 	$huoniaoTag->assign('store_switchopt', array('0', '1'));

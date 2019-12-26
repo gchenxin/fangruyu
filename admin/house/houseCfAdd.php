@@ -134,10 +134,14 @@ if($_POST['submit'] == "提交"){
 }
 
 if($dopost == "save" && $submit == "提交"){
+	$videoUploadTime = "";
+	if($video){
+		$videoUploadTime = date('Y-m-d H::i:s');
+	}
 	//保存到表
-	$archives = $dsql->SetQuery("INSERT INTO `#@__".$tab."` (`cityid`, `type`, `title`, `addrid`, `address`, `nearby`, `litpic`, `protype`, `area`, `price`, `transfer`, `usertype`, `userid`, `username`, `contact`, `note`, `mbody`, `weight`, `state`, `pubdate`, `video`, `qj_type`, `qj_file`, `cenggao`, `proprice`, `paytype`, `bno`, `floor`, `mintime`, `longitude`, `latitude`, `floortype`, `floorspr`, `sex`, `wx_tel`, `wuye_in`)
+	$archives = $dsql->SetQuery("INSERT INTO `#@__".$tab."` (`cityid`, `type`, `title`, `addrid`, `address`, `nearby`, `litpic`, `protype`, `area`, `price`, `transfer`, `usertype`, `userid`, `username`, `contact`, `note`, `mbody`, `weight`, `state`, `pubdate`, `video`, `qj_type`, `qj_file`, `cenggao`, `proprice`, `paytype`, `bno`, `floor`, `mintime`, `longitude`, `latitude`, `floortype`, `floorspr`, `sex`, `wx_tel`, `wuye_in`, `videoUploadTime`)
 		VALUES
-		('$cityid', '$type', '$title', '$addrid', '$address', '$nearby', '$litpic', '$protype', '$area', '$price', '$transfer', '$usertype', '$userid', '$username', '$contact', '$note', '$mbody', '$weight', '$state', '".GetMkTime(time())."', '$video', '$qj_type', '$qj_file', '$cenggao', '$proprice', '$paytype', '$bno', '$floor', '$mintime', '$longitude', '$latitude', '$floortype', '$floorspr', '$sex', '$wx_tel', '$wuye_in')");
+		('$cityid', '$type', '$title', '$addrid', '$address', '$nearby', '$litpic', '$protype', '$area', '$price', '$transfer', '$usertype', '$userid', '$username', '$contact', '$note', '$mbody', '$weight', '$state', '".GetMkTime(time())."', '$video', '$qj_type', '$qj_file', '$cenggao', '$proprice', '$paytype', '$bno', '$floor', '$mintime', '$longitude', '$latitude', '$floortype', '$floorspr', '$sex', '$wx_tel', '$wuye_in', '{$videoUploadTime}')");
 	$aid = $dsql->dsqlOper($archives, "lastid");
 
 	//保存图集表
@@ -168,8 +172,14 @@ if($dopost == "save" && $submit == "提交"){
 }elseif($dopost == "edit"){
 
 	if($submit == "提交"){
+		$sql = $dsql->SetQuery("select video from #@__{$tab} where id={$id}");
+		$info = $dsql->dsqlOper($sql, "results");
+		$videoStr = "";
+		if($video && $video != $info[0]['video']){
+			$videoStr = ", `videoUploadTime`='" . date('Y-m-d H:i:s') . "'";
+		}
 		//保存到表
-		$archives = $dsql->SetQuery("UPDATE `#@__".$tab."` SET `cityid` = '$cityid', `type` = '$type', `title` = '$title', `addrid` = '$addrid', `address` = '$address', `nearby` = '$nearby', `litpic` = '$litpic', `protype` = '$protype', `area` = '$area', `price` = '$price', `transfer` = '$transfer', `usertype` = '$usertype', `userid` = '$userid', `username` = '$username', `contact` = '$contact', `note` = '$note', `mbody` = '$mbody', `weight` = '$weight', `state` = '$state', `pubdate` = '".GetMkTime(time())."', `video` = '$video', `qj_type` = '$qj_type', `qj_file` = '$qj_file', `cenggao` = '$cenggao', `proprice` = '$proprice', `paytype` = '$paytype', `bno` = '$bno', `floor` = '$floor', `mintime` = '$mintime', `longitude` = '$longitude', `latitude` = '$latitude', `floortype` = '$floortype', `floorspr` = '$floorspr', `sex` = '$sex', `wx_tel` = '$wx_tel', `wuye_in` = '$wuye_in' WHERE `id` = ".$id);
+		$archives = $dsql->SetQuery("UPDATE `#@__".$tab."` SET `cityid` = '$cityid', `type` = '$type', `title` = '$title', `addrid` = '$addrid', `address` = '$address', `nearby` = '$nearby', `litpic` = '$litpic', `protype` = '$protype', `area` = '$area', `price` = '$price', `transfer` = '$transfer', `usertype` = '$usertype', `userid` = '$userid', `username` = '$username', `contact` = '$contact', `note` = '$note', `mbody` = '$mbody', `weight` = '$weight', `state` = '$state', `pubdate` = '".GetMkTime(time())."', `video` = '$video', `qj_type` = '$qj_type', `qj_file` = '$qj_file', `cenggao` = '$cenggao', `proprice` = '$proprice', `paytype` = '$paytype', `bno` = '$bno', `floor` = '$floor', `mintime` = '$mintime', `longitude` = '$longitude', `latitude` = '$latitude', `floortype` = '$floortype', `floorspr` = '$floorspr', `sex` = '$sex', `wx_tel` = '$wx_tel', `wuye_in` = '$wuye_in'{$videoStr} WHERE `id` = ".$id);
 		$results = $dsql->dsqlOper($archives, "update");
 
 		//先删除文档所属图集

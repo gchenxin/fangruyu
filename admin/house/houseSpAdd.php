@@ -195,10 +195,14 @@ if($_POST['submit'] == "提交"){
 }
 
 if($dopost == "save" && $submit == "提交"){
+	$videoTime = "";
+	if($video){
+		$videoTime = date("Y-m-d H:i:s");
+	}
 	//保存到表
-	$archives = $dsql->SetQuery("INSERT INTO `#@__".$tab."` (`cityid`, `type`, `industry`, `title`, `addrid`, `address`, `nearby`, `litpic`, `proprice`, `protype`, `area`, `price`, `transfer`, `usertype`, `userid`, `username`, `contact`, `zhuangxiu`, `bno`, `floor`, `config`, `suitable`, `note`, `mbody`, `weight`, `state`, `pubdate`, `video`, `qj_type`, `qj_file`, `loupanid`, `loupan`, `longitude`, `latitude`, `miankuan`, `jinshen`, `cenggao`, `paytype`, `operating_state`, `floortype`, `floorspr`, `sex`, `wx_tel`, `wuye_in`, `flag`) 
+	$archives = $dsql->SetQuery("INSERT INTO `#@__".$tab."` (`cityid`, `type`, `industry`, `title`, `addrid`, `address`, `nearby`, `litpic`, `proprice`, `protype`, `area`, `price`, `transfer`, `usertype`, `userid`, `username`, `contact`, `zhuangxiu`, `bno`, `floor`, `config`, `suitable`, `note`, `mbody`, `weight`, `state`, `pubdate`, `video`, `qj_type`, `qj_file`, `loupanid`, `loupan`, `longitude`, `latitude`, `miankuan`, `jinshen`, `cenggao`, `paytype`, `operating_state`, `floortype`, `floorspr`, `sex`, `wx_tel`, `wuye_in`, `flag`, `videoUploadTime`) 
 		VALUES 
-		('$cityid', '$type', '$industry', '$title', '$addrid', '$address', '$nearby', '$litpic', '$proprice', '$protype', '$area', '$price', '$transfer', '$usertype', '$userid', '$username', '$contact', '$zhuangxiu', '$bno', '$floor', '$config', '$suitable', '$note', '$mbody', '$weight', '$state', '".GetMkTime(time())."', '$video', '$qj_type', '$qj_file', '$loupanid', '$loupan', '$longitude', '$latitude', '$miankuan', '$jinshen', '$cenggao', $paytype, $operating_state, '$floortype', '$floorspr', '$sex', '$wx_tel', '$wuye_in', '$flag')");
+		('$cityid', '$type', '$industry', '$title', '$addrid', '$address', '$nearby', '$litpic', '$proprice', '$protype', '$area', '$price', '$transfer', '$usertype', '$userid', '$username', '$contact', '$zhuangxiu', '$bno', '$floor', '$config', '$suitable', '$note', '$mbody', '$weight', '$state', '".GetMkTime(time())."', '$video', '$qj_type', '$qj_file', '$loupanid', '$loupan', '$longitude', '$latitude', '$miankuan', '$jinshen', '$cenggao', $paytype, $operating_state, '$floortype', '$floorspr', '$sex', '$wx_tel', '$wuye_in', '$flag', '{$videoTime}')");
 	$aid = $dsql->dsqlOper($archives, "lastid");
 
 	//保存图集表
@@ -234,8 +238,14 @@ if($dopost == "save" && $submit == "提交"){
 }elseif($dopost == "edit"){
 
 	if($submit == "提交"){
+		$sql = $dsql->SetQuery("select video from #@__{$tab} where id={$id}");
+		$info = $dsql->dsqlOper($sql, "results");
+		$videoStr = "";
+		if($video && $video != $info[0]['video']){
+			$videoStr = ", `videoUploadTime`='" . date('Y-m-d H:i:s') . "'";
+		}
 		//保存到表
-		$archives = $dsql->SetQuery("UPDATE `#@__".$tab."` SET `cityid` = '$cityid', `type` = '$type', `industry` = '$industry', `title` = '$title', `addrid` = '$addrid', `address` = '$address', `nearby` = '$nearby', `litpic` = '$litpic', `proprice` = '$proprice', `protype` = '$protype', `area` = '$area', `price` = '$price', `transfer` = '$transfer', `usertype` = '$usertype', `userid` = '$userid', `username` = '$username', `contact` = '$contact', `zhuangxiu` = '$zhuangxiu', `bno` = '$bno', `floor` = '$floor', `config` = '$config', `suitable` = '$suitable', `note` = '$note', `mbody` = '$mbody', `weight` = '$weight', `state` = '$state', `pubdate` = '".GetMkTime(time())."', `video` = '$video', `qj_type` = '$qj_type', `qj_file` = '$qj_file', `loupan` = '$loupan', `loupanid` = '$loupanid', `miankuan` = '$miankuan', `jinshen` = '$jinshen', `cenggao` = '$cenggao', `longitude` = '$longitude', `latitude` = '$latitude', `paytype` = $paytype, `operating_state` = $operating_state, `floortype` = '$floortype', `floorspr` = '$floorspr', `sex` = '$sex', `wx_tel` = '$wx_tel', `wuye_in` = '$wuye_in', `flag` = '$flag' WHERE `id` = ".$id);
+		$archives = $dsql->SetQuery("UPDATE `#@__".$tab."` SET `cityid` = '$cityid', `type` = '$type', `industry` = '$industry', `title` = '$title', `addrid` = '$addrid', `address` = '$address', `nearby` = '$nearby', `litpic` = '$litpic', `proprice` = '$proprice', `protype` = '$protype', `area` = '$area', `price` = '$price', `transfer` = '$transfer', `usertype` = '$usertype', `userid` = '$userid', `username` = '$username', `contact` = '$contact', `zhuangxiu` = '$zhuangxiu', `bno` = '$bno', `floor` = '$floor', `config` = '$config', `suitable` = '$suitable', `note` = '$note', `mbody` = '$mbody', `weight` = '$weight', `state` = '$state', `pubdate` = '".GetMkTime(time())."', `video` = '$video', `qj_type` = '$qj_type', `qj_file` = '$qj_file', `loupan` = '$loupan', `loupanid` = '$loupanid', `miankuan` = '$miankuan', `jinshen` = '$jinshen', `cenggao` = '$cenggao', `longitude` = '$longitude', `latitude` = '$latitude', `paytype` = $paytype, `operating_state` = $operating_state, `floortype` = '$floortype', `floorspr` = '$floorspr', `sex` = '$sex', `wx_tel` = '$wx_tel', `wuye_in` = '$wuye_in', `flag` = '$flag'{$videoStr} WHERE `id` = ".$id);
 		$results = $dsql->dsqlOper($archives, "update");
 
 		//先删除文档所属图集
