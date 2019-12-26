@@ -16604,7 +16604,7 @@ EOT;
 			$table = 'house_cf';
 			break;
 		}
-		$sql = $dsql->SetQuery("select h.*,GROUP_CONCAT(p.picPath) imglist from #@__{$table} h left join #@__house_pic p on p.type='housesale' and p.aid=h.id where h.id={$this->param['hid']}");
+		$sql = $dsql->SetQuery("select h.*,GROUP_CONCAT(p.picPath) imglist from #@__{$table} h left join #@__house_pic p on p.type='" . (str_replace('_','',$table)) . "' and p.aid=h.id where h.id={$this->param['hid']}");
 		$houseInfo = $dsql->dsqlOper($sql, 'results');
 		if($houseInfo && empty($house['state'])){
 			$houseInfo = $houseInfo[0];
