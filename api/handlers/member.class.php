@@ -137,6 +137,7 @@ class member {
         global $HN_memory;
         $detail = array();
         $id = $uid ? $uid : $this->param;
+		if(is_array($id))	$id = $id['uid'];
 
         $userid = $userLogin->getMemberID();
 
@@ -11310,19 +11311,21 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 		if(empty($this->param["itemid"]) && empty($this->param['type'])){
 			return array("state" => 101, "info" => 'Param Invalid!');
 		}
-
-		//记录电话点击次数
-		$insertSql = $dsql->SetQuery("insert into #@__house_imclick(type,date) values(1,'" .date('Y-m-d H:i:s') . "')");
-		$dsql->dsqlOper($insertSql, "update");
+		
+		$houseType = 0;
 		$table = "";
 		switch($this->param['type']){
-			case "sale": $table="house_sale";break;
-			case "zu" : $table="house_zu";break;
-			case "sp" : $table="house_sp";break;
-			case "xzl": $table="house_xzl";break;
-			case "cf" : $table="house_cf";break;
-			case "loupan": $table="house_loupan";break;
+			case "sale": $table="house_sale";$houseType = 5;break;
+			case "zu" : $table="house_zu";$houseType = 9;break;
+			case "sp" : $table="house_sp";$houseType = 17;break;
+			case "xzl": $table="house_xzl";$houseType = 33;break;
+			case "cf" : $table="house_cf";$houseType = 65;break;
+			case "loupan": $table="house_loupan";$houseType = 3;break;
 		}
+		//记录电话点击次数
+		$insertSql = $dsql->SetQuery("insert into #@__house_imclick(type,aid,date) values({$houseType}, {$this->param['itemid']},'" .date('Y-m-d H:i:s') . "')");
+		$dsql->dsqlOper($insertSql, "update");
+
 		$zjPhone = '';
 		if($this->param['id']){	//房源有经纪人
 			$zjInfo = $userLogin->getMemberInfo($this->param['id']);
