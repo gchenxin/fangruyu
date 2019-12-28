@@ -5751,6 +5751,7 @@ class house {
 				$saleDetail["longitude"] = $results[0]["longitude"];
 				$saleDetail["latitude"]  = $results[0]["latitude"];
 				$saleDetail["price_trend"]  = "";
+				$saleDetail["tradeList"]  = [];
 			}else{
 				$communitySql = $dsql->SetQuery("SELECT `id`, `cityid`, `title`, `addrid`, `addr`, `longitude`, `latitude`, `price`, `opendate`, `rongji`, `green`, `property`, `proprice`, `buildarea`, `litpic`,`price_trend` FROM `#@__house_community` WHERE `id` = ". $results[0]["communityid"]);
 				$communityResult = $dsql->getTypeName($communitySql);
@@ -5761,6 +5762,7 @@ class house {
 					$saleDetail["longitude"] = "";
 					$saleDetail["latitude"]  = "";
 					$saleDetail["price_trend"]  = "";
+					$saleDetail["tradeList"]  = [];
 					$addrid = 0;
 				}else{
 					$saleDetail["community"] = $communityResult[0]["title"];
@@ -5773,7 +5775,14 @@ class house {
 					$saleDetail["address"]   = $communityResult[0]["addr"];
 					$saleDetail["longitude"] = $communityResult[0]["longitude"];
 					$saleDetail["latitude"]  = $communityResult[0]["latitude"];
-					$saleDetail["price_trend"]  = $communityResult[0]['price_trend'];
+					$price_trend  = json_decode($communityResult[0]['price_trend'], true);
+					if($price_trend && !empty($price_trend['出售'])){
+						$price_trend = $price_trend['出售'];
+					}else{
+						$price_trend = "";
+					}
+					$saleDetail['price_trend'] = json_encode($price_trend);
+					$saleDetail["tradeList"]  = $this->getTradeList($communityResult[0]['id']);
 					$addrid                  = $communityResult[0]["addrid"];
 
 					$community = array();
@@ -7066,7 +7075,11 @@ class house {
 					$zuDetail["longitude"] = $communityResult[0]["longitude"];
 					$zuDetail["latitude"]  = $communityResult[0]["latitude"];
 					$addrid                = $communityResult[0]["addrid"];
-					$zuDetail["price_trend"]  = $results[0]["price_trend"];	
+					$price_trend  = json_decode($results[0]["price_trend"], true);
+					if($price_trend && !empty($price_trend['出售'])){
+						unset($price_trend['出售']);
+					}
+					$zuDetail['price_trend'] = json_encode($price_trend);
 				}
 			}
 
