@@ -3783,12 +3783,31 @@ class house {
 	}
 
 	public function getTradeList($cid = ''){
-		$cid = $cid ?: $this->param['cid'];
-		if(!$cid)	return null;
+		$cid = $cid ? $cid : $this->param['cid'];
+		if(!$cid)	return [];
+		$page = empty($this->param['page']) ? 1 : $this->param['page'];
+		$pageSize = empty($this->param['pageSize']) ? 10 : $this->param['pageSize'];
 		global $dsql;
+
 		$sql = $dsql->SetQuery("select * from #@__community_trade where communityid={$cid}");
+		$totalCount = $dsql->dsqlOper($sql, 'totalCount');
+		if($totalCount == 0)	return [];
+		$totalPage = ceil($totalCount/$pageSize);
+		$atpage = $pageSize*($page-1);
+
+		$results = $dsql->dsqlOper($sql." ORDER BY `tradetime` DESC LIMIT $atpage, $pageSize", "results");
 		$list = $dsql->dsqlOper($sql, "results");
-		return $list;
+		if(empty($this->param['cid'])){
+			return $list;
+		}
+		$pageinfo = array(
+			"page" => $page,
+			"pageSize" => $pageSize,
+			"totalPage" => $totalPage,
+			"totalCount" => $totalCount,
+		);
+		return ['pageinfo'=>$pageinfo, 'list'=>$results];
+		
 	}
 
 	/**
@@ -16713,4 +16732,6 @@ EOT;
 		$limit = !empty($param['pageSize']) ? $param['pageSize'] : 5;
 		return $dsql->dsqlOper($sql, "results");
 	}
+
+	
 }
