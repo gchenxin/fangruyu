@@ -7094,7 +7094,7 @@ class house {
 					$zuDetail["longitude"] = $communityResult[0]["longitude"];
 					$zuDetail["latitude"]  = $communityResult[0]["latitude"];
 					$addrid                = $communityResult[0]["addrid"];
-					$price_trend  = json_decode($results[0]["price_trend"], true);
+					$price_trend  = json_decode($communityResult[0]["price_trend"], true);
 					if($price_trend && !empty($price_trend['出售'])){
 						unset($price_trend['出售']);
 					}
