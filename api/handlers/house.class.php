@@ -3692,6 +3692,7 @@ class house {
 			$communityDetail['addr']      = $addrName;
 
 			$communityDetail["address"]   = $results[0]['addr'];
+			$communityDetail["subway"]   = $this->getSubway($results[0]['subway']);
 			$communityDetail["longitude"] = $results[0]['longitude'];
 			$communityDetail["latitude"]  = $results[0]['latitude'];
 			$communityDetail["litpic"]    = getFilePath($results[0]['litpic']);
@@ -5772,7 +5773,7 @@ class house {
 				$saleDetail["price_trend"]  = "";
 				$saleDetail["tradeList"]  = [];
 			}else{
-				$communitySql = $dsql->SetQuery("SELECT `id`, `cityid`, `title`, `addrid`, `addr`, `longitude`, `latitude`, `price`, `opendate`, `rongji`, `green`, `property`, `proprice`, `buildarea`, `litpic`,`price_trend` FROM `#@__house_community` WHERE `id` = ". $results[0]["communityid"]);
+				$communitySql = $dsql->SetQuery("SELECT `id`, `planhouse`,`post`, `planarea`,`proaddr`, `protel`,`config`,`subway`, `cityid`, `title`, `kfs`, `addrid`, `addr`, `longitude`, `latitude`, `price`, `opendate`, `rongji`, `green`, `property`, `proprice`, `buildarea`, `litpic`,`price_trend` FROM `#@__house_community` WHERE `id` = ". $results[0]["communityid"]);
 				$communityResult = $dsql->getTypeName($communitySql);
 				if(!$communityResult){
 					$saleDetail["community"] = "小区不存在";
@@ -5790,8 +5791,10 @@ class house {
 					$data = "";
 					$addrName = array_reverse(parent_foreach($addrName, "typename"));
 					$saleDetail['addr']      = $addrName;
+					$saleDetail['subway']      = $this->getSubway($communityResult[0]['subway']);
 					$saleDetail["cityid"]   = $communityResult[0]["cityid"];
 					$saleDetail["address"]   = $communityResult[0]["addr"];
+					$saleDetail["communityConfig"]   = $communityResult[0]['config'];
 					$saleDetail["longitude"] = $communityResult[0]["longitude"];
 					$saleDetail["latitude"]  = $communityResult[0]["latitude"];
 					$price_trend  = json_decode($communityResult[0]['price_trend'], true);
@@ -5808,7 +5811,13 @@ class house {
 					$community['price']      = $communityResult[0]["price"];
 					$community['opendate']   = $communityResult[0]["opendate"];
 					$community['rongji']     = $communityResult[0]["rongji"];
+					$community['protel']     = $communityResult[0]["protel"];
+					$community['proaddr']     = $communityResult[0]["proaddr"];
 					$community['green']      = $communityResult[0]["green"];
+					$community['planarea']      = $communityResult[0]["planarea"];
+					$community['planhouse']      = $communityResult[0]["planhouse"];
+					$community['post']      = $communityResult[0]["post"];
+					$community['kfs']      = $communityResult[0]["kfs"];
 					$community['property']   = $communityResult[0]["property"];
 					$community['proprice']   = $communityResult[0]["proprice"];
 					$community['buildarea']  = $communityResult[0]["buildarea"];
@@ -5885,6 +5894,7 @@ class house {
 				$areaid = $ret[0]['parentid'];
 			}
 			$saleDetail["areaid"]     = $areaid;
+			//统计小区、商圈、区域的房源数
 
 			$param = array(
 				"service"     => "house",
@@ -6013,6 +6023,30 @@ class house {
 
 		}
 		return $saleDetail;
+	}
+
+	public function getHouseCount(){
+		$tableName = 'sale'; $communityId = '4705'; $addrid = '347'; $areas = '22';
+		global $dsql;
+		$return = ['community'=>0, 'tradeCenter'=>0,'area'=>0];
+		$sql = "select * from #@__house_{$tableName} where communityid={$communityId}";
+		$result['communityCount'] = $dsql->dsqlOper($sql, "totalCount");
+		$addrInfo = getParentArr('site_area', $addrid);
+		if(!$addrInfo)	return $return;
+		if(count($addrInfo) == 1){
+			return $return;
+		}elseif(count($addrInfo[1]['lower']) == 1 && !in_array($addrInfo[1]['lower'][0]['id'], [1,2,9,22])){
+			return $return;
+		}else{
+			$cityList[] = $addrInfo[0];
+			if(count($addrInfo[1]['lower']) > 1){
+				foreach($addrInfo[1]['lower'] as $item){
+					if($item['parentid']){
+
+					}
+				}
+			}
+		}
 	}
 
 
@@ -7058,7 +7092,7 @@ class house {
 			$zuDetail["communityid"] = $results[0]["communityid"];
 
 			$addrid = $results[0]['addrid'];
-			$saleDetail["cityid"] = $results[0]['cityid'];
+			$zuDetail["cityid"] = $results[0]['cityid'];
 
 			if($results[0]['communityid'] == 0){
 				$zuDetail["community"] = $results[0]["community"];
@@ -7072,7 +7106,7 @@ class house {
 				$zuDetail["latitude"]  = $results[0]["latitude"];
 				$zuDetail["price_trend"]  = "";
 			}else{
-				$communitySql = $dsql->SetQuery("SELECT `id`, `cityid`, `title`, `addrid`, `addr`, `longitude`, `latitude`,`price_trend` FROM `#@__house_community` WHERE `id` = ". $results[0]["communityid"]);
+				$communitySql = $dsql->SetQuery("SELECT `id`, `planhouse`,`post`, `planarea`,`proaddr`, `protel`,`config`,`subway`, `cityid`, `title`, `kfs`, `addrid`, `addr`, `longitude`, `latitude`, `price`, `opendate`, `rongji`, `green`, `property`, `proprice`, `buildarea`, `litpic`,`price_trend` FROM `#@__house_community` WHERE `id` = ". $results[0]["communityid"]);
 				$communityResult = $dsql->getTypeName($communitySql);
 				if(!$communityResult){
 					$zuDetail["community"] = "小区不存在";
@@ -7090,6 +7124,8 @@ class house {
 					$addrName = array_reverse(parent_foreach($addrName, "typename"));
 					$zuDetail['addr']      = $addrName;
 					$zuDetail["cityid"]    = $communityResult[0]["cityid"];
+					$zuDetail["communityConfig"]    = $communityResult[0]["config"];
+					$zuDetail["subway"]   = $this->getSubway($communityResult[0]["subway"]);
 					$zuDetail["address"]   = $communityResult[0]["addr"];
 					$zuDetail["longitude"] = $communityResult[0]["longitude"];
 					$zuDetail["latitude"]  = $communityResult[0]["latitude"];
@@ -7099,6 +7135,24 @@ class house {
 						unset($price_trend['出售']);
 					}
 					$zuDetail['price_trend'] = json_encode($price_trend);
+
+					$community = array();
+					$community['price']      = $communityResult[0]["price"];
+					$community['opendate']   = $communityResult[0]["opendate"];
+					$community['rongji']     = $communityResult[0]["rongji"];
+					$community['protel']     = $communityResult[0]["protel"];
+					$community['proaddr']     = $communityResult[0]["proaddr"];
+					$community['green']      = $communityResult[0]["green"];
+					$community['planarea']      = $communityResult[0]["planarea"];
+					$community['planhouse']      = $communityResult[0]["planhouse"];
+					$community['post']      = $communityResult[0]["post"];
+					$community['kfs']      = $communityResult[0]["kfs"];
+					$community['property']   = $communityResult[0]["property"];
+					$community['proprice']   = $communityResult[0]["proprice"];
+					$community['buildarea']  = $communityResult[0]["buildarea"];
+					$community['litpic']     = $communityResult[0]["litpic"] ? getFilePath($communityResult[0]["litpic"]) : "";
+
+					$zuDetail["communityDetail"] = $community;
 				}
 			}
 
@@ -16733,5 +16787,11 @@ EOT;
 		return $dsql->dsqlOper($sql, "results");
 	}
 
-	
+	public function getSubWay($ids){
+		global $dsql;
+		$sql = $dsql->SetQuery("select ss.id,s.title line,ss.title station from #@__site_subway s INNER JOIN #@__site_subway_station ss on s.id=ss.sid where ss.id in ({$ids})");
+		$list = $dsql->dsqlOper($sql, "results");
+		return $list;
+	}
+
 }
