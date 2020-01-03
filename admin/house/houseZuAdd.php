@@ -161,9 +161,9 @@ if($_POST['submit'] == "提交"){
 }
 
 if($dopost == "save" && $submit == "提交"){
-	$videoUploadTime = "";
+	$videoUploadTime = "NULL";
 	if($video){
-		$videoUploadTime = date('Y-m-d H::i:s');
+		$videoUploadTime = "'".date('Y-m-d H::i:s')."'";
 	}
 	//保存到表
 	$archives = $dsql->SetQuery("INSERT INTO `#@__".$tab."` (`cityid`, `title`, `communityid`, `community`, `addrid`, `address`, `litpic`, `price`, `paytype`, `rentype`, `protype`, `room`, `hall`, `guard`, `sharetype`, `sharesex`, `bno`, `floor`, `area`, `direction`, `zhuangxiu`, `buildage`, `config`, `usertype`, `userid`, `username`, `contact`, `note`, `mbody`, `weight`, `state`, `pubdate`, `elevator`, `video`, `qj_type`, `qj_file`, `longitude`, `latitude`, `buildpos`, `floortype`, `floorspr`, `sex`, `wx_tel`, `flag`, `videoUploadTime`) 

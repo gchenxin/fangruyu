@@ -134,9 +134,9 @@ if($_POST['submit'] == "提交"){
 }
 
 if($dopost == "save" && $submit == "提交"){
-	$videoUploadTime = "";
+	$videoUploadTime = "NULL";
 	if($video){
-		$videoUploadTime = date('Y-m-d H::i:s');
+		$videoUploadTime = "'".date('Y-m-d H::i:s')."'";
 	}
 	//保存到表
 	$archives = $dsql->SetQuery("INSERT INTO `#@__".$tab."` (`cityid`, `type`, `title`, `addrid`, `address`, `nearby`, `litpic`, `protype`, `area`, `price`, `transfer`, `usertype`, `userid`, `username`, `contact`, `note`, `mbody`, `weight`, `state`, `pubdate`, `video`, `qj_type`, `qj_file`, `cenggao`, `proprice`, `paytype`, `bno`, `floor`, `mintime`, `longitude`, `latitude`, `floortype`, `floorspr`, `sex`, `wx_tel`, `wuye_in`, `videoUploadTime`)

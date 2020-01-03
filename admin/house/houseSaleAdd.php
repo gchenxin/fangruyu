@@ -39,7 +39,7 @@ if(empty($state)) $state = 0;
 if(empty($userid)) $userid = 0;
 if(!empty($flag)) $flag = join(",", $flag);
 
-if($_POST['submit'] == "提交"){
+if($_REQUEST['submit'] == "提交"){
 
 	if($token == "") die('token传递失败！');
 	//二次验证
@@ -182,13 +182,14 @@ if($_POST['submit'] == "提交"){
 }
 
 if($dopost == "save" && $submit == "提交"){
+	$videoUploadTime = 'NULL';
 	if($video){
-		$videoUploadTime = date('Y-m-d H:i:s');
+		$videoUploadTime = "'".date('Y-m-d H:i:s')."'";
 	}
 	//保存到表
 	$archives = $dsql->SetQuery("INSERT INTO `#@__".$tab."` (`cityid`, `title`, `communityid`, `community`, `addrid`, `address`, `litpic`, `price`, `unitprice`, `protype`, `room`, `hall`, `guard`, `bno`, `floor`, `area`, `direction`, `zhuangxiu`, `buildage`, `usertype`, `userid`, `username`, `contact`, `note`, `mbody`, `weight`, `state`, `flag`, `pubdate`, `elevator`, `video`, `qj_type`, `qj_file`, `longitude`, `latitude`, `buildpos`, `floortype`, `floorspr`, `paytax`, `rights_to`, `sex`, `wx_tel`, `sourceid`, `videoUploadTime`) 
 		VALUES 
-		('$cityid', '$title', '$communityid', '$community', '$addrid', '$address', '$litpic', '$price', '$unitprice', '$protype', '$room', '$hall', '$guard', '$bno', '$floor', '$area', '$direction', '$zhuangxiu', '$buildage', '$usertype', '$userid', '$username', '$contact', '$note', '$mbody', '$weight', '$state', '$flag', '".GetMkTime(time())."', '$elevator', '$video', '$qj_type', '$qj_file', '$longitude', '$latitude', '$buildpos', '$floortype', '$floorspr', '$paytax', '$rights_to', '$sex', '$wx_tel', '$sourceid','{$videoUploadTime}')");
+		('$cityid', '$title', '$communityid', '$community', '$addrid', '$address', '$litpic', '$price', '$unitprice', '$protype', '$room', '$hall', '$guard', '$bno', '$floor', '$area', '$direction', '$zhuangxiu', '$buildage', '$usertype', '$userid', '$username', '$contact', '$note', '$mbody', '$weight', '$state', '$flag', '".GetMkTime(time())."', '$elevator', '$video', '$qj_type', '$qj_file', '$longitude', '$latitude', '$buildpos', '$floortype', '$floorspr', '$paytax', '$rights_to', '$sex', '$wx_tel', '$sourceid',{$videoUploadTime})");
 	$aid = $dsql->dsqlOper($archives, "lastid");
 
 	//保存图集表
