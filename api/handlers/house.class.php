@@ -6026,26 +6026,29 @@ class house {
 	}
 
 	public function getHouseCount(){
-		$tableName = 'sale'; $communityId = '4705'; $addrid = '347'; $areas = '22';
+		$tableName = 'sale'; $communityId = '4705'; $addrid = '5033'; $areas = '22';
 		global $dsql;
 		$return = ['community'=>0, 'tradeCenter'=>0,'area'=>0];
-		$sql = "select * from #@__house_{$tableName} where communityid={$communityId}";
-		$result['communityCount'] = $dsql->dsqlOper($sql, "totalCount");
+		$sql = "select count(*) commCount from #@__house_{$tableName} where communityid={$communityId}";
+		$result['communityCount'] = ($dsql->dsqlOper($sql, "results"))[0]['commCount'];
 		$addrInfo = getParentArr('site_area', $addrid);
 		if(!$addrInfo)	return $return;
-		if(count($addrInfo) == 1){
-			return $return;
-		}elseif(count($addrInfo[1]['lower']) == 1 && !in_array($addrInfo[1]['lower'][0]['id'], [1,2,9,22])){
-			return $return;
-		}else{
-			$cityList[] = $addrInfo[0];
-			if(count($addrInfo[1]['lower']) > 1){
-				foreach($addrInfo[1]['lower'] as $item){
-					if($item['parentid']){
+		$this->parseTreeNode($addrInfo, $cityList, $parentid);
+		if(!in_array($parentid, [1,2,9,22])){
+			array_pop($cityList);
+		}
+		//
+		return $cityList;
+	}
 
-					}
-				}
-			}
+	public function parseTreeNode($data, &$list, &$parentid){
+		if(!isset($data[1])){
+			$parentid = $data[0]['id'];
+			return;
+		}
+		if($data[0]['level'] >= 2){
+			$list[] = $data[0];
+			$this->parseTreeNode($data[1]['lower'], $list, $parentid);
 		}
 	}
 
