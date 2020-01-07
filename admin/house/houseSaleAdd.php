@@ -39,7 +39,7 @@ if(empty($state)) $state = 0;
 if(empty($userid)) $userid = 0;
 if(!empty($flag)) $flag = join(",", $flag);
 
-if($_REQUEST['submit'] == "提交"){
+if($_POST['submit'] == "提交"){
 
 	if($token == "") die('token传递失败！');
 	//二次验证

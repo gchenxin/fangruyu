@@ -168,7 +168,7 @@ if($dopost == "save" && $submit == "提交"){
 	//保存到表
 	$archives = $dsql->SetQuery("INSERT INTO `#@__".$tab."` (`cityid`, `title`, `communityid`, `community`, `addrid`, `address`, `litpic`, `price`, `paytype`, `rentype`, `protype`, `room`, `hall`, `guard`, `sharetype`, `sharesex`, `bno`, `floor`, `area`, `direction`, `zhuangxiu`, `buildage`, `config`, `usertype`, `userid`, `username`, `contact`, `note`, `mbody`, `weight`, `state`, `pubdate`, `elevator`, `video`, `qj_type`, `qj_file`, `longitude`, `latitude`, `buildpos`, `floortype`, `floorspr`, `sex`, `wx_tel`, `flag`, `videoUploadTime`) 
 		VALUES 
-		('$cityid', '$title', '$communityid', '$community', '$addrid', '$address', '$litpic', '$price', '$paytype', '$rentype', '$protype', '$room', '$hall', '$guard', '$sharetype', '$sharesex', '$bno', '$floor', '$area', '$direction', '$zhuangxiu', '$buildage', '$config', '$usertype', '$userid', '$username', '$contact', '$note', '$mbody', '$weight', '$state', '".GetMkTime(time())."', '$elevator', '$video', '$qj_type', '$qj_file', '$longitude', '$latitude', '$buildpos', '$floortype', '$floorspr', '$sex', '$wx_tel', '$flag','{$videoUploadTime}')");
+		('$cityid', '$title', '$communityid', '$community', '$addrid', '$address', '$litpic', '$price', '$paytype', '$rentype', '$protype', '$room', '$hall', '$guard', '$sharetype', '$sharesex', '$bno', '$floor', '$area', '$direction', '$zhuangxiu', '$buildage', '$config', '$usertype', '$userid', '$username', '$contact', '$note', '$mbody', '$weight', '$state', '".GetMkTime(time())."', '$elevator', '$video', '$qj_type', '$qj_file', '$longitude', '$latitude', '$buildpos', '$floortype', '$floorspr', '$sex', '$wx_tel', '$flag',{$videoUploadTime})");
 	$aid = $dsql->dsqlOper($archives, "lastid");
 
 	//保存图集表

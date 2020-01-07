@@ -141,7 +141,7 @@ if($dopost == "save" && $submit == "提交"){
 	//保存到表
 	$archives = $dsql->SetQuery("INSERT INTO `#@__".$tab."` (`cityid`, `type`, `title`, `addrid`, `address`, `nearby`, `litpic`, `protype`, `area`, `price`, `transfer`, `usertype`, `userid`, `username`, `contact`, `note`, `mbody`, `weight`, `state`, `pubdate`, `video`, `qj_type`, `qj_file`, `cenggao`, `proprice`, `paytype`, `bno`, `floor`, `mintime`, `longitude`, `latitude`, `floortype`, `floorspr`, `sex`, `wx_tel`, `wuye_in`, `videoUploadTime`)
 		VALUES
-		('$cityid', '$type', '$title', '$addrid', '$address', '$nearby', '$litpic', '$protype', '$area', '$price', '$transfer', '$usertype', '$userid', '$username', '$contact', '$note', '$mbody', '$weight', '$state', '".GetMkTime(time())."', '$video', '$qj_type', '$qj_file', '$cenggao', '$proprice', '$paytype', '$bno', '$floor', '$mintime', '$longitude', '$latitude', '$floortype', '$floorspr', '$sex', '$wx_tel', '$wuye_in', '{$videoUploadTime}')");
+		('$cityid', '$type', '$title', '$addrid', '$address', '$nearby', '$litpic', '$protype', '$area', '$price', '$transfer', '$usertype', '$userid', '$username', '$contact', '$note', '$mbody', '$weight', '$state', '".GetMkTime(time())."', '$video', '$qj_type', '$qj_file', '$cenggao', '$proprice', '$paytype', '$bno', '$floor', '$mintime', '$longitude', '$latitude', '$floortype', '$floorspr', '$sex', '$wx_tel', '$wuye_in', {$videoUploadTime})");
 	$aid = $dsql->dsqlOper($archives, "lastid");
 
 	//保存图集表
