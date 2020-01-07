@@ -5025,8 +5025,8 @@ class house {
 		$page     = empty($page) ? 1 : $page;
 
 		$archives = $dsql->SetQuery("SELECT " .
-									"s.`id`, s.`title`, s.`communityid`, s.`community`, s.`addrid`, s.`address`, s.`litpic`, s.`price`, s.`unitprice`, s.`protype`, s.`room`, s.`hall`, s.`guard`, s.`bno`, s.`floor`, s.`buildage`, s.`area`, s.`flag`, s.`state`, s.`direction`, s.`zhuangxiu`, s.`flag`, s.`pubdate`, s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`usertype`, s.`username`, s.`contact`, s.`userid`, s.`video`, s.`qj_file`, s.`elevator`,s.longitude,s.latitude,ss.title line,sss.title station " .
-									"FROM `#@__house_sale` s LEFT JOIN `#@__house_zjuser` z ON z.`id` = s.`userid` left join #@__house_community c on s.communityid=c.id left join #@__site_subway_station sss on c.subway=sss.id left join #@__site_subway ss on sss.sid=ss.id " .
+									"s.`id`, s.`title`, s.`communityid`, s.`community`, s.`addrid`, s.`address`, s.`litpic`, s.`price`, s.`unitprice`, s.`protype`, s.`room`, s.`hall`, s.`guard`, s.`bno`, s.`floor`, s.`buildage`, s.`area`, s.`flag`, s.`state`, s.`direction`, s.`zhuangxiu`, s.`flag`, s.`pubdate`, s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`usertype`, s.`username`, s.`contact`, s.`userid`, s.`video`, s.`qj_file`, s.`elevator`,s.longitude,s.latitude,c.subway " .
+									"FROM `#@__house_sale` s LEFT JOIN `#@__house_zjuser` z ON z.`id` = s.`userid` left join #@__house_community c on s.communityid=c.id " .
 									"WHERE (s.`usertype` = 0 OR (s.`usertype` = 1 AND s.`userid` = z.`id`".$zj_state."))" . $where);
 
 		//总条数
@@ -5090,8 +5090,7 @@ class house {
 				$list[$key]['contact']  = $val['contact'];
 				$list[$key]['longitude']  = $val['longitude'];
 				$list[$key]['latitude']  = $val['latitude'];
-				$list[$key]['line']  = $val['line'];
-				$list[$key]['station']  = $val['station'];
+				$list[$key]['subway']  = $this->getSubway($val['subway']);
 
 				//会员信息
 				$nickname = $userPhoto = $userPhone = "";
@@ -6056,21 +6055,33 @@ class house {
 	}
 
 	public function getHouseCount(){
-		$tableName = 'sale'; $communityId = '4705'; $addrid = '5033'; $areas = '22';
+		$tableName = 'sale'; $communityId = '4705'; $addrid = '5033'; $areaid = '347';
 		global $dsql;
 		$return = ['community'=>0, 'tradeCenter'=>0,'area'=>0];
-		$sql = "select count(*) commCount from #@__house_{$tableName} where communityid={$communityId}";
-		$result['communityCount'] = ($dsql->dsqlOper($sql, "results"))[0]['commCount'];
-		$addrInfo = getParentArr('site_area', $addrid);
+		$sql = $dsql->SetQuery("select count(*) commCount from #@__house_{$tableName} where communityid={$communityId}");
+		$info = $dsql->dsqlOper($sql, "results");
+		$result['community'] = $info[0]['commCount'];
+		/*$addrInfo = getParentArr('site_area', $addrid);
 		if(!$addrInfo)	return $return;
 		$this->parseTreeNode($addrInfo, $cityList, $parentid);
-		if(!in_array($parentid, [1,2,9,22])){
+		if(!in_array($parentid, [1,2,9,22])){	//直辖市
 			array_pop($cityList);
 		}
 		//
-		return $cityList;
-	}
+		return $cityList;*/
+		$addrArr = arr_foreach($dsql->getTypeList($addrid, 'site_area'));
+		$addrArr = $addrArr ? join(',', $addrArr) . ",{$addrid}" : $addrid;
+		$sql = $dsql->SetQuery("select count(*) addrCount from #@__house_{$tableName} where addrid in ({$addrArr})");
+		$result['tradeCenter'] = ($dsql->dsqlOper($sql, "results"))[0]['addrCount'];
 
+		$areaArr = arr_foreach($dsql->getTypeList($areaid, 'site_area'));
+		$areaArr = $areaArr ? join(',', $areaArr) . ",{$areaid}" : $areaid;
+		$sql = $dsql->SetQuery("select count(*) addrCount from #@__house_{$tableName} where addrid in ({$areaArr})");
+		$result['area'] = ($dsql->dsqlOper($sql, "results"))[0]['addrCount'];
+		return $result;
+	}
+	
+	//暂未用
 	public function parseTreeNode($data, &$list, &$parentid){
 		if(!isset($data[1])){
 			$parentid = $data[0]['id'];
@@ -6447,8 +6458,8 @@ class house {
 		$page     = empty($page) ? 1 : $page;
 
 		$archives = $dsql->SetQuery("SELECT " .
-									"s.`id`, s.`config`, s.`buildage`, s.`contact`, s.`title`, s.`communityid`, s.`community`, s.`addrid`, s.`address`, s.`litpic`, s.`price`, s.`rentype`, s.`protype`, s.`room`, s.`hall`, s.`guard`, s.`bno`, s.`floor`, s.`area`, s.`sharetype`, s.`direction`, s.`zhuangxiu`, s.`usertype`, s.`username`, s.`userid`, s.`state`, s.`pubdate`, ".$select." s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`video`, s.`qj_file`, s.`elevator`,s.longitude,s.latitude,ss.title line,sss.title station  " .
-									"FROM `#@__house_zu` s LEFT JOIN `#@__house_zjuser` z ON z.`id` = s.`userid` left join #@__house_community c on s.communityid=c.id left join #@__site_subway_station sss on c.subway=sss.id left join #@__site_subway ss on sss.sid=ss.id " .
+									"s.`id`, s.`config`, s.`buildage`, s.`contact`, s.`title`, s.`communityid`, s.`community`, s.`addrid`, s.`address`, s.`litpic`, s.`price`, s.`rentype`, s.`protype`, s.`room`, s.`hall`, s.`guard`, s.`bno`, s.`floor`, s.`area`, s.`sharetype`, s.`direction`, s.`zhuangxiu`, s.`usertype`, s.`username`, s.`userid`, s.`state`, s.`pubdate`, ".$select." s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`video`, s.`qj_file`, s.`elevator`,s.longitude,s.latitude,c.subway " .
+									"FROM `#@__house_zu` s LEFT JOIN `#@__house_zjuser` z ON z.`id` = s.`userid` left join #@__house_community c on s.communityid=c.id " .
 									" WHERE " .
 									"(s.`usertype` = 0 OR (s.`usertype` = 1 AND s.`userid` = z.`id`".$zj_state."))".$where);
 
@@ -6515,9 +6526,7 @@ class house {
                 $list[$key]['config']  = $val['config'];
 				$list[$key]['longitude']  = $val['longitude'];
                 $list[$key]['latitude']  = $val['latitude'];
-				$list[$key]['line']  = $val['line'];
-				$list[$key]['station']  = $val['station'];
-
+				$list[$key]['subway']  = $this->getSubway($val['subway']);
                 //配置
                 $configlist = array();
                 if($val['config']){
