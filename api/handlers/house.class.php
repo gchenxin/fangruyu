@@ -3670,10 +3670,25 @@ class house {
 		if($results){
 			$communityDetail["id"]        = $results[0]['id'];
 			$communityDetail["title"]     = $results[0]['title'];
+			$communityDetail["buildtype"]     = $results[0]['buildtype'];
 
 			$addrid = $results[0]['addrid'];
 			$areaid = 0;
 
+			//小区配套
+			$aroundConfig = [
+				'water'	=>	$results[0]['water'],
+				'heat'	=>	$results[0]['heat'],
+				'power'	=>	$results[0]['power'],
+				'gas'	=>	$results[0]['gas'],
+				'newsletter'	=>	$results[0]['newsletter'],
+				'elevator'	=>	$results[0]['elevator'],
+				'safe'	=>	$results[0]['safe'],
+				'clean'	=>	$results[0]['clean'],
+				'entrance'	=>	$results[0]['entrance'],
+				'parknum'	=>	$results[0]['parknum'],
+			];
+			$communityDetail['aroundConfig'] = $aroundConfig;
 			//父级区域
 			$sql = $dsql->SetQuery("SELECT `parentid` FROM `#@__site_area` WHERE `id` = ".$addrid);
 			$ret = $dsql->dsqlOper($sql, "results");
@@ -5010,11 +5025,10 @@ class house {
 		$page     = empty($page) ? 1 : $page;
 
 		$archives = $dsql->SetQuery("SELECT " .
-									"s.`id`, s.`title`, s.`communityid`, s.`community`, s.`addrid`, s.`address`, s.`litpic`, s.`price`, s.`unitprice`, s.`protype`, s.`room`, s.`hall`, s.`guard`, s.`bno`, s.`floor`, s.`buildage`, s.`area`, s.`flag`, s.`state`, s.`direction`, s.`zhuangxiu`, s.`flag`, s.`pubdate`, s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`usertype`, s.`username`, s.`contact`, s.`userid`, s.`video`, s.`qj_file`, s.`elevator`,s.longitude,s.latitude " .
-									"FROM `#@__house_sale` s LEFT JOIN `#@__house_zjuser` z ON z.`id` = s.`userid`" .
+									"s.`id`, s.`title`, s.`communityid`, s.`community`, s.`addrid`, s.`address`, s.`litpic`, s.`price`, s.`unitprice`, s.`protype`, s.`room`, s.`hall`, s.`guard`, s.`bno`, s.`floor`, s.`buildage`, s.`area`, s.`flag`, s.`state`, s.`direction`, s.`zhuangxiu`, s.`flag`, s.`pubdate`, s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`usertype`, s.`username`, s.`contact`, s.`userid`, s.`video`, s.`qj_file`, s.`elevator`,s.longitude,s.latitude,ss.title line,sss.title station " .
+									"FROM `#@__house_sale` s LEFT JOIN `#@__house_zjuser` z ON z.`id` = s.`userid` left join #@__house_community c on s.communityid=c.id left join #@__site_subway_station sss on c.subway=sss.id left join #@__site_subway ss on sss.sid=ss.id " .
 									"WHERE (s.`usertype` = 0 OR (s.`usertype` = 1 AND s.`userid` = z.`id`".$zj_state."))" . $where);
 
-		// echo $archives;
 		//总条数
 		//$totalCount = $dsql->dsqlOper($archives, "totalCount");	
         $totalCount = getCache("house_sale_total", $archives, 300, array("savekey" => 1, "type" => "totalCount", "disabled" => $u));
@@ -5076,6 +5090,8 @@ class house {
 				$list[$key]['contact']  = $val['contact'];
 				$list[$key]['longitude']  = $val['longitude'];
 				$list[$key]['latitude']  = $val['latitude'];
+				$list[$key]['line']  = $val['line'];
+				$list[$key]['station']  = $val['station'];
 
 				//会员信息
 				$nickname = $userPhoto = $userPhone = "";
@@ -5773,7 +5789,7 @@ class house {
 				$saleDetail["price_trend"]  = "";
 				$saleDetail["tradeList"]  = [];
 			}else{
-				$communitySql = $dsql->SetQuery("SELECT `id`, `planhouse`,`post`, `planarea`,`proaddr`, `protel`,`config`,`subway`, `cityid`, `title`, `kfs`, `addrid`, `addr`, `longitude`, `latitude`, `price`, `opendate`, `rongji`, `green`, `property`, `proprice`, `buildarea`, `litpic`,`price_trend` FROM `#@__house_community` WHERE `id` = ". $results[0]["communityid"]);
+				$communitySql = $dsql->SetQuery("SELECT `id`, `planhouse`,`post`, `planarea`,`proaddr`, `protel`,`config`,`subway`, `cityid`, `title`, `kfs`, `addrid`, `addr`, `longitude`, `latitude`, `price`, `opendate`, `rongji`, `green`, `property`, `proprice`, `buildarea`, `litpic`,`price_trend`,water,heat,power,gas,newsletter,elevator,safe,clean,entrance,parknum FROM `#@__house_community` WHERE `id` = ". $results[0]["communityid"]);
 				$communityResult = $dsql->getTypeName($communitySql);
 				if(!$communityResult){
 					$saleDetail["community"] = "小区不存在";
@@ -5806,7 +5822,7 @@ class house {
 					$saleDetail['price_trend'] = json_encode($price_trend);
 					$saleDetail["tradeList"]  = $this->getTradeList($communityResult[0]['id']);
 					$addrid                  = $communityResult[0]["addrid"];
-
+					
 					$community = array();
 					$community['price']      = $communityResult[0]["price"];
 					$community['opendate']   = $communityResult[0]["opendate"];
@@ -5822,6 +5838,20 @@ class house {
 					$community['proprice']   = $communityResult[0]["proprice"];
 					$community['buildarea']  = $communityResult[0]["buildarea"];
 					$community['litpic']     = $communityResult[0]["litpic"] ? getFilePath($communityResult[0]["litpic"]) : "";
+					//小区配套
+					$aroundConfig = [
+						'water'	=>	$communityResult[0]['water'],
+						'heat'	=>	$communityResult[0]['heat'],
+						'power'	=>	$communityResult[0]['power'],
+						'gas'	=>	$communityResult[0]['gas'],
+						'newsletter'	=>	$communityResult[0]['newsletter'],
+						'elevator'	=>	$communityResult[0]['elevator'],
+						'safe'	=>	$communityResult[0]['safe'],
+						'clean'	=>	$communityResult[0]['clean'],
+						'entrance'	=>	$communityResult[0]['entrance'],
+						'parknum'	=>	$communityResult[0]['parknum'],
+					];
+					$community['aroundConfig'] = $aroundConfig;	
 
 					$saleDetail["communityDetail"] = $community;
 
@@ -6417,9 +6447,8 @@ class house {
 		$page     = empty($page) ? 1 : $page;
 
 		$archives = $dsql->SetQuery("SELECT " .
-									"s.`id`, s.`config`, s.`buildage`, s.`contact`, s.`title`, s.`communityid`, s.`community`, s.`addrid`, s.`address`, s.`litpic`, s.`price`, s.`rentype`, s.`protype`, s.`room`, s.`hall`, s.`guard`, s.`bno`, s.`floor`, s.`area`, s.`sharetype`, s.`direction`, s.`zhuangxiu`, s.`usertype`, s.`username`, s.`userid`, s.`state`, s.`pubdate`, ".$select." s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`video`, s.`qj_file`, s.`elevator`,s.longitude,s.latitude " .
-									"FROM `#@__house_zu` s LEFT JOIN `#@__house_zjuser` z ON z.`id` = s.`userid`" .
-                                    ($lat && $lng ? " LEFT JOIN `#@__house_community` c ON c.`id` = s.`communityid`" : "") .
+									"s.`id`, s.`config`, s.`buildage`, s.`contact`, s.`title`, s.`communityid`, s.`community`, s.`addrid`, s.`address`, s.`litpic`, s.`price`, s.`rentype`, s.`protype`, s.`room`, s.`hall`, s.`guard`, s.`bno`, s.`floor`, s.`area`, s.`sharetype`, s.`direction`, s.`zhuangxiu`, s.`usertype`, s.`username`, s.`userid`, s.`state`, s.`pubdate`, ".$select." s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`video`, s.`qj_file`, s.`elevator`,s.longitude,s.latitude,ss.title line,sss.title station  " .
+									"FROM `#@__house_zu` s LEFT JOIN `#@__house_zjuser` z ON z.`id` = s.`userid` left join #@__house_community c on s.communityid=c.id left join #@__site_subway_station sss on c.subway=sss.id left join #@__site_subway ss on sss.sid=ss.id " .
 									" WHERE " .
 									"(s.`usertype` = 0 OR (s.`usertype` = 1 AND s.`userid` = z.`id`".$zj_state."))".$where);
 
@@ -6474,7 +6503,7 @@ class house {
 		$atpage = $pageSize*($page-1);
 		$where = " LIMIT $atpage, $pageSize";
 
-		// $results = $dsql->dsqlOper($archives.$where1.$orderby.$where, "results");
+		//$results = $dsql->dsqlOper($archives.$where1.$orderby.$where, "results");
         $results = getCache("house_zu_list", $archives.$where1.$orderby.$where, 300, array("disabled" => $u));
 		$results = array_merge($topArr, $results);
 		if($results){
@@ -6486,6 +6515,8 @@ class house {
                 $list[$key]['config']  = $val['config'];
 				$list[$key]['longitude']  = $val['longitude'];
                 $list[$key]['latitude']  = $val['latitude'];
+				$list[$key]['line']  = $val['line'];
+				$list[$key]['station']  = $val['station'];
 
                 //配置
                 $configlist = array();
@@ -7109,7 +7140,7 @@ class house {
 				$zuDetail["latitude"]  = $results[0]["latitude"];
 				$zuDetail["price_trend"]  = "";
 			}else{
-				$communitySql = $dsql->SetQuery("SELECT `id`, `planhouse`,`post`, `planarea`,`proaddr`, `protel`,`config`,`subway`, `cityid`, `title`, `kfs`, `addrid`, `addr`, `longitude`, `latitude`, `price`, `opendate`, `rongji`, `green`, `property`, `proprice`, `buildarea`, `litpic`,`price_trend` FROM `#@__house_community` WHERE `id` = ". $results[0]["communityid"]);
+				$communitySql = $dsql->SetQuery("SELECT `id`, `planhouse`,`post`, `planarea`,`proaddr`, `protel`,`config`,`subway`, `cityid`, `title`, `kfs`, `addrid`, `addr`, `longitude`, `latitude`, `price`, `opendate`, `rongji`, `green`, `property`, `proprice`, `buildarea`, `litpic`,`price_trend`,water,heat,power,gas,newsletter,elevator,safe,clean,entrance,parknum FROM `#@__house_community` WHERE `id` = ". $results[0]["communityid"]);
 				$communityResult = $dsql->getTypeName($communitySql);
 				if(!$communityResult){
 					$zuDetail["community"] = "小区不存在";
@@ -7154,6 +7185,20 @@ class house {
 					$community['proprice']   = $communityResult[0]["proprice"];
 					$community['buildarea']  = $communityResult[0]["buildarea"];
 					$community['litpic']     = $communityResult[0]["litpic"] ? getFilePath($communityResult[0]["litpic"]) : "";
+					//小区配套
+					$aroundConfig = [
+						'water'	=>	$communityResult[0]['water'],
+						'heat'	=>	$communityResult[0]['heat'],
+						'power'	=>	$communityResult[0]['power'],
+						'gas'	=>	$communityResult[0]['gas'],
+						'newsletter'	=>	$communityResult[0]['newsletter'],
+						'elevator'	=>	$communityResult[0]['elevator'],
+						'safe'	=>	$communityResult[0]['safe'],
+						'clean'	=>	$communityResult[0]['clean'],
+						'entrance'	=>	$communityResult[0]['entrance'],
+						'parknum'	=>	$communityResult[0]['parknum'],
+					];
+					$community['aroundConfig'] = $aroundConfig;
 
 					$zuDetail["communityDetail"] = $community;
 				}
