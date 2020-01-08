@@ -137,7 +137,7 @@ class member {
         global $HN_memory;
         $detail = array();
         $id = $uid ? $uid : $this->param;
-		if(is_array($id))	$id = $id['uid'];
+		if(is_array($id))	$id = $id['id'];
 
         $userid = $userLogin->getMemberID();
 
