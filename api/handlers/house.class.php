@@ -5914,7 +5914,7 @@ class house {
 			}
             $saleDetail['user'] = $userArr;
 			$saleDetail['userid'] = $results[0]['userid'];
-
+		
 			//父级区域
 			$areaid = 0;
 			$sql = $dsql->SetQuery("SELECT `parentid` FROM `#@__site_area` WHERE `id` = ".$addrid);
@@ -5924,6 +5924,7 @@ class house {
 			}
 			$saleDetail["areaid"]     = $areaid;
 			//统计小区、商圈、区域的房源数
+			//$saleDetail['statistics'] = $this->getHouseCount("sale", $saleDetail['communityid'], $saleDetail['addrid']);
 
 			$param = array(
 				"service"     => "house",
@@ -6054,8 +6055,8 @@ class house {
 		return $saleDetail;
 	}
 
-	public function getHouseCount(){
-		$tableName = 'sale'; $communityId = '4705'; $addrid = '5033'; $areaid = '347';
+	public function getHouseCount($tableName,$communityId, $addrid, $areaid = '347'){
+		//$tableName = 'sale'; $communityId = '4705'; $addrid = '5033'; $areaid = '347';
 		global $dsql;
 		$return = ['community'=>0, 'tradeCenter'=>0,'area'=>0];
 		$sql = $dsql->SetQuery("select count(*) commCount from #@__house_{$tableName} where communityid={$communityId}");
@@ -6074,10 +6075,10 @@ class house {
 		$sql = $dsql->SetQuery("select count(*) addrCount from #@__house_{$tableName} where addrid in ({$addrArr})");
 		$result['tradeCenter'] = ($dsql->dsqlOper($sql, "results"))[0]['addrCount'];
 
-		$areaArr = arr_foreach($dsql->getTypeList($areaid, 'site_area'));
+		/*$areaArr = arr_foreach($dsql->getTypeList($areaid, 'site_area'));
 		$areaArr = $areaArr ? join(',', $areaArr) . ",{$areaid}" : $areaid;
 		$sql = $dsql->SetQuery("select count(*) addrCount from #@__house_{$tableName} where addrid in ({$areaArr})");
-		$result['area'] = ($dsql->dsqlOper($sql, "results"))[0]['addrCount'];
+		$result['area'] = ($dsql->dsqlOper($sql, "results"))[0]['addrCount'];*/
 		return $result;
 	}
 	
@@ -16844,7 +16845,8 @@ EOT;
 		return $dsql->dsqlOper($sql, "results");
 	}
 
-	public function getSubWay($ids){
+	public function getSubway($ids){
+		if(!$ids) return [];
 		global $dsql;
 		$sql = $dsql->SetQuery("select ss.id,s.title line,ss.title station from #@__site_subway s INNER JOIN #@__site_subway_station ss on s.id=ss.sid where ss.id in ({$ids})");
 		$list = $dsql->dsqlOper($sql, "results");
