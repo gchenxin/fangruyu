@@ -1925,7 +1925,7 @@ eot;
 		}
 
 		$huoniaoTag->assign('module', $module);
-
+		
 		$page = empty($page) ? 1 : $page;
 		$huoniaoTag->assign('atpage', $page);
 		$huoniaoTag->assign('state', $state);
@@ -1964,11 +1964,18 @@ eot;
 			if($module == "house"){
 				if($type == "sale"){
 					$customAtlasMax = $custom_houseSale_atlasMax;
+					//查询二手房特色
+					$sql = $dsql->SetQuery("select id from #@__houseitem where typename='二手房附加属性' and parentid=0");
+					$idInfo = $dsql->dsqlOper($sql, "results");
+					$huoniaoTag->assign('propertypid', $idInfo[0]['id']);
 				}elseif($type == "zu"){
 					$customAtlasMax = $custom_houseZu_atlasMax;
+					//查询租房特色
+					$sql = $dsql->SetQuery("select id from #@__houseitem where typename='租房标签' and parentid=0");
+					$idInfo = $dsql->dsqlOper($sql, "results");
+					$huoniaoTag->assign('propertypid', $idInfo[0]['id']);
 				}elseif($type == "xzl"){
-					$customAtlasMax = $custom_houseXzl_atlasMax;
-
+					$customAtlasMax = $custom_houseXzl_atlasMax;	
                     // 配套设施
                     $peitaoCfg = array(
                         0 => array("type" => "ict", "name" => $langData['siteConfig'][34][28]),//员工餐厅
@@ -1996,6 +2003,7 @@ eot;
                     $customAtlasMax = $custom_houseCw_atlasMax;
 				}
                 $customAtlasMax = $customAtlasMax == "" ? 9 : $customAtlasMax;
+				$sql = $dsql->SetQuery("select id,typename from #@__houseitem where parentid=(select id from #@__houseitem where typename='二手房附加属性' and parentid=0) order by weight");
 
                 //判断是否经纪人
                 if($do != "edit"){

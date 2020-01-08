@@ -454,8 +454,12 @@ if(file_exists($tpl."/".$templates)){
 	$huoniaoTag->assign('state', $state == "" ? 1 : $state);
 
 	//属性
-	$huoniaoTag->assign('flaglist', array("急售", "免税", "地铁", "校区房", "满五年", "推荐"));
-	$huoniaoTag->assign('flagval', array("0", "1", "2", "3", "4", "5"));
+	$sql = $dsql->SetQuery("select id,typename from #@__houseitem where parentid=(select id from #@__houseitem where typename='二手房附加属性') order by weight");
+	$tagList = $dsql->dsqlOper($sql, 'results');
+	//$huoniaoTag->assign('flaglist', array("急售", "免税", "地铁", "校区房", "满五年", "推荐"));
+	//$huoniaoTag->assign('flagval', array("0", "1", "2", "3", "4", "5"));
+	$huoniaoTag->assign('flaglist', array_column($tagList, 'typename'));
+	$huoniaoTag->assign('flagval', array_column($tagList, 'id'));
 	$huoniaoTag->assign('flag', explode(",", $flag));
 
 	// 是否有电梯

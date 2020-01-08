@@ -5767,6 +5767,7 @@ class house {
 		if($results){
 			$saleDetail["id"]    = $results[0]['id'];
 			$saleDetail["title"] = $results[0]['title'];
+			$saleDetail["usercompany"] = $results[0]['usercompany'];
             $sex = $results[0]['sex'];
 
 			//小区
@@ -7129,7 +7130,7 @@ class house {
 		if($results){
 			$zuDetail["id"] = $results[0]['id'];
 			$zuDetail["title"] = $results[0]['title'];
-
+			$zuDetail["usercompany"] = $results[0]['usercompany'];
             $sex = $results[0]['sex'];
 
 			//小区
@@ -8002,7 +8003,7 @@ class house {
 			$xzlDetail["longitude"] = $results[0]['longitude'];
 			$xzlDetail["latitude"]  = $results[0]['latitude'];
             $sex = $results[0]['sex'];
-
+			$xzlDetail["usercompany"] = $results[0]['usercompany'];
 			if($results[0]["loupanid"]){
 				$loupan = array();
 				$sql = $dsql->SetQuery("SELECT `addrid`, `cityid`, `longitude`, `latitude`, `buildarea`, `floor`, `parknum`, `property`, `investor`, `proprice`, `tel`, `litpic` FROM `#@__house_loupan` WHERE `id` = ".$results[0]['loupanid']." AND `state` = 1");
@@ -8781,7 +8782,7 @@ class house {
 			$spDetail["type"]   = $results[0]['type'];
 			$spDetail["industryid"] = $results[0]['industry'];
             $sex = $results[0]['sex'];
-
+			$spDetail["usercompany"] = $results[0]['usercompany'];
 			$industryName = array();
 			if($results[0]['type'] == 2){
 				$industryName = getParentArr("house_industry", $results[0]['industry']);
@@ -9551,7 +9552,7 @@ class house {
 			$cfDetail["longitude"] = $results[0]["longitude"];
 			$cfDetail["latitude"]  = $results[0]["latitude"];
             $sex = $results[0]['sex'];
-
+			$cfDetail["usercompany"] = $results[0]['usercompany'];
 			//会员信息
 			$userid = $results[0]['usertype'] == 1 ? $results[0]['userid'] : 0;
 			$userArr = array('userid' => $userid);

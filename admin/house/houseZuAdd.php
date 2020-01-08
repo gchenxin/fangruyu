@@ -474,8 +474,12 @@ if(file_exists($tpl."/".$templates)){
 	$huoniaoTag->assign('imglist', empty($imglist) ? "''" : $imglist);
 
 	//属性
-	$huoniaoTag->assign('flaglist', array("近地铁", "拎包入住", "房主直租", "可做饭"));
-	$huoniaoTag->assign('flagval', array("0", "1", "2", "3"));
+	//$huoniaoTag->assign('flaglist', array("近地铁", "拎包入住", "房主直租", "可做饭"));
+	//$huoniaoTag->assign('flagval', array("0", "1", "2", "3"));
+	$sql = $dsql->SetQuery("select id,typename from #@__houseitem where parentid=(select id from #@__houseitem where typename='租房标签') order by weight");
+	$tagList = $dsql->dsqlOper($sql, 'results');
+	$huoniaoTag->assign('flaglist', array_column($tagList, 'typename'));
+	$huoniaoTag->assign('flagval', array_column($tagList, 'id'));
 	$huoniaoTag->assign('flag', explode(",", $flag));
 
 	if($buildpos){
