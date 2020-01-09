@@ -3707,7 +3707,7 @@ class house {
 			$communityDetail['addr']      = $addrName;
 
 			$communityDetail["address"]   = $results[0]['addr'];
-			$communityDetail["subway"]   = $this->getSubway($results[0]['subway']);
+			$communityDetail["subway"]   = $this->getSubway($results[0]['subway'], $results[0]['longitude'], $results[0]['latitude']);
 			$communityDetail["longitude"] = $results[0]['longitude'];
 			$communityDetail["latitude"]  = $results[0]['latitude'];
 			$communityDetail["litpic"]    = getFilePath($results[0]['litpic']);
@@ -5090,7 +5090,7 @@ class house {
 				$list[$key]['contact']  = $val['contact'];
 				$list[$key]['longitude']  = $val['longitude'];
 				$list[$key]['latitude']  = $val['latitude'];
-				$list[$key]['subway']  = $this->getSubway($val['subway']);
+				$list[$key]['subway']  = $this->getSubway($val['subway'], $val['longitude'], $val['latitude']);
 
 				//会员信息
 				$nickname = $userPhoto = $userPhone = "";
@@ -5807,7 +5807,7 @@ class house {
 					$data = "";
 					$addrName = array_reverse(parent_foreach($addrName, "typename"));
 					$saleDetail['addr']      = $addrName;
-					$saleDetail['subway']      = $this->getSubway($communityResult[0]['subway']);
+					$saleDetail['subway']      = $this->getSubway($communityResult[0]['subway'],$communityResult[0]["longitude"],$communityResult[0]["latitude"]);
 					$saleDetail["cityid"]   = $communityResult[0]["cityid"];
 					$saleDetail["address"]   = $communityResult[0]["addr"];
 					$saleDetail["communityConfig"]   = $communityResult[0]['config'];
@@ -6528,7 +6528,7 @@ class house {
                 $list[$key]['config']  = $val['config'];
 				$list[$key]['longitude']  = $val['longitude'];
                 $list[$key]['latitude']  = $val['latitude'];
-				$list[$key]['subway']  = $this->getSubway($val['subway']);
+				$list[$key]['subway']  = $this->getSubway($val['subway'],$val['longitude'], $val['latitude']);
                 //配置
                 $configlist = array();
                 if($val['config']){
@@ -7170,7 +7170,7 @@ class house {
 					$zuDetail['addr']      = $addrName;
 					$zuDetail["cityid"]    = $communityResult[0]["cityid"];
 					$zuDetail["communityConfig"]    = $communityResult[0]["config"];
-					$zuDetail["subway"]   = $this->getSubway($communityResult[0]["subway"]);
+					$zuDetail["subway"]   = $this->getSubway($communityResult[0]["subway"], $communityResult[0]['longitude'], $communityResult[0]['latitude']);
 					$zuDetail["address"]   = $communityResult[0]["addr"];
 					$zuDetail["longitude"] = $communityResult[0]["longitude"];
 					$zuDetail["latitude"]  = $communityResult[0]["latitude"];
@@ -16846,11 +16846,18 @@ EOT;
 		return $dsql->dsqlOper($sql, "results");
 	}
 
-	public function getSubway($ids){
+	public function getSubway($ids, $lng = 0, $lat = 0){
 		if(!$ids) return [];
 		global $dsql;
-		$sql = $dsql->SetQuery("select ss.id,s.title line,ss.title station from #@__site_subway s INNER JOIN #@__site_subway_station ss on s.id=ss.sid where ss.id in ({$ids})");
+		$sql = $dsql->SetQuery("select ss.id,s.title line,ss.title station,ss.longitude,ss.latitude from #@__site_subway s INNER JOIN #@__site_subway_station ss on s.id=ss.sid where ss.id in ({$ids})");
 		$list = $dsql->dsqlOper($sql, "results");
+		foreach($list as &$value){
+			$distance = "infinite";
+			if($lng && $lat && $value['longitude'] && $value['latitude']){
+				$distance = getDistance($lng, $lat, $value['longitude'], $value['latitude']);
+			}
+			$value['distance'] = $distance;
+		}
 		return $list;
 	}
 
