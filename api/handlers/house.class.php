@@ -5345,15 +5345,14 @@ class house {
 		$hasTopArr = json_decode($HN_memory->get("hasTop"), true);
 		$week = date('w',time());
 		$hour = date('H',time());
-		$where = "bid_week{$week}='all'";
+		$where = "s.bid_week{$week}='all'";
 		if($hour >= 8 && $hour<20){
-			$where .= " or bid_week{$week} = 'day'";
+			$where .= " or s.bid_week{$week} = 'day'";
 		}
 		if($hasTopArr)
 			asort($hasTopArr);
 		if((time() - $lastUpdateTime) / 60 >= 5){
-			$sql = $dsql->SetQuery($houseSql." AND isbid=1 and bid_start<UNIX_TIMESTAMP() and UNIX_TIMESTAMP()<bid_end and (bid_type='normal' or (bid_type='plan' and ({$where}))) ORDER BY case when bid_type='normal' then 1 else 2 end");
-			file_put_contents(HUONIAOROOT."/sql.log",$sql);
+			$sql = $dsql->SetQuery($houseSql." AND s.isbid=1 and s.bid_start<UNIX_TIMESTAMP() and UNIX_TIMESTAMP()<s.bid_end and (s.bid_type='normal' or (s.bid_type='plan' and ({$where}))) ORDER BY case when s.bid_type='normal' then 1 else 2 end");
 			$result = $dsql->dsqlOper($sql, "results");
 
 			if($result && empty($result['state'])){
@@ -7704,11 +7703,10 @@ class house {
 		$page     = empty($page) ? 1 : $page;
 
 		$archives = $dsql->SetQuery("SELECT " .
-									"s.`id`, s.`contact`, s.`type`, s.`floor`, s.`bno`, s.`type`, s.`title`, s.`loupan`, s.`addrid`, s.`address`, s.`nearby`, s.`protype`, s.`area`, s.`litpic`, s.`price`, s.`zhuangxiu`, s.`userid`, s.`usertype`, s.`username`, s.`state`, s.`pubdate`, ".$select." s.`config`, s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`video`, s.`qj_file`, s.`loupanid`,s.longitude,s.latitude " .
-									"FROM `#@__house_xzl` s " .
+									"s.`id`, s.`contact`, s.`type`, s.`floor`, s.`bno`, s.`type`, s.`title`, s.`loupan`, s.`addrid`, s.`address`, s.`nearby`, s.`protype`, s.`area`, s.`litpic`, s.`price`, s.`zhuangxiu`, s.`userid`, s.`usertype`, s.`username`, s.`state`, s.`pubdate`, ".$select." s.`config`, s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`video`, s.`qj_file`, s.`loupanid`,s.longitude,s.latitude,l.subway " .
+									"FROM `#@__house_xzl` s left join #@__house_loupan l on s.loupanid=l.id " .
 									"WHERE " .
 									"1 = 1".$where);
-
 		//总条数
 		// $totalCount = $dsql->dsqlOper($archives, "totalCount");
         $arc = $dsql->SetQuery("SELECT COUNT(s.`id`) total FROM `#@__house_xzl` s " .
