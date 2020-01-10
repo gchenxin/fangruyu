@@ -137,6 +137,7 @@ class member {
         global $HN_memory;
         $detail = array();
         $id = $uid ? $uid : $this->param;
+		if(is_array($id))	$id = $id['id'];
 
         $userid = $userLogin->getMemberID();
 
@@ -11310,19 +11311,21 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 		if(empty($this->param["itemid"]) && empty($this->param['type'])){
 			return array("state" => 101, "info" => 'Param Invalid!');
 		}
-
-		//记录电话点击次数
-		$insertSql = $dsql->SetQuery("insert into #@__house_imclick(type,date) values(1,'" .date('Y-m-d H:i:s') . "')");
-		$dsql->dsqlOper($insertSql, "update");
+		
+		$houseType = 0;
 		$table = "";
 		switch($this->param['type']){
-			case "sale": $table="house_sale";break;
-			case "zu" : $table="house_zu";break;
-			case "sp" : $table="house_sp";break;
-			case "xzl": $table="house_xzl";break;
-			case "cf" : $table="house_cf";break;
-			case "loupan": $table="house_loupan";break;
+			case "sale": $table="house_sale";$houseType = 5;break;
+			case "zu" : $table="house_zu";$houseType = 9;break;
+			case "sp" : $table="house_sp";$houseType = 17;break;
+			case "xzl": $table="house_xzl";$houseType = 33;break;
+			case "cf" : $table="house_cf";$houseType = 65;break;
+			case "loupan": $table="house_loupan";$houseType = 3;break;
 		}
+		//记录电话点击次数
+		$insertSql = $dsql->SetQuery("insert into #@__house_imclick(type,aid,date) values({$houseType}, {$this->param['itemid']},'" .date('Y-m-d H:i:s') . "')");
+		$dsql->dsqlOper($insertSql, "update");
+
 		$zjPhone = '';
 		if($this->param['id']){	//房源有经纪人
 			$zjInfo = $userLogin->getMemberInfo($this->param['id']);
@@ -11641,6 +11644,22 @@ EOT;
         $atpage = $pageSize*($page-1);
         $results = $dsql->dsqlOper($visitSql." ORDER BY `date` DESC LIMIT $atpage, $pageSize", "results");
 		return ["pageInfo"=>$pageinfo,"list"=>$results];
+	}
+
+	public function getZjHouseFlow(){
+		global $userLogin;
+		global $dsql;
+		$uid = $userLogin->getMemberID();
+		if(!$uid || $uid == -1){
+			return ['state'=>200,'info'=>'login timeout!'];
+		}
+		if(empty($this->param['type'])){
+			return ['state'=>200, 'info'=>'Invalid Category!'];
+		}
+		$page = empty($this->param['page']) ? 1 : $this->param['page'];
+		$pageSize = empty($this->param['pageSize']) ? 10 : $this->param['pageSize'];
+		$sql = $dsql->SetQuery("call getZjHouseFlow('{$this->param['type']}',{$uid},{$page},{$pageSize})");
+		return $dsql->dsqlOper($sql, "results");
 	}
 	
 	

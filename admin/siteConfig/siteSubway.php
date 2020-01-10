@@ -65,10 +65,12 @@ if($submit == '提交'){
 				$station = array();
 				foreach ($x2 as $k => $v) {
 					$tit = explode("^", $v);
-					$tit = $tit[0];
-					$station[] = "('$lid', '$tit', '$k')";
+					$title = $tit[0];
+					$lng = $tit[2];
+					$lat = $tit[3];
+					$station[] = "('$lid', '$title', '$k', {$lng}, {$lat})";
 				}
-				$archives = $dsql->SetQuery("INSERT INTO `#@__".$action."_station` (`sid`, `title`, `weight`) VALUES ".join(",", $station)."");
+				$archives = $dsql->SetQuery("INSERT INTO `#@__".$action."_station` (`sid`, `title`, `weight`, `longitude`, `latitude`) VALUES ".join(",", $station)."");
 				$dsql->dsqlOper($archives, "update");
 			}
 
@@ -97,6 +99,8 @@ if($submit == '提交'){
 					$tit = explode("^", $v);
 					$title = $tit[0];
 					$sid = $tit[1];
+					$lng = $tit[2];
+					$lat = $tit[3];
 
 					$sql = $dsql->SetQuery("SELECT * FROM `#@__".$action."_station` WHERE `id` = ".$sid);
 					$ret1 = $dsql->dsqlOper($sql, "results");
@@ -109,13 +113,19 @@ if($submit == '提交'){
 						if($ret1[0]['weight'] != $k){
 							$stationUpdate[] = "`weight` = '$k'";
 						}
+						if($ret1[0]['longitude'] != $lng){
+							$stationUpdate[] = "`longitude` = $lng";
+						}
+						if($ret1[0]['latitude'] != $lat){
+							$stationUpdate[] = "`latitude` = $lat";
+						}
 						$sql = $dsql->SetQuery("UPDATE `#@__".$action."_station` SET ".join(",", $stationUpdate)." WHERE `id` = ".$sid);
 						$dsql->dsqlOper($sql, "update");
 
 					//新增
 					}else{
 
-						$archives = $dsql->SetQuery("INSERT INTO `#@__".$action."_station` (`sid`, `title`, `weight`) VALUES ('$id', '$title', '$k')");
+						$archives = $dsql->SetQuery("INSERT INTO `#@__".$action."_station` (`sid`, `title`, `weight`, `longitude`, `latitude`) VALUES ('$id', '$title', '$k', {$lng}, {$lat})");
 						$dsql->dsqlOper($archives, "update");
 
 					}
@@ -134,10 +144,12 @@ if($submit == '提交'){
 					$station = array();
 					foreach ($x2 as $k => $v) {
 						$tit = explode("^", $v);
-						$tit = $tit[0];
-						$station[] = "('$lid', '$tit', '$k')";
+						$title = $tit[0];
+						$lng = $tit[2];
+						$lat = $tit[3];
+						$station[] = "('$lid', '$title', '$k', {$lng}, {$lat})";
 					}
-					$archives = $dsql->SetQuery("INSERT INTO `#@__".$action."_station` (`sid`, `title`, `weight`) VALUES ".join(",", $station)."");
+					$archives = $dsql->SetQuery("INSERT INTO `#@__".$action."_station` (`sid`, `title`, `weight`, `longitude`, `latitude`) VALUES ".join(",", $station)."");
 					$dsql->dsqlOper($archives, "update");
 				}
 
@@ -301,6 +313,8 @@ if($dopost == "getList"){
 					foreach ($ret as $k => $v) {
 						$subway[$key]['station'][$k]['id'] = $v['id'];
 						$subway[$key]['station'][$k]['title'] = $v['title'];
+						$subway[$key]['station'][$k]['lat'] = $v['latitude'];
+						$subway[$key]['station'][$k]['lng'] = $v['longitude'];
 					}
 				}
 			}

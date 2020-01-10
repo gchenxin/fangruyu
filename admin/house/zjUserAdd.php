@@ -31,6 +31,7 @@ if(empty($weight)) $weight = 1;
 if(empty($state)) $state = 0;
 if(empty($click)) $click = mt_rand(50, 200);
 $userInfo = [];
+$storeId = '';
 
 if($_POST['submit'] == "提交"){
 
@@ -109,6 +110,18 @@ if($_POST['submit'] == "提交"){
 
 	}
 
+	if(($dopost == "save" || $dopost == "edit") && !empty($store) && !empty($comid)){
+		//查询门店是否存在，若不存在则创建门店
+		$sql = $dsql->SetQuery("select id from #@__house_store where name='{$store}' and zjcom={$comid}");
+		$info = $dsql->dsqlOper($sql, "results");
+		if(!$info){
+			$insertSql = $dsql->SetQuery("insert into #@__house_store(zjcom,name,addrid,address,masterId,state) values({$comid},'{$store}',{$addr},'',{$userid},1)");
+			$storeId = $dsql->dsqlOper($insertSql,'lastid');
+		}else{
+			$storeId = $info[0]['id'];
+		}
+	}
+
 }
 
 if($dopost == "save" && $submit == "提交"){
@@ -126,7 +139,7 @@ if($dopost == "save" && $submit == "提交"){
 		'settop' => 0
 	];
 	//保存到表
-	$archives = $dsql->SetQuery("INSERT INTO `#@__".$tab."` (`cityid`, `userid`, `zjcom`, `store`, `addr`, `community`, `litpic`, `note`, `weight`, `click`, `state`, `flag`, `pubdate`, `wx`, `wxQr`, `qq`, `qqQr`, `license`, `post`, `suc`, `meal`) VALUES ('$cityid', '$userid', '$comid', '$store', '$addr', '$community', '$litpic', '$note', '$weight', '$click', '$state', '$flag', '".GetMkTime(time())."', '$wx', '$wxQr', '$qq', '$qqQr', '$license', $post, $suc, '" . serialize($mealArr) . "')");
+	$archives = $dsql->SetQuery("INSERT INTO `#@__".$tab."` (`cityid`, `userid`, `zjcom`, `store`, `addr`, `community`, `litpic`, `note`, `weight`, `click`, `state`, `flag`, `pubdate`, `wx`, `wxQr`, `qq`, `qqQr`, `license`, `post`, `suc`, `meal`,`storeId`) VALUES ('$cityid', '$userid', '$comid', '$store', '$addr', '$community', '$litpic', '$note', '$weight', '$click', '$state', '$flag', '".GetMkTime(time())."', '$wx', '$wxQr', '$qq', '$qqQr', '$license', $post, $suc, '" . serialize($mealArr) . "',{$storeId})");
 	$aid = $dsql->dsqlOper($archives, "lastid");
 
 	if($aid){
@@ -163,7 +176,7 @@ if($dopost == "save" && $submit == "提交"){
 		$state_     = $res[0]['state'];
 
 		//保存到表
-		$archives = $dsql->SetQuery("UPDATE `#@__".$tab."` SET `cityid` = '$cityid', `userid` = '$userid', `zjcom` = '$comid', `store` = '$store', `addr` = '$addr', `community` = '$community', `litpic` = '$litpic', `note` = '$note', `weight` = '$weight', `click` = '$click', `state` = '$state', `flag` = '$flag', `wx` = '$wx', `wxQr` = '$wxQr', `qq` = '$qq', `qqQr` = '$qqQr', `license` = '$license', `post` = $post, `suc` = $suc WHERE `id` = ".$id);
+		$archives = $dsql->SetQuery("UPDATE `#@__".$tab."` SET `cityid` = '$cityid', `userid` = '$userid', `zjcom` = '$comid', `store` = '$store', `addr` = '$addr', `community` = '$community', `litpic` = '$litpic', `note` = '$note', `weight` = '$weight', `click` = '$click', `state` = '$state', `flag` = '$flag', `wx` = '$wx', `wxQr` = '$wxQr', `qq` = '$qq', `qqQr` = '$qqQr', `license` = '$license', `post` = $post, `suc` = $suc, `storeId`={$storeId} WHERE `id` = ".$id);
 		$results = $dsql->dsqlOper($archives, "update");
 
 		if($results == "ok"){

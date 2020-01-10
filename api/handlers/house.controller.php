@@ -872,6 +872,11 @@ function house($params, $content = "", &$smarty = array(), &$repeat = array()){
 		$huoniaoTag->assign('addrid', $addrid);
 		$huoniaoTag->assign('business', $business);
 
+		//查询二手房特色的pid
+		$sql = $dsql->SetQuery("select id from #@__houseitem where typename='二手房附加属性' and parentid=0");
+		$idInfo = $dsql->dsqlOper($sql, "results");
+		$huoniaoTag->assign("propertypid", $idInfo[0]['id']);
+
 		if($addrid == 0 && $business != 0){
 			$sql = $dsql->SetQuery("SELECT `parentid` FROM `#@__site_area` WHERE `id` = ".$business);
 			$ret = $dsql->dsqlOper($sql, "results");
@@ -1148,6 +1153,11 @@ function house($params, $content = "", &$smarty = array(), &$repeat = array()){
 		//区域
 		$huoniaoTag->assign('addrid', $addrid);
 		$huoniaoTag->assign('business', $business);
+		
+		//查询二手房特色的pid
+		$sql = $dsql->SetQuery("select id from #@__houseitem where typename='租房标签' and parentid=0");
+		$idInfo = $dsql->dsqlOper($sql, "results");
+		$huoniaoTag->assign("propertypid", $idInfo[0]['id']);
 
 		if($addrid == 0 && $business != 0){
 			$sql = $dsql->SetQuery("SELECT `parentid` FROM `#@__site_area` WHERE `id` = ".$business);

@@ -24,6 +24,8 @@ if($dopost == "edit"){
 	checkPurview("houseSaleAdd");
 }
 
+$videoUploadTime = "";
+
 if(empty($communityid)) $communityid = 0;
 if(empty($addrid)) $addrid = 0;
 if(empty($cityid)) $cityid = 0;
@@ -180,10 +182,14 @@ if($_POST['submit'] == "提交"){
 }
 
 if($dopost == "save" && $submit == "提交"){
+	$videoUploadTime = 'NULL';
+	if($video){
+		$videoUploadTime = "'".date('Y-m-d H:i:s')."'";
+	}
 	//保存到表
-	$archives = $dsql->SetQuery("INSERT INTO `#@__".$tab."` (`cityid`, `title`, `communityid`, `community`, `addrid`, `address`, `litpic`, `price`, `unitprice`, `protype`, `room`, `hall`, `guard`, `bno`, `floor`, `area`, `direction`, `zhuangxiu`, `buildage`, `usertype`, `userid`, `username`, `contact`, `note`, `mbody`, `weight`, `state`, `flag`, `pubdate`, `elevator`, `video`, `qj_type`, `qj_file`, `longitude`, `latitude`, `buildpos`, `floortype`, `floorspr`, `paytax`, `rights_to`, `sex`, `wx_tel`, `sourceid`) 
+	$archives = $dsql->SetQuery("INSERT INTO `#@__".$tab."` (`cityid`, `title`, `communityid`, `community`, `addrid`, `address`, `litpic`, `price`, `unitprice`, `protype`, `room`, `hall`, `guard`, `bno`, `floor`, `area`, `direction`, `zhuangxiu`, `buildage`, `usertype`, `userid`, `username`, `contact`, `note`, `mbody`, `weight`, `state`, `flag`, `pubdate`, `elevator`, `video`, `qj_type`, `qj_file`, `longitude`, `latitude`, `buildpos`, `floortype`, `floorspr`, `paytax`, `rights_to`, `sex`, `wx_tel`, `sourceid`, `videoUploadTime`) 
 		VALUES 
-		('$cityid', '$title', '$communityid', '$community', '$addrid', '$address', '$litpic', '$price', '$unitprice', '$protype', '$room', '$hall', '$guard', '$bno', '$floor', '$area', '$direction', '$zhuangxiu', '$buildage', '$usertype', '$userid', '$username', '$contact', '$note', '$mbody', '$weight', '$state', '$flag', '".GetMkTime(time())."', '$elevator', '$video', '$qj_type', '$qj_file', '$longitude', '$latitude', '$buildpos', '$floortype', '$floorspr', '$paytax', '$rights_to', '$sex', '$wx_tel', '$sourceid')");
+		('$cityid', '$title', '$communityid', '$community', '$addrid', '$address', '$litpic', '$price', '$unitprice', '$protype', '$room', '$hall', '$guard', '$bno', '$floor', '$area', '$direction', '$zhuangxiu', '$buildage', '$usertype', '$userid', '$username', '$contact', '$note', '$mbody', '$weight', '$state', '$flag', '".GetMkTime(time())."', '$elevator', '$video', '$qj_type', '$qj_file', '$longitude', '$latitude', '$buildpos', '$floortype', '$floorspr', '$paytax', '$rights_to', '$sex', '$wx_tel', '$sourceid',{$videoUploadTime})");
 	$aid = $dsql->dsqlOper($archives, "lastid");
 
 	//保存图集表
@@ -221,12 +227,16 @@ if($dopost == "save" && $submit == "提交"){
 
 	if($submit == "提交"){
 
-		$sql = $dsql->SetQuery("SELECT `state` FROM `#@__".$tab."` WHERE `id` = ".$id);
+		$sql = $dsql->SetQuery("SELECT `state`,`video` FROM `#@__".$tab."` WHERE `id` = ".$id);
 		$res = $dsql->dsqlOper($sql, "results");
 		$state_ = $res[0]['state'];
+		$videoUploads = "";
+		if($video && $video != $res[0]['video']){
+			$videoUploads = ", `videoUploadTime`='" . date('Y-m-d H:i:s') . "'";
+		}
 
 		//保存到表
-		$archives = $dsql->SetQuery("UPDATE `#@__".$tab."` SET `cityid` = '$cityid', `title` = '$title', `communityid` = '$communityid', `community` = '$community', `addrid` = '$addrid', `address` = '$address', `litpic` = '$litpic', `price` = '$price', `unitprice` = '$unitprice', `protype` = '$protype', `room` = '$room', `hall` = '$hall', `guard` = '$guard', `bno` = '$bno', `floor` = '$floor', `area` = '$area', `direction` = '$direction', `zhuangxiu` = '$zhuangxiu', `buildage` = '$buildage', `usertype` = '$usertype', `userid` = '$userid', `username` = '$username', `contact` = '$contact', `note` = '$note', `mbody` = '$mbody', `weight` = '$weight', `state` = '$state', `flag` = '$flag', `elevator` = '$elevator', `video` = '$video', `qj_type` = '$qj_type', `qj_file` = '$qj_file', `longitude` = '$longitude', `latitude` = '$latitude', `buildpos` = '$buildpos', `floortype` = '$floortype', `floorspr` = '$floorspr', `paytax` = '$paytax', `rights_to` = '$rights_to', `sex` = '$sex', `wx_tel` = '$wx_tel', `sourceid` = '$sourceid' WHERE `id` = ".$id);
+		$archives = $dsql->SetQuery("UPDATE `#@__".$tab."` SET `cityid` = '$cityid', `title` = '$title', `communityid` = '$communityid', `community` = '$community', `addrid` = '$addrid', `address` = '$address', `litpic` = '$litpic', `price` = '$price', `unitprice` = '$unitprice', `protype` = '$protype', `room` = '$room', `hall` = '$hall', `guard` = '$guard', `bno` = '$bno', `floor` = '$floor', `area` = '$area', `direction` = '$direction', `zhuangxiu` = '$zhuangxiu', `buildage` = '$buildage', `usertype` = '$usertype', `userid` = '$userid', `username` = '$username', `contact` = '$contact', `note` = '$note', `mbody` = '$mbody', `weight` = '$weight', `state` = '$state', `flag` = '$flag', `elevator` = '$elevator', `video` = '$video', `qj_type` = '$qj_type', `qj_file` = '$qj_file', `longitude` = '$longitude', `latitude` = '$latitude', `buildpos` = '$buildpos', `floortype` = '$floortype', `floorspr` = '$floorspr', `paytax` = '$paytax', `rights_to` = '$rights_to', `sex` = '$sex', `wx_tel` = '$wx_tel', `sourceid` = '$sourceid'{$videoUploads} WHERE `id` = ".$id);
 		$results = $dsql->dsqlOper($archives, "update");
 
 		//先删除文档所属图集
@@ -444,8 +454,12 @@ if(file_exists($tpl."/".$templates)){
 	$huoniaoTag->assign('state', $state == "" ? 1 : $state);
 
 	//属性
-	$huoniaoTag->assign('flaglist', array("急售", "免税", "地铁", "校区房", "满五年", "推荐"));
-	$huoniaoTag->assign('flagval', array("0", "1", "2", "3", "4", "5"));
+	$sql = $dsql->SetQuery("select id,typename from #@__houseitem where parentid=(select id from #@__houseitem where typename='二手房附加属性') order by weight");
+	$tagList = $dsql->dsqlOper($sql, 'results');
+	//$huoniaoTag->assign('flaglist', array("急售", "免税", "地铁", "校区房", "满五年", "推荐"));
+	//$huoniaoTag->assign('flagval', array("0", "1", "2", "3", "4", "5"));
+	$huoniaoTag->assign('flaglist', array_column($tagList, 'typename'));
+	$huoniaoTag->assign('flagval', array_column($tagList, 'id'));
 	$huoniaoTag->assign('flag', explode(",", $flag));
 
 	// 是否有电梯

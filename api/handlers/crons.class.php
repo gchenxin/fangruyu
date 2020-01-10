@@ -97,6 +97,7 @@ class crons {
 		* @return 
 	 */
 	public function checkCallFailed(){
+		$noPushReasonCode = "7501,7502,7503,7504,8101,8102,8103";
 		global $dsql;
 		$files = fopen(HUONIAOROOT."/logs/checkCallFailed.log","a");
 		fwrite($files,"[" . date('Y-m-d H:i:s') . "]The check Call Failed Monitor Has Done!\n");
@@ -115,7 +116,7 @@ class crons {
 	) T on p.visualPhone=T.relationPhone and (p.realphone=T.callee or p.realphone=T.caller)
 	inner join #@__member m on p.zjid=m.id
 	where not EXISTS(
-		select * from huoniao_callrecord c where c.date='{$date}' and c.callfailCode=0 and c.callunanswerCode=0 
+		select * from huoniao_callrecord c where c.date='{$date}' and ((c.callfailCode=0 and c.callunanswerCode=0) or c.callfailCode in ({$noPushReasonCode}))
 		and p.visualphone=c.relationPhone and (p.realphone=c.callee or p.realphone=c.caller)
 	) and p.expire='{$expire}'
 EOT;
@@ -164,6 +165,7 @@ EOT;
 		* @return 
 	 */
 	public function dataClean(){
+		return true;
 		global $dsql;
 		$sql = $dsql->SetQuery("delete from #@__phonebind where now()>expire");
 		$dsql->dsqlOper($sql,'update');
