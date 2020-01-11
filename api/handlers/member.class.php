@@ -11664,6 +11664,12 @@ EOT;
 	
 	
 	public function tt(){
+		$lng1 = 104.08153;
+		$lat1 = 30.655823;
+		$lng2 = 108.946465;
+		$lat2 = 34.347269;
+		var_dump(getDistance($lng2,$lat2,$lng1,$lat1));
+		die();
 		global $dsql;
 		$sql = $dsql->SetQuery("select id, meal from #@__house_zjuser where meal!=''");
 		$result = $dsql->dsqlOper($sql, "results");

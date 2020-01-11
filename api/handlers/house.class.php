@@ -765,6 +765,10 @@ class house {
 			$where .= " AND l.`id` NOT IN (".$not.")";
 		}
 
+		/*if(!empty($ltype)){
+			$where .= " ANd exists (select f.loupanid from #@__house_{$ltype} f where f.loupanid=s.id)";
+		}*/
+
 		//遍历地区
 		if(!empty($addrid)){
 			if($dsql->getTypeList($addrid, "site_area")){
@@ -1413,6 +1417,7 @@ class house {
 			$loupanDetail["addrid"]     = $addrid;
 			$loupanDetail["cityid"]     = $results[0]['cityid'];
 
+			$loupanDetail["subway"]     = $this->getSubway($results[0]['subway'], $results[0]['longitude'], $results[0]['latitude']);
 			$addrName = getParentArr("site_area", $results[0]['addrid']);
 			global $data;
 			$data = "";
@@ -5214,9 +5219,10 @@ class house {
 
 				//属性
 				$list[$key]['flag']     = $val['flag'];
-				$flags = explode(",", $val['flag']);
-				$flagArr = array();
-				foreach ($flags as $k => $v) {
+				$flags = $this->getHouseFlag($val['flag']);
+				//$flags = explode(",", $val['flag']);
+				$flagArr = array_column($flags, "typename");
+				/*foreach ($flags as $k => $v) {
 					if($v == 0){
 						array_push($flagArr, "急售");
 					}elseif($v == 1){
@@ -5230,7 +5236,7 @@ class house {
 					}elseif($v == 5){
 						array_push($flagArr, "推荐");
 					}
-				}
+				}*/
 				$list[$key]['flags'] = $flagArr;
 
 				$list[$key]['video'] = $val['video'] ? 1 : 0;
@@ -5974,23 +5980,8 @@ class house {
 
 			//属性
 			$saleDetail['flag']     = $results[0]['flag'];
-			$flags = explode(",", $results[0]['flag']);
-			$flagArr = array();
-			foreach ($flags as $k => $v) {
-				if($v == 0){
-					array_push($flagArr, "急售");
-				}elseif($v == 1){
-					array_push($flagArr, "免税");
-				}elseif($v == 2){
-					array_push($flagArr, "地铁");
-				}elseif($v == 3){
-					array_push($flagArr, "校区房");
-				}elseif($v == 4){
-					array_push($flagArr, "满五年");
-				}elseif($v == 5){
-					array_push($flagArr, "推荐");
-				}
-			}
+			$flags = $this->getHouseFlag($results[0]['flag']);
+			$flagArr = array_column($flags, "typename");
 			$saleDetail['flags'] = $flagArr;
 
 			// 视频全景
@@ -6055,13 +6046,15 @@ class house {
 		return $saleDetail;
 	}
 
-	public function getHouseCount($tableName,$communityId, $addrid, $areaid = '347'){
+	public function getHouseCount($tableName, $communityId,$addrid, $areaid = ''){
 		//$tableName = 'sale'; $communityId = '4705'; $addrid = '5033'; $areaid = '347';
 		global $dsql;
 		$return = ['community'=>0, 'tradeCenter'=>0,'area'=>0];
 		$sql = $dsql->SetQuery("select count(*) commCount from #@__house_{$tableName} where communityid={$communityId}");
 		$info = $dsql->dsqlOper($sql, "results");
-		$result['community'] = $info[0]['commCount'];
+		$result['community']['total'] = $info[0]['commCount'];
+		$listSql = $dsql->SetQuery("select * from #@__house_{$tableName} where communityid={$communityId} limit 5");
+		$result['community']['list'] = $dsql->dsqlOper($listSql, "results");
 		/*$addrInfo = getParentArr('site_area', $addrid);
 		if(!$addrInfo)	return $return;
 		$this->parseTreeNode($addrInfo, $cityList, $parentid);
@@ -6073,12 +6066,18 @@ class house {
 		$addrArr = arr_foreach($dsql->getTypeList($addrid, 'site_area'));
 		$addrArr = $addrArr ? join(',', $addrArr) . ",{$addrid}" : $addrid;
 		$sql = $dsql->SetQuery("select count(*) addrCount from #@__house_{$tableName} where addrid in ({$addrArr})");
-		$result['tradeCenter'] = ($dsql->dsqlOper($sql, "results"))[0]['addrCount'];
+		$result['tradeCenter']['count'] = ($dsql->dsqlOper($sql, "results"))[0]['addrCount'];
+		$listSql = $dsql->SetQuery("select * from #@__house_{$tableName} where addrid in ({$addrArr}) limit 5");
+		$result['tradeCenter']['list'] = $dsql->dsqlOper($listSql, "results");
 
-		/*$areaArr = arr_foreach($dsql->getTypeList($areaid, 'site_area'));
-		$areaArr = $areaArr ? join(',', $areaArr) . ",{$areaid}" : $areaid;
-		$sql = $dsql->SetQuery("select count(*) addrCount from #@__house_{$tableName} where addrid in ({$areaArr})");
-		$result['area'] = ($dsql->dsqlOper($sql, "results"))[0]['addrCount'];*/
+		if($areaid){
+			$areaArr = arr_foreach($dsql->getTypeList($areaid, 'site_area'));
+			$areaArr = $areaArr ? join(',', $areaArr) . ",{$areaid}" : $areaid;
+			$sql = $dsql->SetQuery("select count(*) addrCount from #@__house_{$tableName} where addrid in ({$areaArr})");
+			$result['area']['count'] = ($dsql->dsqlOper($sql, "results"))[0]['addrCount'];
+			$listSql = $dsql->SetQuery("select * from #@__house_{$tableName} where addrid in ({$areaArr}) limit 5");
+			$result['area']['list'] = $dsql->dsqlOper($listSql, "results");
+		}
 		return $result;
 	}
 	
@@ -7419,12 +7418,9 @@ class house {
             $zuDetail["wx_tel"]      = $results[0]['wx_tel'];
             //标签
             $zuDetail['flag']     = $results[0]['flag'];
-            $flags = explode(",", $results[0]['flag']);
-            $flagArr = array();
-            $tags = array("朝南", "拎包入住", "可做饭", "押一付一", "邻地铁", "配套齐全", "精装修", "房主直租");
-            foreach ($flags as $k => $v) {
-                array_push($flagArr, $tags[$v]);
-            }
+			$flags = $this->getHouseFlag($results[0]['flag']);
+            $flagArr = array_column($flags, "typename");
+            
             $zuDetail['flags'] = $flagArr;
 		}
 		return $zuDetail;
@@ -7703,7 +7699,7 @@ class house {
 		$page     = empty($page) ? 1 : $page;
 
 		$archives = $dsql->SetQuery("SELECT " .
-									"s.`id`, s.`contact`, s.`type`, s.`floor`, s.`bno`, s.`type`, s.`title`, s.`loupan`, s.`addrid`, s.`address`, s.`nearby`, s.`protype`, s.`area`, s.`litpic`, s.`price`, s.`zhuangxiu`, s.`userid`, s.`usertype`, s.`username`, s.`state`, s.`pubdate`, ".$select." s.`config`, s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`video`, s.`qj_file`, s.`loupanid`,s.longitude,s.latitude,l.subway " .
+									"s.`id`, s.`username`, s.`contact`, s.`type`, s.`floor`, s.`bno`, s.`type`, s.`title`, s.`loupan`, s.`addrid`, s.`address`, s.`nearby`, s.`protype`, s.`area`, s.`litpic`, s.`price`, s.`zhuangxiu`, s.`userid`, s.`usertype`, s.`username`, s.`state`, s.`pubdate`, ".$select." s.`config`, s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`video`, s.`qj_file`, s.`loupanid`,s.longitude,s.latitude,l.subway " .
 									"FROM `#@__house_xzl` s left join #@__house_loupan l on s.loupanid=l.id " .
 									"WHERE " .
 									"1 = 1".$where);
@@ -7762,6 +7758,7 @@ class house {
 			$now = $time;
 			foreach($results as $key => $val){
 				$list[$key]['id']     = $val['id'];
+				$list[$key]['username']   = $val['username'];
 				$list[$key]['type']   = $val['type'];
 				$list[$key]['title']  = $val['title'];
 				$list[$key]['loupan'] = $val['loupan'];
@@ -7774,6 +7771,7 @@ class house {
 				$list[$key]['proprice'] = $val['proprice'];
 				$list[$key]['longitude']  = $val['longitude'];
 				$list[$key]['latitude']  = $val['latitude'];
+				$list[$key]['subway']  = $this->getSubway($val['subway'], $val['longitude'], $val['latitude']);
 
 				if($val['loupanid']){
 					$sql = $dsql->SetQuery("SELECT `title`, `price`, `ptype` FROM `#@__house_loupan` WHERE `id` = ".$val['loupanid']." AND `state` = 1");
@@ -8004,7 +8002,7 @@ class house {
 			$xzlDetail["usercompany"] = $results[0]['usercompany'];
 			if($results[0]["loupanid"]){
 				$loupan = array();
-				$sql = $dsql->SetQuery("SELECT `addrid`, `cityid`, `longitude`, `latitude`, `buildarea`, `floor`, `parknum`, `property`, `investor`, `proprice`, `tel`, `litpic` FROM `#@__house_loupan` WHERE `id` = ".$results[0]['loupanid']." AND `state` = 1");
+				$sql = $dsql->SetQuery("SELECT `addrid`, `cityid`, `subway`, `longitude`, `latitude`, `buildarea`, `floor`, `parknum`, `property`, `investor`, `proprice`, `tel`, `litpic` FROM `#@__house_loupan` WHERE `id` = ".$results[0]['loupanid']." AND `state` = 1");
 				$res = $dsql->dsqlOper($sql, "results");
 				if($res){
 					$loupan['buildarea'] = $res[0]['buildarea'];
@@ -8021,6 +8019,7 @@ class house {
 					$xzlDetail['cityid']    = $res[0]['cityid'];
 					$xzlDetail['longitude'] = $res[0]['longitude'];
 					$xzlDetail['latitude']  = $res[0]['latitude'];
+					$xzlDetail['subway'] = $this->getSubway($res[0]['subway'], $res[0]['longitude'], $res[0]['latitude']);
 				}
 			}
 
@@ -8499,8 +8498,8 @@ class house {
 		$page     = empty($page) ? 1 : $page;
 
 		$archives = $dsql->SetQuery("SELECT " .
-									"s.`id`, s.`loupan`, s.`config`, s.`contact`, s.`type`, s.`title`, s.`addrid`, s.`address`, s.`nearby`, s.`protype`, s.`area`, s.`litpic`, s.`price`, s.`zhuangxiu`, s.`bno`, s.`floor`, s.`transfer`, s.`usertype`, s.`userid`, s.`username`, s.`state`, s.`pubdate`, ".$select." s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`video`, s.`qj_file`, s.`longitude`, s.`latitude` " .
-									"FROM `#@__house_sp` s " .
+									"s.`id`, s.`loupan`, s.`config`, s.`contact`, s.`type`, s.`title`, s.`addrid`, s.`address`, s.`nearby`, s.`protype`, s.`area`, s.`litpic`, s.`price`, s.`zhuangxiu`, s.`bno`, s.`floor`, s.`transfer`, s.`usertype`, s.`userid`, s.`username`, s.`state`, s.`pubdate`, ".$select." s.`isbid`, s.`bid_type`, s.`bid_week0`, s.`bid_week1`, s.`bid_week2`, s.`bid_week3`, s.`bid_week4`, s.`bid_week5`, s.`bid_week6`, s.`bid_start`, s.`bid_end`, s.`bid_price`, s.`waitpay`, s.`refreshSmart`, s.`refreshCount`, s.`refreshTimes`, s.`refreshPrice`, s.`refreshBegan`, s.`refreshNext`, s.`refreshSurplus`, s.`video`, s.`qj_file`, s.`longitude`, s.`latitude`,l.subway " .
+									"FROM `#@__house_sp` s left join #@__house_loupan l on s.loupanid=l.id " .
 									"WHERE " .
 									"1 = 1".$where);
 
@@ -8565,6 +8564,7 @@ class house {
 				$list[$key]['loupan'] = $val['loupan'];
 				$list[$key]['longitude']  = $val['longitude'];
 				$list[$key]['latitude']  = $val['latitude'];
+				$list[$key]['subway']  = $this->getSubway($val['subway'], $val['longitude'], $val['latitude']);
 
 				$addrName = getParentArr("site_area", $val['addrid']);
 				global $data;
@@ -16858,5 +16858,53 @@ EOT;
 		}
 		return $list;
 	}
+	
+	//查询热门楼盘
+	public function getHotLoupan(){
+		global $dsql;
+		$param = $this->param;
+		if(empty($param['type']))	return array('state'=>200, 'info'=>'Param Invalid!');
+		$size = empty($param['size']) ? 5 : $param['size'];
+		$fileds = "sum(case type when 0 then 1 else 0 end) rentTime,sum(type) saleTime";
+		if($param['type'] == "sp"){
+			$fields .= ",sum(case type when 2 then 1 else 0 end) transTimes";
+		}
+		$sql = <<<EOT
+select l.*,A.clickTime,B.rentTimes,B.saleTimes,B.transTimes from #@__house_loupan l
+inner join (
+	select loupanid,sum(click) clickTime from #@__house_{$param['type']} where loupanid!='' GROUP BY loupanid
+) A on l.id=A.loupanid
+inner join (
+		select loupanid,{$fields} 
+			from #@__house_{$param['type']} where loupanid!='' GROUP BY loupanid
+		) B on A.loupanid=B.loupanid
+		ORDER BY A.clickTime desc
+		limit {$size}
+EOT;
+		$sql = $dsql->SetQuery($sql);
+		$result = $dsql->dsqlOper($sql, "results");
 
+		$list = [];
+		foreach($result as $loupan){
+			$list[]["id"] = $loupan['id'];
+			$list[]['title'] = $loupan['title'];
+			$list[]["price"] = $loupan['price'];
+			$list[]['opendate'] = $loupan['opendate'];
+			$address = getParentArr($loupan['addrid']);
+			$list[]['address'] = $address[0]['typename'];
+			$list[]['rentTimes'] = $address[0]['rentTimes'];
+			$list[]['saleTimes'] = $address[0]['saleTimes'];
+			$list[]['transTimes'] = $address[0]['transTimes'];
+		}
+		return $list;
+	}
+
+	public function getHouseFlag($flagStr){
+		global $dsql;
+		if(!$flagStr) return [];
+		$flagStr = trim($flagStr, ",");
+		$sql = $dsql->SetQuery("select id,typename from #@__houseitem where id in ({$flagStr})");
+		$results = $dsql->dsqlOper($sql, "results");
+		return $results;
+	}
 }
