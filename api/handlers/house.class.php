@@ -3761,7 +3761,7 @@ class house {
 			}
 
 			$configArr = array();
-			$config = $results[0]['config'];
+			$config = htmlspecialchars(preg_replace("/[ \\t]+/","",$results[0]['config']));
 			if(!empty($config)){
 				$config = explode("|||", $config);
 				foreach ($config as $key => $value) {
