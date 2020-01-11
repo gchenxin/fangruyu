@@ -11290,7 +11290,7 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 
 	public function calltest(){
 		$handle = new handlers('hwVisualPhone','bind');
-		$result = $handle->getHandle(array('relationPhone'=>'17152381855','caller'=>'13379462155','callee'=>'17341390521','duration'=>3600));
+		$result = $handle->getHandle(array('relationPhone'=>'17152381867','caller'=>'17341390521','callee'=>'13379462155','duration'=>300));
 		return $result;
 	}	
 
