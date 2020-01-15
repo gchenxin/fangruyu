@@ -37,6 +37,8 @@ if(!empty($tags)) $tags = join(",", $tags);
 if(!empty($protype)) $protype = join(",", $protype);
 if(empty($hot)) $hot = 0;
 if(empty($rec)) $rec = 0;
+if(empty($school))	$school = '';
+
 if($_POST['submit'] == "提交"){
 	if($token == "") die('token传递失败！');
 	//二次验证
@@ -59,6 +61,18 @@ if($_POST['submit'] == "提交"){
 	if(empty($protype)){
 		echo '{"state": 200, "info": "请选择物业类型"}';
 		exit();
+	}
+
+	if($school){
+		$schoolStr = trim(join("','", $school), "','");
+		//查询校区
+		$sql = $dsql->SetQuery("select * from #@__house_school s where s.title in ('{$schoolStr}')");
+		$results = $dsql->dsqlOper($sql, "results");
+		if(!$results){
+			echo '{"state": 200, "info": "校区不存在！"}';
+			exit();
+		}
+		$school = $results;
 	}
 	// if($userid == 0 && trim($user) == ''){
 	// 	echo '{"state": 200, "info": "请选择房产顾问"}';
@@ -115,12 +129,22 @@ if($_POST['submit'] == "提交"){
 
 }
 
-if($dopost == "save" && $submit == "提交"){
+if($dopost == "save" && $submit == "提交"){	
 	//保存到表
 	$archives = $dsql->SetQuery("INSERT INTO `#@__".$tab."` (`cityid`, `title`, `addrid`, `addr`, `longitude`, `latitude`, `subway`, `litpic`, `tags`, `post`, `buildage`, `protype`, `buildtype`, `property`, `proprice`, `protel`, `proaddr`, `water`, `heat`, `power`, `gas`, `newsletter`, `elevator`, `safe`, `clean`, `entrance`, `opendate`, `kfs`, `price`, `userid`, `weight`, `state`, `note`, `planhouse`, `parknum`, `rongji`, `planarea`, `buildarea`, `green`, `config`, `pubdate`, `video`, `qj_type`, `qj_file`, `hot`, `rec`) VALUES ('$cityid', '$title', '$addrid', '$addr', '$longitude', '$latitude', '$subway', '$litpic', '$tags', '$post', '$buildage', '$protype', '$buildtype', '$property', '$proprice', '$protel', '$proaddr', '$water', '$heat', '$power', '$gas', '$newsletter', '$elevator', '$safe', '$clean', '$entrance', '$opendate', '$kfs', '$price', '$userid', '$weight', '$state', '$note', '$planhouse', '$parknum', '$rongji', '$planarea', '$buildarea', '$green', '$config', '".GetMkTime(time())."', '$video', '$qj_type', '$qj_file', $hot, $rec)");
 	$aid = $dsql->dsqlOper($archives, "lastid");
 
 	if(is_numeric($aid)){
+		
+		//处理校区
+		$sql = "insert into #@__community_school(sid,cid,distance,date) values";
+		foreach($school as $item){
+			$distance = getDistance($item['longitude'], $item['latitude'], $longitude, $latitude);
+			$sql .= "({$item['id']}, {$aid}, $distance, '" . date('Y-m-d H:i:s') . "'), ";
+		}
+		$sql = trim($sql, ", ");
+		$sql = $dsql->SetQuery($sql);
+		$dsql->dsqlOper($sql, "update");
 
 		if($state == 1){
 			updateCache("house_community_list", 300);
@@ -154,6 +178,18 @@ if($dopost == "save" && $submit == "提交"){
 		$results = $dsql->dsqlOper($archives, "update");
 
 		if($results == "ok"){
+
+			//处理校区
+			$delSql = $dsql->SetQuery("delete from #@__community_school where cid=$id");
+			$dsql->dsqlOper($delSql, "update");
+			$sql = "insert into #@__community_school(sid,cid,distance,date) values";
+			foreach($school as $item){
+				$distance = getDistance($item['longitude'], $item['latitude'], $longitude, $latitude);
+				$sql .= "({$item['id']}, {$id}, $distance, '" . date('Y-m-d H:i:s') . "'), ";
+			}
+			$sql = trim($sql, ", ");
+			$sql = $dsql->SetQuery($sql);
+			$dsql->dsqlOper($sql, "update");
 
 			// 清除缓存
 			clearCache("house_community_detail", $id);

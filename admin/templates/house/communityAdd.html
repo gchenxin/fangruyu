@@ -16,6 +16,8 @@ var infoid = {#$id|default:0#};
 #bannerBox .list-holder li {width: 115px !important;height: 86px;}
 #bannerBox .list-holder li .li-thumb {margin: -5px 0 0 0 !important;}
 #bannerBox .list-holder li a.li-rm {margin: -17px -14px 0 0 !important;}
+.schoolCopy {display: none}
+#schoolList {position: static}
 </style>
 </head>
 
@@ -58,6 +60,26 @@ var infoid = {#$id|default:0#};
         <span class="input-tips"><s></s>请输入小区地址，2-100位</span>
         <input type="hidden" name="lnglat" id="lnglat" value="{#$lnglat#}" />
       </dd>
+    </dl>
+	<dl class="clearfix">
+      <dt><label for="school">附近校区：</label></dt>
+      <dd>
+        <input class="input-xlarge school" type="text" name="school[]" data-sid="" value="{#$school#}" maxlength="60" data-regex=".{3,60}" />
+		<a></a>
+		<div id="schoolList" class="popup_key"></div>
+      </dd>
+	  <dt><label for="school"></label></dt>
+	  <dd>
+		<button type="button" class="btn addBtn">增加一行</button>
+      </dd>
+	  <div class="schoolCopy">
+		  <dt><label for="school"></label></dt>
+		  <dd>
+		  <input class="input-xlarge school" type="text" name="school[]" data-sid="" maxlength="60" data-regex=".{3,60}" />
+		  <a href="" class="icon-trash delSchool"></a>
+		  <div id="schoolList" class="popup_key"></div>
+		  </dd>
+	  </div>
     </dl>
 		{#if $cfg_subway_state#}
     <dl class="clearfix">

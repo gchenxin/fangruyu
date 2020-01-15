@@ -757,7 +757,81 @@ function house($params, $content = "", &$smarty = array(), &$repeat = array()){
 		}
 		return;
 
+	//校区
+	}elseif($action == "school"){
+		$school_seotitle = '';
+		//伪静态URL参数分解
+		//school-addrid-tags-keywords-page.html
+		$data = $_GET['data'];
+		if(!empty($data)){
 
+			$data = explode("-", $data);
+
+			$addrid    = (int)$data[0];
+			$tags      = $data[1];
+			$keywords  = $data[2];
+			$page      = (int)$data[3];
+
+		}
+		//区域
+		$huoniaoTag->assign('addrid', $addrid);
+		if(!empty($addrid)){
+			global $data;
+			$data = "";
+			$addrArr = getParentArr("site_area", $addrid);
+			$addrArr = array_reverse(parent_foreach($addrArr, "typename"));
+			$school_seotitle = join("", $addrArr);
+		}
+		//类型
+		if(!empty($tags)){
+			$sql = $dsql->SetQuery("SELECT `typename` FROM `#@__houseitem` WHERE `id` = $tags");
+			$typename = getCache("house_item", $sql, 0, array("name" => "typename", "sign" => $tags));
+			if($typename){
+				$community_seotitle .= $typename;
+			}
+		}
+		$huoniaoTag->assign('tags', $tags);
+
+		//查询校区特色的pid
+		$sql = $dsql->SetQuery("select id from #@__houseitem where typename='校区特色' and parentid=0");
+		$idInfo = $dsql->dsqlOper($sql, "results");
+		$huoniaoTag->assign("propertypid", $idInfo[0]['id']);
+
+		//关键字
+		$huoniaoTag->assign('keywords', $keywords);
+
+		//分页
+		$atpage = $page == 0 ? 1 : $page;
+		global $page;
+		$page = $atpage;
+
+		$huoniaoTag->assign('page', $page);
+		$huoniaoTag->assign('orderby', $orderby);
+		$huoniaoTag->assign('community_seotitle', $community_seotitle);
+
+		return;
+	
+	//校区详情
+	}elseif($action == "school-detail"){
+		$detailHandels = new handlers($service, "schoolDetail");
+		$detailConfig  = $detailHandels->getHandle($id);
+		
+		if(is_array($detailConfig) && $detailConfig['state'] == 100){
+			$detailConfig  = $detailConfig['info'];
+			if(is_array($detailConfig)){
+				//输出详细信息
+				foreach ($detailConfig as $key => $value) {
+					$huoniaoTag->assign('detail_'.$key, $value);
+				}	
+				//更新浏览次数
+				global $dsql;
+				$sql = $dsql->SetQuery("UPDATE `#@__house_community` SET `click` = `click` + 1 WHERE `id` = ".$id);
+				$dsql->dsqlOper($sql, "update");
+			}
+		}else{
+			header("location:".$cfg_secureAccess.$cfg_basehost."/404.html");
+		}
+		return;
 
 	//求租/求购列表
     }elseif($action == "demand"){

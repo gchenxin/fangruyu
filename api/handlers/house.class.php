@@ -3406,13 +3406,14 @@ class house {
 
 		global $dsql;
 		$pageinfo = $list = array();
-		$typeid = $addrid = $subway = $station = $price = $title = $tags = $nid = $orderby = $page = $pageSize = $where = "";
+		$school = $typeid = $addrid = $subway = $station = $price = $title = $tags = $nid = $orderby = $page = $pageSize = $where = "";
 
 		if(!empty($this->param)){
 			if(!is_array($this->param)){
 				return array("state" => 200, "info" => '格式错误！');
 			}else{
 				$typeid   = $this->param['typeid'];
+				$school = $this->param['school'];
 				$addrid   = $this->param['addrid'];
 				$subway   = $this->param['subway'];
 				$station  = $this->param['station'];
@@ -3431,6 +3432,12 @@ class house {
 		$cityid = getCityId($this->param['cityid']);
 		if($cityid){
 			$where .= " AND `cityid` = ".$cityid;
+		}
+
+		//校区
+		if(!empty($school)){
+			$communityList = $this->getCommunityListBySchool($school);
+			$where .= " AND id in (" . join(',',$communityList) . ")";
 		}
 
 		//类型
@@ -3799,6 +3806,15 @@ class house {
 			$communityDetail['collect'] = $collect == "has" ? 1 : 0;
 
 			$communityDetail['tradeList'] = $this->getTradeList($id);
+
+			//查询是否有临近校区
+			$sql = $dsql->SetQuery("select s.title,cs.distance from #@__community_school cs inner join #@__house_school s on cs.sid=s.id where cs.cid=$id");
+			$schoolList = $dsql->dsqlOper($sql, "results");
+			$list = [];
+			foreach($schoolList as $items){
+				$list[] = ['title'=> $items['title'], 'distance'=>$items['distance']];
+			}
+			$communityDetail['schoolList'] = $list;
 		}
 		return $communityDetail;
 	}
@@ -4615,7 +4631,7 @@ class house {
 		global $dsql;
 		global $userLogin;
 		$pageinfo = $list = array();
-		$community = $zj = $addrid = $subway = $station = $max_longitude = $min_longitude = $max_latitude = $min_latitude = $price = $room = $area = $keywords = $buildage = $protype = $floor = $type = $direction = $zhuangxiu = $orderby = $flags = $times = $u = $uid = $state = $page = $pageSize = $where = $where1 = "";
+		$school = $community = $zj = $addrid = $subway = $station = $max_longitude = $min_longitude = $max_latitude = $min_latitude = $price = $room = $area = $keywords = $buildage = $protype = $floor = $type = $direction = $zhuangxiu = $orderby = $flags = $times = $u = $uid = $state = $page = $pageSize = $where = $where1 = "";
 
 		$loginUid = $userLogin->getMemberID();
 
@@ -4624,6 +4640,7 @@ class house {
 				return array("state" => 200, "info" => '格式错误！');
 			}else{
 				$community = $this->param['community'];
+				$school = $this->param['school'];
 				$zj        = $this->param['zj'];
 				$comid     = $this->param['comid'];
 				$addrid    = (int)$this->param['addrid'];
@@ -4707,7 +4724,12 @@ class house {
 		if(!empty($community)){
 			$where .= " AND s.`communityid` = " . $community;
 		}
-
+		
+		//校区
+		if(!empty($school)){
+			$communityList = $this->getCommunityListBySchool($school);
+			$where .= " AND s.`communityid` in (" . join(',',$communityList) . ")";
+		}
 
 		//中介
 		if($zj != ""){
@@ -6103,7 +6125,7 @@ class house {
 		global $userLogin;
 		global $langData;
 		$pageinfo = $list = array();
-		$community = $zj = $addrid = $subway = $station = $max_longitude = $min_longitude = $max_latitude = $min_latitude = $price = $room = $keywords = $protype = $zhuangxiu = $rentype = $type = $u = $uid = $state = $orderby = $page = $pageSize = $where = $where1 = "";
+		$school = $community = $zj = $addrid = $subway = $station = $max_longitude = $min_longitude = $max_latitude = $min_latitude = $price = $room = $keywords = $protype = $zhuangxiu = $rentype = $type = $u = $uid = $state = $orderby = $page = $pageSize = $where = $where1 = "";
 
 		$loginUid = $userLogin->getMemberID();
 
@@ -6112,6 +6134,7 @@ class house {
 				return array("state" => 200, "info" => '格式错误！');
 			}else{
 				$community = $this->param['community'];
+				$school = $this->param['school'];
 				$zj        = $this->param['zj'];
 				$comid     = $this->param['comid'];
 				$addrid    = (int)$this->param['addrid'];
@@ -6197,6 +6220,12 @@ class house {
 		//小区
 		if(!empty($community)){
 			$where .= " AND s.`communityid` = " . $community;
+		}
+
+		//校区
+		if(!empty($school)){
+			$communityList = $this->getCommunityListBySchool($school);
+			$where .= " AND s.`communityid` in (" . join(',',$communityList) . ")";
 		}
 
 		//中介
@@ -14926,7 +14955,7 @@ class house {
 		global $dsql;
 		global $userLogin;
 		$ip       = GetIP();
-		$param    = $this->param;
+		$param    = $param;
 		$type     = $param['type'];
 		$aid      = (int)$param['aid'];
 		$title    = $param['title'];
@@ -15094,13 +15123,13 @@ class house {
 		global $dsql;
 		global $userLogin;
 
-		$param     = $this->param;
-		$spec      = $this->param['spec'];
-		$type      = $this->param['type'];
-		$state     = $this->param['state'];
-		$u         = (int)$this->param['u'];
-		$page      = $this->param['page'];
-		$pageSize  = $this->param['pageSize'];
+		$param     = $param;
+		$spec      = $param['spec'];
+		$type      = $param['type'];
+		$state     = $param['state'];
+		$u         = (int)$param['u'];
+		$page      = $param['page'];
+		$pageSize  = $param['pageSize'];
 
 		$pageSize = empty($pageSize) ? 10 : $pageSize;
 		$page     = empty($page) ? 1 : $page;
@@ -15169,8 +15198,8 @@ class house {
 			$list[$key]['title'] = $val['title'];
 
 			$action = $val['type']."Detail";
-			$this->param = array("id" => $val['aid']);
-			$detail = $this->$action();
+			$param = array("id" => $val['aid']);
+			$detail = $$action();
 			$list[$key]['detail'] = $detail;
 
 			if($u){
@@ -15223,7 +15252,7 @@ class house {
 		global $dsql;
 		global $userLogin;
 
-		$param = $this->param;
+		$param = $param;
 		$id = (int)$param['id'];
 		$state = (int)$param['state'];
 		$type = $param['type'];
@@ -15298,14 +15327,14 @@ class house {
 
 		$zjuid = $res[0]['id'];
 
-		$param      = $this->param;
+		$param      = $param;
 		$type       = $param['type'];
 		$item       = $param['item'];
 		$paytype    = $param['paytype'];
 		$useBalance = (int)$param['useBalance'];
 
-		$this->param = "zjuserPriceCost";
-		$config = $this->config();
+		$param = "zjuserPriceCost";
+		$config = $config();
 		$zjuserPriceCost = $config['zjuserPriceCost'];
 
 		if(empty($zjuserPriceCost)) return array("state" => 200, "info" => "抱歉，暂时没有经纪人套餐，请联系管理员");
@@ -15364,7 +15393,7 @@ class house {
 
 		$userid = $userLogin->getMemberID();
 
-		$param = $this->param;
+		$param = $param;
 		$ordernum = $param['ordernum'];
 		$useBalance = $param['useBalance'];
         $paytype = $param['paytype'];
@@ -15444,7 +15473,7 @@ class house {
 		// 现金支付金额为0
 		if($payprice == 0){
 
-			$this->buymealSuccess($ordernum);
+			$buymealSuccess($ordernum);
 			//跳转至支付成功页面
 			$param = array(
 				"service"  => "house",
@@ -15580,7 +15609,7 @@ class house {
 
 		$zjuid = $res[0]['id'];
 
-		$param = $this->param;
+		$param = $param;
 		$page     = (int)$param['page'];
 		$pageSize = (int)$param['pageSize'];
 
@@ -15659,7 +15688,7 @@ class house {
 
 		$zjuid = $res[0]['id'];
 
-		$param = $this->param;
+		$param = $param;
 		$id    = (int)$param['id'];
 
 		if(empty($id)) return array("state" => 200, "info" => "参数错误");
@@ -15769,8 +15798,8 @@ EOT;
 		
 		// 如果没有购买套餐，判断系统是否配置了套餐
 		if(!$zjuserConfig){
-			$this->param = "zjuserPriceCost";
-			$config = $this->config();
+			$param = "zjuserPriceCost";
+			$config = $config();
 			$zjuserPriceCost = $config['zjuserPriceCost'];
 			if($zjuserPriceCost){
 				return array("state" => 200, "info" => '您还没有购买经纪人套餐，无法发布房源');
@@ -15814,14 +15843,14 @@ EOT;
 		$where = $where1 = "";
 		$list = array();
 
-		$page      = $this->param['page'];
-		$pageSize  = $this->param['pageSize'];
+		$page      = $param['page'];
+		$pageSize  = $param['pageSize'];
 
 		$pageSize = empty($pageSize) ? 10 : $pageSize;
 		$page     = empty($page) ? 1 : $page;
 
 		$where1 = " WHERE `state` = 1";
-		$cityid = getCityId($this->param['cityid']);
+		$cityid = getCityId($param['cityid']);
 		if($cityid){
 			$where1 .= " AND `cityid` = ".$cityid;
 		}
@@ -15877,14 +15906,14 @@ EOT;
 		$where = $where1 = "";
 		$list = array();
 
-		$page      = $this->param['page'];
-		$pageSize  = $this->param['pageSize'];
+		$page      = $param['page'];
+		$pageSize  = $param['pageSize'];
 
 		$pageSize = empty($pageSize) ? 10 : $pageSize;
 		$page     = empty($page) ? 1 : $page;
 
 		$where1 = " WHERE `state` = 1";
-		$cityid = getCityId($this->param['cityid']);
+		$cityid = getCityId($param['cityid']);
 		if($cityid){
 			$where1 .= " AND `cityid` = ".$cityid;
 		}
@@ -15937,16 +15966,16 @@ EOT;
 		$where = $where1 = "";
 		$list = array();
 
-		$uid       = $this->param['uid'];
-		$zjcom     = $this->param['zjcom'];
-		$page      = $this->param['page'];
-		$pageSize  = $this->param['pageSize'];
+		$uid       = $param['uid'];
+		$zjcom     = $param['zjcom'];
+		$page      = $param['page'];
+		$pageSize  = $param['pageSize'];
 
 		$pageSize = empty($pageSize) ? 10 : $pageSize;
 		$page     = empty($page) ? 1 : $page;
 
 		$where1 = " WHERE `state` = 1";
-		$cityid = getCityId($this->param['cityid']);
+		$cityid = getCityId($param['cityid']);
 		if($cityid){
 			$where1 .= " AND `cityid` = ".$cityid;
 		}
@@ -16038,13 +16067,13 @@ EOT;
      */
     public function getNewsType(){
         global $dsql;
-        if(!empty($this->param)){
-            if(!is_array($this->param)){
+        if(!empty($param)){
+            if(!is_array($param)){
                 return array("state" => 200, "info" => '格式错误！');
             }else{
-                $type     = $this->param['type'];
-                $page     = (int)$this->param['page'];
-                $pageSize = (int)$this->param['pageSize'];
+                $type     = $param['type'];
+                $page     = (int)$param['page'];
+                $pageSize = (int)$param['pageSize'];
             }
         }
 
@@ -16167,12 +16196,12 @@ EOT;
     public function getCondition(){
 		global $dsql;
 		$where = '';
-        if(!empty($this->param)){
-            if(!is_array($this->param)){
+        if(!empty($param)){
+            if(!is_array($param)){
                 return array("state" => 200, "info" => '格式错误！');
             }else{
-                $zj   = $this->param['zj'];
-                $type = $this->param['type'];
+                $zj   = $param['zj'];
+                $type = $param['type'];
             }
         }
 
@@ -16309,7 +16338,7 @@ EOT;
         global $langData;
 
         $userid   = $userLogin->getMemberID();
-        $param    = $this->param;
+        $param    = $param;
 
         $ordertype  = $param['ordertype'];    //订单类型
         $ordernum   = $param['ordernum'];    //订单号
@@ -16380,12 +16409,12 @@ EOT;
         global $dsql;
         global $userLogin;
 
-        $param    = $this->param;
+        $param    = $param;
 
         $ordertype  = $param['ordertype'];   //类型
 
         if($ordertype && method_exists($this, $ordertype)){
-            $this->$ordertype();
+            $$ordertype();
         }else{
             die("操作错误！");
         }
@@ -16509,13 +16538,13 @@ EOT;
      */
     public function touchArea(){
         global $dsql;
-        $param = $this->param;
+        $param = $param;
 
         $type = (int)$param['type'];
         if(empty($type)) $type = getCityId();
 
-        $this->param = array('type' => $type);
-        $res = $this->addr();
+        $param = array('type' => $type);
+        $res = $addr();
 
         $param = array("service" => "house", "template" => "loupan", "addrid" => "addrid");
         $url = getUrlPath($param);
@@ -16637,7 +16666,7 @@ EOT;
         );
         $url = getUrlPath($param);
 
-        $config = $this->config();
+        $config = $config();
         $tel = $config['hotline'] ? $config['hotline'] : $cfg_hotline;
 
         $menu = array(
@@ -16723,12 +16752,12 @@ EOT;
 		global $dsql;
 		global $userLogin;
 		global $langData;
-		if(empty($this->param['hid']) || empty($this->param['type']))
+		if(empty($param['hid']) || empty($this->param['type']))
 			return array("state" => 200, "info" => self::$langData['siteConfig'][33][0]);//格式错误！
 		$userInfo = $userLogin->getMemberInfo();
 		if(!$userInfo) return ['state'=>200, 'info'=>"登录超时！"];
 		//查询房源信息
-		$type = $this->param['type'];
+		$type = $param['type'];
 		$table = "";
 		switch($type){
 		case 'sale':
@@ -16747,7 +16776,7 @@ EOT;
 			$table = 'house_cf';
 			break;
 		}
-		$sql = $dsql->SetQuery("select h.*,GROUP_CONCAT(p.picPath) imglist from #@__{$table} h left join #@__house_pic p on p.type='" . (str_replace('_','',$table)) . "' and p.aid=h.id where h.id={$this->param['hid']}");
+		$sql = $dsql->SetQuery("select h.*,GROUP_CONCAT(p.picPath) imglist from #@__{$table} h left join #@__house_pic p on p.type='" . (str_replace('_','',$table)) . "' and p.aid=h.id where h.id={$param['hid']}");
 		$houseInfo = $dsql->dsqlOper($sql, 'results');
 		if($houseInfo && empty($house['state'])){
 			$houseInfo = $houseInfo[0];
@@ -16756,11 +16785,11 @@ EOT;
 			unset($houseInfo['usertype']);
 			unset($houseInfo['username']);
 			unset($houseInfo['contact']);
-			$this->param = array_merge($this->param, $houseInfo);
-			$this->param['type'] = $type;
-			$this->param['person'] = $userInfo['nickname'];
-			$this->param['tel'] = $userInfo['phone'];
-			$result = $this->put();
+			$param = array_merge($this->param, $houseInfo);
+			$param['type'] = $type;
+			$param['person'] = $userInfo['nickname'];
+			$param['tel'] = $userInfo['phone'];
+			$result = $put();
 			return $result;
 		}else{
 			return [];
@@ -16774,7 +16803,7 @@ EOT;
 			global $cfg_wechatAppsecret;
 			global $dsql;
 			global $cfg_basehost;
-			$id = $this->param;
+			$id = $param;
 			$id = is_numeric($id) ? $id : $id['id'];
 			$test = new Wechat($cfg_wechatAppid, $cfg_wechatAppsecret);
 			$wxUserInfo = $test->getWxUser();
@@ -16829,7 +16858,7 @@ EOT;
 	 */
 	public function getCommunityZjList(){
 		global $dsql;
-		$param = $this->param;
+		$param = $param;
 		if(empty($param['cid']))	return array('state'=>200, 'info'=>'Param Invalid!');
 		$sql = <<<EOT
 select m.nickname,m.realname,m.phone,m.photo from (
@@ -16862,7 +16891,7 @@ EOT;
 	//查询热门楼盘
 	public function getHotLoupan(){
 		global $dsql;
-		$param = $this->param;
+		$param = $param;
 		if(empty($param['type']))	return array('state'=>200, 'info'=>'Param Invalid!');
 		$size = empty($param['size']) ? 5 : $param['size'];
 		$fileds = "sum(case type when 0 then 1 else 0 end) rentTime,sum(type) saleTime";
@@ -16906,5 +16935,159 @@ EOT;
 		$sql = $dsql->SetQuery("select id,typename from #@__houseitem where id in ({$flagStr})");
 		$results = $dsql->dsqlOper($sql, "results");
 		return $results;
+	}
+
+	public function schoolList(){
+		global $dsql;
+		$param = $this->param;
+		$pageinfo = $list = array();
+		$id = $addrid = $title = $tags = $orderby = $page = $pageSize = $where = "";
+
+		if(!empty($param)){
+			if(!is_array($param)){
+				return array("state" => 200, "info" => '格式错误！');
+			}else{
+				$id   = $param['id'];
+				$addrid   = $param['addrid'];
+				$title    = $param['keywords'];
+				$tags     = $param['tags'];
+				$orderby  = $param['orderby'];
+				$page     = $param['page'];
+				$pageSize = $param['pageSize'];
+			}
+		}
+
+		if($id){
+			$where .= " AND s.id = $id";
+		}
+
+		$cityid = getCityId($param['cityid']);
+		if($cityid){
+			$where .= " AND s.`cityid` = ".$cityid;
+		}
+		if($title){
+			$where .= " AND s.title like '%{$title}%'";
+		}
+
+		//遍历地区
+		if(!empty($addrid)){
+			if($dsql->getTypeList($addrid, "site_area")){
+				$addridArr = arr_foreach($dsql->getTypeList($addrid, "site_area"));
+				$addridArr = join(',',$addridArr);
+				$lower = $addrid.",".$addridArr;
+			}else{
+				$lower = $addrid;
+			}
+			$where .= " AND s.`addrid` in ($lower)";
+		}
+
+		if($tags){
+			$flag = array();
+			$flagArr = explode(",", $tags);
+			foreach ($flagArr as $key => $value) {
+				$flag[$key] = "FIND_IN_SET(".$value.", s.`flag`)";
+			}
+			$where .= " AND " . join(" AND ", $flag);
+		}
+
+		if(!empty($orderby)){
+			if($orderby == 2){
+				//按房源数量排序
+				$orderby = " ORDER BY t.houseCount desc";
+			}else{
+				//默认按发布时间排序
+				$orderby = " ORDER BY s.date desc";
+			}
+		}
+		
+		$pageSize = empty($pageSize) ? 10 : $pageSize;
+		$page     = empty($page) ? 1 : $page;
+
+		$archives = $dsql->SetQuery("select s.*,t.commCount,t.houseCount,t.minprice,t.maxprice from huoniao_house_school s
+			inner join (
+				select sc.sid,count(DISTINCT sc.cid) commCount,count(communityid) houseCount,min(price) minprice,max(price) maxprice from huoniao_community_school sc
+				INNER JOIN (
+					select id,communityid from huoniao_house_sale where communityid!=0 and state=1
+					union ALL
+					select id,communityid from huoniao_house_zu where communityid!=0 and state=1
+				) h on sc.cid = h.communityid
+				INNER JOIN huoniao_house_community c on sc.cid=c.id
+				GROUP BY sc.sid
+			) t on s.id=t.sid where 1=1 " . $where);
+
+		$totalCount = getCache("house_school_total", $archives, 300, array("savekey" => 1, "type" => "totalCount", "disabled" => $u));
+
+		//总分页数
+		$totalPage = ceil($totalCount/$pageSize);
+
+		if($totalCount == 0) return array("state" => 200, "info" => '暂无数据！');
+
+		$pageinfo = array(
+			"page" => $page,
+			"pageSize" => $pageSize,
+			"totalPage" => $totalPage,
+			"totalCount" => $totalCount
+		);
+
+		$atpage = $pageSize*($page-1);
+		$where = $pageSize != -1 ? " LIMIT $atpage, $pageSize" : "";
+		$results = getCache("house_school_list", $archives.$orderby.$where, 300, array("disabled" => $u));
+		$list = [];
+		if($results){
+			foreach($results as $key=>$item){
+				$list[$key]['id'] = $item['id'];
+				$list[$key]['title'] = $item['title'];
+				$list[$key]['addrid'] = $item['addrid'];
+				$list[$key]['address'] = $item['address'];
+				$list[$key]['longitude'] = $item['longitude'];
+				$list[$key]['latitude'] = $item['latitude'];
+				$list[$key]['flag'] = array_column($this->getHouseFlag($item['flag']), 'typename');
+				$list[$key]['date'] = $item['date'];
+				$list[$key]['commCount'] = $item['commCount'];
+				$list[$key]['houseCount'] = $item['houseCount'];
+				$list[$key]['minprice'] = $item['minprice'];
+				$list[$key]['maxprice'] = $item['maxprice'];
+				$list[$key]['litpic'] = $item['litpic'] ? getFilePath($item['litpic']) : '';
+				if($id){
+					//查询图集
+					$archives = $dsql->SetQuery("SELECT * FROM `#@__house_pic` WHERE `type` = 'houseschool' AND `aid` = ".$id." ORDER BY `id` ASC");
+					$picList = $dsql->dsqlOper($archives, "results");
+					$imgList = [];
+					if(!empty($picList)){
+						foreach($picList as $key => $value){
+							$imglist[$key]["path"] = getFilePath($value["picPath"]);
+							$imglist[$key]["info"] = $value["picInfo"];
+						}
+					}else{
+						$imglist = array();
+					}
+
+					$list[$key]["imglist"]     = $imglist;
+					$list[$key]["tel"]     = $item['tel'];
+					$list[$key]['intro'] = $item['intro'];
+					if(isMobile()){
+						$list[$key]['intro'] = $item['mbody'];
+					}
+				}
+			}
+		}
+		return array("pageInfo" => $pageinfo, "list" => $list);
+	}
+
+	public function schoolDetail(){
+		global $dsql;
+		$id = $this->param;
+		$id = is_numeric($id) ? $id : $id['id'];
+		if(!is_numeric($id)) return array("state" => 200, "info" => '格式错误！');
+
+		$info = $this->schoolList();
+		return $info['list'][0];
+	}
+
+	public function getCommunityListBySchool($sid){
+		global $dsql;
+		$sql = $dsql->SetQuery("select cid from #@__community_school where sid in ($sid)");
+		$results = $dsql->dsqlOper($sql, "results");
+		return array_column($results, "cid");
 	}
 }
