@@ -17069,6 +17069,12 @@ EOT;
 						$list[$key]['intro'] = $item['mbody'];
 					}
 				}
+				$paramArr = array(
+					"service"     => "house",
+					"template"    => "school-detail",
+					"id"          => $item['id']
+				);
+				$list[$key]['url']        = getUrlPath($paramArr);
 			}
 		}
 		return array("pageInfo" => $pageinfo, "list" => $list);
@@ -17084,10 +17090,52 @@ EOT;
 		return $info['list'][0];
 	}
 
+	/**
+		* @brief 根据校区id查询附近的小区列表
+		*
+		* @param $sid
+		*
+		* @return 
+	 */
 	public function getCommunityListBySchool($sid){
 		global $dsql;
 		$sql = $dsql->SetQuery("select cid from #@__community_school where sid in ($sid)");
 		$results = $dsql->dsqlOper($sql, "results");
 		return array_column($results, "cid");
+	}
+
+	public function judgement(){
+		global $dsql;
+		$param = $this->param;
+		$cid = $direction = $area = $floor = $decorateDuring = $decorateLevel = 0;
+		
+		if(!empty($param)){
+			if(!is_array($param)){
+				return array("state" => 200, "info" => 'Param Invalid!');
+			}else{
+				$cid   = $param['communityid'];
+				$direction = $param['direction'];
+				$area   = $param['area'];
+				$floor   = $param['floor'];
+				$decorateDuring  = $param['decorateDuring'];
+				$decorateLevel    = $param['decorateLevel'];
+			}
+		}
+
+		$sql = $dsql->SetQuery("select AVG(s.unitprice) unitprice,c.price,c.title from #@__house_sale s inner join #@__house_community c on c.id=s.communityid where communityid=4725");
+		$judgeInfo = $dsql->dsqlOper($sql, "results");
+		if($judgeInfo){
+			$judgeInfo = $judgeInfo[0];
+			$return = [
+				'price'=>round($judgeInfo['unitprice'] * $area / 10000), 
+				'unitprice'=> round($judgeInfo['unitprice']), 
+				'communityPrice'=>$judgeInfo['price'],
+				'community' => $judgeInfo['title'],
+				'area' => $area,
+				'direction'	=>	$direction
+			];
+			return $return;
+		}
+		return [];
 	}
 }
