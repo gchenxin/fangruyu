@@ -3658,6 +3658,15 @@ class house {
                 );
                 $collect = checkIsCollect($params);
                 $list[$key]['collect'] = $collect == "has" ? 1 : 0;
+
+				//查询是否有临近校区
+				$sql = $dsql->SetQuery("select s.title,cs.distance from #@__community_school cs inner join #@__house_school s on cs.sid=s.id where cs.cid={$val['id']}");
+				$schoolList = $dsql->dsqlOper($sql, "results");
+				$schoolArr = [];
+				foreach($schoolList as $items){
+					$schoolArr[] = ['title'=> $items['title'], 'distance'=>$items['distance']];
+				}
+				$list[$key]['schoolList'] = $schoolArr;
 			}
 		}
 
@@ -5952,7 +5961,7 @@ class house {
 			}
 			$saleDetail["areaid"]     = $areaid;
 			//统计小区、商圈、区域的房源数
-			//$saleDetail['statistics'] = $this->getHouseCount("sale", $saleDetail['communityid'], $saleDetail['addrid']);
+			$saleDetail['statistics'] = $this->getHouseCount("sale", $saleDetail['communityid'], $saleDetail['addrid'], $areaid);
 
 			$param = array(
 				"service"     => "house",
@@ -17065,6 +17074,7 @@ EOT;
 					$list[$key]["imglist"]     = $imglist;
 					$list[$key]["tel"]     = $item['tel'];
 					$list[$key]['intro'] = $item['intro'];
+					$list[$key]['click'] = $item['click'];
 					if(isMobile()){
 						$list[$key]['intro'] = $item['mbody'];
 					}
@@ -17088,7 +17098,15 @@ EOT;
 		
 		if(is_numeric($this->param))	$this->param = ['id'=>$this->param];
 		$info = $this->schoolList();
-		return $info['list'][0];
+		if($info['list']){
+			$info['list'] = $info['list'][0];
+			$addrName = getParentArr("site_area", $info['list']['addrid']);
+			global $data;
+			$data = "";
+			$addrName = array_reverse(parent_foreach($addrName, "typename"));
+			$info['list']['addr'] = $addrName;
+		}
+		return $info['list'];
 	}
 
 	/**
