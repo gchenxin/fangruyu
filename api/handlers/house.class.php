@@ -3659,14 +3659,7 @@ class house {
                 $collect = checkIsCollect($params);
                 $list[$key]['collect'] = $collect == "has" ? 1 : 0;
 
-				//查询是否有临近校区
-				$sql = $dsql->SetQuery("select s.title,cs.distance from #@__community_school cs inner join #@__house_school s on cs.sid=s.id where cs.cid={$val['id']}");
-				$schoolList = $dsql->dsqlOper($sql, "results");
-				$schoolArr = [];
-				foreach($schoolList as $items){
-					$schoolArr[] = ['title'=> $items['title'], 'distance'=>$items['distance']];
-				}
-				$list[$key]['schoolList'] = $schoolArr;
+				$list[$key]['schoolList'] = $this->getSchoolByCommunity($val['id']);
 			}
 		}
 
@@ -3816,18 +3809,18 @@ class house {
 
 			$communityDetail['tradeList'] = $this->getTradeList($id);
 
-			//查询是否有临近校区
-			$sql = $dsql->SetQuery("select s.title,cs.distance from #@__community_school cs inner join #@__house_school s on cs.sid=s.id where cs.cid=$id");
-			$schoolList = $dsql->dsqlOper($sql, "results");
-			$list = [];
-			foreach($schoolList as $items){
-				$list[] = ['title'=> $items['title'], 'distance'=>$items['distance']];
-			}
-			$communityDetail['schoolList'] = $list;
+			$communityDetail['schoolList'] = $this->getSchoolByCommunity($id);
 		}
 		return $communityDetail;
 	}
 
+	/**
+		* @brief 获取成交记录
+		*
+		* @param $cid
+		*
+		* @return 
+	 */
 	public function getTradeList($cid = ''){
 		$cid = $cid ? $cid : $this->param['cid'];
 		if(!$cid)	return [];
@@ -5186,6 +5179,8 @@ class house {
 							"id"          => $val['communityid']
 						);
 						$url = getUrlPath($param);
+
+						$list[$key]['schoolList']      = $this->getSchoolByCommunity($val['communityid']);
 					}
 				}
 
@@ -5890,6 +5885,8 @@ class house {
 					$community['aroundConfig'] = $aroundConfig;	
 
 					$saleDetail["communityDetail"] = $community;
+
+					$saleDetail['schoolList']      = $this->getSchoolByCommunity($results[0]['communityid']);
 
 				}
 			}
@@ -6614,6 +6611,8 @@ class house {
 						$list[$key]['cityid']    = $communityResult[0]["cityid"];
 						$list[$key]['addrid']    = $communityResult[0]["addrid"];
 						$list[$key]["address"]   = $communityResult[0]["addr"];
+
+						$list[$key]['schoolList']      = $this->getSchoolByCommunity($val['communityid']);
 					}
 				}
 
@@ -7248,6 +7247,8 @@ class house {
 					$community['aroundConfig'] = $aroundConfig;
 
 					$zuDetail["communityDetail"] = $community;
+
+					$zuDetail['schoolList']      = $this->getSchoolByCommunity($results[0]['communityid']);
 				}
 			}
 
@@ -16937,6 +16938,13 @@ EOT;
 		return $list;
 	}
 
+	/**
+		* @brief 获取房源特色
+		*
+		* @param $flagStr
+		*
+		* @return 
+	 */
 	public function getHouseFlag($flagStr){
 		global $dsql;
 		if(!$flagStr) return [];
@@ -17123,6 +17131,11 @@ EOT;
 		return array_column($results, "cid");
 	}
 
+	/**
+		* @brief 估价
+		*
+		* @return 
+	 */
 	public function judgement(){
 		global $dsql;
 		$param = $this->param;
@@ -17156,5 +17169,17 @@ EOT;
 			return $return;
 		}
 		return [];
+	}
+
+	public function getSchoolByCommunity($cid){
+		global $dsql;
+		//查询是否有临近校区
+		$sql = $dsql->SetQuery("select s.id,s.title,cs.distance from #@__community_school cs inner join #@__house_school s on cs.sid=s.id where cs.cid=$cid");
+		$schoolList = $dsql->dsqlOper($sql, "results");
+		$list = [];
+		foreach($schoolList as $items){
+			$list[] = ['id'=>$items['id'],'title'=> $items['title'], 'distance'=>$items['distance']];
+		}
+		return $list;
 	}
 }
