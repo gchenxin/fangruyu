@@ -397,6 +397,32 @@ if ($action == "checkFtpConn") {
     }
     die;
 
+//模糊匹配校区
+} elseif ($action == "checkSchool") {
+    $key = $_REQUEST['key'];
+    if (!empty($key)) {
+        $where = " and `cityid` in ($adminCityIds)";
+        $schoolsql = $dsql->setquery("select id,title from `#@__house_school` where title like '%$key%'".$where." limit 0, 10");
+        $schoolresult = $dsql->dsqloper($schoolsql, "results");
+        if ($schoolresult) {
+            echo json_encode($schoolresult);
+        }
+    }
+    die;
+	
+//模糊匹配门店
+} elseif ($action == "checkStore") {
+    $key = $_REQUEST['key'];
+	$zjcom = $_REQUEST['zjcom'];
+    if (!empty($key)) {
+        $storesql = $dsql->setquery("select id,name from `#@__house_store` where name like '%$key%'".$where." and zjcom={$zjcom} limit 0, 10");
+        $storeresult = $dsql->dsqloper($storesql, "results");
+        if ($storeresult) {
+            echo json_encode($storeresult);
+        }
+    }
+    die;
+
 //模糊匹配经纪人
 } elseif ($action == "checkZjUser") {
     $key = $_POST['key'];

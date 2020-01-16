@@ -17085,7 +17085,8 @@ EOT;
 		$id = $this->param;
 		$id = is_numeric($id) ? $id : $id['id'];
 		if(!is_numeric($id)) return array("state" => 200, "info" => '格式错误！');
-
+		
+		if(is_numeric($this->param))	$this->param = ['id'=>$this->param];
 		$info = $this->schoolList();
 		return $info['list'][0];
 	}
