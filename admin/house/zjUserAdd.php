@@ -34,7 +34,6 @@ $userInfo = [];
 $storeId = '';
 
 if($_POST['submit'] == "提交"){
-
 	if($token == "") die('token传递失败！');
 
 	$type = (int)$type;

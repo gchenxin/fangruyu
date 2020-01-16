@@ -4,6 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset={#$cfg_soft_lang#}" />
 <title>{#$pagetitle#}</title>
 {#$cssFile#}
+<style>
+#storeList {position: static}
+</style>
 <script>
 var thumbSize = {#$thumbSize#}, thumbType = "{#$thumbType#}",  //缩略图配置
 	addrListArr = {#$addrListArr#}, addr = {#$addr#},
@@ -58,7 +61,9 @@ var service = 'house';
       <dt><label for="store">所在门店：</label></dt>
       <dd>
         <input class="input-xlarge" type="text" name="store" id="store" value="{#$store#}" />
+		<input type="hidden" name="storeid" id="storeid" value="{#$storeid#}" />
         <span class="input-tips"><s></s>请输入经纪人所在门店</span>
+		<div id="storeList" class="popup_key"></div>
       </dd>
     </dl>
   </div>

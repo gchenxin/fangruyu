@@ -825,7 +825,7 @@ function house($params, $content = "", &$smarty = array(), &$repeat = array()){
 				}	
 				//更新浏览次数
 				global $dsql;
-				$sql = $dsql->SetQuery("UPDATE `#@__house_community` SET `click` = `click` + 1 WHERE `id` = ".$id);
+				$sql = $dsql->SetQuery("UPDATE `#@__house_school` SET `click` = `click` + 1 WHERE `id` = ".$id);
 				$dsql->dsqlOper($sql, "update");
 			}
 		}else{
