@@ -11099,6 +11099,9 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 	}
 
 	public function push(){
+		/**
+			* @brief 注意此方法不能用于数据量大的情况，需要做优化
+		 */
 		set_time_limit(0);
 		if(date('w', time()) == 6 || date('w', time()) == 0){
 			return true;
@@ -11222,11 +11225,9 @@ VALUES ('$mtype', '$phone', '$passwd', '$nickname', '$areaCode', '$phone', '1', 
 				$hasPushed++;
 			}
 			$this->recordPushLog($val['id'],$zjCategory,1,$pushTimes,$hasPushed,$pushTimes - $hasPushed,'成功');
-			//异步推送消息通知
 			if($isPushSiteMessage && $hasPushed){
 				$messageBody = str_replace('{{number}}',$hasPushed,$messageTemplateInfo['site_body']);
 				file_get_contents($cfg_secureAccess.$cfg_basehost."/include/ajax.php?service=member&action=sendMessage&uid={$val['id']}&title={$messageTemplateInfo['site_title']}&body={$messageBody}");
-				//asynExec($cfg_httpSecureAccess.$cfg_basehost,$port,"/include/ajax.php?service=member&action=sendMessage&uid={$val['id']}&title={$messageTemplateInfo['site_title']}&body={$messageBody}");
 			}
 		}
 		return true;
