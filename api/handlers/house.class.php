@@ -17064,9 +17064,9 @@ EOT;
 		$page     = empty($page) ? 1 : $page;
 
 		$archives = $dsql->SetQuery("select s.*,t.commCount,t.houseCount,t.minprice,t.maxprice from huoniao_house_school s
-			left join (
+			inner join (
 				select sc.sid,count(DISTINCT sc.cid) commCount,count(communityid) houseCount,min(price) minprice,max(price) maxprice from huoniao_community_school sc
-				INNER JOIN (
+				LEFT JOIN (
 					select id,communityid from huoniao_house_sale where communityid!=0 and state=1
 					union ALL
 					select id,communityid from huoniao_house_zu where communityid!=0 and state=1
