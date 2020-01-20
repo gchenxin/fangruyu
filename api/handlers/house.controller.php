@@ -761,20 +761,22 @@ function house($params, $content = "", &$smarty = array(), &$repeat = array()){
 	}elseif($action == "school"){
 		$school_seotitle = '';
 		//伪静态URL参数分解
-		//school-addrid-tags-keywords-page.html
+		//school-addrid-business-tags-page-keywords.html
 		$data = $_GET['data'];
 		if(!empty($data)){
 
 			$data = explode("-", $data);
 
 			$addrid    = (int)$data[0];
-			$tags      = $data[1];
-			$keywords  = $data[2];
+			$business    = (int)$data[1];
+			$tags      = $data[2];	
 			$page      = (int)$data[3];
+			$keywords  = $data[4];
 
 		}
 		//区域
 		$huoniaoTag->assign('addrid', $addrid);
+		$huoniaoTag->assign('business', $business);
 		if(!empty($addrid)){
 			global $data;
 			$data = "";
