@@ -6095,7 +6095,7 @@ class house {
 		if(!is_array($tableName))	$tableName = [$tableName];
 		$tables = "(";
 		foreach($tableName as $tb){
-			$tables .= "select id,communityid,addrid from `#@__house_$tb` union all ";
+			$tables .= "select id,title,price,area,litpic,community,buildage,flag,bno,floor,room,hall,guard,direction,zhuangxiu,communityid,addrid from `#@__house_$tb` union all ";
 		}
 		$tables = trim($tables, "uniaon all ");
 		$tables .= ") A";
@@ -6104,6 +6104,14 @@ class house {
 		$result['community']['total'] = $info[0]['commCount'];
 		$listSql = $dsql->SetQuery("select * from $tables where A.communityid={$communityId} limit 5");
 		$result['community']['list'] = $dsql->dsqlOper($listSql, "results");
+		foreach($result['community']['list'] as &$value){
+			if($value['litpic']){
+				$value['litpic'] = getFilePath($value['litpic']);
+			}
+			if($value['flag']){
+				$value['flag'] = $this->getHouseFlag($value['flag']);
+			}
+		}
 		/*$addrInfo = getParentArr('site_area', $addrid);
 		if(!$addrInfo)	return $return;
 		$this->parseTreeNode($addrInfo, $cityList, $parentid);
@@ -6118,6 +6126,14 @@ class house {
 		$result['tradeCenter']['count'] = ($dsql->dsqlOper($sql, "results"))[0]['addrCount'];
 		$listSql = $dsql->SetQuery("select * from $tables where A.addrid in ({$addrArr}) limit 5");
 		$result['tradeCenter']['list'] = $dsql->dsqlOper($listSql, "results");
+		foreach($result['tradeCenter']['list'] as &$value){
+			if($value['litpic']){
+				$value['litpic'] = getFilePath($value['litpic']);
+			}
+			if($value['flag']){
+				$value['flag'] = $this->getHouseFlag($value['flag']);
+			}
+		}
 
 		if($areaid){
 			$areaArr = arr_foreach($dsql->getTypeList($areaid, 'site_area'));
@@ -6126,6 +6142,14 @@ class house {
 			$result['area']['count'] = ($dsql->dsqlOper($sql, "results"))[0]['addrCount'];
 			$listSql = $dsql->SetQuery("select * from $tables where A.addrid in ({$areaArr}) limit 5");
 			$result['area']['list'] = $dsql->dsqlOper($listSql, "results");
+			foreach($result['area']['list'] as &$value){
+			if($value['litpic']){
+				$value['litpic'] = getFilePath($value['litpic']);
+			}
+			if($value['flag']){
+				$value['flag'] = $this->getHouseFlag($value['flag']);
+			}
+		}
 		}
 		return $result;
 	}
