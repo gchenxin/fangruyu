@@ -3714,6 +3714,9 @@ class house {
 			$communityDetail["addrid"]     = $addrid;
 			$communityDetail["cityid"]     = $results[0]['cityid'];
 
+			//统计小区、商圈、区域的房源数
+			$communityDetail['statistics'] = $this->getHouseCount(['sale', 'zu'], $id, $addrid, $areaid);
+
 			$addrName = getParentArr("site_area", $results[0]['addrid']);
 			global $data;
 			$data = "";
@@ -4756,8 +4759,9 @@ class house {
 
 		//遍历地区
 		if(!empty($addrid)){
-			if($dsql->getTypeList($addrid, "site_area")){
-				$addridArr = arr_foreach($dsql->getTypeList($addrid, "site_area"));
+			$addrArr = $dsql->getTypeList($addrid, "site_area");
+			if($addrArr){
+				$addridArr = arr_foreach($addrArr);
 				$addridArr = join(',',$addridArr);
 				$lower = $addrid.",".$addridArr;
 			}else{
@@ -6074,14 +6078,31 @@ class house {
 		return $saleDetail;
 	}
 
+	/**
+		* @brief 统计房源
+		*
+		* @param $tableName
+		* @param $communityId
+		* @param $addrid
+		* @param $areaid
+		*
+		* @return 
+	 */
 	public function getHouseCount($tableName, $communityId,$addrid, $areaid = ''){
-		//$tableName = 'sale'; $communityId = '4705'; $addrid = '5033'; $areaid = '347';
+		//$tableName = ['sale', 'zu']; $communityId = '4725'; $addrid = '5033'; $areaid = '347';
 		global $dsql;
 		$return = ['community'=>0, 'tradeCenter'=>0,'area'=>0];
-		$sql = $dsql->SetQuery("select count(*) commCount from #@__house_{$tableName} where communityid={$communityId}");
+		if(!is_array($tableName))	$tableName = [$tableName];
+		$tables = "(";
+		foreach($tableName as $tb){
+			$tables .= "select id,communityid,addrid from `#@__house_$tb` union all ";
+		}
+		$tables = trim($tables, "uniaon all ");
+		$tables .= ") A";
+		$sql = $dsql->SetQuery("select count(*) commCount from $tables where A.communityid={$communityId}");
 		$info = $dsql->dsqlOper($sql, "results");
 		$result['community']['total'] = $info[0]['commCount'];
-		$listSql = $dsql->SetQuery("select * from #@__house_{$tableName} where communityid={$communityId} limit 5");
+		$listSql = $dsql->SetQuery("select * from $tables where A.communityid={$communityId} limit 5");
 		$result['community']['list'] = $dsql->dsqlOper($listSql, "results");
 		/*$addrInfo = getParentArr('site_area', $addrid);
 		if(!$addrInfo)	return $return;
@@ -6093,17 +6114,17 @@ class house {
 		return $cityList;*/
 		$addrArr = arr_foreach($dsql->getTypeList($addrid, 'site_area'));
 		$addrArr = $addrArr ? join(',', $addrArr) . ",{$addrid}" : $addrid;
-		$sql = $dsql->SetQuery("select count(*) addrCount from #@__house_{$tableName} where addrid in ({$addrArr})");
+		$sql = $dsql->SetQuery("select count(*) addrCount from $tables where A.addrid in ({$addrArr})");
 		$result['tradeCenter']['count'] = ($dsql->dsqlOper($sql, "results"))[0]['addrCount'];
-		$listSql = $dsql->SetQuery("select * from #@__house_{$tableName} where addrid in ({$addrArr}) limit 5");
+		$listSql = $dsql->SetQuery("select * from $tables where A.addrid in ({$addrArr}) limit 5");
 		$result['tradeCenter']['list'] = $dsql->dsqlOper($listSql, "results");
 
 		if($areaid){
 			$areaArr = arr_foreach($dsql->getTypeList($areaid, 'site_area'));
 			$areaArr = $areaArr ? join(',', $areaArr) . ",{$areaid}" : $areaid;
-			$sql = $dsql->SetQuery("select count(*) addrCount from #@__house_{$tableName} where addrid in ({$areaArr})");
+			$sql = $dsql->SetQuery("select count(*) addrCount from $tables where A.addrid in ({$areaArr})");
 			$result['area']['count'] = ($dsql->dsqlOper($sql, "results"))[0]['addrCount'];
-			$listSql = $dsql->SetQuery("select * from #@__house_{$tableName} where addrid in ({$areaArr}) limit 5");
+			$listSql = $dsql->SetQuery("select * from $tables where A.addrid in ({$areaArr}) limit 5");
 			$result['area']['list'] = $dsql->dsqlOper($listSql, "results");
 		}
 		return $result;
@@ -7320,6 +7341,8 @@ class house {
 			}
 			$zuDetail["areaid"]     = $areaid;
 
+			//统计小区、商圈、区域的房源数
+			$zuDetail['statistics'] = $this->getHouseCount("zu", $zuDetail['communityid'], $zuDetail['addrid'], $areaid);
 			$param = array(
 				"service"     => "house",
 				"template"    => "community-detail",
