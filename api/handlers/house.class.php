@@ -16856,7 +16856,7 @@ EOT;
 			global $cfg_wechatAppsecret;
 			global $dsql;
 			global $cfg_basehost;
-			$id = $param;
+			$id = $this->param;
 			$id = is_numeric($id) ? $id : $id['id'];
 			$test = new Wechat($cfg_wechatAppid, $cfg_wechatAppsecret);
 			$wxUserInfo = $test->getWxUser();
