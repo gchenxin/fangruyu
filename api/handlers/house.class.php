@@ -16591,13 +16591,13 @@ EOT;
      */
     public function touchArea(){
         global $dsql;
-        $param = $param;
+        $param = $this->param;
 
         $type = (int)$param['type'];
         if(empty($type)) $type = getCityId();
 
         $param = array('type' => $type);
-        $res = $addr();
+        $res = $this->addr();
 
         $param = array("service" => "house", "template" => "loupan", "addrid" => "addrid");
         $url = getUrlPath($param);
